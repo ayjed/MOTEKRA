@@ -1,0 +1,89 @@
+{
+  "sourceMarkSha256": "88b7b285f4401f44c2269ee3c7e0ad1ea1883b8e779f8722b78796f7deae3fa6",
+  "cards": [
+    {
+      "path": "public/assets/social/home.png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 158433,
+      "sha256": "88edaf18cb3719c536f80e4f1997368e5c50f86de36f7cd654e5a7c17162db7d"
+    },
+    {
+      "path": "public/assets/social/work.png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 158381,
+      "sha256": "1235e664d769efeec9bca710578d09e83d43f7a761fec9596a45a71ae0fda8a2"
+    },
+    {
+      "path": "public/assets/social/services.png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 156687,
+      "sha256": "f35169aa5b8555ff05d81ab49b73bf378d9466476f6f0fc8dc6b20e16e3aef33"
+    },
+    {
+      "path": "public/assets/social/about.png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 156022,
+      "sha256": "9ddf0b32d764d029fc43e0b829e30214ff570ec4063bc7fb223dbbccb215fff3"
+    },
+    {
+      "path": "public/assets/social/contact.png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 153956,
+      "sha256": "6683fffad1f72ecab59341f95e7745a4ce820640f631ed1d722c9f5b3018d9ae"
+    },
+    {
+      "path": "public/assets/social/insights.png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 155681,
+      "sha256": "83487f463e5fc110e4e1470b37989962034b8822526092c4fe17bbcd95d6d02c"
+    },
+    {
+      "path": "public/assets/social/founder.png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 156370,
+      "sha256": "d56449dc5d901ab2ab103687da715a0f99a4399e7905a9c852d145d938446eab"
+    },
+    {
+      "path": "public/assets/social/services-ui-ux-design.png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 161703,
+      "sha256": "6a18d1ea6752f22412829395f8ba58c77f9a12040eea6194d4c6d354d7927127"
+    },
+    {
+      "path": "public/assets/social/services-web-development.png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 165783,
+      "sha256": "f199ba1547c0f6f91c58355fb29c948dca2d6e8bb742acd614e1abb976a7c702"
+    },
+    {
+      "path": "public/assets/social/services-mobile-app-development.png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 163320,
+      "sha256": "8ff348f44960fe7e4cfa891771fcabd4e855503e8ea91b7db47ededb235aa346"
+    },
+    {
+      "path": "public/assets/social/services-product-strategy.png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 165617,
+      "sha256": "37f10e1e13ffedc5ff7dc0645ff8aafc91aca7131df23f9f062016ccbae5568c"
+    },
+    {
+      "path": "public/assets/social/services-brand-visual-design.png",
+      "width": 1200,
+      "height": 630,
+      "bytes": 162556,
+      "sha256": "1c0896172991c7f87cacc1ca8be69d9fb94b2b67ce6c20547fa09c4c4f5647e0"
+    }
+  ]
+}

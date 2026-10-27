@@ -1,0 +1,119 @@
+{
+  "html": "<h1 class=\"split-heading \"><span class=\"line-mask\"><span data-line=\"true\" style=\"translate: none; rotate: none; scale: none;\">Motion with</span> </span><span class=\"line-mask\"><span data-line=\"true\" style=\"translate: none; rotate: none; scale: none;\">a point of view.</span></span></h1>",
+  "title": {
+    "tag": "H1",
+    "class": "split-heading ",
+    "text": "Motion with a point of view.",
+    "style": null,
+    "color": "rgb(7, 19, 38)",
+    "opacity": "1",
+    "visibility": "visible",
+    "transform": "none",
+    "clip": "none",
+    "rect": {
+      "x": 80,
+      "y": 316.328125,
+      "w": 594.28125,
+      "h": 183.703125
+    },
+    "overflow": "visible",
+    "font": "83.52px"
+  },
+  "children": [
+    {
+      "tag": "SPAN",
+      "class": "line-mask",
+      "text": "Motion with ",
+      "style": null,
+      "color": "rgb(7, 19, 38)",
+      "opacity": "1",
+      "visibility": "visible",
+      "transform": "none",
+      "clip": "none",
+      "rect": {
+        "x": 80,
+        "y": 316.328125,
+        "w": 594.28125,
+        "h": 95.1875
+      },
+      "overflow": "clip",
+      "font": "83.52px"
+    },
+    {
+      "tag": "SPAN",
+      "class": "",
+      "text": "Motion with",
+      "style": "translate: none; rotate: none; scale: none;",
+      "color": "rgb(7, 19, 38)",
+      "opacity": "1",
+      "visibility": "visible",
+      "transform": "none",
+      "clip": "none",
+      "rect": {
+        "x": 80,
+        "y": 323,
+        "w": 422.328125,
+        "h": 81.84375
+      },
+      "overflow": "visible",
+      "font": "83.52px"
+    },
+    {
+      "tag": "SPAN",
+      "class": "line-mask",
+      "text": "a point of view.",
+      "style": null,
+      "color": "rgb(5, 98, 203)",
+      "opacity": "1",
+      "visibility": "visible",
+      "transform": "none",
+      "clip": "none",
+      "rect": {
+        "x": 80,
+        "y": 404.84375,
+        "w": 594.28125,
+        "h": 95.1875
+      },
+      "overflow": "clip",
+      "font": "83.52px"
+    },
+    {
+      "tag": "SPAN",
+      "class": "",
+      "text": "a point of view.",
+      "style": "translate: none; rotate: none; scale: none;",
+      "color": "rgb(5, 98, 203)",
+      "opacity": "1",
+      "visibility": "visible",
+      "transform": "none",
+      "clip": "none",
+      "rect": {
+        "x": 80,
+        "y": 411.515625,
+        "w": 513.359375,
+        "h": 81.84375
+      },
+      "overflow": "visible",
+      "font": "83.52px"
+    }
+  ],
+  "parent": {
+    "tag": "DIV",
+    "class": "motion-reveal ",
+    "text": "Motion with a point of view.",
+    "style": null,
+    "color": "rgb(7, 19, 38)",
+    "opacity": "1",
+    "visibility": "visible",
+    "transform": "none",
+    "clip": "none",
+    "rect": {
+      "x": 80,
+      "y": 316.328125,
+      "w": 594.28125,
+      "h": 183.703125
+    },
+    "overflow": "visible",
+    "font": "16px"
+  }
+}

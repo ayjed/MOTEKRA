@@ -1,0 +1,47 @@
+[
+  {
+    "slug": "ui-ux-design",
+    "text": "Discuss UI/UX Design→",
+    "width": 208.109375,
+    "left": 20,
+    "right": 228.109375,
+    "viewport": 320,
+    "insideViewport": true
+  },
+  {
+    "slug": "web-development",
+    "text": "Discuss Web Development→",
+    "width": 238.9375,
+    "left": 20,
+    "right": 258.9375,
+    "viewport": 320,
+    "insideViewport": true
+  },
+  {
+    "slug": "mobile-app-development",
+    "text": "Discuss Mobile App Development→",
+    "width": 280,
+    "left": 20,
+    "right": 300,
+    "viewport": 320,
+    "insideViewport": true
+  },
+  {
+    "slug": "product-strategy",
+    "text": "Discuss Product Strategy→",
+    "width": 231.234375,
+    "left": 20,
+    "right": 251.234375,
+    "viewport": 320,
+    "insideViewport": true
+  },
+  {
+    "slug": "brand-visual-design",
+    "text": "Discuss Brand & Visual Design→",
+    "width": 265.671875,
+    "left": 20,
+    "right": 285.671875,
+    "viewport": 320,
+    "insideViewport": true
+  }
+]

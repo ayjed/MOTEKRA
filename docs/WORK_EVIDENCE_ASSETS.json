@@ -1,0 +1,154 @@
+[
+  {
+    "slug": "spotlight-contest",
+    "kind": "hero",
+    "source": "Motekra Info\\Motekra Info\\1836ab98-1426-4fca-b9fa-adb23268b2fd.pdf",
+    "sourceSha256": "390d3148714db0313522e4c866c3a6f57ce18a32cabb5566722d6620a58c286a",
+    "page": 1,
+    "normalizedCrop": [
+      0,
+      0,
+      1,
+      0.17
+    ],
+    "asset": "assets\\review\\work\\spotlight-contest-hero.webp",
+    "width": 1400,
+    "height": 867,
+    "bytes": 97334,
+    "sha256": "a97f908ee5e1b79006c3c3df956dd5c17add8b7b125b435609f9ff85baa50bc7",
+    "publication": "local draft review only; permissions unverified"
+  },
+  {
+    "slug": "spotlight-contest",
+    "kind": "detail",
+    "source": "Motekra Info\\Motekra Info\\1836ab98-1426-4fca-b9fa-adb23268b2fd.pdf",
+    "sourceSha256": "390d3148714db0313522e4c866c3a6f57ce18a32cabb5566722d6620a58c286a",
+    "page": 1,
+    "normalizedCrop": [
+      0,
+      0.17,
+      1,
+      0.335
+    ],
+    "asset": "assets\\review\\work\\spotlight-contest-detail.webp",
+    "width": 1400,
+    "height": 841,
+    "bytes": 95930,
+    "sha256": "efc0ebe3e8dbb5481a45be34573ab6a36a3fd3be101f23bd1e4c0cf43a0554ff",
+    "publication": "local draft review only; permissions unverified"
+  },
+  {
+    "slug": "lad-global-travels",
+    "kind": "hero",
+    "source": "Motekra Info\\Motekra Info\\205d73c3-66c4-4918-9643-b0eadfcb3032.pdf",
+    "sourceSha256": "0602699184a8fb9029bb4827c3a99caa0760b3fd8b7db1e90743a25ec136dafc",
+    "page": 1,
+    "normalizedCrop": [
+      0,
+      0,
+      1,
+      0.19
+    ],
+    "asset": "assets\\review\\work\\lad-global-travels-hero.webp",
+    "width": 1400,
+    "height": 725,
+    "bytes": 100064,
+    "sha256": "dd4a3ffd59ed36041d136078f6d2d67bb2137d9726f381f7baf1f913c45ca122",
+    "publication": "local draft review only; permissions unverified"
+  },
+  {
+    "slug": "lad-global-travels",
+    "kind": "detail",
+    "source": "Motekra Info\\Motekra Info\\205d73c3-66c4-4918-9643-b0eadfcb3032.pdf",
+    "sourceSha256": "0602699184a8fb9029bb4827c3a99caa0760b3fd8b7db1e90743a25ec136dafc",
+    "page": 1,
+    "normalizedCrop": [
+      0,
+      0.19,
+      1,
+      0.413
+    ],
+    "asset": "assets\\review\\work\\lad-global-travels-detail.webp",
+    "width": 1400,
+    "height": 852,
+    "bytes": 67730,
+    "sha256": "5aa821ca701a8882bb31ca07150fdb34dd274ca34f925668865bc7086dca6fba",
+    "publication": "local draft review only; permissions unverified"
+  },
+  {
+    "slug": "tog-africa",
+    "kind": "hero",
+    "source": "Motekra Info\\Motekra Info\\18f8400e-473b-45df-b71d-216ad14f4e9b.pdf",
+    "sourceSha256": "9a18917affc29a5d8daf952ea81942ed569f078f21ee86d9a6f4ef101b803f55",
+    "page": 1,
+    "normalizedCrop": [
+      0,
+      0,
+      1,
+      0.135
+    ],
+    "asset": "assets\\review\\work\\tog-africa-hero.webp",
+    "width": 1400,
+    "height": 930,
+    "bytes": 117450,
+    "sha256": "b347d8f42a6cfe4be9cafde6c427d262ec73a1a6870998a2363014f1123a77d5",
+    "publication": "local draft review only; permissions unverified"
+  },
+  {
+    "slug": "tog-africa",
+    "kind": "detail",
+    "source": "Motekra Info\\Motekra Info\\18f8400e-473b-45df-b71d-216ad14f4e9b.pdf",
+    "sourceSha256": "9a18917affc29a5d8daf952ea81942ed569f078f21ee86d9a6f4ef101b803f55",
+    "page": 1,
+    "normalizedCrop": [
+      0,
+      0.247,
+      1,
+      0.405
+    ],
+    "asset": "assets\\review\\work\\tog-africa-detail.webp",
+    "width": 1400,
+    "height": 1088,
+    "bytes": 58994,
+    "sha256": "7f296984021e5d10291f29909feb606a5bfab31982578a2e8cb31fb244cf073f",
+    "publication": "local draft review only; permissions unverified"
+  },
+  {
+    "slug": "connectapi",
+    "kind": "hero",
+    "source": "Motekra Info\\Motekra Info\\eb4d75b3-7a73-4ba7-bfc6-876fba4f6315.pdf",
+    "sourceSha256": "fa0f1ec41baaa65cef452452eed62023cd6e394bd9025150a8abe84b3e16f92e",
+    "page": 1,
+    "normalizedCrop": [
+      0.056,
+      0.013,
+      0.942,
+      0.145
+    ],
+    "asset": "assets\\review\\work\\connectapi-hero.webp",
+    "width": 1241,
+    "height": 748,
+    "bytes": 52898,
+    "sha256": "783a5607607f0602ea84f7bf33b09b88cea0119aea811736d781a68fae847ffd",
+    "publication": "local draft review only; permissions unverified"
+  },
+  {
+    "slug": "connectapi",
+    "kind": "detail",
+    "source": "Motekra Info\\Motekra Info\\eb4d75b3-7a73-4ba7-bfc6-876fba4f6315.pdf",
+    "sourceSha256": "fa0f1ec41baaa65cef452452eed62023cd6e394bd9025150a8abe84b3e16f92e",
+    "page": 1,
+    "normalizedCrop": [
+      0.056,
+      0.405,
+      0.942,
+      0.635
+    ],
+    "asset": "assets\\review\\work\\connectapi-detail.webp",
+    "width": 1241,
+    "height": 1304,
+    "bytes": 71890,
+    "sha256": "fbac931abd13f77d5c04aeb991e674c82a5837875000f6aa1eb9fb30bf5dff94",
+    "publication": "local draft review only; permissions unverified"
+  }
+]

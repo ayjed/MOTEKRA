@@ -1,0 +1,180 @@
+{
+  "sections": [
+    "hero",
+    "work",
+    "services",
+    "process",
+    "founder",
+    "lab",
+    "contact",
+    "footer"
+  ],
+  "headings": [
+    {
+      "level": "H1",
+      "text": "Digital Products for what’s Next."
+    },
+    {
+      "level": "H2",
+      "text": "Real Projects. Real Impact."
+    },
+    {
+      "level": "H3",
+      "text": "Interface, in motion."
+    },
+    {
+      "level": "H3",
+      "text": "The work deservesits full story."
+    },
+    {
+      "level": "H2",
+      "text": "What We Bring to Life."
+    },
+    {
+      "level": "H3",
+      "text": "UI/UX Design"
+    },
+    {
+      "level": "H3",
+      "text": "Web Development"
+    },
+    {
+      "level": "H3",
+      "text": "Mobile App Development"
+    },
+    {
+      "level": "H3",
+      "text": "Product Strategy"
+    },
+    {
+      "level": "H3",
+      "text": "Brand & Visual Design"
+    },
+    {
+      "level": "H2",
+      "text": "From Idea to Impact."
+    },
+    {
+      "level": "H3",
+      "text": "Discover"
+    },
+    {
+      "level": "H3",
+      "text": "Define"
+    },
+    {
+      "level": "H3",
+      "text": "Design"
+    },
+    {
+      "level": "H3",
+      "text": "Develop"
+    },
+    {
+      "level": "H3",
+      "text": "Launch"
+    },
+    {
+      "level": "H2",
+      "text": "A Studio for What’s Next."
+    },
+    {
+      "level": "H3",
+      "text": "Founder &Creative Technologist"
+    },
+    {
+      "level": "H2",
+      "text": "Experiments in the Making."
+    },
+    {
+      "level": "H3",
+      "text": "Product, in motion. ↗"
+    },
+    {
+      "level": "H3",
+      "text": "Systems that adapt. ↗"
+    },
+    {
+      "level": "H3",
+      "text": "An idea takes shape. ↗"
+    },
+    {
+      "level": "H2",
+      "text": "Have Something in Mind?"
+    }
+  ],
+  "mainCount": 1,
+  "anchors": [
+    "#main-content",
+    "/",
+    "/",
+    "/work",
+    "/services",
+    "/about",
+    "/contact",
+    "/",
+    "/work",
+    "/services",
+    "/about",
+    "/contact",
+    "/",
+    "/work",
+    "/services",
+    "/about",
+    "/contact",
+    "/contact",
+    "/contact",
+    "/work",
+    "/contact",
+    "#featured-work",
+    "/work",
+    "#creative-lab",
+    "/work",
+    "/services",
+    "/services/ui-ux-design",
+    "/services/ui-ux-design",
+    "/services/web-development",
+    "/services/web-development",
+    "/services/mobile-app-development",
+    "/services/mobile-app-development",
+    "/services/product-strategy",
+    "/services/product-strategy",
+    "/services/brand-visual-design",
+    "/services/brand-visual-design",
+    "/about",
+    "/team/akinwumi-ayomiposi",
+    "https://www.linkedin.com/in/akinwumi-ayomiposi/",
+    "https://github.com/ayjed",
+    "https://www.behance.net/akinwumayomipo/projects",
+    "https://dribbble.com/meekmesh",
+    "#hero-product",
+    "#hero-product",
+    "#home-services",
+    "#home-services",
+    "#home-process",
+    "#home-process",
+    "/contact",
+    "/",
+    "https://www.linkedin.com/in/akinwumi-ayomiposi/",
+    "https://github.com/ayjed",
+    "https://www.behance.net/akinwumayomipo/projects",
+    "https://dribbble.com/meekmesh",
+    "/work",
+    "/services",
+    "/about",
+    "/team/akinwumi-ayomiposi",
+    "/contact",
+    "/services/ui-ux-design",
+    "/services/web-development",
+    "/services/mobile-app-development",
+    "/services/product-strategy",
+    "/services/brand-visual-design",
+    "#top"
+  ],
+  "noHorizontalOverflow": true,
+  "fonts": {
+    "body": "Arial, Helvetica, sans-serif",
+    "h1": "displayFont, \"displayFont Fallback\", Arial, Helvetica, sans-serif",
+    ".button": "Arial, Helvetica, sans-serif"
+  }
+}

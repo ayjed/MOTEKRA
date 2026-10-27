@@ -1,0 +1,267 @@
+[
+  {
+    "file": "lighthouse-desktop.report.json",
+    "date": "2026-10-25T18:51:47.562Z",
+    "mode": "desktop",
+    "scores": {
+      "performance": 0.58,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 0.66
+    },
+    "metrics": {
+      "first-contentful-paint": {
+        "value": 556.0097000000001,
+        "display": "0.6 s"
+      },
+      "largest-contentful-paint": {
+        "value": 1239.0388,
+        "display": "1.2 s"
+      },
+      "speed-index": {
+        "value": 4170.097192000969,
+        "display": "4.2 s"
+      },
+      "total-blocking-time": {
+        "value": 1757.9999999999998,
+        "display": "1,760 ms"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "display": "0"
+      },
+      "interactive": {
+        "value": 3220.5281300000006,
+        "display": "3.2 s"
+      },
+      "total-byte-weight": {
+        "value": 608054,
+        "display": "Total size was 594 KiB"
+      }
+    },
+    "failedAudits": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99,
+        "display": "0.6 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.88,
+        "display": "1.2 s"
+      },
+      {
+        "id": "speed-index",
+        "title": "Speed Index",
+        "score": 0.08,
+        "display": "4.2 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0,
+        "display": "1,760 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.05,
+        "display": "560 ms"
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.76,
+        "display": "3.2 s"
+      },
+      {
+        "id": "mainthread-work-breakdown",
+        "title": "Minimize main-thread work",
+        "score": 0,
+        "display": "4.1 s"
+      },
+      {
+        "id": "bootup-time",
+        "title": "Reduce JavaScript execution time",
+        "score": 0,
+        "display": "2.9 s"
+      },
+      {
+        "id": "valid-source-maps",
+        "title": "Missing source maps for large first-party JavaScript",
+        "score": 0
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0,
+        "display": "Est savings of 167 KiB"
+      },
+      {
+        "id": "is-crawlable",
+        "title": "Page is blocked from indexing",
+        "score": 0
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow",
+        "score": 0
+      },
+      {
+        "id": "lcp-breakdown-insight",
+        "title": "LCP breakdown",
+        "score": 0
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "score": 0,
+        "display": "Est savings of 14 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0.5
+      }
+    ],
+    "warnings": []
+  },
+  {
+    "file": "lighthouse-mobile.report.json",
+    "date": "2026-10-25T18:50:00.322Z",
+    "mode": "mobile",
+    "scores": {
+      "performance": 0.47,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 0.66
+    },
+    "metrics": {
+      "first-contentful-paint": {
+        "value": 2404.8202499999998,
+        "display": "2.4 s"
+      },
+      "largest-contentful-paint": {
+        "value": 4533.281,
+        "display": "4.5 s"
+      },
+      "speed-index": {
+        "value": 7550.321892248743,
+        "display": "7.6 s"
+      },
+      "total-blocking-time": {
+        "value": 1578,
+        "display": "1,580 ms"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "display": "0"
+      },
+      "interactive": {
+        "value": 5591.731,
+        "display": "5.6 s"
+      },
+      "total-byte-weight": {
+        "value": 352238,
+        "display": "Total size was 344 KiB"
+      }
+    },
+    "failedAudits": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.71,
+        "display": "2.4 s"
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.36,
+        "display": "4.5 s"
+      },
+      {
+        "id": "speed-index",
+        "title": "Speed Index",
+        "score": 0.26,
+        "display": "7.6 s"
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.12,
+        "display": "1,580 ms"
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.04,
+        "display": "580 ms"
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.69,
+        "display": "5.6 s"
+      },
+      {
+        "id": "mainthread-work-breakdown",
+        "title": "Minimize main-thread work",
+        "score": 0,
+        "display": "8.7 s"
+      },
+      {
+        "id": "bootup-time",
+        "title": "Reduce JavaScript execution time",
+        "score": 0,
+        "display": "3.2 s"
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0,
+        "display": "Est savings of 54 KiB"
+      },
+      {
+        "id": "is-crawlable",
+        "title": "Page is blocked from indexing",
+        "score": 0
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow",
+        "score": 0
+      },
+      {
+        "id": "lcp-breakdown-insight",
+        "title": "LCP breakdown",
+        "score": 0
+      },
+      {
+        "id": "legacy-javascript-insight",
+        "title": "Legacy JavaScript",
+        "score": 0,
+        "display": "Est savings of 14 KiB"
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0.5
+      }
+    ],
+    "warnings": [
+      "The tested device appears to have a slower CPU than  Lighthouse expects. This can negatively affect your performance score. Learn more about [calibrating an appropriate CPU slowdown multiplier](https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md#cpu-throttling)."
+    ]
+  }
+]

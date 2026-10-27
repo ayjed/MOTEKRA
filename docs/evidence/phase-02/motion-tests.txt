@@ -1,0 +1,16 @@
+$ playwright test --config=playwright.motion.config.ts
+
+Running 8 tests using 1 worker
+
+(node:18512) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\smoke\motion.spec.ts:7:1 › lab content is server-rendered, noindex and absent from sitemap (644ms)
+  ok 2 tests\smoke\motion.spec.ts:15:1 › desktop scene, pointer depth, focus preview and error fallback work (31.8s)
+  ok 3 tests\smoke\motion.spec.ts:63:1 › route roundtrips clean GSAP triggers and preserve active navigation/back (25.9s)
+  ok 4 tests\smoke\motion.spec.ts:84:1 › reduced motion reverts timelines and removes WebGL live (11.4s)
+  ok 5 tests\smoke\motion.spec.ts:99:1 › 320px touch drawer traps focus, closes on Escape and retains poster (11.4s)
+  ok 6 tests\smoke\motion.spec.ts:133:1 › no JavaScript leaves content, poster and mobile navigation usable (3.9s)
+  ok 7 tests\smoke\motion.spec.ts:146:1 › unsupported WebGL and low-capability devices retain the poster (11.5s)
+  ok 8 tests\smoke\motion.spec.ts:168:1 › record a short motion walkthrough (19.4s)
+
+  8 passed (2.0m)

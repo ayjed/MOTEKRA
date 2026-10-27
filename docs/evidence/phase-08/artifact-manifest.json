@@ -1,0 +1,257 @@
+[
+  {
+    "file": "article-template-fixture-1440.png",
+    "bytes": 182962,
+    "sha256": "82f65bea24d62548775305bcb582dfa70906bc29dacf37ad6301006154a99151"
+  },
+  {
+    "file": "article-template-fixture-320.png",
+    "bytes": 104222,
+    "sha256": "74120646fc69e6a037038d53f2cf765ecc90781eebbb38ec8dd881fa35ffe000"
+  },
+  {
+    "file": "article-template-fixture-390.png",
+    "bytes": 108223,
+    "sha256": "284d8823ec17b8413ea6f4308eadab6e885599e3568fb851672bc7146d9136de"
+  },
+  {
+    "file": "article-template-fixture.html",
+    "bytes": 5298,
+    "sha256": "ce6e87d4a07b4e2f5faedbfd77810b4638a02c07a5358b610d9d8c904f4082ac"
+  },
+  {
+    "file": "axe-article-fixture-1440.json",
+    "bytes": 94801,
+    "sha256": "a496a1dfddf8da4021b327da58d744a4a0fb7a36ebc052729ffc9806a64e263f"
+  },
+  {
+    "file": "axe-article-fixture-390.json",
+    "bytes": 94800,
+    "sha256": "58b4dbf063bbbb38cd9f72664f4b6d1679292469d22eb2561ee8e4585ab0fb4f"
+  },
+  {
+    "file": "axe-insights-1440.json",
+    "bytes": 217414,
+    "sha256": "6867ec0a1de43f1fdd5658cc3d504adbcb7fbd6aa384b3dc63abdbf1c6b521da"
+  },
+  {
+    "file": "axe-insights-390.json",
+    "bytes": 203268,
+    "sha256": "bc18ce5435f39f5411fa9d19b6fdb90f80a1a9127994b1288aa969581ea25d80"
+  },
+  {
+    "file": "configured-about.html",
+    "bytes": 41089,
+    "sha256": "bb689e76a6ad13f0fdc4cbf3dba5dccf07cdf5f00eaced597c338dd914334b9d"
+  },
+  {
+    "file": "configured-contact.html",
+    "bytes": 37804,
+    "sha256": "ed28f00ff683f7d5718086ad75cee2692919ec073a9566ee8a869b61ce558919"
+  },
+  {
+    "file": "configured-fixture-build.txt",
+    "bytes": 1304,
+    "sha256": "4c85567d07f559a1437aa057b0f4995a95ce6bb220b23a3932970cc6776ba255"
+  },
+  {
+    "file": "configured-home.html",
+    "bytes": 86058,
+    "sha256": "b70a6ec0d689724bf2204d390e9acfb8262572db4f8bd16e62157927bbcd1c9c"
+  },
+  {
+    "file": "configured-insights.html",
+    "bytes": 25067,
+    "sha256": "66b3bd533d88a916f383cedf30cff6af2e424818fc94c4228effeed6df265822"
+  },
+  {
+    "file": "configured-route-audit.json",
+    "bytes": 71935,
+    "sha256": "a2f368b844dab962218bdb3e25d8af245fe6882abb5351ec772f9141ee4c3004"
+  },
+  {
+    "file": "configured-services-brand-visual-design.html",
+    "bytes": 41137,
+    "sha256": "80954b2220cad53d1c838a6da4e86bdc83fa7c679031b2a40ed110e819058b64"
+  },
+  {
+    "file": "configured-services-mobile-app-development.html",
+    "bytes": 42327,
+    "sha256": "253e3bf31fc639fade1e7509cdc09e31d2c128b0d72530e1d48ff677523d1ce5"
+  },
+  {
+    "file": "configured-services-product-strategy.html",
+    "bytes": 41063,
+    "sha256": "eef80f86d89185172b992a48a11bff8c8b4d4c56d36042df3c82a72365b2a4a8"
+  },
+  {
+    "file": "configured-services-ui-ux-design.html",
+    "bytes": 41326,
+    "sha256": "47aa71d5dded33e7bdd20395c69b59143b1f103bbcf8a70fc87285776e7a7e43"
+  },
+  {
+    "file": "configured-services-web-development.html",
+    "bytes": 41528,
+    "sha256": "038282f39eea2d6aeb4f85d5f6d60d15e53d07710dedcda4ae75646180f80377"
+  },
+  {
+    "file": "configured-services.html",
+    "bytes": 67360,
+    "sha256": "b0f6804357f084062eccff75c8bc008a31217346cb1189092782df329646ef38"
+  },
+  {
+    "file": "configured-team-akinwumi-ayomiposi.html",
+    "bytes": 47414,
+    "sha256": "78e7a8bfa5b753940f210fcf23112366964dfb53d407a198c14e1a1eee707eee"
+  },
+  {
+    "file": "configured-work.html",
+    "bytes": 43556,
+    "sha256": "548e5471b336e31ab30cd8a6f21671544a0b666ce4bc19a7c478295ba98dcd5c"
+  },
+  {
+    "file": "foundation-results.json",
+    "bytes": 5059,
+    "sha256": "2e66529908068c0c5de226e3a7e8def3011ae74beb31ff740e381f3f46cb7c25"
+  },
+  {
+    "file": "founder-breadcrumb-390.png",
+    "bytes": 98428,
+    "sha256": "ef3921380430cb3cc6cd098196409ec363536e7bf1d55b28b3ef7ff46f30a16c"
+  },
+  {
+    "file": "index.html",
+    "bytes": 6773,
+    "sha256": "1a75e179fbfb7ed27a098eda8628ab7c3c2ec117e55c149a3d17878b886103df"
+  },
+  {
+    "file": "insights-1440.png",
+    "bytes": 286449,
+    "sha256": "2495a679363ee6e01e9a129a6957ce1341852848fb6dd9a7654e1c92d3a9ee7b"
+  },
+  {
+    "file": "insights-320.png",
+    "bytes": 83866,
+    "sha256": "5a7e6aa8a31565dc4a657a9d255db337d9ce53c7c60fd409c4175f21bfce9348"
+  },
+  {
+    "file": "insights-390.png",
+    "bytes": 107677,
+    "sha256": "d40b29157a21d6ba02df83b567a8b225d0334428fe34ec235212bac510f18a0f"
+  },
+  {
+    "file": "insights-mobile-contended.report.html",
+    "bytes": 593499,
+    "sha256": "2e53c23ef645fafa6688f54d144de44cc3b76845804a85b05e5f2d7bbbd2d9cb"
+  },
+  {
+    "file": "insights-mobile-contended.report.json",
+    "bytes": 518553,
+    "sha256": "2dade88675744f10dc1f7e8189a24237cd396ddc4cc633fa790a1d1e2c573aeb"
+  },
+  {
+    "file": "insights-mobile.report.html",
+    "bytes": 589404,
+    "sha256": "b8f651cebbe93d0799ef6914ed9c4838881fd17b4fa490ce47e7fe5795d9fb7f"
+  },
+  {
+    "file": "insights-mobile.report.json",
+    "bytes": 511467,
+    "sha256": "60a261c732098221f8ccffc4799e08d5a117af5de8ab7792e1073a89e5114262"
+  },
+  {
+    "file": "performance-summary.json",
+    "bytes": 432,
+    "sha256": "5b2f5ac749646cabbf61eee5aafc008d1f945620b60d50c8e95a86e90a98f2a4"
+  },
+  {
+    "file": "playwright-results.json",
+    "bytes": 7255,
+    "sha256": "a62cf41aa76b717b3e2b0f90700e86ac021509f2356209ade64624089c45218e"
+  },
+  {
+    "file": "preview-about.html",
+    "bytes": 38281,
+    "sha256": "d0ee318fb5afcb9f03479b02f4a50271c821bc8d95ca806e8ac5df6b017534d1"
+  },
+  {
+    "file": "preview-contact.html",
+    "bytes": 34964,
+    "sha256": "6f203ae95fb0d5eb7296d08d6fdfadb213be70565b923b90a83dde7e72fecefd"
+  },
+  {
+    "file": "preview-home.html",
+    "bytes": 83312,
+    "sha256": "68336c2fd32da3de8344cf27148ffd854d644440cc0ae296ab92e5794e323865"
+  },
+  {
+    "file": "preview-insights.html",
+    "bytes": 21425,
+    "sha256": "5eaa9568bb63a98dd0479eb0d8d663478fdfaa7d1a26b40de1099af9df76e166"
+  },
+  {
+    "file": "preview-route-audit.json",
+    "bytes": 51921,
+    "sha256": "3c763ec45268ffaf5076c1e321f2412e3cba2a7279490600e87fe48200251004"
+  },
+  {
+    "file": "preview-services-brand-visual-design.html",
+    "bytes": 37015,
+    "sha256": "997a1295e981f061f0c4d519d940e12caa5e899919176bc7708feaf3edc31f1b"
+  },
+  {
+    "file": "preview-services-mobile-app-development.html",
+    "bytes": 38205,
+    "sha256": "0d99ed34feb8ece43195cfdb91305fa19912e0b4d50583768b9f8c8da657bfd7"
+  },
+  {
+    "file": "preview-services-product-strategy.html",
+    "bytes": 37063,
+    "sha256": "b6c1ea6040677ca17995ba7cb62573fa04213f4703db541b2964cfa81ef1241d"
+  },
+  {
+    "file": "preview-services-ui-ux-design.html",
+    "bytes": 37377,
+    "sha256": "b93a531a5d311522ae8e8328d959c4ca78ae6f07455458e15f0843fa623193b4"
+  },
+  {
+    "file": "preview-services-web-development.html",
+    "bytes": 37505,
+    "sha256": "4d715867122533c631cbb1e821440980f45236ba077dfb054bf15265ad28cf05"
+  },
+  {
+    "file": "preview-services.html",
+    "bytes": 64496,
+    "sha256": "834ba153910534d12b20559729de106a28c7fd8d2473383f9c80914a3bd0908e"
+  },
+  {
+    "file": "preview-team-akinwumi-ayomiposi.html",
+    "bytes": 43282,
+    "sha256": "fd83bb7f88bcf6c67186c418def379e875fadd8e208a4bcda0641f06b29c2432"
+  },
+  {
+    "file": "preview-work.html",
+    "bytes": 40768,
+    "sha256": "6e341674980fdd38da2927065b5b7a40f15f61ab08a95c2152c7fb5d0ff2bc62"
+  },
+  {
+    "file": "README.md",
+    "bytes": 5178,
+    "sha256": "015b8c9025d99aad6e172c65aedd2d18d7cf68a249bc54859ff4d7a2f1b2af95"
+  },
+  {
+    "file": "service-breadcrumb-390.png",
+    "bytes": 73043,
+    "sha256": "cde378fb5767bebd9b659518434de85cb01a5eaeaaddd0d7809d7fb9079478b5"
+  },
+  {
+    "file": "social-assets.json",
+    "bytes": 2729,
+    "sha256": "bcdcb268eb0b28983a32aa7baf3450f7f06ddd56631dc23197a7efd91381d044"
+  },
+  {
+    "file": "validation.txt",
+    "bytes": 1713,
+    "sha256": "95b008f18dd6dfc039bb86433c923b358adad3720dcedae2697a41202cca7d5f"
+  }
+]

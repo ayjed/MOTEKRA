@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-25T21:44:52.373Z",
+  "mode": "Services / simulated mobile / WebGL not enabled",
+  "scores": {
+    "performance": 0.64,
+    "accessibility": 1,
+    "best-practices": 1,
+    "seo": 0.66
+  },
+  "metrics": {
+    "first-contentful-paint": {
+      "value": 1563.7407,
+      "display": "1.6 s"
+    },
+    "largest-contentful-paint": {
+      "value": 3614.7221000000004,
+      "display": "3.6 s"
+    },
+    "total-blocking-time": {
+      "value": 1295.5000000000007,
+      "display": "1,300 ms"
+    },
+    "cumulative-layout-shift": {
+      "value": 0,
+      "display": "0"
+    },
+    "total-byte-weight": {
+      "value": 358586,
+      "display": "Total size was 350 KiB"
+    }
+  },
+  "warnings": [
+    "The tested device appears to have a slower CPU than  Lighthouse expects. This can negatively affect your performance score. Learn more about [calibrating an appropriate CPU slowdown multiplier](https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md#cpu-throttling)."
+  ]
+}

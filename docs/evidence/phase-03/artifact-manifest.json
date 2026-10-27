@@ -1,0 +1,212 @@
+[
+  {
+    "file": "axe-1440.json",
+    "bytes": 617942,
+    "sha256": "588e3cd527eb19cb7b3dd1976e22bbf03520b59be349f0ed4eab6027286936a1"
+  },
+  {
+    "file": "axe-390.json",
+    "bytes": 599040,
+    "sha256": "71a35c5904f70d71ca2b6ee14b4af3c1eeaa69c12bbe315f577c7971e9c1a48d"
+  },
+  {
+    "file": "build.txt",
+    "bytes": 1254,
+    "sha256": "874384593231b94665a377ede2d090f5dcb0d5dbe34a5ece6280352732038afe"
+  },
+  {
+    "file": "desktop-creative-lab.png",
+    "bytes": 248039,
+    "sha256": "d5916603aadca556d170ee1349d72be5938486539d0e1fc45e1685e00b474373"
+  },
+  {
+    "file": "desktop-home-contact.png",
+    "bytes": 385333,
+    "sha256": "f5b494a8922d8471eae7d5e5d26b09f2e747ba1b6066b26b6b5d0a4442636f8e"
+  },
+  {
+    "file": "desktop-home-founder.png",
+    "bytes": 117134,
+    "sha256": "feb745f2d43a1464409b89f16d3cd4d71d9ccdbe6afb916108af826d90dba74f"
+  },
+  {
+    "file": "gallery-build.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "file": "hero-1440.png",
+    "bytes": 449221,
+    "sha256": "9b7d2e0ff2ef474d3db9aa02f2e361f22eed42a67078ebd0ebc1d8acef7ac95e"
+  },
+  {
+    "file": "hero-390.png",
+    "bytes": 166780,
+    "sha256": "b44313ecf7158ede7f92891e99db8015c5a87d6bcd346bd5884ac45dfd74b677"
+  },
+  {
+    "file": "home-1440.png",
+    "bytes": 2207692,
+    "sha256": "3ab98ee955f31c72063ca89d415815c61d6abc067e025cd6446069a8e6b1c8c9"
+  },
+  {
+    "file": "home-320.png",
+    "bytes": 1508492,
+    "sha256": "ca7587b0ac7b6c2a0fb8ff183e9278ba5d446a2964ba2d80bc600ce254e4933c"
+  },
+  {
+    "file": "home-390.png",
+    "bytes": 1670046,
+    "sha256": "48a455306cd91223d06ca4673afd4fa30fd133f14803508f35719cc340b16197"
+  },
+  {
+    "file": "home-mobile-walkthrough.webm",
+    "bytes": 1462917,
+    "sha256": "7aff2552a535ba5fdeca3e23e5cecf03d7135a09357bcc93ba8b892a1b6f4ca3"
+  },
+  {
+    "file": "home-no-js-390.png",
+    "bytes": 1659684,
+    "sha256": "d36633e6b9f881318dcb993ca4b4be776bf10195392600e009a86161f428de3d"
+  },
+  {
+    "file": "home-server.html",
+    "bytes": 85123,
+    "sha256": "4419b6efa5f5e97aa650a77a8177fb3b3c2bac713bf0905e0255a046e5a0973b"
+  },
+  {
+    "file": "home-walkthrough.webm",
+    "bytes": 7863454,
+    "sha256": "b573cc76a747f69b093e5fede52020fc8416fd055f159e7b2eb969e465ded33b"
+  },
+  {
+    "file": "html-audit.json",
+    "bytes": 3602,
+    "sha256": "9ad69ab4f4e13c739a8e5fba1aafa5f10a18144e700a652e6490c4567086af0c"
+  },
+  {
+    "file": "internal-links.json",
+    "bytes": 310,
+    "sha256": "739654c4921c8146eac7de5b4fa845f3c7b0cf9c2b7c86544b78d0335a79fb63"
+  },
+  {
+    "file": "lighthouse-desktop.report.html",
+    "bytes": 818094,
+    "sha256": "6ea68a225b29d6291e8eb412dee7c483f9ec0cc26dcc7adbe6742f38609eb34c"
+  },
+  {
+    "file": "lighthouse-desktop.report.json",
+    "bytes": 750984,
+    "sha256": "e3e3ef6b59df3097018befde454849f7a7552138fd8e1ebdfc3db77c1c743e18"
+  },
+  {
+    "file": "lighthouse-mobile.report.html",
+    "bytes": 772656,
+    "sha256": "18aca5af82167f3d7acc3bcda16e4ae6142199501db988dc61834cac28bb287c"
+  },
+  {
+    "file": "lighthouse-mobile.report.json",
+    "bytes": 706196,
+    "sha256": "743fdfde61b998e65c325c87981a674aedc8802601101df1d77cc89f39e374de"
+  },
+  {
+    "file": "lint.txt",
+    "bytes": 29,
+    "sha256": "26e18605dfaa48aa43aa4d6fcee342c6870d94730bd053d88f47f7f3a978abc6"
+  },
+  {
+    "file": "mobile-creative-lab.png",
+    "bytes": 107100,
+    "sha256": "2f69cd16db82903b8b15c05dcb717f914fe15f77a9d7495add20d5694805fdcd"
+  },
+  {
+    "file": "mobile-featured-work.png",
+    "bytes": 164764,
+    "sha256": "d32c500b86711cd957caa7d7c1c25605cecfe222549e3ad1d24721ede16d509b"
+  },
+  {
+    "file": "mobile-footer.png",
+    "bytes": 49132,
+    "sha256": "f62c61049c84f32417d5e9ecfad4f906cc25e4643f7b8cd0b81462ca793ae589"
+  },
+  {
+    "file": "mobile-home-contact.png",
+    "bytes": 178847,
+    "sha256": "01e35be0a33d7105ffeb1d4abcf5a618ea422a8242e8eb994e1e2e9fba18fe85"
+  },
+  {
+    "file": "mobile-home-founder.png",
+    "bytes": 56304,
+    "sha256": "5fbca31b309dc848a587a8a9685872e7445a088d77b4ca845d36f086c08b3035"
+  },
+  {
+    "file": "mobile-home-process.png",
+    "bytes": 144433,
+    "sha256": "2d59d993ba6b993f4a1ce8c8f80d7bd34a4b8dde94758602da03feb02334605b"
+  },
+  {
+    "file": "mobile-home-services.png",
+    "bytes": 45598,
+    "sha256": "0cf7531d883627862c27f5fcc5f5d595179a341a31318cb12c6dd1503559e949"
+  },
+  {
+    "file": "performance-summary.json",
+    "bytes": 6614,
+    "sha256": "ab7f0bdf22537a8810f1e4ac2c7dea62ba8b1da90c68c7bb9605d4ea2e9b972d"
+  },
+  {
+    "file": "playwright-results.json",
+    "bytes": 10482,
+    "sha256": "cb3b41972e9bd22eda4fe37fc7a1527223fb10e0bbcff314c652445842e929fc"
+  },
+  {
+    "file": "process-1.png",
+    "bytes": 335009,
+    "sha256": "10f5a98c1a2c7ccfc62ff84c9c418ecb1c58e794ac80530eb25ad786596350e9"
+  },
+  {
+    "file": "process-2.png",
+    "bytes": 403038,
+    "sha256": "fbdaa6d2334feda1be21946a604f3404428dcdbe375d864eb36a30a386d778e8"
+  },
+  {
+    "file": "process-3.png",
+    "bytes": 437301,
+    "sha256": "599ed327331cbe8027d9e7a86e6b9dcd62f38c5df1b52edb5092d69e1894fcf8"
+  },
+  {
+    "file": "process-4.png",
+    "bytes": 354738,
+    "sha256": "d932b0c5700d637f77671d9bd2f6c2bc4a6b513bed5c6eb997f58ec761f76a1c"
+  },
+  {
+    "file": "process-5.png",
+    "bytes": 316644,
+    "sha256": "22f86ed3b3cc8c5bebb3f7c992d9d1cee823361c3d9c78a203ec1226d7d2935b"
+  },
+  {
+    "file": "scene-refinement-results.json",
+    "bytes": 5211,
+    "sha256": "fbf7e048bf9fcaf82380a1455751d0e79b7c43a77d55cfd29af21c14526cd798"
+  },
+  {
+    "file": "service-interactions.png",
+    "bytes": 188551,
+    "sha256": "dd05f5aedc5f962b35f0c8a713d8f8295bfdc33325003c49c56dcc4f8b731567"
+  },
+  {
+    "file": "typecheck.txt",
+    "bytes": 93,
+    "sha256": "3dd115a54d9decc15d9b6f1babec63f20d21966a914759ea6530c5b714007d15"
+  },
+  {
+    "file": "unit-tests.txt",
+    "bytes": 245,
+    "sha256": "0951cc01886ed8bb8f3e9f6631ae42d6c6b40cd998508f6426a1306e7afe7184"
+  },
+  {
+    "file": "video-playback.json",
+    "bytes": 305,
+    "sha256": "6e14efa5132320cb2208b5d167feeb1166b42ba3db503b70d1b27504ab9fa3c5"
+  }
+]

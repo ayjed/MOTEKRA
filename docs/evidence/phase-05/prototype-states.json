@@ -1,0 +1,67 @@
+[
+  {
+    "service": "ui-ux-design",
+    "before": {
+      "transform": "none",
+      "clip": "inset(0px 100% 0px 0px)",
+      "width": 612.0658569335938
+    },
+    "after": {
+      "transform": "none",
+      "clip": "inset(0px)",
+      "width": 601.96875
+    }
+  },
+  {
+    "service": "web-development",
+    "before": {
+      "transform": "matrix3d(0.992099, 0.0697565, 0.104274, 0, -0.0693743, 0.997564, -0.00729154, 0, -0.104528, 0, 0.994522, 0, 0, 0, 0, 1)",
+      "clip": "none",
+      "width": 603.6389770507812
+    },
+    "after": {
+      "transform": "matrix(1, 0, 0, 1, 18, -20)",
+      "clip": "none",
+      "width": 480.40625
+    }
+  },
+  {
+    "service": "mobile-app-development",
+    "before": {
+      "transform": "matrix3d(0.978076, 0.156434, 0.13746, 0, -0.154912, 0.987688, -0.0217715, 0, -0.139173, 0, 0.990268, 0, 0, 0, -25, 1)",
+      "clip": "none",
+      "width": 261.531982421875
+    },
+    "after": {
+      "transform": "matrix3d(0.999848, 0.0174524, 0, 0, -0.0174524, 0.999848, 0, 0, 0, 0, 1, 0, -14, -26, 20, 1)",
+      "clip": "none",
+      "width": 215.3414306640625
+    }
+  },
+  {
+    "service": "product-strategy",
+    "before": {
+      "transform": "matrix(0.992546, -0.121869, 0.121869, 0.992546, 0, 30)",
+      "clip": "none",
+      "width": 226.50668334960938
+    },
+    "after": {
+      "transform": "matrix(1, 0, 0, 1, 0, 12)",
+      "clip": "none",
+      "width": 205.890625
+    }
+  },
+  {
+    "service": "brand-visual-design",
+    "before": {
+      "transform": "matrix(0.990268, 0.139173, -0.139173, 0.990268, 0, 0)",
+      "clip": "none",
+      "width": 310.13671875
+    },
+    "after": {
+      "transform": "matrix(1, 0, 0, 1, -10, -16)",
+      "clip": "none",
+      "width": 274.53125
+    }
+  }
+]

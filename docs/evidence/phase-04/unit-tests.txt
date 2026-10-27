@@ -1,0 +1,10 @@
+$ vitest run
+
+ RUN  v5.0.5 C:/Users/DELL/Desktop/MESH PROJECT/MOTEKRA
+
+
+ Test Files  4 passed (4)
+      Tests  30 passed (30)
+   Start at  20:27:32
+   Duration  1.49s (transform 56%, import 31%, worker 7%, tests 6%)
+

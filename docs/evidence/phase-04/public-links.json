@@ -1,0 +1,11 @@
+{
+  "/work#work-collection": 200,
+  "/work?category=company#work-collection": 200,
+  "/work?category=founder#work-collection": 200,
+  "/work?category=concept#work-collection": 200,
+  "/work?category=development#work-collection": 200,
+  "/#hero-product": 200,
+  "/#home-services": 200,
+  "/#home-process": 200,
+  "/contact": 200
+}

@@ -1,0 +1,17 @@
+{
+  "primaryPagesSSG": {
+    "/": true,
+    "/work": true,
+    "/services": true,
+    "/about": true,
+    "/contact": true
+  },
+  "onlyRequestTimeFeature": "/api/contact GET availability + POST email",
+  "publicJsChunksScanned": 28,
+  "serverConfigMarkersExposed": [],
+  "database": false,
+  "auth": false,
+  "cms": false,
+  "admin": false,
+  "runtimeImageOptimizer": false
+}

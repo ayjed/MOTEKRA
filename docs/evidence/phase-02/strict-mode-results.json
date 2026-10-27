@@ -1,0 +1,444 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Users\\DELL\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\node_modules\\.pnpm\\@playwright+test@1.64.1\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config=playwright.motion.config.ts",
+      "--grep-invert",
+      "record a short"
+    ],
+    "configFile": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\playwright.motion.config.ts",
+    "rootDir": "C:/Users/DELL/Desktop/MESH PROJECT/MOTEKRA/tests/smoke",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/DELL/Desktop/MESH PROJECT/MOTEKRA/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/DELL/Desktop/MESH PROJECT/MOTEKRA/tests/smoke",
+        "testIgnore": [],
+        "testMatch": [
+          "motion.spec.ts"
+        ],
+        "timeout": 60000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke",
+        "snapshotDir": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke",
+        "testIgnore": [],
+        "testMatch": "motion.spec.ts",
+        "timeout": 60000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3000",
+          "channel": "chrome",
+          "headless": true,
+          "screenshot": "only-on-failure",
+          "trace": "retain-on-failure",
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "launchOptions": {
+            "args": [
+              "--use-angle=swiftshader",
+              "--enable-unsafe-swiftshader"
+            ]
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "docs/evidence/phase-02/strict-mode-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "motion.spec.ts",
+      "file": "motion.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "lab content is server-rendered, noindex and absent from sitemap",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 784,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-25T16:49:41.348Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "472f259022e25a651642-fee5077d55200ecf90d9",
+          "file": "motion.spec.ts",
+          "line": 7,
+          "column": 1
+        },
+        {
+          "title": "desktop scene, pointer depth, focus preview and error fallback work",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 30557,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-25T16:49:42.313Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "472f259022e25a651642-96d1b73b2c6a8dc05890",
+          "file": "motion.spec.ts",
+          "line": 15,
+          "column": 1
+        },
+        {
+          "title": "route roundtrips clean GSAP triggers and preserve active navigation/back",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 18353,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/\\/work$/\u001b[39m\nReceived string:  \u001b[31m\"http://127.0.0.1:3000/motion-lab\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    12 × locator resolved to <html lang=\"en\" class=\"displayfont_e0165a6b-module__2tShma__variable\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"http://127.0.0.1:3000/motion-lab\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/\\/work$/\u001b[39m\nReceived string:  \u001b[31m\"http://127.0.0.1:3000/motion-lab\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    12 × locator resolved to <html lang=\"en\" class=\"displayfont_e0165a6b-module__2tShma__variable\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"http://127.0.0.1:3000/motion-lab\"\u001b[22m\n\n    at C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\motion.spec.ts:57:24",
+                    "location": {
+                      "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\motion.spec.ts",
+                      "column": 24,
+                      "line": 57
+                    },
+                    "snippet": "  55 |   for (let i = 0; i < 3; i++) {\n  56 |     await page.getByRole(\"link\", { name: \"Test a Route Transition\" }).click();\n> 57 |     await expect(page).toHaveURL(/\\/work$/);\n     |                        ^\n  58 |     await expect(page.getByRole(\"navigation\", { name: \"Main navigation\", exact: true }).getByRole(\"link\", { name: \"Work\", exact: true })).toHaveAttribute(\"aria-current\", \"page\");\n  59 |     await expect(page.locator(\"main\")).toBeFocused();\n  60 |     await expect.poll(() => probe.evaluate((fn) => fn().triggers)).toBe(0);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\motion.spec.ts",
+                        "column": 24,
+                        "line": 57
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/\\/work$/\u001b[39m\nReceived string:  \u001b[31m\"http://127.0.0.1:3000/motion-lab\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    12 × locator resolved to <html lang=\"en\" class=\"displayfont_e0165a6b-module__2tShma__variable\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"http://127.0.0.1:3000/motion-lab\"\u001b[22m\n\n\n  55 |   for (let i = 0; i < 3; i++) {\n  56 |     await page.getByRole(\"link\", { name: \"Test a Route Transition\" }).click();\n> 57 |     await expect(page).toHaveURL(/\\/work$/);\n     |                        ^\n  58 |     await expect(page.getByRole(\"navigation\", { name: \"Main navigation\", exact: true }).getByRole(\"link\", { name: \"Work\", exact: true })).toHaveAttribute(\"aria-current\", \"page\");\n  59 |     await expect(page.locator(\"main\")).toBeFocused();\n  60 |     await expect.poll(() => probe.evaluate((fn) => fn().triggers)).toBe(0);\n    at C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\motion.spec.ts:57:24"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-25T16:50:14.283Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\motion-route-roundtrips-cl-022b7-erve-active-navigation-back\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\motion-route-roundtrips-cl-022b7-erve-active-navigation-back\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\motion-route-roundtrips-cl-022b7-erve-active-navigation-back\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\motion.spec.ts",
+                    "column": 24,
+                    "line": 57
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "472f259022e25a651642-af51eecc2aaac1d22573",
+          "file": "motion.spec.ts",
+          "line": 50,
+          "column": 1
+        },
+        {
+          "title": "reduced motion reverts timelines and removes WebGL live",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 21627,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-25T16:50:36.561Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "472f259022e25a651642-a283ddd554de380b3d76",
+          "file": "motion.spec.ts",
+          "line": 68,
+          "column": 1
+        },
+        {
+          "title": "320px touch drawer traps focus, closes on Escape and retains poster",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 14611,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/contact/\u001b[39m\nReceived string:  \u001b[31m\"http://127.0.0.1:3000/motion-lab\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    12 × locator resolved to <html lang=\"en\" class=\"displayfont_e0165a6b-module__2tShma__variable\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"http://127.0.0.1:3000/motion-lab\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/contact/\u001b[39m\nReceived string:  \u001b[31m\"http://127.0.0.1:3000/motion-lab\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    12 × locator resolved to <html lang=\"en\" class=\"displayfont_e0165a6b-module__2tShma__variable\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"http://127.0.0.1:3000/motion-lab\"\u001b[22m\n\n    at C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\motion.spec.ts:101:22",
+                    "location": {
+                      "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\motion.spec.ts",
+                      "column": 22,
+                      "line": 101
+                    },
+                    "snippet": "   99 |   await page.getByLabel(\"Open navigation\").tap();\n  100 |   await dialog.getByRole(\"link\", { name: /^Contact/ }).click();\n> 101 |   await expect(page).toHaveURL(/contact/);\n      |                      ^\n  102 |   await expect(page.getByRole(\"dialog\")).toHaveCount(0);\n  103 |   await context.close();\n  104 | });"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\motion.spec.ts",
+                        "column": 22,
+                        "line": 101
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/contact/\u001b[39m\nReceived string:  \u001b[31m\"http://127.0.0.1:3000/motion-lab\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    12 × locator resolved to <html lang=\"en\" class=\"displayfont_e0165a6b-module__2tShma__variable\">…</html>\u001b[22m\n\u001b[2m       - unexpected value \"http://127.0.0.1:3000/motion-lab\"\u001b[22m\n\n\n   99 |   await page.getByLabel(\"Open navigation\").tap();\n  100 |   await dialog.getByRole(\"link\", { name: /^Contact/ }).click();\n> 101 |   await expect(page).toHaveURL(/contact/);\n      |                      ^\n  102 |   await expect(page.getByRole(\"dialog\")).toHaveCount(0);\n  103 |   await context.close();\n  104 | });\n    at C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\motion.spec.ts:101:22"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-25T16:50:59.714Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\motion-320px-touch-drawer--c1da6-n-Escape-and-retains-poster\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\motion-320px-touch-drawer--c1da6-n-Escape-and-retains-poster\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\motion-320px-touch-drawer--c1da6-n-Escape-and-retains-poster\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\motion.spec.ts",
+                    "column": 22,
+                    "line": 101
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "472f259022e25a651642-0c5475d526d502816287",
+          "file": "motion.spec.ts",
+          "line": 80,
+          "column": 1
+        },
+        {
+          "title": "no JavaScript leaves content, poster and mobile navigation usable",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7786,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-25T16:51:21.288Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "472f259022e25a651642-29f89e0c29d6e233598d",
+          "file": "motion.spec.ts",
+          "line": 106,
+          "column": 1
+        },
+        {
+          "title": "unsupported WebGL and low-capability devices retain the poster",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 60000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 20707,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-25T16:51:30.026Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "472f259022e25a651642-38b846936c96c74bcc3d",
+          "file": "motion.spec.ts",
+          "line": 119,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-25T16:49:39.540Z",
+    "duration": 131955.19700000001,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 2,
+    "flaky": 0
+  }
+}

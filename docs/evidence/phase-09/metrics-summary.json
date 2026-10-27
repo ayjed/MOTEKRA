@@ -1,0 +1,1897 @@
+{
+  "limitations": "Lab-only observations, not physical device FPS, measured GPU VRAM, field p75 INP or screen-reader speech acceptance. Preview intentionally noindex.",
+  "profiles": {
+    "before": [
+      {
+        "path": "/",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 2052,
+        "cls": 0,
+        "initialLongTasks": 1,
+        "initialMaxTaskMs": 174,
+        "interactionLatencyMaxMs": null,
+        "interactionSamples": 0,
+        "raf": {
+          "samples": 66,
+          "medianMs": 33.30000000000018,
+          "p95Ms": 333.10000000000036,
+          "estimatedMedianCallbackFps": 30.030030030029867,
+          "slowFramesOver32ms": 41
+        },
+        "canvasCount": 0,
+        "sceneStates": [
+          {
+            "kind": "devices",
+            "state": "paused",
+            "quality": "high"
+          }
+        ],
+        "gpu": [
+          {
+            "drawCalls": 380,
+            "triangles": 269040,
+            "clears": 38,
+            "textures": 7,
+            "buffers": 34,
+            "width": 975,
+            "height": 802,
+            "drawCallsPerClear": 10,
+            "trianglesPerClear": 7080
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/work",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 664,
+        "cls": 0,
+        "initialLongTasks": 2,
+        "initialMaxTaskMs": 201,
+        "interactionLatencyMaxMs": null,
+        "interactionSamples": 0,
+        "raf": {
+          "samples": 97,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 50,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 11
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 688,
+        "cls": 0,
+        "initialLongTasks": 2,
+        "initialMaxTaskMs": 217,
+        "interactionLatencyMaxMs": 312,
+        "interactionSamples": 6,
+        "raf": {
+          "samples": 91,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 116.60000000000036,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 22
+        },
+        "canvasCount": 0,
+        "sceneStates": [
+          {
+            "kind": "mobile-flow",
+            "state": "paused",
+            "quality": "high"
+          }
+        ],
+        "gpu": [
+          {
+            "drawCalls": 72,
+            "triangles": 41328,
+            "clears": 12,
+            "textures": 7,
+            "buffers": 20,
+            "width": 1032,
+            "height": 707,
+            "drawCallsPerClear": 6,
+            "trianglesPerClear": 3444
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/about",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 952,
+        "cls": 0,
+        "initialLongTasks": 4,
+        "initialMaxTaskMs": 233,
+        "interactionLatencyMaxMs": 168,
+        "interactionSamples": 3,
+        "raf": {
+          "samples": 74,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 116.59999999999991,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 17
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/contact",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 1040,
+        "cls": 0,
+        "initialLongTasks": 8,
+        "initialMaxTaskMs": 542,
+        "interactionLatencyMaxMs": 192,
+        "interactionSamples": 3,
+        "raf": {
+          "samples": 89,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 100,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 28
+        },
+        "canvasCount": 1,
+        "sceneStates": [
+          {
+            "kind": "contact",
+            "state": "paused",
+            "quality": "high"
+          }
+        ],
+        "gpu": [
+          {
+            "drawCalls": 145,
+            "triangles": 79141,
+            "clears": 29,
+            "textures": 6,
+            "buffers": 16,
+            "width": 762,
+            "height": 580,
+            "drawCallsPerClear": 5,
+            "trianglesPerClear": 2729
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/team/akinwumi-ayomiposi",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 544,
+        "cls": 0,
+        "initialLongTasks": 1,
+        "initialMaxTaskMs": 152,
+        "interactionLatencyMaxMs": 40,
+        "interactionSamples": 3,
+        "raf": {
+          "samples": 121,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 16.800000000000182,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 4
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/insights",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 564,
+        "cls": 0,
+        "initialLongTasks": 1,
+        "initialMaxTaskMs": 107,
+        "interactionLatencyMaxMs": null,
+        "interactionSamples": 0,
+        "raf": {
+          "samples": 116,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 16.700000000000273,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 0
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/ui-ux-design",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 556,
+        "cls": 0,
+        "initialLongTasks": 2,
+        "initialMaxTaskMs": 144,
+        "interactionLatencyMaxMs": 72,
+        "interactionSamples": 3,
+        "raf": {
+          "samples": 124,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 33.30000000000018,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 9
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/web-development",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 564,
+        "cls": 0,
+        "initialLongTasks": 4,
+        "initialMaxTaskMs": 169,
+        "interactionLatencyMaxMs": 72,
+        "interactionSamples": 3,
+        "raf": {
+          "samples": 121,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 33.30000000000018,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 9
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/mobile-app-development",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 580,
+        "cls": 0,
+        "initialLongTasks": 2,
+        "initialMaxTaskMs": 173,
+        "interactionLatencyMaxMs": 80,
+        "interactionSamples": 6,
+        "raf": {
+          "samples": 109,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 50,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 21
+        },
+        "canvasCount": 0,
+        "sceneStates": [
+          {
+            "kind": "mobile-flow",
+            "state": "ready",
+            "quality": "high"
+          }
+        ],
+        "gpu": [
+          {
+            "drawCalls": 192,
+            "triangles": 110208,
+            "clears": 32,
+            "textures": 7,
+            "buffers": 20,
+            "width": 946,
+            "height": 692,
+            "drawCallsPerClear": 6,
+            "trianglesPerClear": 3444
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/product-strategy",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 664,
+        "cls": 0,
+        "initialLongTasks": 3,
+        "initialMaxTaskMs": 186,
+        "interactionLatencyMaxMs": 72,
+        "interactionSamples": 3,
+        "raf": {
+          "samples": 128,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 16.799999999999727,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 3
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/brand-visual-design",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 804,
+        "cls": 0,
+        "initialLongTasks": 4,
+        "initialMaxTaskMs": 81,
+        "interactionLatencyMaxMs": 88,
+        "interactionSamples": 3,
+        "raf": {
+          "samples": 127,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 16.799999999999727,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 4
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 3936,
+        "cls": 0,
+        "initialLongTasks": 9,
+        "initialMaxTaskMs": 653,
+        "interactionLatencyMaxMs": 640,
+        "interactionSamples": 6,
+        "raf": {
+          "samples": 80,
+          "medianMs": 16.700000000000728,
+          "p95Ms": 283.10000000000036,
+          "estimatedMedianCallbackFps": 59.88023952095548,
+          "slowFramesOver32ms": 30
+        },
+        "canvasCount": 0,
+        "sceneStates": [
+          {
+            "kind": "devices",
+            "state": "poster",
+            "quality": "poster"
+          }
+        ],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/work",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 2168,
+        "cls": 0,
+        "initialLongTasks": 7,
+        "initialMaxTaskMs": 602,
+        "interactionLatencyMaxMs": 272,
+        "interactionSamples": 5,
+        "raf": {
+          "samples": 117,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 50,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 14
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 2132,
+        "cls": 0,
+        "initialLongTasks": 7,
+        "initialMaxTaskMs": 496,
+        "interactionLatencyMaxMs": 808,
+        "interactionSamples": 8,
+        "raf": {
+          "samples": 107,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 133.10000000000036,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 20
+        },
+        "canvasCount": 0,
+        "sceneStates": [
+          {
+            "kind": "mobile-flow",
+            "state": "poster",
+            "quality": "poster"
+          }
+        ],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/about",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 2144,
+        "cls": 0,
+        "initialLongTasks": 8,
+        "initialMaxTaskMs": 772,
+        "interactionLatencyMaxMs": 512,
+        "interactionSamples": 8,
+        "raf": {
+          "samples": 97,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 166.39999999999964,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 32
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/contact",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 2188,
+        "cls": 0,
+        "initialLongTasks": 9,
+        "initialMaxTaskMs": 1224,
+        "interactionLatencyMaxMs": 312,
+        "interactionSamples": 8,
+        "raf": {
+          "samples": 141,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 49.900000000000546,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 21
+        },
+        "canvasCount": 0,
+        "sceneStates": [
+          {
+            "kind": "contact",
+            "state": "poster",
+            "quality": "poster"
+          }
+        ],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/team/akinwumi-ayomiposi",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 1852,
+        "cls": 0,
+        "initialLongTasks": 8,
+        "initialMaxTaskMs": 536,
+        "interactionLatencyMaxMs": 400,
+        "interactionSamples": 8,
+        "raf": {
+          "samples": 140,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 83.29999999999927,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 26
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/insights",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 1616,
+        "cls": 0,
+        "initialLongTasks": 5,
+        "initialMaxTaskMs": 560,
+        "interactionLatencyMaxMs": 376,
+        "interactionSamples": 5,
+        "raf": {
+          "samples": 128,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 50,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 14
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/ui-ux-design",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 1748,
+        "cls": 0,
+        "initialLongTasks": 6,
+        "initialMaxTaskMs": 544,
+        "interactionLatencyMaxMs": 584,
+        "interactionSamples": 6,
+        "raf": {
+          "samples": 119,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 99.90000000000055,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 14
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/web-development",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 2224,
+        "cls": 0,
+        "initialLongTasks": 6,
+        "initialMaxTaskMs": 549,
+        "interactionLatencyMaxMs": 288,
+        "interactionSamples": 8,
+        "raf": {
+          "samples": 141,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 33.400000000000546,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 22
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/mobile-app-development",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 1928,
+        "cls": 0,
+        "initialLongTasks": 6,
+        "initialMaxTaskMs": 523,
+        "interactionLatencyMaxMs": 368,
+        "interactionSamples": 8,
+        "raf": {
+          "samples": 149,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 33.399999999999636,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 12
+        },
+        "canvasCount": 0,
+        "sceneStates": [
+          {
+            "kind": "mobile-flow",
+            "state": "poster",
+            "quality": "poster"
+          }
+        ],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/product-strategy",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 1944,
+        "cls": 0,
+        "initialLongTasks": 7,
+        "initialMaxTaskMs": 524,
+        "interactionLatencyMaxMs": 440,
+        "interactionSamples": 8,
+        "raf": {
+          "samples": 143,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 33.400000000000546,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 12
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/brand-visual-design",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 2108,
+        "cls": 0,
+        "initialLongTasks": 5,
+        "initialMaxTaskMs": 538,
+        "interactionLatencyMaxMs": 328,
+        "interactionSamples": 8,
+        "raf": {
+          "samples": 145,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 50,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 13
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      }
+    ],
+    "after": [
+      {
+        "path": "/",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": null,
+        "cls": 0,
+        "initialLongTasks": 1,
+        "initialMaxTaskMs": 125,
+        "interactionLatencyMaxMs": null,
+        "interactionSamples": 0,
+        "raf": {
+          "samples": 51,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 632.7999999999993,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 20
+        },
+        "canvasCount": 0,
+        "sceneStates": [
+          {
+            "kind": "devices",
+            "state": "paused",
+            "quality": "high"
+          }
+        ],
+        "gpu": [
+          {
+            "drawCalls": 150,
+            "triangles": 97560,
+            "clears": 15,
+            "textures": 7,
+            "buffers": 34,
+            "width": 792,
+            "height": 656,
+            "drawCallsPerClear": 10,
+            "trianglesPerClear": 6504
+          }
+        ],
+        "scopes": [
+          {
+            "root": "navigation",
+            "initMs": 0.19999998807907104,
+            "triggers": 0
+          },
+          {
+            "root": "motion-reveal ",
+            "initMs": 8.800000011920929,
+            "triggers": 1
+          },
+          {
+            "root": "home-section-cinema section-cinema-work",
+            "initMs": 2.5,
+            "triggers": 2
+          },
+          {
+            "root": "home-cinema",
+            "initMs": 61.19999998807907,
+            "triggers": 1
+          },
+          {
+            "root": "motion-reveal ",
+            "initMs": 2.600000023841858,
+            "triggers": 1
+          },
+          {
+            "root": "motion-reveal ",
+            "initMs": 1.2999999523162842,
+            "triggers": 1
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/work",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 784,
+        "cls": 0,
+        "initialLongTasks": 2,
+        "initialMaxTaskMs": 311,
+        "interactionLatencyMaxMs": null,
+        "interactionSamples": 0,
+        "raf": {
+          "samples": 76,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 116.5,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 6
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "work-gallery-motion",
+            "initMs": 7.399999976158142,
+            "triggers": 3
+          },
+          {
+            "root": "navigation",
+            "initMs": 12.399999976158142,
+            "triggers": 0
+          },
+          {
+            "root": "work-cinema",
+            "initMs": 29.30000001192093,
+            "triggers": 1
+          },
+          {
+            "root": "work-filter-scope",
+            "initMs": 0.19999998807907104,
+            "triggers": 0
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 868,
+        "cls": 0,
+        "initialLongTasks": 2,
+        "initialMaxTaskMs": 167,
+        "interactionLatencyMaxMs": 536,
+        "interactionSamples": 6,
+        "raf": {
+          "samples": 68,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 249.80000000000018,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 17
+        },
+        "canvasCount": 0,
+        "sceneStates": [
+          {
+            "kind": "mobile-flow",
+            "state": "paused",
+            "quality": "high"
+          }
+        ],
+        "gpu": [
+          {
+            "drawCalls": 48,
+            "triangles": 27552,
+            "clears": 8,
+            "textures": 7,
+            "buffers": 20,
+            "width": 860,
+            "height": 589,
+            "drawCallsPerClear": 6,
+            "trianglesPerClear": 3444
+          }
+        ],
+        "scopes": [
+          {
+            "root": "navigation",
+            "initMs": 11.699999988079071,
+            "triggers": 0
+          },
+          {
+            "root": "services-cinema",
+            "initMs": 17.69999998807907,
+            "triggers": 10
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/about",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 1120,
+        "cls": 0,
+        "initialLongTasks": 2,
+        "initialMaxTaskMs": 219,
+        "interactionLatencyMaxMs": 280,
+        "interactionSamples": 3,
+        "raf": {
+          "samples": 80,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 166.5,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 14
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "navigation",
+            "initMs": 7.899999976158142,
+            "triggers": 0
+          },
+          {
+            "root": "editorial-cinema",
+            "initMs": 64.69999998807907,
+            "triggers": 8
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/contact",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 1444,
+        "cls": 0.004352331090856482,
+        "initialLongTasks": 3,
+        "initialMaxTaskMs": 425,
+        "interactionLatencyMaxMs": 256,
+        "interactionSamples": 3,
+        "raf": {
+          "samples": 78,
+          "medianMs": 16.700000000000728,
+          "p95Ms": 416.2999999999997,
+          "estimatedMedianCallbackFps": 59.88023952095548,
+          "slowFramesOver32ms": 34
+        },
+        "canvasCount": 0,
+        "sceneStates": [
+          {
+            "kind": "contact",
+            "state": "paused",
+            "quality": "high"
+          }
+        ],
+        "gpu": [
+          {
+            "drawCalls": 110,
+            "triangles": 60038,
+            "clears": 22,
+            "textures": 6,
+            "buffers": 16,
+            "width": 631,
+            "height": 481,
+            "drawCallsPerClear": 5,
+            "trianglesPerClear": 2729
+          }
+        ],
+        "scopes": [
+          {
+            "root": "contact-cinema",
+            "initMs": 37.89999997615814,
+            "triggers": 4
+          },
+          {
+            "root": "navigation",
+            "initMs": 6.300000011920929,
+            "triggers": 0
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/team/akinwumi-ayomiposi",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 664,
+        "cls": 0,
+        "initialLongTasks": 1,
+        "initialMaxTaskMs": 206,
+        "interactionLatencyMaxMs": 64,
+        "interactionSamples": 3,
+        "raf": {
+          "samples": 108,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 50,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 14
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "navigation",
+            "initMs": 10.300000011920929,
+            "triggers": 0
+          },
+          {
+            "root": "editorial-cinema",
+            "initMs": 38.69999998807907,
+            "triggers": 8
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/insights",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 548,
+        "cls": 0,
+        "initialLongTasks": 1,
+        "initialMaxTaskMs": 196,
+        "interactionLatencyMaxMs": null,
+        "interactionSamples": 0,
+        "raf": {
+          "samples": 123,
+          "medianMs": 16.600000000000364,
+          "p95Ms": 16.700000000000728,
+          "estimatedMedianCallbackFps": 60.24096385542037,
+          "slowFramesOver32ms": 0
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "navigation",
+            "initMs": 29.30000001192093,
+            "triggers": 0
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/ui-ux-design",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 708,
+        "cls": 0,
+        "initialLongTasks": 3,
+        "initialMaxTaskMs": 295,
+        "interactionLatencyMaxMs": 208,
+        "interactionSamples": 3,
+        "raf": {
+          "samples": 130,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 50,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 24
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "services-cinema",
+            "initMs": 22.69999998807907,
+            "triggers": 2
+          },
+          {
+            "root": "navigation",
+            "initMs": 14.600000023841858,
+            "triggers": 0
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/web-development",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 1124,
+        "cls": 0,
+        "initialLongTasks": 2,
+        "initialMaxTaskMs": 390,
+        "interactionLatencyMaxMs": 200,
+        "interactionSamples": 3,
+        "raf": {
+          "samples": 115,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 50,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 24
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "services-cinema",
+            "initMs": 22.799999952316284,
+            "triggers": 2
+          },
+          {
+            "root": "navigation",
+            "initMs": 15.099999964237213,
+            "triggers": 0
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/mobile-app-development",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 892,
+        "cls": 0,
+        "initialLongTasks": 2,
+        "initialMaxTaskMs": 271,
+        "interactionLatencyMaxMs": 136,
+        "interactionSamples": 6,
+        "raf": {
+          "samples": 96,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 83.29999999999927,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 20
+        },
+        "canvasCount": 0,
+        "sceneStates": [
+          {
+            "kind": "mobile-flow",
+            "state": "ready",
+            "quality": "high"
+          }
+        ],
+        "gpu": [
+          {
+            "drawCalls": 114,
+            "triangles": 65436,
+            "clears": 19,
+            "textures": 7,
+            "buffers": 20,
+            "width": 789,
+            "height": 578,
+            "drawCallsPerClear": 6,
+            "trianglesPerClear": 3444
+          }
+        ],
+        "scopes": [
+          {
+            "root": "services-cinema",
+            "initMs": 23.69999998807907,
+            "triggers": 2
+          },
+          {
+            "root": "navigation",
+            "initMs": 15.5,
+            "triggers": 0
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/product-strategy",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 1272,
+        "cls": 0,
+        "initialLongTasks": 1,
+        "initialMaxTaskMs": 369,
+        "interactionLatencyMaxMs": 280,
+        "interactionSamples": 3,
+        "raf": {
+          "samples": 140,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 33.399999999999636,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 20
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "services-cinema",
+            "initMs": 25,
+            "triggers": 2
+          },
+          {
+            "root": "navigation",
+            "initMs": 11.800000011920929,
+            "triggers": 0
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/brand-visual-design",
+        "profile": "1440px desktop, SwiftShader software WebGL",
+        "lcpMs": 1376,
+        "cls": 0,
+        "initialLongTasks": 3,
+        "initialMaxTaskMs": 539,
+        "interactionLatencyMaxMs": 272,
+        "interactionSamples": 3,
+        "raf": {
+          "samples": 155,
+          "medianMs": 16.699999999999818,
+          "p95Ms": 49.899999999999636,
+          "estimatedMedianCallbackFps": 59.88023952095874,
+          "slowFramesOver32ms": 30
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "services-cinema",
+            "initMs": 24.5,
+            "triggers": 2
+          },
+          {
+            "root": "navigation",
+            "initMs": 14.100000023841858,
+            "triggers": 0
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 8456,
+        "cls": 0,
+        "initialLongTasks": 23,
+        "initialMaxTaskMs": 2707,
+        "interactionLatencyMaxMs": 1848,
+        "interactionSamples": 6,
+        "raf": {
+          "samples": 70,
+          "medianMs": 49.89999999999782,
+          "p95Ms": 666.0999999999985,
+          "estimatedMedianCallbackFps": 20.04008016032152,
+          "slowFramesOver32ms": 41
+        },
+        "canvasCount": 0,
+        "sceneStates": [
+          {
+            "kind": "devices",
+            "state": "poster",
+            "quality": "poster"
+          }
+        ],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "home-cinema",
+            "initMs": 491,
+            "triggers": 0
+          },
+          {
+            "root": "home-section-cinema section-cinema-work",
+            "initMs": 111.30000001192093,
+            "triggers": 0
+          },
+          {
+            "root": "motion-reveal ",
+            "initMs": 53.10000002384186,
+            "triggers": 0
+          },
+          {
+            "root": "home-section-cinema section-cinema-founder",
+            "initMs": 37.10000002384186,
+            "triggers": 1
+          },
+          {
+            "root": "motion-reveal ",
+            "initMs": 4.100000023841858,
+            "triggers": 1
+          },
+          {
+            "root": "motion-reveal ",
+            "initMs": 0.5,
+            "triggers": 1
+          },
+          {
+            "root": "process-narrative",
+            "initMs": 6,
+            "triggers": 6
+          },
+          {
+            "root": "home-section-cinema section-cinema-contact",
+            "initMs": 30.200000047683716,
+            "triggers": 1
+          },
+          {
+            "root": "motion-reveal ",
+            "initMs": 7.399999976158142,
+            "triggers": 1
+          },
+          {
+            "root": "motion-reveal ",
+            "initMs": 22.599999964237213,
+            "triggers": 1
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/work",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 6544,
+        "cls": 0,
+        "initialLongTasks": 23,
+        "initialMaxTaskMs": 2931,
+        "interactionLatencyMaxMs": 1040,
+        "interactionSamples": 5,
+        "raf": {
+          "samples": 115,
+          "medianMs": 16.700000000000728,
+          "p95Ms": 166.5,
+          "estimatedMedianCallbackFps": 59.88023952095548,
+          "slowFramesOver32ms": 36
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "work-cinema",
+            "initMs": 100.20000004768372,
+            "triggers": 0
+          },
+          {
+            "root": "work-filter-scope",
+            "initMs": 2.199999988079071,
+            "triggers": 0
+          },
+          {
+            "root": "work-gallery-motion",
+            "initMs": 138.5,
+            "triggers": 3
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 5416,
+        "cls": 0,
+        "initialLongTasks": 11,
+        "initialMaxTaskMs": 1627,
+        "interactionLatencyMaxMs": 1280,
+        "interactionSamples": 8,
+        "raf": {
+          "samples": 96,
+          "medianMs": 16.700000000000728,
+          "p95Ms": 316.5,
+          "estimatedMedianCallbackFps": 59.88023952095548,
+          "slowFramesOver32ms": 32
+        },
+        "canvasCount": 0,
+        "sceneStates": [
+          {
+            "kind": "mobile-flow",
+            "state": "poster",
+            "quality": "poster"
+          }
+        ],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "services-cinema",
+            "initMs": 257.30000001192093,
+            "triggers": 5
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/about",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 4652,
+        "cls": 0,
+        "initialLongTasks": 16,
+        "initialMaxTaskMs": 1935,
+        "interactionLatencyMaxMs": 1216,
+        "interactionSamples": 8,
+        "raf": {
+          "samples": 109,
+          "medianMs": 16.799999999999272,
+          "p95Ms": 183.39999999999964,
+          "estimatedMedianCallbackFps": 59.523809523812105,
+          "slowFramesOver32ms": 52
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "editorial-cinema",
+            "initMs": 422.69999998807907,
+            "triggers": 6
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/contact",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 5476,
+        "cls": 0,
+        "initialLongTasks": 16,
+        "initialMaxTaskMs": 3822,
+        "interactionLatencyMaxMs": 1072,
+        "interactionSamples": 8,
+        "raf": {
+          "samples": 139,
+          "medianMs": 16.700000000000728,
+          "p95Ms": 166.70000000000073,
+          "estimatedMedianCallbackFps": 59.88023952095548,
+          "slowFramesOver32ms": 52
+        },
+        "canvasCount": 0,
+        "sceneStates": [
+          {
+            "kind": "contact",
+            "state": "poster",
+            "quality": "poster"
+          }
+        ],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "contact-cinema",
+            "initMs": 187.69999998807907,
+            "triggers": 3
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/team/akinwumi-ayomiposi",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 4540,
+        "cls": 0,
+        "initialLongTasks": 15,
+        "initialMaxTaskMs": 1657,
+        "interactionLatencyMaxMs": 1008,
+        "interactionSamples": 6,
+        "raf": {
+          "samples": 131,
+          "medianMs": 16.700000000000728,
+          "p95Ms": 183.3000000000011,
+          "estimatedMedianCallbackFps": 59.88023952095548,
+          "slowFramesOver32ms": 37
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "editorial-cinema",
+            "initMs": 216.70000004768372,
+            "triggers": 7
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/insights",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 3580,
+        "cls": 0,
+        "initialLongTasks": 13,
+        "initialMaxTaskMs": 1744,
+        "interactionLatencyMaxMs": 720,
+        "interactionSamples": 5,
+        "raf": {
+          "samples": 159,
+          "medianMs": 16.69999999999891,
+          "p95Ms": 50,
+          "estimatedMedianCallbackFps": 59.880239520962,
+          "slowFramesOver32ms": 21
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/ui-ux-design",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 4872,
+        "cls": 0,
+        "initialLongTasks": 19,
+        "initialMaxTaskMs": 1676,
+        "interactionLatencyMaxMs": 1136,
+        "interactionSamples": 8,
+        "raf": {
+          "samples": 145,
+          "medianMs": 16.69999999999891,
+          "p95Ms": 200,
+          "estimatedMedianCallbackFps": 59.880239520962,
+          "slowFramesOver32ms": 29
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "services-cinema",
+            "initMs": 154.79999995231628,
+            "triggers": 1
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/web-development",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 4440,
+        "cls": 0,
+        "initialLongTasks": 17,
+        "initialMaxTaskMs": 1422,
+        "interactionLatencyMaxMs": 1208,
+        "interactionSamples": 8,
+        "raf": {
+          "samples": 160,
+          "medianMs": 16.700000000000728,
+          "p95Ms": 116.70000000000073,
+          "estimatedMedianCallbackFps": 59.88023952095548,
+          "slowFramesOver32ms": 35
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "services-cinema",
+            "initMs": 62.299999952316284,
+            "triggers": 1
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/mobile-app-development",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 5556,
+        "cls": 0,
+        "initialLongTasks": 19,
+        "initialMaxTaskMs": 1601,
+        "interactionLatencyMaxMs": 1032,
+        "interactionSamples": 8,
+        "raf": {
+          "samples": 175,
+          "medianMs": 16.700000000000728,
+          "p95Ms": 83.40000000000146,
+          "estimatedMedianCallbackFps": 59.88023952095548,
+          "slowFramesOver32ms": 42
+        },
+        "canvasCount": 0,
+        "sceneStates": [
+          {
+            "kind": "mobile-flow",
+            "state": "poster",
+            "quality": "poster"
+          }
+        ],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "services-cinema",
+            "initMs": 47.90000003576279,
+            "triggers": 1
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/product-strategy",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 4284,
+        "cls": 0,
+        "initialLongTasks": 14,
+        "initialMaxTaskMs": 1548,
+        "interactionLatencyMaxMs": 1096,
+        "interactionSamples": 8,
+        "raf": {
+          "samples": 164,
+          "medianMs": 16.700000000000728,
+          "p95Ms": 100,
+          "estimatedMedianCallbackFps": 59.88023952095548,
+          "slowFramesOver32ms": 35
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "services-cinema",
+            "initMs": 51.89999997615814,
+            "triggers": 1
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      },
+      {
+        "path": "/services/brand-visual-design",
+        "profile": "390px 4-core/4GB hints, 4x CPU, 1.6Mbps/100ms emulation",
+        "lcpMs": 4424,
+        "cls": 0,
+        "initialLongTasks": 14,
+        "initialMaxTaskMs": 1642,
+        "interactionLatencyMaxMs": 1336,
+        "interactionSamples": 8,
+        "raf": {
+          "samples": 154,
+          "medianMs": 16.700000000000728,
+          "p95Ms": 116.60000000000036,
+          "estimatedMedianCallbackFps": 59.88023952095548,
+          "slowFramesOver32ms": 36
+        },
+        "canvasCount": 0,
+        "sceneStates": [],
+        "gpu": [],
+        "scopes": [
+          {
+            "root": "services-cinema",
+            "initMs": 51.90000003576279,
+            "triggers": 1
+          }
+        ],
+        "orphanTriggers": 0,
+        "overflow": false
+      }
+    ]
+  },
+  "lighthouse": [
+    {
+      "route": "home",
+      "mode": "mobile",
+      "scores": {
+        "performance": 63,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 3737.9323999999997,
+      "tbtMs": 818.9999999999995,
+      "cls": 0,
+      "speedIndexMs": 5858.106177712541,
+      "warnings": [
+        "The tested device appears to have a slower CPU than  Lighthouse expects. This can negatively affect your performance score. Learn more about [calibrating an appropriate CPU slowdown multiplier](https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md#cpu-throttling)."
+      ]
+    },
+    {
+      "route": "work",
+      "mode": "mobile",
+      "scores": {
+        "performance": 73,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 3551.4124,
+      "tbtMs": 693.0000000000002,
+      "cls": 0,
+      "speedIndexMs": 2427.198184515174,
+      "warnings": [
+        "The tested device appears to have a slower CPU than  Lighthouse expects. This can negatively affect your performance score. Learn more about [calibrating an appropriate CPU slowdown multiplier](https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md#cpu-throttling)."
+      ]
+    },
+    {
+      "route": "services",
+      "mode": "mobile",
+      "scores": {
+        "performance": 71,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 3326.8690000000006,
+      "tbtMs": 851.4999999999998,
+      "cls": 0,
+      "speedIndexMs": 3326.50080636802,
+      "warnings": [
+        "The tested device appears to have a slower CPU than  Lighthouse expects. This can negatively affect your performance score. Learn more about [calibrating an appropriate CPU slowdown multiplier](https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md#cpu-throttling)."
+      ]
+    },
+    {
+      "route": "about",
+      "mode": "mobile",
+      "scores": {
+        "performance": 74,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 3614.508,
+      "tbtMs": 621,
+      "cls": 0,
+      "speedIndexMs": 3032.086528370106,
+      "warnings": [
+        "The tested device appears to have a slower CPU than  Lighthouse expects. This can negatively affect your performance score. Learn more about [calibrating an appropriate CPU slowdown multiplier](https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md#cpu-throttling)."
+      ]
+    },
+    {
+      "route": "contact",
+      "mode": "mobile",
+      "scores": {
+        "performance": 64,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 4114.594000000001,
+      "tbtMs": 817.5,
+      "cls": 0.00007463326429526074,
+      "speedIndexMs": 4380.5704319316,
+      "warnings": [
+        "The tested device appears to have a slower CPU than  Lighthouse expects. This can negatively affect your performance score. Learn more about [calibrating an appropriate CPU slowdown multiplier](https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md#cpu-throttling)."
+      ]
+    },
+    {
+      "route": "home",
+      "mode": "desktop",
+      "scores": {
+        "performance": 60,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 960.3800000000001,
+      "tbtMs": 1694.345,
+      "cls": 0,
+      "speedIndexMs": 3719.921248679957,
+      "warnings": []
+    },
+    {
+      "route": "work",
+      "mode": "desktop",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 872.7182,
+      "tbtMs": 47,
+      "cls": 0,
+      "speedIndexMs": 1192.0868285395545,
+      "warnings": []
+    },
+    {
+      "route": "services",
+      "mode": "desktop",
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 893.9698000000001,
+      "tbtMs": 53,
+      "cls": 0,
+      "speedIndexMs": 1221.5155009801683,
+      "warnings": []
+    },
+    {
+      "route": "about",
+      "mode": "desktop",
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 897.3240000000001,
+      "tbtMs": 58,
+      "cls": 0,
+      "speedIndexMs": 1451.128620828601,
+      "warnings": []
+    },
+    {
+      "route": "contact",
+      "mode": "desktop",
+      "scores": {
+        "performance": 62,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 1028.0680000000002,
+      "tbtMs": 2079.5,
+      "cls": 0.003262887682531667,
+      "speedIndexMs": 2604.908249244731,
+      "warnings": []
+    }
+  ],
+  "lifecycle": {
+    "limits": "Local SwiftShader/software WebGL. Frame clear rate is a renderer proxy, not physical display FPS or hardware GPU memory.",
+    "results": [
+      {
+        "path": "/",
+        "quality": "high 1440px",
+        "idleDrawDelta": 0,
+        "pointerDrawDelta": 400,
+        "renderedFrameClearRate": 20.52334530528476,
+        "hiddenState": "paused",
+        "hiddenDrawDelta": 0,
+        "offscreenState": "paused",
+        "offscreenDrawDelta": 0,
+        "activeResources": {
+          "draws": 710,
+          "frames": 71,
+          "textures": 7,
+          "buffers": 34,
+          "width": 583,
+          "height": 468
+        },
+        "disposed": [
+          {
+            "connected": false,
+            "contextLost": true,
+            "remainingTextures": 5,
+            "remainingBuffers": 0
+          }
+        ]
+      },
+      {
+        "path": "/contact",
+        "quality": "high 1440px",
+        "idleDrawDelta": 0,
+        "pointerDrawDelta": 275,
+        "renderedFrameClearRate": 24.250440917107582,
+        "hiddenState": "paused",
+        "hiddenDrawDelta": 0,
+        "offscreenState": "paused",
+        "offscreenDrawDelta": 5,
+        "activeResources": {
+          "draws": 315,
+          "frames": 63,
+          "textures": 6,
+          "buffers": 16,
+          "width": 363,
+          "height": 256
+        },
+        "disposed": [
+          {
+            "connected": false,
+            "contextLost": true,
+            "remainingTextures": 5,
+            "remainingBuffers": 0
+          }
+        ]
+      },
+      {
+        "path": "/services/mobile-app-development",
+        "quality": "high 1440px",
+        "idleDrawDelta": 0,
+        "pointerDrawDelta": 306,
+        "renderedFrameClearRate": 27.991218441273325,
+        "hiddenState": "paused",
+        "hiddenDrawDelta": 0,
+        "offscreenState": "paused",
+        "offscreenDrawDelta": 0,
+        "activeResources": {
+          "draws": 330,
+          "frames": 55,
+          "textures": 7,
+          "buffers": 20,
+          "width": 511,
+          "height": 373
+        },
+        "disposed": [
+          {
+            "connected": false,
+            "contextLost": true,
+            "remainingTextures": 5,
+            "remainingBuffers": 0
+          }
+        ]
+      },
+      {
+        "path": "/",
+        "quality": "balanced 1024px/4-core hints/4x CPU",
+        "idleDrawDelta": 0,
+        "pointerDrawDelta": 650,
+        "renderedFrameClearRate": 31.10047846889952,
+        "hiddenState": "paused",
+        "hiddenDrawDelta": 0,
+        "offscreenState": "paused",
+        "offscreenDrawDelta": 10,
+        "activeResources": {
+          "draws": 1190,
+          "frames": 119,
+          "textures": 7,
+          "buffers": 34,
+          "width": 337,
+          "height": 374
+        },
+        "disposed": [
+          {
+            "connected": false,
+            "contextLost": true,
+            "remainingTextures": 5,
+            "remainingBuffers": 34
+          }
+        ]
+      },
+      {
+        "path": "/contact",
+        "quality": "balanced 1024px/4-core hints/4x CPU",
+        "idleDrawDelta": 0,
+        "pointerDrawDelta": 430,
+        "renderedFrameClearRate": 32.899770466717676,
+        "hiddenState": "paused",
+        "hiddenDrawDelta": 0,
+        "offscreenState": "paused",
+        "offscreenDrawDelta": 0,
+        "activeResources": {
+          "draws": 450,
+          "frames": 90,
+          "textures": 6,
+          "buffers": 16,
+          "width": 210,
+          "height": 205
+        },
+        "disposed": [
+          {
+            "connected": false,
+            "contextLost": true,
+            "remainingTextures": 5,
+            "remainingBuffers": 13
+          }
+        ]
+      },
+      {
+        "path": "/services/mobile-app-development",
+        "quality": "balanced 1024px/4-core hints/4x CPU",
+        "idleDrawDelta": 0,
+        "pointerDrawDelta": 474,
+        "renderedFrameClearRate": 41.64470216130733,
+        "hiddenState": "paused",
+        "hiddenDrawDelta": 0,
+        "offscreenState": "paused",
+        "offscreenDrawDelta": 0,
+        "activeResources": {
+          "draws": 498,
+          "frames": 83,
+          "textures": 7,
+          "buffers": 20,
+          "width": 298,
+          "height": 300
+        },
+        "disposed": [
+          {
+            "connected": false,
+            "contextLost": true,
+            "remainingTextures": 5,
+            "remainingBuffers": 7
+          }
+        ]
+      }
+    ]
+  }
+}

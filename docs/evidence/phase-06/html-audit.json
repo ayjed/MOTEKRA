@@ -1,0 +1,140 @@
+{
+  "audits": [
+    {
+      "path": "/about",
+      "title": "About — a studio for what’s next | MOTEKRA",
+      "h1": "A Studio for What’s Next.",
+      "headings": [
+        {
+          "level": "H1",
+          "text": "A Studio for What’s Next."
+        },
+        {
+          "level": "H2",
+          "text": "Design andengineering.In conversation."
+        },
+        {
+          "level": "H2",
+          "text": "Akinwumi Ayomiposi"
+        },
+        {
+          "level": "H2",
+          "text": "Built on Curiosity.Driven by Intent."
+        },
+        {
+          "level": "H3",
+          "text": "Innovation"
+        },
+        {
+          "level": "H3",
+          "text": "Quality"
+        },
+        {
+          "level": "H3",
+          "text": "Collaboration"
+        },
+        {
+          "level": "H3",
+          "text": "User-Centered Thinking"
+        },
+        {
+          "level": "H3",
+          "text": "Continuous Improvement"
+        },
+        {
+          "level": "H2",
+          "text": "Clear thinking.Considered making."
+        },
+        {
+          "level": "H3",
+          "text": "Clarity"
+        },
+        {
+          "level": "H3",
+          "text": "Craft"
+        },
+        {
+          "level": "H3",
+          "text": "Honest context"
+        },
+        {
+          "level": "H2",
+          "text": "Work withthe right context."
+        },
+        {
+          "level": "H2",
+          "text": "Have Somethingin Mind?"
+        }
+      ],
+      "robots": "noindex, nofollow",
+      "canvasCount": 0,
+      "overflow": false,
+      "images": [
+        "/_next/image?url=%2Fassets%2Fbrand%2Fmotekra-mark.png&w=96&q=75",
+        "/_next/image?url=%2Fassets%2Fbrand%2Fmotekra-mark.png&w=256&q=75",
+        "/_next/image?url=%2Fassets%2Fbrand%2Fmotekra-mark.png&w=96&q=75"
+      ]
+    },
+    {
+      "path": "/team/akinwumi-ayomiposi",
+      "title": "Akinwumi Ayomiposi — Founder & Creative Technologist | MOTEKRA",
+      "h1": "Akinwumi Ayomiposi",
+      "headings": [
+        {
+          "level": "H1",
+          "text": "Akinwumi Ayomiposi"
+        },
+        {
+          "level": "H2",
+          "text": "Engineering ideas.Shaping experiences."
+        },
+        {
+          "level": "H2",
+          "text": "Across disciplines.Connected by craft."
+        },
+        {
+          "level": "H3",
+          "text": "Software Engineering"
+        },
+        {
+          "level": "H3",
+          "text": "Mobile Development"
+        },
+        {
+          "level": "H3",
+          "text": "Creative & Product Design"
+        },
+        {
+          "level": "H3",
+          "text": "Additional Experience"
+        },
+        {
+          "level": "H2",
+          "text": "Creative direction.Technical practice."
+        },
+        {
+          "level": "H3",
+          "text": "Founder & Creative Technologist"
+        },
+        {
+          "level": "H2",
+          "text": "Work withthe right context."
+        },
+        {
+          "level": "H2",
+          "text": "Have Somethingin Mind?"
+        }
+      ],
+      "robots": "noindex, nofollow",
+      "canvasCount": 0,
+      "overflow": false,
+      "images": [
+        "/_next/image?url=%2Fassets%2Fbrand%2Fmotekra-mark.png&w=96&q=75",
+        "/_next/image?url=%2Fassets%2Fbrand%2Fmotekra-mark.png&w=256&q=75",
+        "/_next/image?url=%2Fassets%2Fbrand%2Fmotekra-mark.png&w=96&q=75"
+      ]
+    }
+  ],
+  "pageErrors": [],
+  "unapprovedPortraitRequests": []
+}

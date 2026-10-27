@@ -1,0 +1,62 @@
+$ pnpm typecheck && pnpm lint && pnpm test && pnpm build
+$ next typegen && tsc --noEmit
+Generating route types...
+✓ Types generated successfully
+$ eslint . --max-warnings=0
+$ vitest run
+
+ RUN  v5.0.5 C:/Users/DELL/Desktop/MESH PROJECT/MOTEKRA
+
+
+ Test Files  8 passed (8)
+      Tests  54 passed (54)
+   Start at  01:04:39
+   Duration  3.87s (import 59%, transform 25%, tests 11%, worker 5%)
+
+$ next build
+▲ Next.js 16.4.3 (Turbopack)
+- Environments: .env.local
+✓ Running next.config.ts took 134ms
+- Experiments (use with caution):
+  · optimizePackageImports
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 6.9s
+  Running TypeScript ...
+  Finished TypeScript in 19.0s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/19) ...
+  Generating static pages using 7 workers (4/19) 
+  Generating static pages using 7 workers (9/19) 
+  Generating static pages using 7 workers (14/19) 
+✓ Generating static pages using 7 workers (19/19) in 1749ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ƒ /api/contact
+├ ○ /contact
+├ ○ /insights
+├ ● /insights/[slug]
+├ ○ /manifest.webmanifest
+├ ○ /motion-lab
+├ ○ /robots.txt
+├ ○ /services
+├   /services/[slug]
+│ ├ ● /services/ui-ux-design
+│ ├ ● /services/web-development
+│ ├ ● /services/mobile-app-development
+│ └ ● [+2 more paths]
+├ ○ /sitemap.xml
+├   /team/[slug]
+│ └ ● /team/akinwumi-ayomiposi
+├ ○ /work
+└ ● /work/[slug]
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
+

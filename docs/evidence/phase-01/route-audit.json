@@ -1,0 +1,86 @@
+[
+  {
+    "route": "/",
+    "status": 200,
+    "title": "Digital products for what’s next | MOTEKRA",
+    "h1Count": 1,
+    "anchorCount": 41,
+    "hasMain": true,
+    "noindex": true,
+    "htmlBytes": 39894,
+    "contentType": "text/html; charset=utf-8",
+    "nosniff": "nosniff"
+  },
+  {
+    "route": "/work",
+    "status": 200,
+    "title": "Work — product design and development | MOTEKRA",
+    "h1Count": 1,
+    "anchorCount": 25,
+    "hasMain": true,
+    "noindex": true,
+    "htmlBytes": 21017,
+    "contentType": "text/html; charset=utf-8",
+    "nosniff": "nosniff"
+  },
+  {
+    "route": "/services",
+    "status": 200,
+    "title": "Services — digital product capabilities | MOTEKRA",
+    "h1Count": 1,
+    "anchorCount": 35,
+    "hasMain": true,
+    "noindex": true,
+    "htmlBytes": 32528,
+    "contentType": "text/html; charset=utf-8",
+    "nosniff": "nosniff"
+  },
+  {
+    "route": "/about",
+    "status": 200,
+    "title": "About — a studio for what’s next | MOTEKRA",
+    "h1Count": 1,
+    "anchorCount": 25,
+    "hasMain": true,
+    "noindex": true,
+    "htmlBytes": 21233,
+    "contentType": "text/html; charset=utf-8",
+    "nosniff": "nosniff"
+  },
+  {
+    "route": "/contact",
+    "status": 200,
+    "title": "Contact — start a project conversation | MOTEKRA",
+    "h1Count": 1,
+    "anchorCount": 24,
+    "hasMain": true,
+    "noindex": true,
+    "htmlBytes": 23452,
+    "contentType": "text/html; charset=utf-8",
+    "nosniff": "nosniff"
+  },
+  {
+    "route": "/insights",
+    "status": 200,
+    "title": "Insights | MOTEKRA",
+    "h1Count": 1,
+    "anchorCount": 24,
+    "hasMain": true,
+    "noindex": true,
+    "htmlBytes": 17111,
+    "contentType": "text/html; charset=utf-8",
+    "nosniff": "nosniff"
+  },
+  {
+    "route": "/services/ui-ux-design",
+    "status": 200,
+    "title": "UI/UX Design | MOTEKRA",
+    "h1Count": 1,
+    "anchorCount": 25,
+    "hasMain": true,
+    "noindex": true,
+    "htmlBytes": 19185,
+    "contentType": "text/html; charset=utf-8",
+    "nosniff": "nosniff"
+  }
+]

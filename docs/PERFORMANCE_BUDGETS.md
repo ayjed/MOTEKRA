@@ -1,0 +1,18 @@
+# Motion and 3D engineering budgets
+
+Phase 09 · 2026-10-26. These are acceptance targets, not a claim that every target is achieved.
+
+- Field p75 targets: LCP ≤2.5 s, INP ≤200 ms, CLS ≤0.1. Local navigation LCP and interaction Event Timing samples are laboratory diagnostics, not field p75 INP/CWV. A deployed site and representative traffic/device verification remain necessary.
+- Main-thread target: avoid >50 ms setup work on the target device; split work across frames and defer offscreen owners. Expensive vendor initialization, emulated CPU results and slow frames must be reported rather than hidden in averages.
+- Keep every title, description, project/service link and CTA in server HTML. No animation may delay navigation or require WebGL to use the site. The hero supporting paragraph stays stable; cinematic letters remain a decorative compositor sequence coordinated by GSAP.
+- Scope/clean timelines and listeners; initialize near the viewport only. No GSAP import under initial reduced motion. Live preference changes revert scopes; CSS animation is disabled too. No GSAP pinning or autoplay media is used. Native sticky storytelling becomes static under reduced motion.
+- Three procedural scene families: laptop/phone, optional two-phone flow and message sculpture. Phones below 768px, reduced motion, save-data or low capability hints use a poster, with zero scene draw calls by policy. Mid-range mobile emulation checks that policy, not forced WebGL.
+- DPR cap: high 1.25, balanced 1; adaptive interaction DPR can fall further. Rounded mesh segments scale by quality. Flat UI textures use linear filtering and no mip-chain generation; balanced textures are smaller. No HDR/environment downloads, transmission effects, postprocessing or shadow maps are required for these scenes.
+- Steady scene draw-call targets: devices ≤16, mobile flow ≤10, contact ≤8. Triangle targets: devices ≤10,000, each other scene ≤5,000. Instanced laptop keys remain one draw call. These are per-scene budgets, not a general-purpose scene allowance.
+- Approximate authored RGBA texture bytes (excluding driver/internal textures): devices high 4,928,000 / balanced 2,191,644; two-phone flow high 3,686,400 / balanced 1,638,400; contact high 1,572,864 / balanced 700,416. These are derived base-level byte estimates, not a measured GPU VRAM reading. Driver counts and actual draw work are profiled separately.
+- Visible settled scenes should stop requesting frames. Offscreen and hidden scenes must draw no new frames after settling state changes. Return navigation should own one canvas per scene and no disconnected GSAP trigger owners. Dispose authored textures/geometries and let R3F/Three dispose renderer-owned resources.
+- Browser RAF callback rate and WebGL frame clears are observed lab proxies. Software WebGL, throttled host CPU and callback frequency do not prove 60 fps on a physical phone or display. Record median/p95 intervals and slow frames; do not report only a flattering mean.
+
+Profiling is local-only: `?__motekra_profile=1` exposes scope initialization time, trigger targets/counts, pin/scrub state and disconnected owners on loopback. It does not enable a server endpoint, analytics, personal data collection or a production debug panel. Normal visitors do not pay the trigger-snapshot profiling cost.
+
+Security review includes published dependency advisories and targeted code review, not a penetration-test guarantee. Keep the private recipient out of public HTML, metadata, logs and receipt derivation. The configured contact endpoint still needs real inbox verification and deployment-level abuse controls; in-memory quotas are not distributed protection.

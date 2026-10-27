@@ -1,0 +1,52 @@
+[
+  {
+    "path": "/",
+    "mode": "mobile",
+    "exit": 0
+  },
+  {
+    "path": "/work",
+    "mode": "mobile",
+    "exit": 0
+  },
+  {
+    "path": "/services",
+    "mode": "mobile",
+    "exit": 0
+  },
+  {
+    "path": "/about",
+    "mode": "mobile",
+    "exit": 0
+  },
+  {
+    "path": "/contact",
+    "mode": "mobile",
+    "exit": 0
+  },
+  {
+    "path": "/",
+    "mode": "desktop",
+    "exit": 0
+  },
+  {
+    "path": "/work",
+    "mode": "desktop",
+    "exit": 0
+  },
+  {
+    "path": "/services",
+    "mode": "desktop",
+    "exit": 0
+  },
+  {
+    "path": "/about",
+    "mode": "desktop",
+    "exit": 0
+  },
+  {
+    "path": "/contact",
+    "mode": "desktop",
+    "exit": 0
+  }
+]

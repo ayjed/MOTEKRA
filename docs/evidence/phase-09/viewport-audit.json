@@ -1,0 +1,88 @@
+{
+  "results": [
+    {
+      "path": "/",
+      "width": 1440,
+      "h1Count": 1,
+      "overflow": false
+    },
+    {
+      "path": "/work",
+      "width": 1440,
+      "h1Count": 1,
+      "overflow": false
+    },
+    {
+      "path": "/services",
+      "width": 1440,
+      "h1Count": 1,
+      "overflow": false
+    },
+    {
+      "path": "/about",
+      "width": 1440,
+      "h1Count": 1,
+      "overflow": false
+    },
+    {
+      "path": "/contact",
+      "width": 1440,
+      "h1Count": 1,
+      "overflow": false
+    },
+    {
+      "path": "/",
+      "width": 390,
+      "h1Count": 1,
+      "overflow": false
+    },
+    {
+      "path": "/work",
+      "width": 390,
+      "h1Count": 1,
+      "overflow": false
+    },
+    {
+      "path": "/services",
+      "width": 390,
+      "h1Count": 1,
+      "overflow": false
+    },
+    {
+      "path": "/about",
+      "width": 390,
+      "h1Count": 1,
+      "overflow": false
+    },
+    {
+      "path": "/contact",
+      "width": 390,
+      "h1Count": 1,
+      "overflow": false
+    },
+    {
+      "orientation": {
+        "width": 844,
+        "height": 390
+      },
+      "dialog": false,
+      "overflow": false
+    },
+    {
+      "orientation": {
+        "width": 320,
+        "height": 568
+      },
+      "dialog": true,
+      "overflow": false
+    },
+    {
+      "orientation": {
+        "width": 390,
+        "height": 844
+      },
+      "dialog": true,
+      "overflow": false
+    }
+  ]
+}

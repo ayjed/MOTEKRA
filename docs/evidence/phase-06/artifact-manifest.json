@@ -1,0 +1,212 @@
+[
+  {
+    "file": "about-1024.png",
+    "bytes": 665145,
+    "sha256": "2230e09b9728ca1f25d88a35bcbfe87cb3eee887499301acfb953543d8c6e240"
+  },
+  {
+    "file": "about-1440.png",
+    "bytes": 994996,
+    "sha256": "6b6404da8d8fa921d3ac5dbe7655f7493dbae01e9449b0edbe8cc6d964bc2f8f"
+  },
+  {
+    "file": "about-320.png",
+    "bytes": 385470,
+    "sha256": "adfcb44724a9f62727b00a56032f6a3211d1cf4490b23d8770cbc57591fc1b7f"
+  },
+  {
+    "file": "about-390.png",
+    "bytes": 432134,
+    "sha256": "a389057f4f01ae13a13c6e5d683a5a1e706162835458d8a65b22722832b659eb"
+  },
+  {
+    "file": "about-768.png",
+    "bytes": 502441,
+    "sha256": "2bc0bdb9ef66f9273d93856760d0ebc37ad0cab005832e9786117c688869c954"
+  },
+  {
+    "file": "about-founder-walkthrough.webm",
+    "bytes": 7579437,
+    "sha256": "a5b367e971f574529b680a7c7c5de9e96570890cb322fb3321c8237d8ec07753"
+  },
+  {
+    "file": "about-mobile.report.html",
+    "bytes": 689840,
+    "sha256": "86675aa8514798c3bd4bd97345dcbf3dd3bb078e2acce7e952f2891980583b91"
+  },
+  {
+    "file": "about-mobile.report.json",
+    "bytes": 611891,
+    "sha256": "5d9ce0521d32f767f529806adad461e5035ddf12b1b96701bdecb0c09da87179"
+  },
+  {
+    "file": "about-motion-hero-1440.png",
+    "bytes": 401837,
+    "sha256": "59e9de368cfe391d2f8d9538a194aa84811b961b079e09aca4451ee3f2a59ba4"
+  },
+  {
+    "file": "about-no-js.png",
+    "bytes": 1043008,
+    "sha256": "e2d71cf9cc7f6d5be799b1b85e8091044315095eb31826dcac66a3f08d08c920"
+  },
+  {
+    "file": "about-perspective-1440.png",
+    "bytes": 198103,
+    "sha256": "ae5e55b843ef6e9b3af34dd6e89c737db97f64447aae6c293cc0d07051546cf8"
+  },
+  {
+    "file": "about-portrait-1440.png",
+    "bytes": 211734,
+    "sha256": "cb49171a3d1eb314f074e792aa47af0468bd85496e1e43ea647de63f0397b1d9"
+  },
+  {
+    "file": "about-portrait-390.png",
+    "bytes": 85126,
+    "sha256": "fd85a2f7a447ba37cfa0c2fec020848ece32a4e36e757c027b5000c1f586939f"
+  },
+  {
+    "file": "about-server.html",
+    "bytes": 38758,
+    "sha256": "db24eb6c3fe5490df8e52b9a8538f7d7c1776b871eb54b88e00ba4bc741344cf"
+  },
+  {
+    "file": "about-values-1440.png",
+    "bytes": 159536,
+    "sha256": "295eea54bb4bc087173e6d71282d5ffcc4dbf57e39de7f4f49490c7b9d60fd51"
+  },
+  {
+    "file": "about-values-390.png",
+    "bytes": 60511,
+    "sha256": "e1129facd7defc1f97fe4bba240942ed96a20faabec65bf81a6671810377eacc"
+  },
+  {
+    "file": "axe-about-1440.json",
+    "bytes": 314369,
+    "sha256": "dbebc0054f858ad76e44e03ab266f5df0de39cc541b23c5c179536e9977f6a5b"
+  },
+  {
+    "file": "axe-about-390.json",
+    "bytes": 297116,
+    "sha256": "3781a8a08129d3ec465d52b235fbc650413306d53763cea0b0cbd914137120fa"
+  },
+  {
+    "file": "axe-founder-1440.json",
+    "bytes": 352031,
+    "sha256": "5fd10bef8561a76af6b4d4004cb119e73950b4b4e93506b84ffd0812ee6ac342"
+  },
+  {
+    "file": "axe-founder-390.json",
+    "bytes": 337932,
+    "sha256": "02f37f28d1aec4f52291188cf65d27880088472f82209b9c7b2f9451f08cf9e5"
+  },
+  {
+    "file": "foundation-results.json",
+    "bytes": 5014,
+    "sha256": "d368ea03cf08f0c6418d933e11eff92f40bb9b84434d8c216cc4d493e1578d5c"
+  },
+  {
+    "file": "founder-1024.png",
+    "bytes": 515147,
+    "sha256": "b568ff3daf0f681d9c130c5fe46ddcd216189aec3658f9489600071fca697138"
+  },
+  {
+    "file": "founder-1440.png",
+    "bytes": 654200,
+    "sha256": "cb88b73a81b4123c0da45c09f4df28f49a774fa0b96df5ed85f97aaa37403b0b"
+  },
+  {
+    "file": "founder-320.png",
+    "bytes": 311454,
+    "sha256": "26890511a71936c29e4422977e9c60f09a58df27d4b94a64fb38663e49556d15"
+  },
+  {
+    "file": "founder-390.png",
+    "bytes": 359457,
+    "sha256": "e53a379144317ffaaa763771e79f95b6861d2349b7dadbe24ad785b0c0aadae2"
+  },
+  {
+    "file": "founder-768.png",
+    "bytes": 425621,
+    "sha256": "79084d287e124be45848a2b199899ce0ff585c8803f512f09e5f3232160e0dda"
+  },
+  {
+    "file": "founder-biography-1440.png",
+    "bytes": 122216,
+    "sha256": "64757f9763907c88377c52b038cfd6a9c00cc0835ab99b86312111a09fc2597d"
+  },
+  {
+    "file": "founder-credits-1440.png",
+    "bytes": 151989,
+    "sha256": "f458483d021e08725b052de8bd2aa18d4a99a1710afd2e0adb40d08fe4f25d2b"
+  },
+  {
+    "file": "founder-experience-1440.png",
+    "bytes": 72035,
+    "sha256": "527b259055b3e88a5307ce74e4976c14c398cbf205e2586e573a8bfc4704bed1"
+  },
+  {
+    "file": "founder-experience-390.png",
+    "bytes": 23452,
+    "sha256": "376aeb09fb07b9c44c0d8df6e4ae7cf9e574f88deba34f2d3e901989e2fe3a18"
+  },
+  {
+    "file": "founder-motion-hero-1440.png",
+    "bytes": 283913,
+    "sha256": "dba9ac7324e3e00cd738fb2bd8fef6106628680e5ef4399b208d44373de9880d"
+  },
+  {
+    "file": "founder-server.html",
+    "bytes": 42871,
+    "sha256": "554d72dcc57fd386b5806376460f2710e3b379ded0419c2111da05cfecdd7ab6"
+  },
+  {
+    "file": "founder-skills-1440.png",
+    "bytes": 75487,
+    "sha256": "588a03b74b4cfc2c7fbb95807f9e147a3c7022d844834d473c0f6289649f1d68"
+  },
+  {
+    "file": "founder-skills-390.png",
+    "bytes": 37875,
+    "sha256": "558b2a753be77a50de0e8634a3bf5ed14c9187261d7c918bfad66f2ebdcf9809"
+  },
+  {
+    "file": "html-audit.json",
+    "bytes": 3462,
+    "sha256": "9747d3b8e6e4b35bbcbadb1665afd2ebd9d3143b021e989a1756719fd3f341c0"
+  },
+  {
+    "file": "index.html",
+    "bytes": 5438,
+    "sha256": "45ce2f1b11060949458da0ebfb3ce3903cf7b4c04c9b711d20234da0ac8b94cd"
+  },
+  {
+    "file": "performance-summary.json",
+    "bytes": 571,
+    "sha256": "00fadf5120e5b075d7705e38e25d373dbb17040e8eb992da3fa50f6de252cdc4"
+  },
+  {
+    "file": "playwright-results.json",
+    "bytes": 8257,
+    "sha256": "412547cb726382628664f2e9bd2d64ab51acb36caa3056e7d506e8cd750d240e"
+  },
+  {
+    "file": "README.md",
+    "bytes": 4358,
+    "sha256": "b82b5f1f95650726a7bf4da9e799acd2ab3ba14e9987551c1c961bbc748493ca"
+  },
+  {
+    "file": "validation.txt",
+    "bytes": 1691,
+    "sha256": "3374aceb30c2e8e30324a314d7164418cd27f45b7917eca699c5679886259705"
+  },
+  {
+    "file": "video-playback.json",
+    "bytes": 92,
+    "sha256": "e653a487ec67a98843c73de278fc38ef68bbdf04e93fa7555b0381089b407a45"
+  },
+  {
+    "file": "walkthrough-frame-03.png",
+    "bytes": 390586,
+    "sha256": "9bd2a0870d849f13050a265b19699a858003450968d4257bc5b3c8d9947acdbf"
+  }
+]

@@ -1,0 +1,3 @@
+import { PointerTilt } from "@/components/motion/tactile";
+import { SceneBoundary } from "@/components/three/scene-boundary";
+export function ContactArtwork(){return <div className="contact-artwork" aria-hidden="true"><SceneBoundary scene="contact" showStatus={false} poster={<PointerTilt className="inquiry-sculpture"><div className="sculpture-orbit"/><div className="message-layer layer-back"/><div className="message-layer layer-paper"><span>A NEW CONVERSATION</span><strong>Let’s build<br/>what’s next.</strong><i/><i/></div><div className="message-layer layer-envelope"><span>Idea → Possibility</span><b>↗</b></div></PointerTilt>}/></div>;}

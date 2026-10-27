@@ -1,0 +1,14 @@
+{
+  "src\\components\\about\\about-page.tsx": "947a1a9f6424bc59b802f02c4017551d6d776a1ad2ce3b1c4adc40063d91dfc1",
+  "src\\components\\about\\editorial-cinema.tsx": "c99cc9ba37ebd6d20385a6da56e23e17341b5091a53ae79b4f2a72a719758fbe",
+  "src\\components\\about\\founder-page.tsx": "b6fc53617f458d259444ca54f7a7eb92e88385bd6a26d5dfe8ba405ed78d7fa7",
+  "src\\components\\about\\portrait.tsx": "8391e275ed9e8464c572f2915dd86666dda142817453410fd22c2b2b42da44dd",
+  "src\\components\\about\\profile-sections.tsx": "af9d6f1a400ee52a111edbbd43a7cc8defaf0594ca820e7bd125ec7ab7b7815b",
+  "src\\components\\contact\\contact-artwork.tsx": "9b6f2332e1941101853f08bf783dbdb37467ad87ee67f9206a7d2fa5168a2584",
+  "src\\components\\contact\\contact-cinema.tsx": "0d719b7f643dfd89f458677436f6af0f36d18baec8da94d5ac8dcd13eb1e0760",
+  "src\\components\\contact\\inquiry-form.tsx": "a11a5adafd167bc577fad36b2aed3e7d743ae726bdf0c95db1502d46e957d004",
+  "src\\app\\about\\page.tsx": "dc3114378fd295b524b3b20e0846b3d852cd99f712b95444e8320eaed1177f39",
+  "src\\app\\contact\\page.tsx": "8864b0bad9d79c541c307645d27487bd168e8d3c5131405dc3511d0acfaa5226",
+  "src\\styles\\about.css": "c45d2bd6f33ea7d63f19d27a955c38cd37dc985167362034530b4a0cfec901e0",
+  "src\\styles\\contact.css": "fd6ffb04b248c961a1db5b37dd3e3050f6706648c7b136a1fbe0cdd1069630e2"
+}

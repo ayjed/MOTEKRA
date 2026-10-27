@@ -1,0 +1,572 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Users\\DELL\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\node_modules\\.pnpm\\@playwright+test@1.64.1\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/smoke/home.spec.ts",
+      "--config=playwright.quality.config.ts"
+    ],
+    "configFile": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\playwright.quality.config.ts",
+    "rootDir": "C:/Users/DELL/Desktop/MESH PROJECT/MOTEKRA/tests/smoke",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/DELL/Desktop/MESH PROJECT/MOTEKRA/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/DELL/Desktop/MESH PROJECT/MOTEKRA/tests/smoke",
+        "testIgnore": [],
+        "testMatch": [
+          "quality.spec.ts",
+          "home.spec.ts",
+          "work.spec.ts",
+          "services.spec.ts",
+          "about.spec.ts",
+          "contact.spec.ts",
+          "seo.spec.ts"
+        ],
+        "timeout": 120000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke",
+        "snapshotDir": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke",
+        "testIgnore": [],
+        "testMatch": [
+          "quality.spec.ts",
+          "home.spec.ts",
+          "work.spec.ts",
+          "services.spec.ts",
+          "about.spec.ts",
+          "contact.spec.ts",
+          "seo.spec.ts"
+        ],
+        "timeout": 120000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3000",
+          "channel": "chrome",
+          "headless": true,
+          "screenshot": "only-on-failure",
+          "trace": "retain-on-failure",
+          "viewport": {
+            "width": 1440,
+            "height": 960
+          },
+          "launchOptions": {
+            "args": [
+              "--use-angle=swiftshader",
+              "--enable-unsafe-swiftshader"
+            ]
+          }
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "docs/evidence/phase-09/playwright-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "home.spec.ts",
+      "file": "home.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Home HTML contains the eight-section storyboard and honest content",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 116,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T18:55:47.815Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-fb6352a7c539b676fb91",
+          "file": "home.spec.ts",
+          "line": 9,
+          "column": 1
+        },
+        {
+          "title": "desktop hero, handoff and all five process stages respond to scroll",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 30945,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.scene-boundary')\nExpected: \u001b[32m\"ready\"\u001b[39m\nReceived: \u001b[31m\"poster\"\u001b[39m\nTimeout:  30000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.scene-boundary') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for locator('.scene-boundary')\u001b[22m\n\u001b[2m    63 × locator resolved to <div class=\"scene-boundary\" data-scene-state=\"poster\" data-scene-kind=\"devices\" data-scene-quality=\"poster\" data-scene-variant=\"overview\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"poster\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.scene-boundary')\nExpected: \u001b[32m\"ready\"\u001b[39m\nReceived: \u001b[31m\"poster\"\u001b[39m\nTimeout:  30000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.scene-boundary') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for locator('.scene-boundary')\u001b[22m\n\u001b[2m    63 × locator resolved to <div class=\"scene-boundary\" data-scene-state=\"poster\" data-scene-kind=\"devices\" data-scene-quality=\"poster\" data-scene-variant=\"overview\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"poster\"\u001b[22m\n\n    at C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts:26:49",
+                    "location": {
+                      "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts",
+                      "column": 49,
+                      "line": 26
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 24 |\u001b[39m   page\u001b[33m.\u001b[39mon(\u001b[32m\"pageerror\"\u001b[39m\u001b[33m,\u001b[39m (error) \u001b[33m=>\u001b[39m errors\u001b[33m.\u001b[39mpush(error\u001b[33m.\u001b[39mmessage))\u001b[33m;\u001b[39m\n \u001b[90m 25 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m\"/\"\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 26 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m\".scene-boundary\"\u001b[39m))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m\"data-scene-state\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"ready\"\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m30\u001b[39m_000 })\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                 \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 27 |\u001b[39m   \u001b[36mawait\u001b[39m expect\u001b[33m.\u001b[39mpoll(() \u001b[33m=>\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m\"[data-hero-glyph]\"\u001b[39m)\u001b[33m.\u001b[39mevaluateAll((nodes) \u001b[33m=>\u001b[39m nodes\u001b[33m.\u001b[39mevery((node) \u001b[33m=>\u001b[39m \u001b[33mMath\u001b[39m\u001b[33m.\u001b[39mabs(\u001b[36mnew\u001b[39m \u001b[33mDOMMatrix\u001b[39m(getComputedStyle(node)\u001b[33m.\u001b[39mtransform)\u001b[33m.\u001b[39mm42) \u001b[33m<\u001b[39m \u001b[35m1\u001b[39m))\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m20\u001b[39m_000 })\u001b[33m.\u001b[39mtoBe(\u001b[36mtrue\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 28 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m`${dir}/hero-1440.png`\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 29 |\u001b[39m   \u001b[36mconst\u001b[39m initial \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mlocator(\u001b[32m\".hero-product-handoff\"\u001b[39m)\u001b[33m.\u001b[39mevaluate((element) \u001b[33m=>\u001b[39m getComputedStyle(element)\u001b[33m.\u001b[39mtransform)\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts",
+                        "column": 49,
+                        "line": 26
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.scene-boundary')\nExpected: \u001b[32m\"ready\"\u001b[39m\nReceived: \u001b[31m\"poster\"\u001b[39m\nTimeout:  30000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.scene-boundary') with timeout 30000ms\u001b[22m\n\u001b[2m  - waiting for locator('.scene-boundary')\u001b[22m\n\u001b[2m    63 × locator resolved to <div class=\"scene-boundary\" data-scene-state=\"poster\" data-scene-kind=\"devices\" data-scene-quality=\"poster\" data-scene-variant=\"overview\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"poster\"\u001b[22m\n\n\n  24 |   page.on(\"pageerror\", (error) => errors.push(error.message));\n  25 |   await page.goto(\"/\");\n> 26 |   await expect(page.locator(\".scene-boundary\")).toHaveAttribute(\"data-scene-state\", \"ready\", { timeout: 30_000 });\n     |                                                 ^\n  27 |   await expect.poll(() => page.locator(\"[data-hero-glyph]\").evaluateAll((nodes) => nodes.every((node) => Math.abs(new DOMMatrix(getComputedStyle(node).transform).m42) < 1)), { timeout: 20_000 }).toBe(true);\n  28 |   await page.screenshot({ path: `${dir}/hero-1440.png` });\n  29 |   const initial = await page.locator(\".hero-product-handoff\").evaluate((element) => getComputedStyle(element).transform);\n    at C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts:26:49"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T18:55:47.993Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\home-desktop-hero-handoff--f6f0f-ss-stages-respond-to-scroll\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\home-desktop-hero-handoff--f6f0f-ss-stages-respond-to-scroll\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\home-desktop-hero-handoff--f6f0f-ss-stages-respond-to-scroll\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts",
+                    "column": 49,
+                    "line": 26
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-e6cb7161d82890c6c8f8",
+          "file": "home.spec.ts",
+          "line": 22,
+          "column": 1
+        },
+        {
+          "title": "five service demonstrations work by keyboard and expose real detail links",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1836,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T18:56:20.638Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-1196a5ba6d68258a6048",
+          "file": "home.spec.ts",
+          "line": 45,
+          "column": 1
+        },
+        {
+          "title": "live reduced-motion changes and route returns restore the Home scene",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6110,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.home-cinema')\nExpected: \u001b[32m\"true\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.home-cinema') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.home-cinema')\u001b[22m\n\u001b[2m    13 × locator resolved to <div class=\"home-cinema\" data-home-cinema=\"true\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"null\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.home-cinema')\nExpected: \u001b[32m\"true\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.home-cinema') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.home-cinema')\u001b[22m\n\u001b[2m    13 × locator resolved to <div class=\"home-cinema\" data-home-cinema=\"true\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"null\"\u001b[22m\n\n    at C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts:64:46",
+                    "location": {
+                      "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts",
+                      "column": 46,
+                      "line": 64
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 62 |\u001b[39m test(\u001b[32m\"live reduced-motion changes and route returns restore the Home scene\"\u001b[39m\u001b[33m,\u001b[39m \u001b[36masync\u001b[39m ({ page }) \u001b[33m=>\u001b[39m {\n \u001b[90m 63 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m\"/\"\u001b[39m)\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 64 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m\".home-cinema\"\u001b[39m))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m\"data-motion-active\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"true\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 65 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39memulateMedia({ reducedMotion\u001b[33m:\u001b[39m \u001b[32m\"reduce\"\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 66 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m\"[data-motion-active]\"\u001b[39m))\u001b[33m.\u001b[39mtoHaveCount(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 67 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m\"canvas\"\u001b[39m))\u001b[33m.\u001b[39mtoHaveCount(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts",
+                        "column": 46,
+                        "line": 64
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.home-cinema')\nExpected: \u001b[32m\"true\"\u001b[39m\nReceived: \u001b[31m\"\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.home-cinema') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.home-cinema')\u001b[22m\n\u001b[2m    13 × locator resolved to <div class=\"home-cinema\" data-home-cinema=\"true\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"null\"\u001b[22m\n\n\n  62 | test(\"live reduced-motion changes and route returns restore the Home scene\", async ({ page }) => {\n  63 |   await page.goto(\"/\");\n> 64 |   await expect(page.locator(\".home-cinema\")).toHaveAttribute(\"data-motion-active\", \"true\");\n     |                                              ^\n  65 |   await page.emulateMedia({ reducedMotion: \"reduce\" });\n  66 |   await expect(page.locator(\"[data-motion-active]\")).toHaveCount(0);\n  67 |   await expect(page.locator(\"canvas\")).toHaveCount(0);\n    at C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts:64:46"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T18:56:23.141Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\home-live-reduced-motion-c-43d3e-urns-restore-the-Home-scene\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\home-live-reduced-motion-c-43d3e-urns-restore-the-Home-scene\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\home-live-reduced-motion-c-43d3e-urns-restore-the-Home-scene\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts",
+                    "column": 46,
+                    "line": 64
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-b63390eab44a3e84cbba",
+          "file": "home.spec.ts",
+          "line": 62,
+          "column": 1
+        },
+        {
+          "title": "mobile, reduced-motion and no-JavaScript preserve content and actions",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6278,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m8\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m8\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n    at C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts:91:59",
+                    "location": {
+                      "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts",
+                      "column": 59,
+                      "line": 91
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 89 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mevaluate(() \u001b[33m=>\u001b[39m window\u001b[33m.\u001b[39mscrollTo(\u001b[35m0\u001b[39m\u001b[33m,\u001b[39m document\u001b[33m.\u001b[39mbody\u001b[33m.\u001b[39mscrollHeight))\u001b[33m;\u001b[39m\n \u001b[90m 90 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgetByRole(\u001b[32m\"link\"\u001b[39m\u001b[33m,\u001b[39m { name\u001b[33m:\u001b[39m \u001b[32m\"Back to top\"\u001b[39m\u001b[33m,\u001b[39m exact\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m.\u001b[39mclick()\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 91 |\u001b[39m     \u001b[36mawait\u001b[39m expect\u001b[33m.\u001b[39mpoll(() \u001b[33m=>\u001b[39m page\u001b[33m.\u001b[39mevaluate(() \u001b[33m=>\u001b[39m scrollY))\u001b[33m.\u001b[39mtoBe(\u001b[35m0\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                           \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 92 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m`${dir}/home-${width}.png`\u001b[39m\u001b[33m,\u001b[39m fullPage\u001b[33m:\u001b[39m \u001b[36mtrue\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 93 |\u001b[39m     \u001b[36mawait\u001b[39m context\u001b[33m.\u001b[39mclose()\u001b[33m;\u001b[39m\n \u001b[90m 94 |\u001b[39m   }\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts",
+                        "column": 59,
+                        "line": 91
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m8\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n\n  89 |     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));\n  90 |     await page.getByRole(\"link\", { name: \"Back to top\", exact: true }).click();\n> 91 |     await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);\n     |                                                           ^\n  92 |     await page.screenshot({ path: `${dir}/home-${width}.png`, fullPage: true });\n  93 |     await context.close();\n  94 |   }\n    at C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts:91:59"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T18:56:30.697Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\home-mobile-reduced-motion-d122e-reserve-content-and-actions\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\home-mobile-reduced-motion-d122e-reserve-content-and-actions\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\home-mobile-reduced-motion-d122e-reserve-content-and-actions\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts",
+                    "column": 59,
+                    "line": 91
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-ea49906f7755b749b393",
+          "file": "home.spec.ts",
+          "line": 81,
+          "column": 1
+        },
+        {
+          "title": "axe accessibility audit at desktop and mobile reduced motion",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 2598,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 46\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"id\": \"target-size\",\u001b[39m\n\u001b[31m+     \"targets\": Array [\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".desktop-nav > a[aria-current=\\\"page\\\"][href=\\\"/\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".desktop-nav > a[href$=\\\"work\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".desktop-nav > a[href$=\\\"services\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".desktop-nav > a[href$=\\\"about\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".desktop-nav > a[href$=\\\"contact\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".header-actions > .magnetic > .button-primary.button[href$=\\\"contact\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".button-primary.button[href$=\\\"work\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".founder-socials > a:nth-child(1)\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".founder-socials > a[href$=\\\"ayjed\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".founder-socials > a:nth-child(3)\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \"a[aria-label=\\\"Founder on LinkedIn\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \"a[aria-label=\\\"Founder on GitHub\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \"a[aria-label=\\\"Founder on Behance\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 46\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"id\": \"target-size\",\u001b[39m\n\u001b[31m+     \"targets\": Array [\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".desktop-nav > a[aria-current=\\\"page\\\"][href=\\\"/\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".desktop-nav > a[href$=\\\"work\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".desktop-nav > a[href$=\\\"services\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".desktop-nav > a[href$=\\\"about\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".desktop-nav > a[href$=\\\"contact\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".header-actions > .magnetic > .button-primary.button[href$=\\\"contact\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".button-primary.button[href$=\\\"work\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".founder-socials > a:nth-child(1)\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".founder-socials > a[href$=\\\"ayjed\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".founder-socials > a:nth-child(3)\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \"a[aria-label=\\\"Founder on LinkedIn\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \"a[aria-label=\\\"Founder on GitHub\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \"a[aria-label=\\\"Founder on Behance\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n    at C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts:114:108",
+                    "location": {
+                      "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts",
+                      "column": 108,
+                      "line": 114
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 112 |\u001b[39m     \u001b[36mconst\u001b[39m results \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m \u001b[36mnew\u001b[39m \u001b[33mAxeBuilder\u001b[39m({ page })\u001b[33m.\u001b[39mwithTags([\u001b[32m\"wcag2a\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"wcag2aa\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"wcag21a\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"wcag21aa\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"wcag22aa\"\u001b[39m])\u001b[33m.\u001b[39manalyze()\u001b[33m;\u001b[39m\n \u001b[90m 113 |\u001b[39m     \u001b[36mawait\u001b[39m writeFile(\u001b[32m`${dir}/axe-${width}.json`\u001b[39m\u001b[33m,\u001b[39m \u001b[33mJSON\u001b[39m\u001b[33m.\u001b[39mstringify(results\u001b[33m,\u001b[39m \u001b[36mnull\u001b[39m\u001b[33m,\u001b[39m \u001b[35m2\u001b[39m))\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 114 |\u001b[39m     expect(results\u001b[33m.\u001b[39mviolations\u001b[33m.\u001b[39mmap(({ id\u001b[33m,\u001b[39m nodes }) \u001b[33m=>\u001b[39m ({ id\u001b[33m,\u001b[39m targets\u001b[33m:\u001b[39m nodes\u001b[33m.\u001b[39mmap((node) \u001b[33m=>\u001b[39m node\u001b[33m.\u001b[39mtarget) })))\u001b[33m.\u001b[39mtoEqual([])\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                                                                                                            \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 115 |\u001b[39m     \u001b[36mawait\u001b[39m context\u001b[33m.\u001b[39mclose()\u001b[33m;\u001b[39m\n \u001b[90m 116 |\u001b[39m   }\n \u001b[90m 117 |\u001b[39m })\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts",
+                        "column": 108,
+                        "line": 114
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\n\u001b[32m- Expected  -  1\u001b[39m\n\u001b[31m+ Received  + 46\u001b[39m\n\n\u001b[32m- Array []\u001b[39m\n\u001b[31m+ Array [\u001b[39m\n\u001b[31m+   Object {\u001b[39m\n\u001b[31m+     \"id\": \"target-size\",\u001b[39m\n\u001b[31m+     \"targets\": Array [\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".desktop-nav > a[aria-current=\\\"page\\\"][href=\\\"/\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".desktop-nav > a[href$=\\\"work\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".desktop-nav > a[href$=\\\"services\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".desktop-nav > a[href$=\\\"about\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".desktop-nav > a[href$=\\\"contact\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".header-actions > .magnetic > .button-primary.button[href$=\\\"contact\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".button-primary.button[href$=\\\"work\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".founder-socials > a:nth-child(1)\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".founder-socials > a[href$=\\\"ayjed\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \".founder-socials > a:nth-child(3)\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \"a[aria-label=\\\"Founder on LinkedIn\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \"a[aria-label=\\\"Founder on GitHub\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+       Array [\u001b[39m\n\u001b[31m+         \"a[aria-label=\\\"Founder on Behance\\\"]\",\u001b[39m\n\u001b[31m+       ],\u001b[39m\n\u001b[31m+     ],\u001b[39m\n\u001b[31m+   },\u001b[39m\n\u001b[31m+ ]\u001b[39m\n\n  112 |     const results = await new AxeBuilder({ page }).withTags([\"wcag2a\", \"wcag2aa\", \"wcag21a\", \"wcag21aa\", \"wcag22aa\"]).analyze();\n  113 |     await writeFile(`${dir}/axe-${width}.json`, JSON.stringify(results, null, 2));\n> 114 |     expect(results.violations.map(({ id, nodes }) => ({ id, targets: nodes.map((node) => node.target) }))).toEqual([]);\n      |                                                                                                            ^\n  115 |     await context.close();\n  116 |   }\n  117 | });\n    at C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts:114:108"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T18:56:40.270Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\home-axe-accessibility-aud-120b7-p-and-mobile-reduced-motion\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\home-axe-accessibility-aud-120b7-p-and-mobile-reduced-motion\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\home-axe-accessibility-aud-120b7-p-and-mobile-reduced-motion\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts",
+                    "column": 108,
+                    "line": 114
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-fce9e6514264b69602ca",
+          "file": "home.spec.ts",
+          "line": 107,
+          "column": 1
+        },
+        {
+          "title": "record the desktop eight-section walkthrough",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 180000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 313,
+                  "error": {
+                    "message": "Error: browserContext.newPage: Executable doesn't exist at C:\\Users\\DELL\\AppData\\Local\\ms-playwright\\ffmpeg-1013\\ffmpeg-win64.exe\n╔═════════════════════════════════════════════════════════════════╗\n║ Video rendering requires ffmpeg binary.                         ║\n║ Downloading it will not affect any of the system-wide settings. ║\n║ Please run the following command:                               ║\n║                                                                 ║\n║     pnpm exec playwright install ffmpeg                         ║\n║                                                                 ║\n║ <3 Playwright Team                                              ║\n╚═════════════════════════════════════════════════════════════════╝",
+                    "stack": "Error: browserContext.newPage: Executable doesn't exist at C:\\Users\\DELL\\AppData\\Local\\ms-playwright\\ffmpeg-1013\\ffmpeg-win64.exe\n╔═════════════════════════════════════════════════════════════════╗\n║ Video rendering requires ffmpeg binary.                         ║\n║ Downloading it will not affect any of the system-wide settings. ║\n║ Please run the following command:                               ║\n║                                                                 ║\n║     pnpm exec playwright install ffmpeg                         ║\n║                                                                 ║\n║ <3 Playwright Team                                              ║\n╚═════════════════════════════════════════════════════════════════╝\n    at C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts:122:30",
+                    "location": {
+                      "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts",
+                      "column": 30,
+                      "line": 122
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 120 |\u001b[39m   test\u001b[33m.\u001b[39msetTimeout(\u001b[35m180\u001b[39m_000)\u001b[33m;\u001b[39m\n \u001b[90m 121 |\u001b[39m   \u001b[36mconst\u001b[39m context \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m browser\u001b[33m.\u001b[39mnewContext({ viewport\u001b[33m:\u001b[39m { width\u001b[33m:\u001b[39m \u001b[35m1440\u001b[39m\u001b[33m,\u001b[39m height\u001b[33m:\u001b[39m \u001b[35m960\u001b[39m }\u001b[33m,\u001b[39m recordVideo\u001b[33m:\u001b[39m { dir\u001b[33m:\u001b[39m \u001b[32m`${dir}/recording`\u001b[39m\u001b[33m,\u001b[39m size\u001b[33m:\u001b[39m { width\u001b[33m:\u001b[39m \u001b[35m1440\u001b[39m\u001b[33m,\u001b[39m height\u001b[33m:\u001b[39m \u001b[35m960\u001b[39m } } })\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 122 |\u001b[39m   \u001b[36mconst\u001b[39m page \u001b[33m=\u001b[39m \u001b[36mawait\u001b[39m context\u001b[33m.\u001b[39mnewPage()\u001b[33m;\u001b[39m\n \u001b[90m     |\u001b[39m                              \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 123 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mgoto(\u001b[32m\"http://127.0.0.1:3000/\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 124 |\u001b[39m   \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m\".scene-boundary\"\u001b[39m))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m\"data-scene-state\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"ready\"\u001b[39m\u001b[33m,\u001b[39m { timeout\u001b[33m:\u001b[39m \u001b[35m30\u001b[39m_000 })\u001b[33m;\u001b[39m\n \u001b[90m 125 |\u001b[39m   \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mwaitForTimeout(\u001b[35m1800\u001b[39m)\u001b[33m;\u001b[39m\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts",
+                        "column": 30,
+                        "line": 122
+                      },
+                      "message": "Error: browserContext.newPage: Executable doesn't exist at C:\\Users\\DELL\\AppData\\Local\\ms-playwright\\ffmpeg-1013\\ffmpeg-win64.exe\n╔═════════════════════════════════════════════════════════════════╗\n║ Video rendering requires ffmpeg binary.                         ║\n║ Downloading it will not affect any of the system-wide settings. ║\n║ Please run the following command:                               ║\n║                                                                 ║\n║     pnpm exec playwright install ffmpeg                         ║\n║                                                                 ║\n║ <3 Playwright Team                                              ║\n╚═════════════════════════════════════════════════════════════════╝\n\n  120 |   test.setTimeout(180_000);\n  121 |   const context = await browser.newContext({ viewport: { width: 1440, height: 960 }, recordVideo: { dir: `${dir}/recording`, size: { width: 1440, height: 960 } } });\n> 122 |   const page = await context.newPage();\n      |                              ^\n  123 |   await page.goto(\"http://127.0.0.1:3000/\");\n  124 |   await expect(page.locator(\".scene-boundary\")).toHaveAttribute(\"data-scene-state\", \"ready\", { timeout: 30_000 });\n  125 |   await page.waitForTimeout(1800);\n    at C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts:122:30"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-26T18:56:45.635Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\home-record-the-desktop-eight-section-walkthrough\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\home-record-the-desktop-eight-section-walkthrough\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts",
+                    "column": 30,
+                    "line": 122
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d318381359a9b96acb1e-f3a3182170013b4bbd7c",
+          "file": "home.spec.ts",
+          "line": 119,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-26T18:55:46.942Z",
+    "duration": 60113.385,
+    "expected": 2,
+    "skipped": 0,
+    "unexpected": 5,
+    "flaky": 0
+  }
+}

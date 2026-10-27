@@ -1,0 +1,309 @@
+/* Davka Design inspired Process Section */
+.davka-process-section {
+  position: relative;
+  background: #ffffff;
+  padding-block: clamp(80px, 8vw, 130px);
+  overflow: visible;
+  border-top: 1px solid #e8f2fa;
+}
+
+.davka-process-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(48px, 6vw, 92px);
+  align-items: start;
+}
+
+/* Left Column: Sticky Header */
+.davka-process-left {
+  position: sticky;
+  top: 120px;
+  align-self: start;
+}
+
+.davka-process-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.davka-process-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #1688f7;
+  box-shadow: 0 0 10px rgba(22, 136, 247, 0.6);
+  display: inline-block;
+}
+
+.davka-process-eyebrow span:last-child {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #08152b;
+}
+
+.davka-process-title {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 4.2vw, 56px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  color: #08152b;
+  margin-bottom: 24px;
+}
+
+.davka-process-title span {
+  color: #08152b;
+  display: block;
+}
+
+.davka-process-lead {
+  font-size: 16px;
+  line-height: 1.65;
+  color: #4b647d;
+  max-width: 440px;
+  margin-bottom: 36px;
+}
+
+.davka-process-highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding-block: 24px;
+  border-top: 1px solid #e5edf5;
+  border-bottom: 1px solid #e5edf5;
+  margin-bottom: 36px;
+}
+
+.davka-highlight-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.davka-highlight-val {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: #08152b;
+}
+
+.davka-highlight-lbl {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.davka-process-cta-wrap {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.davka-process-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #08152b;
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 10px 25px rgba(8, 21, 43, 0.12);
+  transition: background-color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+
+.davka-process-btn:hover {
+  background: #1688f7;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(22, 136, 247, 0.25);
+}
+
+.davka-btn-arrow {
+  display: inline-block;
+  transition: transform 0.25s;
+}
+
+.davka-process-btn:hover .davka-btn-arrow {
+  transform: translateX(4px);
+}
+
+/* Right Column: Stacking Process Cards */
+.davka-process-stack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.davka-process-card {
+  position: sticky;
+  top: calc(105px + var(--card-index) * 28px);
+  background: #ffffff;
+  border: 1px solid #e2edf6;
+  border-radius: 22px;
+  box-shadow: 0 16px 40px rgba(8, 21, 43, 0.05);
+  margin-bottom: 44px;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  transition: border-color 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s;
+}
+
+.davka-process-card:last-child {
+  margin-bottom: 80px;
+}
+
+.davka-process-card:hover {
+  border-color: #bcd6ec;
+  box-shadow: 0 20px 48px rgba(8, 21, 43, 0.09);
+}
+
+/* Card Left Tab (protruding full-height sidebar pill) */
+.davka-card-tab {
+  width: 52px;
+  min-width: 52px;
+  background: #f6f9fc;
+  border-right: 1px solid #e2edf6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 10px;
+}
+
+.davka-tab-badge {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #476178;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.davka-tab-dashes {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5px;
+  width: 14px;
+}
+
+.davka-tab-dashes span {
+  display: block;
+  height: 2px;
+  border-radius: 1px;
+  background: #1688f7;
+}
+
+/* Card Content (minimalist editorial layout matching Image 3) */
+.davka-card-content {
+  flex: 1;
+  min-width: 0;
+  padding: clamp(28px, 3.2vw, 42px) clamp(32px, 3.8vw, 48px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: clamp(210px, 22vh, 260px);
+}
+
+.davka-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.davka-card-title {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 2.6vw, 34px);
+  font-weight: 700;
+  color: #08152b;
+  letter-spacing: -0.03em;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.davka-ghost-number {
+  font-family: var(--font-display);
+  font-size: clamp(64px, 6vw, 92px);
+  font-weight: 800;
+  color: #edf3f8;
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  user-select: none;
+  pointer-events: none;
+}
+
+.davka-card-description {
+  font-size: clamp(15px, 1.15vw, 17px);
+  line-height: 1.65;
+  color: #476178;
+  margin: 0;
+  max-width: 520px;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .davka-process-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .davka-process-left {
+    position: relative;
+    top: auto;
+  }
+
+  .davka-process-card {
+    top: calc(90px + var(--card-index) * 20px);
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 640px) {
+  .davka-process-card {
+    border-radius: 18px;
+    margin-bottom: 24px;
+    top: calc(85px + var(--card-index) * 16px);
+  }
+
+  .davka-card-tab {
+    width: 44px;
+    min-width: 44px;
+    padding: 18px 8px;
+  }
+
+  .davka-card-content {
+    padding: 22px 18px;
+    min-height: 170px;
+  }
+
+  .davka-card-title {
+    font-size: 22px;
+  }
+
+  .davka-ghost-number {
+    font-size: 48px;
+  }
+
+  .davka-card-description {
+    font-size: 14.5px;
+  }
+
+  .davka-process-highlights {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .davka-process-card {
+    position: relative !important;
+    top: auto !important;
+  }
+}
+

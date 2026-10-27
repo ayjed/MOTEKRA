@@ -1,0 +1,16 @@
+[libvpx-vp9 @ 0000020ffb131a00] v1.14.1
+Input #0, matroska,webm, from 'docs/evidence/phase-09/regression/home-walkthrough.webm':
+  Metadata:
+    creation_time   : 2026-10-26T00:38:40.577000Z
+    ENCODER         : Lavf61.1.100
+  Duration: 00:00:34.56, start: 0.000000, bitrate: 2018 kb/s
+  Stream #0:0(eng): Video: vp9 (libvpx-vp9) (Profile 0), yuv420p(tv, progressive), 1440x960, SAR 1:1 DAR 3:2, 25 fps, 25 tbr, 1k tbn (default)
+      Metadata:
+        ENCODER         : Lavc61.3.100 libvpx-vp9
+        DURATION        : 00:00:34.560000000
+[AVFilterGraph @ 0000020ffb121200] No option name near '1/5'
+[AVFilterGraph @ 0000020ffb121200] Error parsing a filter description around: ,scale=480:-1,tile=4x2
+[AVFilterGraph @ 0000020ffb121200] Error parsing filterchain 'fps=1/5,scale=480:-1,tile=4x2' around: ,scale=480:-1,tile=4x2
+[vost#0:0/png @ 0000020ffb132540] Error initializing a simple filtergraph
+Error opening output file docs/evidence/phase-09/home-recording-review.png.
+Error opening output files: Invalid argument

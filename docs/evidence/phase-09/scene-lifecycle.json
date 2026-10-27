@@ -1,0 +1,167 @@
+{
+  "limits": "Local SwiftShader/software WebGL. Frame clear rate is a renderer proxy, not physical display FPS or hardware GPU memory.",
+  "results": [
+    {
+      "path": "/",
+      "quality": "high 1440px",
+      "idleDrawDelta": 0,
+      "pointerDrawDelta": 400,
+      "renderedFrameClearRate": 20.52334530528476,
+      "hiddenState": "paused",
+      "hiddenDrawDelta": 0,
+      "offscreenState": "paused",
+      "offscreenDrawDelta": 0,
+      "activeResources": {
+        "draws": 710,
+        "frames": 71,
+        "textures": 7,
+        "buffers": 34,
+        "width": 583,
+        "height": 468
+      },
+      "disposed": [
+        {
+          "connected": false,
+          "contextLost": true,
+          "remainingTextures": 5,
+          "remainingBuffers": 0
+        }
+      ]
+    },
+    {
+      "path": "/contact",
+      "quality": "high 1440px",
+      "idleDrawDelta": 0,
+      "pointerDrawDelta": 275,
+      "renderedFrameClearRate": 24.250440917107582,
+      "hiddenState": "paused",
+      "hiddenDrawDelta": 0,
+      "offscreenState": "paused",
+      "offscreenDrawDelta": 5,
+      "activeResources": {
+        "draws": 315,
+        "frames": 63,
+        "textures": 6,
+        "buffers": 16,
+        "width": 363,
+        "height": 256
+      },
+      "disposed": [
+        {
+          "connected": false,
+          "contextLost": true,
+          "remainingTextures": 5,
+          "remainingBuffers": 0
+        }
+      ]
+    },
+    {
+      "path": "/services/mobile-app-development",
+      "quality": "high 1440px",
+      "idleDrawDelta": 0,
+      "pointerDrawDelta": 306,
+      "renderedFrameClearRate": 27.991218441273325,
+      "hiddenState": "paused",
+      "hiddenDrawDelta": 0,
+      "offscreenState": "paused",
+      "offscreenDrawDelta": 0,
+      "activeResources": {
+        "draws": 330,
+        "frames": 55,
+        "textures": 7,
+        "buffers": 20,
+        "width": 511,
+        "height": 373
+      },
+      "disposed": [
+        {
+          "connected": false,
+          "contextLost": true,
+          "remainingTextures": 5,
+          "remainingBuffers": 0
+        }
+      ]
+    },
+    {
+      "path": "/",
+      "quality": "balanced 1024px/4-core hints/4x CPU",
+      "idleDrawDelta": 0,
+      "pointerDrawDelta": 650,
+      "renderedFrameClearRate": 31.10047846889952,
+      "hiddenState": "paused",
+      "hiddenDrawDelta": 0,
+      "offscreenState": "paused",
+      "offscreenDrawDelta": 10,
+      "activeResources": {
+        "draws": 1190,
+        "frames": 119,
+        "textures": 7,
+        "buffers": 34,
+        "width": 337,
+        "height": 374
+      },
+      "disposed": [
+        {
+          "connected": false,
+          "contextLost": true,
+          "remainingTextures": 5,
+          "remainingBuffers": 34
+        }
+      ]
+    },
+    {
+      "path": "/contact",
+      "quality": "balanced 1024px/4-core hints/4x CPU",
+      "idleDrawDelta": 0,
+      "pointerDrawDelta": 430,
+      "renderedFrameClearRate": 32.899770466717676,
+      "hiddenState": "paused",
+      "hiddenDrawDelta": 0,
+      "offscreenState": "paused",
+      "offscreenDrawDelta": 0,
+      "activeResources": {
+        "draws": 450,
+        "frames": 90,
+        "textures": 6,
+        "buffers": 16,
+        "width": 210,
+        "height": 205
+      },
+      "disposed": [
+        {
+          "connected": false,
+          "contextLost": true,
+          "remainingTextures": 5,
+          "remainingBuffers": 13
+        }
+      ]
+    },
+    {
+      "path": "/services/mobile-app-development",
+      "quality": "balanced 1024px/4-core hints/4x CPU",
+      "idleDrawDelta": 0,
+      "pointerDrawDelta": 474,
+      "renderedFrameClearRate": 41.64470216130733,
+      "hiddenState": "paused",
+      "hiddenDrawDelta": 0,
+      "offscreenState": "paused",
+      "offscreenDrawDelta": 0,
+      "activeResources": {
+        "draws": 498,
+        "frames": 83,
+        "textures": 7,
+        "buffers": 20,
+        "width": 298,
+        "height": 300
+      },
+      "disposed": [
+        {
+          "connected": false,
+          "contextLost": true,
+          "remainingTextures": 5,
+          "remainingBuffers": 7
+        }
+      ]
+    }
+  ]
+}

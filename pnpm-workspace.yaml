@@ -1,0 +1,4 @@
+allowBuilds:
+  unrs-resolver: true
+overrides:
+  '@opentelemetry/api': 1.9.0

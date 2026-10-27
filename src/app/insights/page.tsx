@@ -1,0 +1,10 @@
+import Link from "next/link";
+import { publishableArticles } from "@/lib/data/articles";
+import { PageHero } from "@/components/sections/shared";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
+import { EmptyState } from "@/components/ui/primitives";
+import { Reveal } from "@/components/motion/reveal";
+import { pageMetadata } from "@/lib/seo/site";
+import "@/styles/insights.css";
+export const metadata={...pageMetadata('Insights — design and engineering perspectives','Reviewed perspectives on design, software engineering and the decisions behind useful digital products.','/insights'),...(!publishableArticles().length?{robots:{index:false,follow:false}}:{})};
+export default function Insights(){const published=publishableArticles();return <><div className="container"><Breadcrumbs items={[{name:'Home',path:'/'},{name:'Insights',path:'/insights'}]}/></div><PageHero eyebrow="Insights / editorial" title={<>Ideas worth<br/><span>Exploring.</span></>} description="Perspectives on design, development and the decisions behind digital products."/><section className="section insights-collection"><div className="container">{published.length?<div className="insight-list">{published.map(post=><Reveal key={post.slug} kind="image"><article><p className="eyebrow">{post.topics.join(' · ')}</p><h2><Link prefetch={false} href={`/insights/${post.slug}`}>{post.title}</Link></h2><p>{post.summary}</p><p className="insight-byline">By {post.author.name} · <time dateTime={post.publishedAt}>{post.publishedAt}</time></p><Link prefetch={false} className="text-link" href={`/insights/${post.slug}`}>Read article ↗</Link></article></Reveal>)}</div>:<><EmptyState title="Nothing published yet.">This section will open with genuine, reviewed writing. No placeholder articles or invented bylines.</EmptyState><div className="insights-next"><p>Explore the work and proposed capabilities while the editorial collection is being prepared.</p><Link prefetch={false} href="/work">Work and labelled experiments ↗</Link><Link prefetch={false} href="/services">Proposed capabilities ↗</Link></div></>}</div></section></>;}

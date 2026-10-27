@@ -1,0 +1,104 @@
+{
+  "limits": "Observed cold anchor positions; does not establish the responsible subsystem.",
+  "results": [
+    {
+      "width": 1176,
+      "samples": [
+        {
+          "time": 250,
+          "scrollY": 3231,
+          "sectionTop": 31.515625,
+          "sectionHeight": 1254.4375,
+          "hash": "#home-process"
+        },
+        {
+          "time": 1000,
+          "scrollY": 3231,
+          "sectionTop": 31.515625,
+          "sectionHeight": 1254.4375,
+          "hash": "#home-process"
+        },
+        {
+          "time": 3000,
+          "scrollY": 3231,
+          "sectionTop": 31.515625,
+          "sectionHeight": 1254.4375,
+          "hash": "#home-process"
+        },
+        {
+          "time": 7000,
+          "scrollY": 3231,
+          "sectionTop": 31.515625,
+          "sectionHeight": 1254.4375,
+          "hash": "#home-process"
+        }
+      ]
+    },
+    {
+      "width": 1440,
+      "samples": [
+        {
+          "time": 250,
+          "scrollY": 2861,
+          "sectionTop": 32.171875,
+          "sectionHeight": 1315.703125,
+          "hash": "#home-process"
+        },
+        {
+          "time": 1000,
+          "scrollY": 2861,
+          "sectionTop": 32.171875,
+          "sectionHeight": 1315.703125,
+          "hash": "#home-process"
+        },
+        {
+          "time": 3000,
+          "scrollY": 2861,
+          "sectionTop": 32.171875,
+          "sectionHeight": 1315.703125,
+          "hash": "#home-process"
+        },
+        {
+          "time": 7000,
+          "scrollY": 2861,
+          "sectionTop": 32.171875,
+          "sectionHeight": 1315.703125,
+          "hash": "#home-process"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "samples": [
+        {
+          "time": 250,
+          "scrollY": 5793,
+          "sectionTop": 31.65625,
+          "sectionHeight": 1579.09375,
+          "hash": "#home-process"
+        },
+        {
+          "time": 1000,
+          "scrollY": 5793,
+          "sectionTop": 31.65625,
+          "sectionHeight": 1579.09375,
+          "hash": "#home-process"
+        },
+        {
+          "time": 3000,
+          "scrollY": 5793,
+          "sectionTop": 31.65625,
+          "sectionHeight": 1579.09375,
+          "hash": "#home-process"
+        },
+        {
+          "time": 7000,
+          "scrollY": 5793,
+          "sectionTop": 31.65625,
+          "sectionHeight": 1579.09375,
+          "hash": "#home-process"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+/* Custom trailing cursor matching Davka Design & MOTEKRA Brand (Zero Red) */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background-color: #1688f7;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0;
+  box-shadow: 0 0 10px rgba(22, 136, 247, 0.5);
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.24s cubic-bezier(0.2, 0.8, 0.2, 1),
+              height 0.24s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background-color 0.2s ease,
+              border 0.2s ease,
+              box-shadow 0.2s ease,
+              opacity 0.25s ease;
+  will-change: transform;
+}
+
+.cursor-arrow {
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: 700;
+  opacity: 0;
+  transform: scale(0.4) translate(-1px, 1px);
+  transition: opacity 0.18s ease, transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: block;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Project card hover: Expands into filled electric blue circle with white arrow ↗ */
+.custom-cursor.is-project {
+  width: 56px;
+  height: 56px;
+  background-color: #1688f7;
+  box-shadow: 0 8px 24px rgba(22, 136, 247, 0.45);
+  border: none;
+}
+
+.custom-cursor.is-project .cursor-arrow {
+  opacity: 1;
+  transform: scale(1) translate(0, 0);
+}
+
+/* General link / button hover: Sleek subtle ring aura */
+.custom-cursor.is-hovering {
+  width: 32px;
+  height: 32px;
+  background-color: rgba(22, 136, 247, 0.12);
+  border: 1.5px solid #1688f7;
+  box-shadow: 0 0 16px rgba(22, 136, 247, 0.3);
+}
+
+.custom-cursor.is-active {
+  transform: translate(-50%, -50%) scale(0.85);
+  background-color: #0562cb;
+}
+
+@media (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active a,
+  body.custom-cursor-active button,
+  body.custom-cursor-active summary,
+  body.custom-cursor-active [role="button"],
+  body.custom-cursor-active .davka-card,
+  body.custom-cursor-active .davka-project-card,
+  body.custom-cursor-active .home-project-card {
+    cursor: none !important;
+  }
+
+  body.custom-cursor-active input,
+  body.custom-cursor-active textarea {
+    cursor: text !important;
+  }
+}
+
+@media (pointer: coarse) {
+  .custom-cursor {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor {
+    transition: none !important;
+  }
+  .cursor-arrow {
+    transition: none !important;
+  }
+}

@@ -1,0 +1,204 @@
+[
+  {
+    "path": "five frames.png",
+    "bytes": 2074818,
+    "sha256": "7eefce78c1dbc2edf814d0aa0253ec97ee93cbf338f8f6f5c0e2cf8691dc5e65",
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB"
+  },
+  {
+    "path": "MOTEKRA_X_HEADED_1640x624.png",
+    "bytes": 746154,
+    "sha256": "93f122169a8ecc442e624d1be66698593a07a5c323f53f72357b8ef3cf3ba967",
+    "width": 1640,
+    "height": 624,
+    "mode": "RGB"
+  },
+  {
+    "path": "MOTEKRA_X_Profile_400x400.png",
+    "bytes": 14059,
+    "sha256": "88b7b285f4401f44c2269ee3c7e0ad1ea1883b8e779f8722b78796f7deae3fa6",
+    "width": 400,
+    "height": 400,
+    "mode": "RGBA"
+  },
+  {
+    "path": "Motekra Info/Motekra Info/1836ab98-1426-4fca-b9fa-adb23268b2fd.pdf",
+    "bytes": 1171437,
+    "sha256": "390d3148714db0313522e4c866c3a6f57ce18a32cabb5566722d6620a58c286a",
+    "pages": 1,
+    "page_details": [
+      {
+        "width_pt": 595.44,
+        "height_pt": 2168.7,
+        "text_characters": 0,
+        "images": [
+          {
+            "width": 1920,
+            "height": 2048
+          },
+          {
+            "width": 1920,
+            "height": 2048
+          },
+          {
+            "width": 1920,
+            "height": 2048
+          },
+          {
+            "width": 1920,
+            "height": 849
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "path": "Motekra Info/Motekra Info/18f8400e-473b-45df-b71d-216ad14f4e9b.pdf",
+    "bytes": 1497230,
+    "sha256": "9a18917affc29a5d8daf952ea81942ed569f078f21ee86d9a6f4ef101b803f55",
+    "pages": 1,
+    "page_details": [
+      {
+        "width_pt": 595.44,
+        "height_pt": 2930.06,
+        "text_characters": 0,
+        "images": [
+          {
+            "width": 1920,
+            "height": 2048
+          },
+          {
+            "width": 1920,
+            "height": 2048
+          },
+          {
+            "width": 1920,
+            "height": 2048
+          },
+          {
+            "width": 1920,
+            "height": 2048
+          },
+          {
+            "width": 1920,
+            "height": 1256
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "path": "Motekra Info/Motekra Info/205d73c3-66c4-4918-9643-b0eadfcb3032.pdf",
+    "bytes": 1438427,
+    "sha256": "0602699184a8fb9029bb4827c3a99caa0760b3fd8b7db1e90743a25ec136dafc",
+    "pages": 1,
+    "page_details": [
+      {
+        "width_pt": 595.44,
+        "height_pt": 1623.5,
+        "text_characters": 0,
+        "images": [
+          {
+            "width": 1920,
+            "height": 2048
+          },
+          {
+            "width": 1920,
+            "height": 2048
+          },
+          {
+            "width": 1920,
+            "height": 1139
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "path": "Motekra Info/Motekra Info/31e0817a-7526-47ec-b164-8e4c31e04d40.pdf",
+    "bytes": 1313105,
+    "sha256": "9dade72a5e08d45fa940955ec27cb9513844f77008eef201a1835e0db0188f90",
+    "pages": 1,
+    "page_details": [
+      {
+        "width_pt": 595.44,
+        "height_pt": 2231.35,
+        "text_characters": 0,
+        "images": [
+          {
+            "width": 1920,
+            "height": 2048
+          },
+          {
+            "width": 1920,
+            "height": 2048
+          },
+          {
+            "width": 1920,
+            "height": 2048
+          },
+          {
+            "width": 1920,
+            "height": 1051
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "path": "Motekra Info/Motekra Info/b700f82e-b8c5-43e1-a3fe-64dc1fa1e32e.pdf",
+    "bytes": 520451,
+    "sha256": "d381efef121ce9a93be84b1c524d045642a6238d0312788397c9e525da9dcc12",
+    "pages": 1,
+    "page_details": [
+      {
+        "width_pt": 595.44,
+        "height_pt": 931.62,
+        "text_characters": 0,
+        "images": [
+          {
+            "width": 1920,
+            "height": 2048
+          },
+          {
+            "width": 1920,
+            "height": 956
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "path": "Motekra Info/Motekra Info/eb4d75b3-7a73-4ba7-bfc6-876fba4f6315.pdf",
+    "bytes": 1029255,
+    "sha256": "fa0f1ec41baaa65cef452452eed62023cd6e394bd9025150a8abe84b3e16f92e",
+    "pages": 1,
+    "page_details": [
+      {
+        "width_pt": 595.44,
+        "height_pt": 2409.98,
+        "text_characters": 0,
+        "images": [
+          {
+            "width": 1920,
+            "height": 2048
+          },
+          {
+            "width": 1920,
+            "height": 2048
+          },
+          {
+            "width": 1920,
+            "height": 2048
+          },
+          {
+            "width": 1920,
+            "height": 1627
+          }
+        ]
+      }
+    ]
+  }
+]

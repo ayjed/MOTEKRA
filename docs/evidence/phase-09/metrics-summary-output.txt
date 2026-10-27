@@ -1,0 +1,416 @@
+{
+  "lighthouse": [
+    {
+      "route": "home",
+      "mode": "mobile",
+      "scores": {
+        "performance": 63,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 3737.9323999999997,
+      "tbtMs": 818.9999999999995,
+      "cls": 0,
+      "speedIndexMs": 5858.106177712541,
+      "warnings": [
+        "The tested device appears to have a slower CPU than  Lighthouse expects. This can negatively affect your performance score. Learn more about [calibrating an appropriate CPU slowdown multiplier](https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md#cpu-throttling)."
+      ]
+    },
+    {
+      "route": "work",
+      "mode": "mobile",
+      "scores": {
+        "performance": 73,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 3551.4124,
+      "tbtMs": 693.0000000000002,
+      "cls": 0,
+      "speedIndexMs": 2427.198184515174,
+      "warnings": [
+        "The tested device appears to have a slower CPU than  Lighthouse expects. This can negatively affect your performance score. Learn more about [calibrating an appropriate CPU slowdown multiplier](https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md#cpu-throttling)."
+      ]
+    },
+    {
+      "route": "services",
+      "mode": "mobile",
+      "scores": {
+        "performance": 71,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 3326.8690000000006,
+      "tbtMs": 851.4999999999998,
+      "cls": 0,
+      "speedIndexMs": 3326.50080636802,
+      "warnings": [
+        "The tested device appears to have a slower CPU than  Lighthouse expects. This can negatively affect your performance score. Learn more about [calibrating an appropriate CPU slowdown multiplier](https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md#cpu-throttling)."
+      ]
+    },
+    {
+      "route": "about",
+      "mode": "mobile",
+      "scores": {
+        "performance": 74,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 3614.508,
+      "tbtMs": 621,
+      "cls": 0,
+      "speedIndexMs": 3032.086528370106,
+      "warnings": [
+        "The tested device appears to have a slower CPU than  Lighthouse expects. This can negatively affect your performance score. Learn more about [calibrating an appropriate CPU slowdown multiplier](https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md#cpu-throttling)."
+      ]
+    },
+    {
+      "route": "contact",
+      "mode": "mobile",
+      "scores": {
+        "performance": 64,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 4114.594000000001,
+      "tbtMs": 817.5,
+      "cls": 0.00007463326429526074,
+      "speedIndexMs": 4380.5704319316,
+      "warnings": [
+        "The tested device appears to have a slower CPU than  Lighthouse expects. This can negatively affect your performance score. Learn more about [calibrating an appropriate CPU slowdown multiplier](https://github.com/GoogleChrome/lighthouse/blob/main/docs/throttling.md#cpu-throttling)."
+      ]
+    },
+    {
+      "route": "home",
+      "mode": "desktop",
+      "scores": {
+        "performance": 60,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 960.3800000000001,
+      "tbtMs": 1694.345,
+      "cls": 0,
+      "speedIndexMs": 3719.921248679957,
+      "warnings": []
+    },
+    {
+      "route": "work",
+      "mode": "desktop",
+      "scores": {
+        "performance": 99,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 872.7182,
+      "tbtMs": 47,
+      "cls": 0,
+      "speedIndexMs": 1192.0868285395545,
+      "warnings": []
+    },
+    {
+      "route": "services",
+      "mode": "desktop",
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 893.9698000000001,
+      "tbtMs": 53,
+      "cls": 0,
+      "speedIndexMs": 1221.5155009801683,
+      "warnings": []
+    },
+    {
+      "route": "about",
+      "mode": "desktop",
+      "scores": {
+        "performance": 98,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 897.3240000000001,
+      "tbtMs": 58,
+      "cls": 0,
+      "speedIndexMs": 1451.128620828601,
+      "warnings": []
+    },
+    {
+      "route": "contact",
+      "mode": "desktop",
+      "scores": {
+        "performance": 62,
+        "accessibility": 100,
+        "best-practices": 100,
+        "seo": 66,
+        "agentic-browsing": 100
+      },
+      "lcpMs": 1028.0680000000002,
+      "tbtMs": 2079.5,
+      "cls": 0.003262887682531667,
+      "speedIndexMs": 2604.908249244731,
+      "warnings": []
+    }
+  ],
+  "profiles": [
+    {
+      "path": "/",
+      "mobile": false,
+      "lcpMs": null,
+      "initialMaxTaskMs": 125,
+      "interactionLatencyMaxMs": null,
+      "cls": 0,
+      "medianFps": 59.88023952095874,
+      "p95Ms": 632.7999999999993
+    },
+    {
+      "path": "/work",
+      "mobile": false,
+      "lcpMs": 784,
+      "initialMaxTaskMs": 311,
+      "interactionLatencyMaxMs": null,
+      "cls": 0,
+      "medianFps": 59.88023952095874,
+      "p95Ms": 116.5
+    },
+    {
+      "path": "/services",
+      "mobile": false,
+      "lcpMs": 868,
+      "initialMaxTaskMs": 167,
+      "interactionLatencyMaxMs": 536,
+      "cls": 0,
+      "medianFps": 59.88023952095874,
+      "p95Ms": 249.80000000000018
+    },
+    {
+      "path": "/about",
+      "mobile": false,
+      "lcpMs": 1120,
+      "initialMaxTaskMs": 219,
+      "interactionLatencyMaxMs": 280,
+      "cls": 0,
+      "medianFps": 59.88023952095874,
+      "p95Ms": 166.5
+    },
+    {
+      "path": "/contact",
+      "mobile": false,
+      "lcpMs": 1444,
+      "initialMaxTaskMs": 425,
+      "interactionLatencyMaxMs": 256,
+      "cls": 0.004352331090856482,
+      "medianFps": 59.88023952095548,
+      "p95Ms": 416.2999999999997
+    },
+    {
+      "path": "/team/akinwumi-ayomiposi",
+      "mobile": false,
+      "lcpMs": 664,
+      "initialMaxTaskMs": 206,
+      "interactionLatencyMaxMs": 64,
+      "cls": 0,
+      "medianFps": 59.88023952095874,
+      "p95Ms": 50
+    },
+    {
+      "path": "/insights",
+      "mobile": false,
+      "lcpMs": 548,
+      "initialMaxTaskMs": 196,
+      "interactionLatencyMaxMs": null,
+      "cls": 0,
+      "medianFps": 60.24096385542037,
+      "p95Ms": 16.700000000000728
+    },
+    {
+      "path": "/services/ui-ux-design",
+      "mobile": false,
+      "lcpMs": 708,
+      "initialMaxTaskMs": 295,
+      "interactionLatencyMaxMs": 208,
+      "cls": 0,
+      "medianFps": 59.88023952095874,
+      "p95Ms": 50
+    },
+    {
+      "path": "/services/web-development",
+      "mobile": false,
+      "lcpMs": 1124,
+      "initialMaxTaskMs": 390,
+      "interactionLatencyMaxMs": 200,
+      "cls": 0,
+      "medianFps": 59.88023952095874,
+      "p95Ms": 50
+    },
+    {
+      "path": "/services/mobile-app-development",
+      "mobile": false,
+      "lcpMs": 892,
+      "initialMaxTaskMs": 271,
+      "interactionLatencyMaxMs": 136,
+      "cls": 0,
+      "medianFps": 59.88023952095874,
+      "p95Ms": 83.29999999999927
+    },
+    {
+      "path": "/services/product-strategy",
+      "mobile": false,
+      "lcpMs": 1272,
+      "initialMaxTaskMs": 369,
+      "interactionLatencyMaxMs": 280,
+      "cls": 0,
+      "medianFps": 59.88023952095874,
+      "p95Ms": 33.399999999999636
+    },
+    {
+      "path": "/services/brand-visual-design",
+      "mobile": false,
+      "lcpMs": 1376,
+      "initialMaxTaskMs": 539,
+      "interactionLatencyMaxMs": 272,
+      "cls": 0,
+      "medianFps": 59.88023952095874,
+      "p95Ms": 49.899999999999636
+    },
+    {
+      "path": "/",
+      "mobile": true,
+      "lcpMs": 8456,
+      "initialMaxTaskMs": 2707,
+      "interactionLatencyMaxMs": 1848,
+      "cls": 0,
+      "medianFps": 20.04008016032152,
+      "p95Ms": 666.0999999999985
+    },
+    {
+      "path": "/work",
+      "mobile": true,
+      "lcpMs": 6544,
+      "initialMaxTaskMs": 2931,
+      "interactionLatencyMaxMs": 1040,
+      "cls": 0,
+      "medianFps": 59.88023952095548,
+      "p95Ms": 166.5
+    },
+    {
+      "path": "/services",
+      "mobile": true,
+      "lcpMs": 5416,
+      "initialMaxTaskMs": 1627,
+      "interactionLatencyMaxMs": 1280,
+      "cls": 0,
+      "medianFps": 59.88023952095548,
+      "p95Ms": 316.5
+    },
+    {
+      "path": "/about",
+      "mobile": true,
+      "lcpMs": 4652,
+      "initialMaxTaskMs": 1935,
+      "interactionLatencyMaxMs": 1216,
+      "cls": 0,
+      "medianFps": 59.523809523812105,
+      "p95Ms": 183.39999999999964
+    },
+    {
+      "path": "/contact",
+      "mobile": true,
+      "lcpMs": 5476,
+      "initialMaxTaskMs": 3822,
+      "interactionLatencyMaxMs": 1072,
+      "cls": 0,
+      "medianFps": 59.88023952095548,
+      "p95Ms": 166.70000000000073
+    },
+    {
+      "path": "/team/akinwumi-ayomiposi",
+      "mobile": true,
+      "lcpMs": 4540,
+      "initialMaxTaskMs": 1657,
+      "interactionLatencyMaxMs": 1008,
+      "cls": 0,
+      "medianFps": 59.88023952095548,
+      "p95Ms": 183.3000000000011
+    },
+    {
+      "path": "/insights",
+      "mobile": true,
+      "lcpMs": 3580,
+      "initialMaxTaskMs": 1744,
+      "interactionLatencyMaxMs": 720,
+      "cls": 0,
+      "medianFps": 59.880239520962,
+      "p95Ms": 50
+    },
+    {
+      "path": "/services/ui-ux-design",
+      "mobile": true,
+      "lcpMs": 4872,
+      "initialMaxTaskMs": 1676,
+      "interactionLatencyMaxMs": 1136,
+      "cls": 0,
+      "medianFps": 59.880239520962,
+      "p95Ms": 200
+    },
+    {
+      "path": "/services/web-development",
+      "mobile": true,
+      "lcpMs": 4440,
+      "initialMaxTaskMs": 1422,
+      "interactionLatencyMaxMs": 1208,
+      "cls": 0,
+      "medianFps": 59.88023952095548,
+      "p95Ms": 116.70000000000073
+    },
+    {
+      "path": "/services/mobile-app-development",
+      "mobile": true,
+      "lcpMs": 5556,
+      "initialMaxTaskMs": 1601,
+      "interactionLatencyMaxMs": 1032,
+      "cls": 0,
+      "medianFps": 59.88023952095548,
+      "p95Ms": 83.40000000000146
+    },
+    {
+      "path": "/services/product-strategy",
+      "mobile": true,
+      "lcpMs": 4284,
+      "initialMaxTaskMs": 1548,
+      "interactionLatencyMaxMs": 1096,
+      "cls": 0,
+      "medianFps": 59.88023952095548,
+      "p95Ms": 100
+    },
+    {
+      "path": "/services/brand-visual-design",
+      "mobile": true,
+      "lcpMs": 4424,
+      "initialMaxTaskMs": 1642,
+      "interactionLatencyMaxMs": 1336,
+      "cls": 0,
+      "medianFps": 59.88023952095548,
+      "p95Ms": 116.60000000000036
+    }
+  ]
+}

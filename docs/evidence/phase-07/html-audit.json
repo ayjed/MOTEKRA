@@ -1,0 +1,67 @@
+{
+  "audit": {
+    "title": "Contact — start a project conversation | MOTEKRA",
+    "h1": "Have Something in Mind?",
+    "headings": [
+      {
+        "level": "H1",
+        "text": "Have Something in Mind?"
+      },
+      {
+        "level": "H2",
+        "text": "Tell us whatyou have in mind."
+      },
+      {
+        "level": "H2",
+        "text": "Let’s makeit meaningful."
+      },
+      {
+        "level": "H3",
+        "text": "Direct contact"
+      },
+      {
+        "level": "H3",
+        "text": "The founder’s professional profiles"
+      },
+      {
+        "level": "H2",
+        "text": "Got Questions?Start Here."
+      },
+      {
+        "level": "H2",
+        "text": "A clearer directionstarts with a conversation."
+      }
+    ],
+    "labels": [
+      {
+        "for": "name",
+        "text": "Your name "
+      },
+      {
+        "for": "email",
+        "text": "Your email "
+      },
+      {
+        "for": "projectType",
+        "text": "What are you thinking about? "
+      },
+      {
+        "for": "message",
+        "text": "Tell us about your project "
+      }
+    ],
+    "mailtoLinks": [],
+    "noHorizontalOverflow": true,
+    "canvasCount": 0
+  },
+  "sceneAudit": {
+    "state": "ready",
+    "quality": "high",
+    "canvasCount": 1,
+    "kind": "contact"
+  },
+  "sceneStateOffscreen": "paused",
+  "pageErrors": [],
+  "internalLinks": {},
+  "actualEmailDelivery": "Pending — no provider configuration or real inbox test"
+}

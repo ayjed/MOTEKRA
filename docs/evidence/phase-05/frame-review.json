@@ -1,0 +1,27 @@
+{
+  "video": {
+    "duration": 27.32,
+    "width": 1440,
+    "height": 960,
+    "played": 1.0311,
+    "error": null
+  },
+  "frames": [
+    {
+      "timeSeconds": 4.1,
+      "file": "video-frames\\frame-1.png"
+    },
+    {
+      "timeSeconds": 12.29,
+      "file": "video-frames\\frame-2.png"
+    },
+    {
+      "timeSeconds": 19.12,
+      "file": "video-frames\\frame-3.png"
+    },
+    {
+      "timeSeconds": 24.59,
+      "file": "video-frames\\frame-4.png"
+    }
+  ]
+}

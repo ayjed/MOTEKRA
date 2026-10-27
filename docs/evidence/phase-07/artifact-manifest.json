@@ -1,0 +1,192 @@
+[
+  {
+    "file": "axe-contact-1440.json",
+    "bytes": 334242,
+    "sha256": "9cd0d8c283d7781ac3f52767c44c88f15e452e5e812431a5612b2fe872c6f978"
+  },
+  {
+    "file": "axe-contact-390.json",
+    "bytes": 317026,
+    "sha256": "d3cfd7bbfa6df41cf861aede0ed81080a20e8fce5e7e5964b53b8aa077e293c2"
+  },
+  {
+    "file": "axe-error-state.json",
+    "bytes": 332150,
+    "sha256": "f633739a93d4761158f3b0118b7515c10cb584e6ce09e865764cc2b508080d13"
+  },
+  {
+    "file": "axe-success-state.json",
+    "bytes": 336030,
+    "sha256": "ec940d91b4d2fcd859c1b093587e0687e40bdac118541b47689c4d720c976158"
+  },
+  {
+    "file": "contact-1024.png",
+    "bytes": 451570,
+    "sha256": "6712cd79283c5b94f3e2ef16475b7dbe18c27f12d3d9a0c6a6c47a16e5ec5e34"
+  },
+  {
+    "file": "contact-1440.png",
+    "bytes": 691741,
+    "sha256": "4b247316131190161f838dcf9959e29220fa7233fbfb0e26efd4dca7ae6733af"
+  },
+  {
+    "file": "contact-320.png",
+    "bytes": 324341,
+    "sha256": "fee462b1dd7ad8378d63adba93e3a7629907826d39b1e738b3a1d126568daa13"
+  },
+  {
+    "file": "contact-390.png",
+    "bytes": 348910,
+    "sha256": "2358c1231104ad572ae1cc709db2d28566f88584de69a55c48a388f692dd8d30"
+  },
+  {
+    "file": "contact-768.png",
+    "bytes": 409755,
+    "sha256": "bfedd230bcdbe18d256bb5b20a3e0b90d1dd5b0b873fe9360e7f8f0a5f66c698"
+  },
+  {
+    "file": "contact-closing-1440.png",
+    "bytes": 58730,
+    "sha256": "4792d00cc8051c64f1a72a607c26ea08c3295aed742fcb35c4ee081ab2ec4bcd"
+  },
+  {
+    "file": "contact-closing-390.png",
+    "bytes": 30542,
+    "sha256": "89fb38f4701790711184f918a58181fedeb83a08d3ceecefedbbf69683a71fd9"
+  },
+  {
+    "file": "contact-details-390.png",
+    "bytes": 31523,
+    "sha256": "f42bbbb855554fcd7d2686c42e8c77d3a7aa9f16f053143a39a68670b3950600"
+  },
+  {
+    "file": "contact-error-ui-simulation-390.png",
+    "bytes": 87910,
+    "sha256": "3fa7291eb38f227c8de3eedec14ae0d0015c9e4744852814b8476f467a5cc7dc"
+  },
+  {
+    "file": "contact-faq-1440.png",
+    "bytes": 48286,
+    "sha256": "4a31dc8018103865d2c7b24811a78b582d64e5d5e7c4352517f40c1019d61683"
+  },
+  {
+    "file": "contact-faq-390.png",
+    "bytes": 24731,
+    "sha256": "d1c2708310bf132f4c58a69e3fb51601810f5996fdbbe8c28adc689af09fa65d"
+  },
+  {
+    "file": "contact-form-1440.png",
+    "bytes": 115824,
+    "sha256": "2df9cc73354825495491f3c51e2b6f40f8dd412407cbc37de9af1ca0fc094644"
+  },
+  {
+    "file": "contact-form-390.png",
+    "bytes": 29780,
+    "sha256": "5b49928b00308aa0a434ecf1bafdd3b94bfa7d9845ded5783dd6e340ca19ee88"
+  },
+  {
+    "file": "contact-hero-390.png",
+    "bytes": 198714,
+    "sha256": "1e024d0caf0acdf50e9b2bf4bbe153e7c81adf9c3316886adc32b9b0df58e6f8"
+  },
+  {
+    "file": "contact-mobile.report.html",
+    "bytes": 620980,
+    "sha256": "d70d9e406e0c687fe772d73c8e04ad406dacaec04255c11686273f2933c49726"
+  },
+  {
+    "file": "contact-mobile.report.json",
+    "bytes": 545364,
+    "sha256": "5b931cc1d9a7acaf57e55ca0a27d93da0e2306220ec3c2c932cd24f91b8ba56e"
+  },
+  {
+    "file": "contact-motion-hero-1440.png",
+    "bytes": 477806,
+    "sha256": "4c2ac40caf53086456f3cca814ba824ac4b77b73932829754d95f3dfeb9044a7"
+  },
+  {
+    "file": "contact-no-js-390.png",
+    "bytes": 364659,
+    "sha256": "7fec5162564a1eece1a479f3841ef6670581395e829129aac5faa89e275096fe"
+  },
+  {
+    "file": "contact-server.html",
+    "bytes": 34682,
+    "sha256": "8fdd798fdb5ae393ce7d70c389d06108f4204513d992df068f0f50aecfb0d5a5"
+  },
+  {
+    "file": "contact-success-ui-simulation-1440.png",
+    "bytes": 762651,
+    "sha256": "b7da66927630678975760d82171ccaadb44477729c543774def5015e3889fbb0"
+  },
+  {
+    "file": "contact-walkthrough.webm",
+    "bytes": 5483745,
+    "sha256": "46fe11f08a9695ffc80b9e767eb620a5206ec751c10651c1f74532f7e2bdd0e7"
+  },
+  {
+    "file": "contact-webgl-error-1440.png",
+    "bytes": 518236,
+    "sha256": "c063e894e9d86361066ab3189a7c5658baab49c43e80568003812bf1fcfb8a28"
+  },
+  {
+    "file": "foundation-results.json",
+    "bytes": 5070,
+    "sha256": "6635f3cce72e310ab8038fe24c4640079425ba17cb4c5bb5a6796aa0e75f08db"
+  },
+  {
+    "file": "html-audit.json",
+    "bytes": 1460,
+    "sha256": "0ee1e076bf382de697720fcbcbe7eb3621fa7ddbcd51503f0e5cd4a7e3adaa5e"
+  },
+  {
+    "file": "index.html",
+    "bytes": 5288,
+    "sha256": "132c7923772d2de1a0960c05c4340c0c2faf78c1f509a8de29278ba9f2308e22"
+  },
+  {
+    "file": "performance-summary.json",
+    "bytes": 512,
+    "sha256": "c91babd60a298470debf2efbb88a88861a9fe8deb71295e32a19d9a531f89472"
+  },
+  {
+    "file": "playwright-results.json",
+    "bytes": 12898,
+    "sha256": "3d273e1ace1315e552ae018487889495b1b28b720bba35bffb8a50531ec346a2"
+  },
+  {
+    "file": "README.md",
+    "bytes": 5321,
+    "sha256": "f2c845f01b87c73ce02da6643491fce685600a5907b035c34529dee6107b778f"
+  },
+  {
+    "file": "static-architecture-audit.json",
+    "bytes": 375,
+    "sha256": "0307baa41368e607998e337b6c3bc514e268d4d542d7ce093d2343ca5cc2ff36"
+  },
+  {
+    "file": "validation.txt",
+    "bytes": 1711,
+    "sha256": "6efc36b592922f07f9c30ecdac4da818b6cb527683fb4ba9bed70d4f77ce1a96"
+  },
+  {
+    "file": "video-playback.json",
+    "bytes": 92,
+    "sha256": "968f38e3c4c2237a0ce42e08e68315a2066e9653319ef2cfea9a9ab5d522e13c"
+  },
+  {
+    "file": "walkthrough-frame-03.png",
+    "bytes": 440769,
+    "sha256": "7f11fa2f26a6f0ec9ca974d80ec0ebbc12812c7e6e835907f01c09bce4eb58a4"
+  },
+  {
+    "file": "work-static-filter-1440.png",
+    "bytes": 864535,
+    "sha256": "de3f8c63f999e34ee72571c486ae098dac73a535aeb8c17ebbdf58d12a6512b3"
+  },
+  {
+    "file": "work-static-server.html",
+    "bytes": 40512,
+    "sha256": "e788b4c0abe23d3fffc82aaa5538577e032a814aa3a40e4193a6fa455d9e09ae"
+  }
+]

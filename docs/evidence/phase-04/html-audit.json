@@ -1,0 +1,115 @@
+{
+  "title": "Work — Real Ideas. Real Impact. | MOTEKRA",
+  "mainCount": 1,
+  "h1Count": 1,
+  "headings": [
+    {
+      "level": "H1",
+      "text": "Real Ideas.Real Impact."
+    },
+    {
+      "level": "H2",
+      "text": "Work collection"
+    },
+    {
+      "level": "H2",
+      "text": "Spotlight Contest"
+    },
+    {
+      "level": "H2",
+      "text": "LAD Global Travels"
+    },
+    {
+      "level": "H2",
+      "text": "TOG Africa"
+    },
+    {
+      "level": "H2",
+      "text": "ConnectAPI"
+    },
+    {
+      "level": "H2",
+      "text": "Product, in motion."
+    },
+    {
+      "level": "H2",
+      "text": "Systems that adapt."
+    },
+    {
+      "level": "H2",
+      "text": "An idea takes shape."
+    },
+    {
+      "level": "H2",
+      "text": "Company & shipped"
+    },
+    {
+      "level": "H2",
+      "text": "Founder & collaborative"
+    },
+    {
+      "level": "H2",
+      "text": "Concepts & in development"
+    },
+    {
+      "level": "H2",
+      "text": "Have Somethingin Mind?"
+    }
+  ],
+  "canvasCount": 0,
+  "imageRequests": [
+    {
+      "name": "http://127.0.0.1:3000/work/evidence/spotlight-contest?view=hero",
+      "bytes": 97634
+    },
+    {
+      "name": "http://127.0.0.1:3000/work/evidence/lad-global-travels?view=hero",
+      "bytes": 100364
+    },
+    {
+      "name": "http://127.0.0.1:3000/work/evidence/tog-africa?view=hero",
+      "bytes": 117750
+    },
+    {
+      "name": "http://127.0.0.1:3000/work/evidence/connectapi?view=hero",
+      "bytes": 53198
+    }
+  ],
+  "cards": [
+    {
+      "id": "spotlight-contest",
+      "kind": "draft",
+      "width": 730
+    },
+    {
+      "id": "lad-global-travels",
+      "kind": "draft",
+      "width": 510
+    },
+    {
+      "id": "tog-africa",
+      "kind": "draft",
+      "width": 510
+    },
+    {
+      "id": "connectapi",
+      "kind": "draft",
+      "width": 730
+    },
+    {
+      "id": "website-study-0",
+      "kind": "study",
+      "width": 730
+    },
+    {
+      "id": "website-study-1",
+      "kind": "study",
+      "width": 510
+    },
+    {
+      "id": "website-study-2",
+      "kind": "study",
+      "width": 510
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "categories": {
+    "performance": 80.0,
+    "accessibility": 100,
+    "best-practices": 100,
+    "seo": 66.0,
+    "agentic-browsing": 100
+  },
+  "metrics": {
+    "first-contentful-paint": "2.7\u00a0s",
+    "largest-contentful-paint": "3.7\u00a0s",
+    "total-blocking-time": "140\u00a0ms",
+    "cumulative-layout-shift": "0"
+  },
+  "warnings": [],
+  "limitations": "One local simulated mobile run, not field Core Web Vitals. SEO is deliberately noindex while approvals/domain are pending."
+}

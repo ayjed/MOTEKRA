@@ -1,0 +1,28 @@
+{
+  "mode": "local environment-gated lab; not deployed",
+  "lab": {
+    "status": 200,
+    "noindex": true,
+    "htmlBytes": 32602
+  },
+  "screenshots": [
+    "focus-preview.png",
+    "lab-balanced-1024.png",
+    "lab-desktop-1440.png",
+    "lab-hero-1440.png",
+    "lab-mobile-320.png",
+    "lab-no-js-320.png",
+    "lab-reduced-motion.png",
+    "low-memory-fallback.png",
+    "navigation-320.png",
+    "navigation-767.png",
+    "no-webgl-fallback.png",
+    "webgl-error-fallback.png"
+  ],
+  "recording": {
+    "path": "motion-walkthrough.webm",
+    "bytes": 3694407,
+    "sha256": "45d20806ce1eada519ab07a327b6e0147ffe5cb6b3092984d0993d1fb0bb06ca",
+    "modified": "2026-10-25T17:43:19.557Z"
+  }
+}

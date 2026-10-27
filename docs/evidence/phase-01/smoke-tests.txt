@@ -1,0 +1,13 @@
+$ playwright test
+
+Running 5 tests using 1 worker
+
+(node:34288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 tests\smoke\foundation.spec.ts:8:1 › production HTML includes crawlable content, links and safe metadata (422ms)
+  ok 2 tests\smoke\foundation.spec.ts:24:1 › unapproved detail content returns a real 404 (222ms)
+  ok 3 tests\smoke\foundation.spec.ts:33:1 › responsive scaffold screenshots and no horizontal overflow (19.4s)
+  ok 4 tests\smoke\foundation.spec.ts:51:1 › keyboard skip link, native mobile navigation and truthful form state (2.0s)
+  ok 5 tests\smoke\foundation.spec.ts:66:1 › no-JavaScript and reduced-motion content remains available (3.6s)
+
+  5 passed (28.7s)

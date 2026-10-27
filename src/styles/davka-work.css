@@ -1,0 +1,314 @@
+/* Davka Design inspired Stacking Projects Section (Zero Red, MOTEKRA Brand) */
+.davka-work-section {
+  position: relative;
+  background: #ffffff;
+  padding-block: clamp(80px, 8vw, 130px);
+  overflow: visible;
+  border-top: 1px solid #e8f2fa;
+}
+
+.davka-work-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+  margin-bottom: clamp(40px, 5vw, 64px);
+}
+
+.davka-work-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.davka-work-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #1688f7;
+  box-shadow: 0 0 10px rgba(22, 136, 247, 0.6);
+  display: inline-block;
+}
+
+.davka-work-eyebrow span:last-child {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #08152b;
+}
+
+.davka-work-title {
+  font-family: var(--font-display);
+  font-size: clamp(38px, 4.4vw, 60px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: #08152b;
+  margin: 0;
+}
+
+.davka-work-title span {
+  display: block;
+  color: #1688f7;
+}
+
+.davka-all-projects-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #08152b;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: #f1f7fc;
+  border: 1px solid #d8e8f5;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.davka-all-projects-link:hover {
+  background: #08152b;
+  color: #ffffff;
+  border-color: #08152b;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(8, 21, 43, 0.15);
+}
+
+.davka-all-arrow {
+  display: inline-block;
+  font-size: 16px;
+  transition: transform 0.25s ease;
+}
+
+.davka-all-projects-link:hover .davka-all-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* Stacking Projects Stack */
+.davka-work-stack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.davka-project-card {
+  position: sticky;
+  top: calc(90px + var(--project-index) * 20px);
+  height: clamp(500px, 72vh, 680px);
+  border-radius: 28px;
+  overflow: hidden;
+  margin-bottom: 50px;
+  background: #071629;
+  border: 1px solid rgba(8, 21, 43, 0.12);
+  box-shadow: 0 24px 60px rgba(8, 21, 43, 0.15);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
+}
+
+.davka-project-card:last-child {
+  margin-bottom: 30px;
+}
+
+.davka-project-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  text-decoration: none;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.davka-project-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #071629;
+}
+
+.davka-project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.davka-project-card:hover .davka-project-img {
+  transform: scale(1.03);
+}
+
+/* Gradient Overlay for exceptional contrast & depth */
+.davka-project-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 21, 43, 0.55) 0%,
+    rgba(8, 21, 43, 0.1) 35%,
+    rgba(8, 21, 43, 0.4) 65%,
+    rgba(8, 21, 43, 0.9) 100%
+  );
+  pointer-events: none;
+  transition: background 0.4s ease;
+}
+
+.davka-project-card:hover .davka-project-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 21, 43, 0.45) 0%,
+    rgba(8, 21, 43, 0.05) 35%,
+    rgba(8, 21, 43, 0.35) 65%,
+    rgba(8, 21, 43, 0.85) 100%
+  );
+}
+
+/* Card Content / Meta Overlay */
+.davka-project-meta {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(24px, 3.5vw, 44px);
+  pointer-events: none;
+}
+
+.davka-project-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.davka-project-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(8, 21, 43, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 6px 16px;
+  border-radius: 999px;
+}
+
+.davka-project-category {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #e5f3ff;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.davka-project-center {
+  margin-top: auto;
+  max-width: 680px;
+}
+
+.davka-project-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 3.8vw, 54px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  margin: 0 0 12px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
+}
+
+.davka-project-summary {
+  font-size: clamp(14px, 1.2vw, 16px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+}
+
+.davka-project-bottom {
+  margin-top: 20px;
+}
+
+.davka-project-explore {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #7de5ff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: color 0.25s, transform 0.25s;
+}
+
+.davka-project-card:hover .davka-project-explore {
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+  .davka-work-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .davka-project-card {
+    height: clamp(420px, 64vh, 560px);
+    border-radius: 22px;
+    top: calc(80px + var(--project-index) * 16px);
+    margin-bottom: 36px;
+  }
+}
+
+@media (max-width: 640px) {
+  .davka-project-card {
+    height: clamp(360px, 58vh, 440px);
+    border-radius: 18px;
+    padding: 0;
+  }
+
+  .davka-project-meta {
+    padding: 20px;
+  }
+
+  .davka-project-title {
+    font-size: 26px;
+  }
+
+  .davka-project-summary {
+    font-size: 12.5px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .davka-project-card {
+    position: relative !important;
+    top: auto !important;
+  }
+  .davka-project-img {
+    transition: none !important;
+  }
+}
