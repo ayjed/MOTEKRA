@@ -10,8 +10,8 @@ export function WorkCinema({ children, gallery = false }: { children: ReactNode;
     if (title.length) {
       gsap.fromTo(
         title,
-        { yPercent: 105, opacity: 0 },
-        { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.08, ease: "power3.out", clearProps: "all" }
+        { yPercent: 110, opacity: 0 },
+        { yPercent: 0, opacity: 1, duration: 0.95, stagger: 0.12, ease: "power3.out", clearProps: "all" }
       );
     }
     const revealContext = gsap.context(() => {}, root);

@@ -85,12 +85,13 @@ export function HomeProcess() {
       if (titleLines.length) {
         headerTl.fromTo(
           titleLines,
-          { yPercent: 105, opacity: 0 },
+          { yPercent: 110, opacity: 0 },
           {
             yPercent: 0,
             opacity: 1,
-            duration: 0.8,
-            stagger: 0.08,
+            duration: 0.95,
+            stagger: 0.14,
+            ease: "power3.out",
             clearProps: "all",
           },
           0
@@ -100,14 +101,15 @@ export function HomeProcess() {
       if (lead) {
         headerTl.fromTo(
           lead,
-          { y: 18, opacity: 0 },
+          { y: 24, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.7,
+            duration: 0.8,
+            ease: "power3.out",
             clearProps: "all",
           },
-          0.15
+          0.22
         );
       }
     }

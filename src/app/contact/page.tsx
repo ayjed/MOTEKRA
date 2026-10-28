@@ -24,20 +24,22 @@ export default function Contact() {
           <div>
             <h1 id="contact-hero-title">
               {["Have Something", "in Mind?"].map((line) => (
-                <span className="contact-line" key={line}>
-                  {line.split(" ").map((word, j) => (
-                    <span key={word}>
-                      {j > 0 && " "}
-                      <span data-contact-word>{word}</span>
-                    </span>
-                  ))}
+                <span className="contact-line-mask" key={line}>
+                  <span data-contact-title-line>
+                    {line.split(" ").map((word, j) => (
+                      <span key={word}>
+                        {j > 0 && " "}
+                        <span data-contact-word>{word}</span>
+                      </span>
+                    ))}
+                  </span>
                 </span>
               ))}
             </h1>
-            <p className="lead">
+            <p className="lead" data-contact-hero-lead>
               Tell us about your idea. Let’s explore what’s possible.
             </p>
-            <Link prefetch={false} className="contact-scroll-link" href="#inquiry">
+            <Link prefetch={false} className="contact-scroll-link" href="#inquiry" data-contact-hero-cta>
               <span>Start the conversation</span>
               <span aria-hidden="true">↓</span>
             </Link>
@@ -52,20 +54,20 @@ export default function Contact() {
         <div className="container contact-form-grid">
           <div className="inquiry-panel" data-contact-reveal>
             <h2 id="inquiry-heading">
-              Tell Us About Your Project.
+              <span className="contact-line-mask"><span data-inquiry-heading-line>Tell Us About Your Project.</span></span>
             </h2>
-            <p className="inquiry-lead">
+            <p className="inquiry-lead" data-inquiry-lead>
               Share a few details about what you have in mind.
             </p>
             <InquiryForm />
           </div>
 
           <aside className="inquiry-aside" data-contact-reveal aria-label="Official Contact Channels">
-            <h2>
-              Let’s build<br />
-              <span>something meaningful.</span>
+            <h2 aria-label="Let’s build something meaningful.">
+              <span className="contact-line-mask"><span data-aside-heading-line>Let’s build</span></span>
+              <span className="contact-line-mask"><span data-aside-heading-line className="blue-text">something meaningful.</span></span>
             </h2>
-            <p className="inquiry-aside-intro">
+            <p className="inquiry-aside-intro" data-aside-lead>
               Share your vision and we’ll explore the next steps together.
             </p>
 

@@ -63,14 +63,37 @@ export function ProjectDetail({ project }: { project: Project }) {
     });
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
-      // 1. Hero Title Slide-in
+      // 1. Hero Entrance Timeline (Title -> Lead -> Meta Bar)
       const heroTitle = root.querySelector<HTMLElement>("[data-case-title-line]");
-      if (heroTitle) {
-        gsap.fromTo(
-          heroTitle,
-          { yPercent: 105, opacity: 0 },
-          { yPercent: 0, opacity: 1, duration: 0.8, ease: "power3.out", clearProps: "all" }
-        );
+      const heroLead = root.querySelector<HTMLElement>("[data-case-hero-lead]");
+      const metaBar = root.querySelector<HTMLElement>("[data-case-meta-bar]");
+
+      if (heroTitle || heroLead) {
+        const heroTl = gsap.timeline({ defaults: { ease: "power3.out" } });
+        if (heroTitle) {
+          heroTl.fromTo(
+            heroTitle,
+            { yPercent: 110, opacity: 0 },
+            { yPercent: 0, opacity: 1, duration: 0.95, ease: "power3.out", clearProps: "all" },
+            0
+          );
+        }
+        if (heroLead) {
+          heroTl.fromTo(
+            heroLead,
+            { y: 24, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", clearProps: "all" },
+            0.22
+          );
+        }
+        if (metaBar) {
+          heroTl.fromTo(
+            metaBar,
+            { y: 16, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.7, ease: "power3.out", clearProps: "all" },
+            0.34
+          );
+        }
       }
 
       // 2. Headings on Scroll
@@ -80,11 +103,11 @@ export function ProjectDetail({ project }: { project: Project }) {
         if (line) {
           gsap.fromTo(
             line,
-            { yPercent: 105, opacity: 0 },
+            { yPercent: 110, opacity: 0 },
             {
               yPercent: 0,
               opacity: 1,
-              duration: 0.8,
+              duration: 0.95,
               ease: "power3.out",
               clearProps: "all",
               scrollTrigger: {
@@ -96,11 +119,53 @@ export function ProjectDetail({ project }: { project: Project }) {
           );
         }
       });
+
+      // 3. Overview Lead Reveal
+      const overviewLead = root.querySelector<HTMLElement>("[data-case-overview-lead]");
+      if (overviewLead) {
+        gsap.fromTo(
+          overviewLead,
+          { y: 22, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            clearProps: "all",
+            scrollTrigger: {
+              trigger: overviewLead,
+              start: "top 88%",
+              once: true,
+            },
+          }
+        );
+      }
+
+      // 4. Gallery Description Reveal
+      const galleryLead = root.querySelector<HTMLElement>("[data-case-gallery-lead]");
+      if (galleryLead) {
+        gsap.fromTo(
+          galleryLead,
+          { y: 20, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            clearProps: "all",
+            scrollTrigger: {
+              trigger: galleryLead,
+              start: "top 88%",
+              once: true,
+            },
+          }
+        );
+      }
     });
 
     // Tab restoration safeguards
     const ensureVisible = () => {
-      root.querySelectorAll<HTMLElement>("[data-case-title-line], [data-case-heading-line]").forEach((el) => {
+      root.querySelectorAll<HTMLElement>("[data-case-title-line], [data-case-heading-line], [data-case-hero-lead], [data-case-meta-bar], [data-case-overview-lead], [data-case-gallery-lead]").forEach((el) => {
         gsap.set(el, { clearProps: "all" });
         el.style.opacity = "1";
         el.style.transform = "none";
@@ -156,9 +221,9 @@ export function ProjectDetail({ project }: { project: Project }) {
               </h1>
             </div>
 
-            <p className="case-hero-lead">{study.lead}</p>
+            <p className="case-hero-lead" data-case-hero-lead>{study.lead}</p>
 
-            <div className="case-meta-bar" role="list">
+            <div className="case-meta-bar" role="list" data-case-meta-bar>
               <div className="case-meta-item" role="listitem">
                 <span className="case-meta-label">Category</span>
                 <span className="case-meta-value">{study.category}</span>
@@ -253,7 +318,7 @@ export function ProjectDetail({ project }: { project: Project }) {
                   </span>
                 </h2>
               </div>
-              <p className="case-gallery-desc">{study.galleryDescription}</p>
+              <p className="case-gallery-desc" data-case-gallery-lead>{study.galleryDescription}</p>
             </div>
 
             <div

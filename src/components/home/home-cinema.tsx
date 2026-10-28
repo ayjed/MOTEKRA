@@ -7,6 +7,7 @@ export function HomeCinema({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
 
   useGsapScope(ref, (gsap, ScrollTrigger, root) => {
+    const titleLines = root.querySelectorAll<HTMLElement>("[data-hero-title-line]");
     const words = root.querySelectorAll<HTMLElement>(".hero-word");
     const lead = root.querySelector<HTMLElement>(".lead[data-hero-support]");
     const buttons = root.querySelectorAll<HTMLElement>(".button-group[data-hero-support]");
@@ -18,24 +19,33 @@ export function HomeCinema({ children }: { children: ReactNode }) {
     const hero = root.querySelector<HTMLElement>(".home-hero-cinema");
     const orbit = root.querySelector<HTMLElement>(".hero-orbit");
 
-    // Check if user already scrolled before GSAP initialized or if hero already completed
+    const headingTargets = titleLines.length ? titleLines : words;
+
+    // Check if user already scrolled before GSAP initialized or reduced motion
+    const isReduced = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const alreadyScrolled = typeof window !== "undefined" && window.scrollY > 40;
-    const isHeroDone = typeof window !== "undefined" && (
-      (window as unknown as { __motekra_hero_entrance_done?: boolean }).__motekra_hero_entrance_done === true ||
-      (window as unknown as { __motekra_preloader_done?: boolean }).__motekra_preloader_done === true ||
-      document.body.classList.contains("preloader-finished") ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const isPreloaderActive = typeof window !== "undefined" && (
+      window.__motekra_preloader_active === true ||
+      document.body.classList.contains("preloader-active")
     );
 
     // =========================================================================
     // TIMELINE 1: HERO ENTRANCE (Plays once, never reversed by scroll)
-    // Headline, lead, CTA buttons, floating tags, and capability row entrances.
+    // Coordinated sequence: Headline -> Paragraph (overlap) -> Buttons -> Capabilities
     // =========================================================================
-    let introPlayed = Boolean(isHeroDone);
+    let introPlayed = false;
+
     const markDone = () => {
+      introPlayed = true;
       if (typeof window !== "undefined") {
         (window as unknown as { __motekra_hero_entrance_done?: boolean }).__motekra_hero_entrance_done = true;
       }
+      headingTargets.forEach((el) => {
+        gsap.set(el, { clearProps: "all" });
+        el.style.opacity = "1";
+        el.style.visibility = "visible";
+        el.style.transform = "none";
+      });
       words.forEach((w) => {
         gsap.set(w, { clearProps: "all" });
         w.style.opacity = "1";
@@ -88,22 +98,98 @@ export function HomeCinema({ children }: { children: ReactNode }) {
       });
 
       intro
-        .fromTo(words, { yPercent: 105, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.75, stagger: 0.04, clearProps: "all" }, 0)
+        // 1. Headline line-by-line masked reveal (Davka-inspired, 0.95s, stagger: 0.14s)
+        .fromTo(
+          headingTargets,
+          { yPercent: 110, opacity: 0 },
+          {
+            yPercent: 0,
+            opacity: 1,
+            duration: 0.95,
+            stagger: 0.14,
+            ease: "power3.out",
+            clearProps: "all",
+          },
+          0
+        )
+        // Header navigation subtle entrance
         .from(nav, { y: -8, opacity: 0.6, duration: 0.45, stagger: 0.04, clearProps: "all" }, 0.06)
-        .fromTo(lead, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: "power3.out", clearProps: "all" }, 0.2)
-        .fromTo(buttons, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.65, stagger: 0.06, ease: "power3.out", clearProps: "all" }, 0.28)
-        .fromTo(tags, { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.5, stagger: 0.08, clearProps: "all" }, 0.34)
-        .fromTo(capabilities, { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.55, stagger: 0.08, clearProps: "all" }, 0.38)
-        .fromTo(capabilityDividers, { scaleY: 0, opacity: 0 }, { scaleY: 1, opacity: 1, duration: 0.35, stagger: 0.06, clearProps: "all" }, 0.42);
+        // 2. Supporting Paragraph follows with short overlap (starts at 0.28s)
+        .fromTo(
+          lead,
+          { y: 24, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            clearProps: "all",
+          },
+          0.28
+        )
+        // 3. CTA Buttons enter right after paragraph (starts at 0.42s)
+        .fromTo(
+          buttons,
+          { y: 18, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.7,
+            stagger: 0.08,
+            ease: "power3.out",
+            clearProps: "all",
+          },
+          0.42
+        )
+        // 4. Capability row enters seamlessly
+        .fromTo(
+          capabilities,
+          { y: 16, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.08,
+            ease: "power3.out",
+            clearProps: "all",
+          },
+          0.52
+        )
+        .fromTo(
+          capabilityDividers,
+          { scaleY: 0, opacity: 0 },
+          {
+            scaleY: 1,
+            opacity: 1,
+            duration: 0.4,
+            stagger: 0.06,
+            ease: "power3.out",
+            clearProps: "all",
+          },
+          0.58
+        )
+        // 5. Floating tags
+        .fromTo(
+          tags,
+          { scale: 0.9, opacity: 0 },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.5,
+            stagger: 0.08,
+            clearProps: "all",
+          },
+          0.54
+        );
     };
 
-    if (alreadyScrolled || isHeroDone) {
+    if (isReduced || alreadyScrolled) {
       markDone();
-    } else {
-      // Full document reload: preloader is running; stage initial hero offset and wait for curtain reveal
-      gsap.set(words, { opacity: 0, yPercent: 105 });
-      if (lead) gsap.set(lead, { opacity: 0, y: 20 });
-      gsap.set(buttons, { opacity: 0, y: 16 });
+    } else if (isPreloaderActive) {
+      // Full document reload with active preloader: stage initial hidden states and wait for curtain reveal
+      gsap.set(headingTargets, { opacity: 0, yPercent: 110 });
+      if (lead) gsap.set(lead, { opacity: 0, y: 24 });
+      gsap.set(buttons, { opacity: 0, y: 18 });
       gsap.set(tags, { opacity: 0, scale: 0.9 });
       gsap.set(capabilities, { opacity: 0, y: 16 });
       gsap.set(capabilityDividers, { opacity: 0, scaleY: 0 });
@@ -115,21 +201,50 @@ export function HomeCinema({ children }: { children: ReactNode }) {
 
       window.addEventListener("motekra-preloader-complete", onPreloaderComplete, { once: true });
       // Guaranteed safety fallback: never leave hero hidden if event is delayed or interrupted
-      const safetyTimer = setTimeout(() => {
+      setTimeout(() => {
         onPreloaderComplete();
-      }, 1500);
+      }, 1600);
 
       // Register cleanup with GSAP context
       ScrollTrigger.addEventListener("refreshInit", () => {
         if (!introPlayed) playIntro();
       });
+    } else {
+      // Direct visit or client-side navigation: play immediately!
+      playIntro();
+    }
+
+        // Services section supporting intro animation on scroll
+    const servicesSection = root.querySelector<HTMLElement>(".home-services");
+    const servicesIntro = root.querySelector<HTMLElement>("[data-services-intro-support]");
+    const servicesCta = root.querySelector<HTMLElement>("[data-services-cta-support]");
+    if (servicesSection && (servicesIntro || servicesCta)) {
+      ScrollTrigger.create({
+        trigger: servicesSection,
+        start: "top 88%",
+        once: true,
+        onEnter: () => {
+          if (servicesIntro) {
+            gsap.fromTo(
+              servicesIntro,
+              { y: 24, opacity: 0 },
+              { y: 0, opacity: 1, duration: 0.8, delay: 0.22, ease: "power3.out", clearProps: "all" }
+            );
+          }
+          if (servicesCta) {
+            gsap.fromTo(
+              servicesCta,
+              { y: 16, opacity: 0 },
+              { y: 0, opacity: 1, duration: 0.7, delay: 0.35, ease: "power3.out", clearProps: "all" }
+            );
+          }
+        },
+      });
     }
 
     // Lifecycle recovery: Ensure returning from inactive tab or BFCache never hides hero text
     const ensureHeroVisible = () => {
-      if (introPlayed || isHeroDone || (typeof window !== "undefined" && (window as unknown as { __motekra_hero_entrance_done?: boolean }).__motekra_hero_entrance_done)) {
-        markDone();
-      }
+      markDone();
     };
     document.addEventListener("visibilitychange", ensureHeroVisible);
     window.addEventListener("motekra-tab-restored", ensureHeroVisible);

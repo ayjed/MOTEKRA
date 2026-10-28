@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { Reveal } from "./reveal";
 
 // Heading and line content remain Server Components, passed through a small
@@ -17,12 +18,26 @@ export function SplitHeading({
     <Reveal kind="lines">
       <Tag className={`split-heading ${className}`} aria-label={fullText}>
         {lines.map((line, index) => (
-          <span className="line-mask" key={`${index}-${line}`} aria-hidden="true">
+          <span className="line-mask text-line-mask" key={`${index}-${line}`} aria-hidden="true">
             <span data-line>{line}</span>
             {index < lines.length - 1 ? " " : null}
           </span>
         ))}
       </Tag>
+    </Reveal>
+  );
+}
+
+export function RevealParagraph({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <Reveal kind="paragraph" className={className}>
+      <div data-paragraph>{children}</div>
     </Reveal>
   );
 }

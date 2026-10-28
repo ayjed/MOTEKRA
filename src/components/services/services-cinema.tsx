@@ -12,7 +12,9 @@ export function ServicesCinema({ children }: { children: ReactNode }) {
     const headingLines = introSection
       ? introSection.querySelectorAll<HTMLElement>("[data-services-heading-line]")
       : root.querySelectorAll<HTMLElement>("[data-services-heading-line]");
-    const introElements = root.querySelectorAll<HTMLElement>("[data-services-intro-elem]");
+    const lead = root.querySelector<HTMLElement>("[data-services-hero-lead]");
+    const meta = root.querySelector<HTMLElement>("[data-services-hero-meta]");
+    const callout = root.querySelector<HTMLElement>("[data-services-hero-callout]");
 
     if (introSection) {
       const introTl = gsap.timeline({
@@ -26,12 +28,12 @@ export function ServicesCinema({ children }: { children: ReactNode }) {
       if (headingLines.length) {
         introTl.fromTo(
           headingLines,
-          { yPercent: 105, opacity: 0 },
+          { yPercent: 110, opacity: 0 },
           {
             yPercent: 0,
             opacity: 1,
-            duration: 0.8,
-            stagger: 0.08,
+            duration: 0.95,
+            stagger: 0.12,
             ease: "power3.out",
             clearProps: "all",
           },
@@ -39,19 +41,48 @@ export function ServicesCinema({ children }: { children: ReactNode }) {
         );
       }
 
-      if (introElements.length) {
+      if (lead) {
         introTl.fromTo(
-          introElements,
-          { y: 18, opacity: 0 },
+          lead,
+          { y: 24, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.7,
-            stagger: 0.08,
+            duration: 0.8,
             ease: "power3.out",
             clearProps: "all",
           },
-          0.15
+          0.22
+        );
+      }
+
+      if (meta) {
+        introTl.fromTo(
+          meta,
+          { y: 16, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.65,
+            ease: "power3.out",
+            clearProps: "all",
+          },
+          0.34
+        );
+      }
+
+      if (callout) {
+        introTl.fromTo(
+          callout,
+          { y: 20, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.75,
+            ease: "power3.out",
+            clearProps: "all",
+          },
+          0.32
         );
       }
     }
@@ -94,29 +125,63 @@ export function ServicesCinema({ children }: { children: ReactNode }) {
     const scopeLines = scopeSection
       ? scopeSection.querySelectorAll<HTMLElement>("[data-scope-heading-line]")
       : root.querySelectorAll<HTMLElement>("[data-scope-heading-line]");
+    const scopeLead = root.querySelector<HTMLElement>("[data-scope-lead]");
+    const scopeCta = root.querySelector<HTMLElement>("[data-scope-cta]");
 
-    if (scopeSection && scopeLines.length) {
+    if (scopeSection) {
       const scopeTl = gsap.timeline({
         scrollTrigger: {
           trigger: scopeSection,
-          start: "top 85%",
+          start: "top 88%",
           once: true,
         },
       });
 
-      scopeTl.fromTo(
-        scopeLines,
-        { yPercent: 105, opacity: 0 },
-        {
-          yPercent: 0,
-          opacity: 1,
-          duration: 0.8,
-          stagger: 0.08,
-          ease: "power3.out",
-          clearProps: "all",
-        },
-        0
-      );
+      if (scopeLines.length) {
+        scopeTl.fromTo(
+          scopeLines,
+          { yPercent: 110, opacity: 0 },
+          {
+            yPercent: 0,
+            opacity: 1,
+            duration: 0.95,
+            stagger: 0.14,
+            ease: "power3.out",
+            clearProps: "all",
+          },
+          0
+        );
+      }
+
+      if (scopeLead) {
+        scopeTl.fromTo(
+          scopeLead,
+          { y: 24, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+            clearProps: "all",
+          },
+          0.22
+        );
+      }
+
+      if (scopeCta) {
+        scopeTl.fromTo(
+          scopeCta,
+          { y: 16, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.65,
+            ease: "power3.out",
+            clearProps: "all",
+          },
+          0.34
+        );
+      }
     }
 
     // Lifecycle recovery: Ensure returning from inactive tab restores visibility deterministically
@@ -129,10 +194,26 @@ export function ServicesCinema({ children }: { children: ReactNode }) {
         el.style.opacity = "1";
         el.style.transform = "none";
       });
-      introElements.forEach((el) => {
-        el.style.opacity = "1";
-        el.style.transform = "none";
-      });
+      if (lead) {
+        lead.style.opacity = "1";
+        lead.style.transform = "none";
+      }
+      if (meta) {
+        meta.style.opacity = "1";
+        meta.style.transform = "none";
+      }
+      if (callout) {
+        callout.style.opacity = "1";
+        callout.style.transform = "none";
+      }
+      if (scopeLead) {
+        scopeLead.style.opacity = "1";
+        scopeLead.style.transform = "none";
+      }
+      if (scopeCta) {
+        scopeCta.style.opacity = "1";
+        scopeCta.style.transform = "none";
+      }
       if (container) {
         container.style.opacity = "1";
         container.style.transform = "none";

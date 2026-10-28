@@ -1,0 +1,96 @@
+{
+  "results": [
+    {
+      "route": "Home",
+      "viewport": "desktop_1440",
+      "heading_count": 2,
+      "heading_visible": true,
+      "heading_opacity": "1",
+      "heading_transform": "none",
+      "lead_visible": true,
+      "lead_opacity": "1",
+      "lead_transform": "none",
+      "overflow": false,
+      "status": "PASS"
+    },
+    {
+      "route": "Work",
+      "viewport": "desktop_1440",
+      "heading_count": 1,
+      "heading_visible": true,
+      "heading_opacity": "1",
+      "heading_transform": "none",
+      "lead_visible": true,
+      "lead_opacity": "1",
+      "lead_transform": "none",
+      "overflow": false,
+      "status": "PASS"
+    },
+    {
+      "route": "Services",
+      "viewport": "desktop_1440",
+      "heading_count": 3,
+      "heading_visible": true,
+      "heading_opacity": "1",
+      "heading_transform": "none",
+      "lead_visible": true,
+      "lead_opacity": "1",
+      "lead_transform": "none",
+      "overflow": false,
+      "status": "PASS"
+    },
+    {
+      "route": "About",
+      "viewport": "desktop_1440",
+      "heading_count": 2,
+      "heading_visible": true,
+      "heading_opacity": "1",
+      "heading_transform": "none",
+      "lead_visible": true,
+      "lead_opacity": "1",
+      "lead_transform": "none",
+      "overflow": false,
+      "status": "PASS"
+    },
+    {
+      "route": "Contact",
+      "viewport": "desktop_1440",
+      "heading_count": 6,
+      "heading_visible": true,
+      "heading_opacity": "1",
+      "heading_transform": "none",
+      "lead_visible": true,
+      "lead_opacity": "1",
+      "lead_transform": "none",
+      "overflow": false,
+      "status": "PASS"
+    },
+    {
+      "route": "Service_Detail_UI_UX",
+      "viewport": "desktop_1440",
+      "heading_count": 1,
+      "heading_visible": true,
+      "heading_opacity": "1",
+      "heading_transform": "none",
+      "lead_visible": true,
+      "lead_opacity": "1",
+      "lead_transform": "none",
+      "overflow": false,
+      "status": "PASS"
+    },
+    {
+      "route": "Case_Study_Spotlight",
+      "viewport": "desktop_1440",
+      "heading_count": 1,
+      "heading_visible": true,
+      "heading_opacity": "1",
+      "heading_transform": "none",
+      "lead_visible": true,
+      "lead_opacity": "1",
+      "lead_transform": "none",
+      "overflow": false,
+      "status": "PASS"
+    }
+  ],
+  "tab_recovery_pass": true
+}

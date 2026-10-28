@@ -23,8 +23,10 @@ export default function AboutPage() {
                 </span>
               ))}
             </h1>
-            <p className="lead">Where design intelligence and rigorous software engineering meet.</p>
-            <ButtonLink href="#perspective">Meet the studio</ButtonLink>
+            <p className="lead" data-editorial-lead>Where design intelligence and rigorous software engineering meet.</p>
+            <div data-editorial-cta>
+              <ButtonLink href="#perspective">Meet the studio</ButtonLink>
+            </div>
           </div>
           <InterfaceComposition />
         </div>
@@ -33,10 +35,10 @@ export default function AboutPage() {
       <section className="section editorial-perspective" id="perspective">
         <div className="container editorial-two-column">
           <div>
-            <h2>
-              Design and<br />
-              engineering.<br />
-              <span>In conversation.</span>
+            <h2 aria-label="Design and engineering. In conversation.">
+              <span className="editorial-line-mask"><span data-perspective-heading-line>Design and</span></span>
+              <span className="editorial-line-mask"><span data-perspective-heading-line>engineering.</span></span>
+              <span className="editorial-line-mask"><span data-perspective-heading-line className="blue-text">In conversation.</span></span>
             </h2>
           </div>
           <div className="editorial-copy" data-editorial-stagger>
@@ -52,10 +54,14 @@ export default function AboutPage() {
         <div className="container editorial-two-column">
           <FounderPortrait person={person} />
           <div className="editorial-copy">
-            <h2>{person.name}</h2>
-            <p className="editorial-role">{person.title} · MOTEKRA</p>
-            <p className="lead">{founderDetails[person.slug]!.biography[0]}</p>
-            <ButtonLink href={`/team/${person.slug}`}>Meet Akinwumi</ButtonLink>
+            <h2>
+              <span className="editorial-line-mask"><span data-founder-heading-line>{person.name}</span></span>
+            </h2>
+            <p className="editorial-role" data-founder-role>{person.title} · MOTEKRA</p>
+            <p className="lead" data-founder-bio>{founderDetails[person.slug]!.biography[0]}</p>
+            <div data-founder-cta>
+              <ButtonLink href={`/team/${person.slug}`}>Meet Akinwumi</ButtonLink>
+            </div>
             <SocialLinks />
           </div>
         </div>
@@ -63,9 +69,9 @@ export default function AboutPage() {
 
       <section className="section editorial-values dark" id="values">
         <div className="container">
-          <h2>
-            Built on Curiosity.<br />
-            Driven by <span>Intent.</span>
+          <h2 aria-label="Built on Curiosity. Driven by Intent.">
+            <span className="editorial-line-mask"><span data-values-heading-line>Built on Curiosity.</span></span>
+            <span className="editorial-line-mask"><span data-values-heading-line>Driven by <span className="blue-text">Intent.</span></span></span>
           </h2>
           <div className="values-stack" data-editorial-stagger>
             <span className="values-rail" data-values-rail aria-hidden="true" />
@@ -85,9 +91,9 @@ export default function AboutPage() {
 
       <section className="section">
         <div className="container">
-          <h2>
-            Clear thinking.<br />
-            <span>Considered making.</span>
+          <h2 aria-label="Clear thinking. Considered making.">
+            <span className="editorial-line-mask"><span data-principles-heading-line>Clear thinking.</span></span>
+            <span className="editorial-line-mask"><span data-principles-heading-line className="blue-text">Considered making.</span></span>
           </h2>
           <div className="editorial-principles" data-editorial-stagger>
             {companyDirection.principles.map(([title, description]) => (

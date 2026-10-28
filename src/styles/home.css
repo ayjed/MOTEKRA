@@ -4,7 +4,8 @@
 .cinema-hero-grid { display: grid; grid-template-columns: 45fr 55fr; gap: clamp(32px, 3.8vw, 56px); min-height: clamp(560px, 78vh, 680px); align-items: center; padding-block: clamp(28px, 4vh, 52px) clamp(36px, 5vh, 60px); }
 .hero-eyebrow-wrap { display: none; }
 .home-cinema .cinema-title { font-family: var(--font-display); font-size: clamp(48px, 4.8vw, 72px); font-weight: 700; letter-spacing: -.035em; line-height: 1.08; margin-bottom: 22px; color: #08152b; }
-.hero-title-line { display: block; overflow: clip; padding-block: .06em; margin-block: -.06em; }
+.hero-title-line { display: block; overflow: clip; padding-block: .08em; margin-block: -.08em; }
+.hero-title-line-inner { display: inline-block; will-change: transform, opacity; transform-origin: 0 100%; }
 .title-line-0 { color: #08152b; font-weight: 700; }
 .title-line-1 { color: #08152b; font-weight: 700; }
 .hero-word { white-space: pre; display: inline-block; }

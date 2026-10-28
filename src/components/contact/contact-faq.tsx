@@ -77,24 +77,25 @@ export function ContactFaq() {
       if (titleLines.length > 0) {
         tl.fromTo(
           titleLines,
-          { yPercent: 105, opacity: 0 },
+          { yPercent: 110, opacity: 0 },
           {
             yPercent: 0,
             opacity: 1,
-            duration: 0.8,
-            stagger: 0.08,
+            duration: 0.95,
+            stagger: 0.14,
+            ease: "power3.out",
             clearProps: "all",
           },
-          0.05
+          0
         );
       }
 
       if (introText) {
         tl.fromTo(
           introText,
-          { opacity: 0, y: 18 },
-          { opacity: 1, y: 0, duration: 0.75, clearProps: "transform,opacity" },
-          0.25
+          { opacity: 0, y: 22 },
+          { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", clearProps: "all" },
+          0.22
         );
       }
 

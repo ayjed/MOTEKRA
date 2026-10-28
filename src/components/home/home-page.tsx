@@ -26,28 +26,22 @@ function HeroHeading() {
     <h1 className="cinema-title" aria-label="Digital Products for What’s Next.">
       {HERO_LINES.map(({ lineIndex, words, highlight }) => (
         <span className={`hero-title-line title-line-${lineIndex}`} key={lineIndex} aria-hidden="true">
-          {words.map((word, wordIndex) => {
-            const isHighlight = word === highlight;
-            const globalWordOrder = lineIndex === 0 ? wordIndex : 2 + wordIndex;
-            return (
-              <span
-                className={`hero-word ${isHighlight ? "hero-word-accent" : "hero-word-navy"}`}
-                key={word}
-                style={{ "--word-order": globalWordOrder } as CSSProperties}
-              >
-                {wordIndex > 0 ? " " : ""}
-                {Array.from(word).map((char, i) => (
-                  <span
-                    data-hero-glyph
-                    key={i}
-                    style={{ "--glyph-order": globalWordOrder * 5 + i } as CSSProperties}
-                  >
-                    {char}
-                  </span>
-                ))}
-              </span>
-            );
-          })}
+          <span className="hero-title-line-inner" data-hero-title-line>
+            {words.map((word, wordIndex) => {
+              const isHighlight = word === highlight;
+              const globalWordOrder = lineIndex === 0 ? wordIndex : 2 + wordIndex;
+              return (
+                <span
+                  className={`hero-word ${isHighlight ? "hero-word-accent" : "hero-word-navy"}`}
+                  key={word}
+                  style={{ "--word-order": globalWordOrder } as CSSProperties}
+                >
+                  {wordIndex > 0 ? " " : ""}
+                  {word}
+                </span>
+              );
+            })}
+          </span>
         </span>
       ))}
     </h1>
@@ -124,8 +118,10 @@ export default function HomePage() {
             <SplitHeading lines={["What We", "Bring to Life."]} />
           </div>
           <div>
-            <p className="services-intro">One connected perspective.<br />Five ways to move an idea forward.</p>
-            <ButtonLink href="/services" secondary>Explore All Services</ButtonLink>
+            <p className="services-intro" data-services-intro-support>One connected perspective.<br />Five ways to move an idea forward.</p>
+            <div data-services-cta-support>
+              <ButtonLink href="/services" secondary>Explore All Services</ButtonLink>
+            </div>
           </div>
         </div>
         <ServicesAccordion />
@@ -143,9 +139,9 @@ export default function HomePage() {
             <div id="contact-title">
               <SplitHeading lines={["Have Something", "in Mind?"]} />
             </div>
-            <div className="button-group">
+            <div className="button-group" data-contact-cta-support>
               <ButtonLink href="/contact">Let’s Talk</ButtonLink>
-              <p>Tell us about your idea.<br />Let’s explore what’s possible.</p>
+              <p data-contact-lead-support>Tell us about your idea.<br />Let’s explore what’s possible.</p>
             </div>
           </div>
           <ConceptCreationVisual />

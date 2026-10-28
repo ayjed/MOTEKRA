@@ -43,12 +43,13 @@ export function HomeWork() {
         if (titleLines.length) {
           headerTl.fromTo(
             titleLines,
-            { yPercent: 105, opacity: 0 },
+            { yPercent: 110, opacity: 0 },
             {
               yPercent: 0,
               opacity: 1,
-              duration: 0.8,
-              stagger: 0.08,
+              duration: 0.95,
+              stagger: 0.14,
+              ease: "power3.out",
               clearProps: "all",
             },
             0
@@ -58,14 +59,15 @@ export function HomeWork() {
         if (allProjectsLink) {
           headerTl.fromTo(
             allProjectsLink,
-            { y: 16, opacity: 0 },
+            { y: 20, opacity: 0 },
             {
               y: 0,
               opacity: 1,
-              duration: 0.7,
+              duration: 0.75,
+              ease: "power3.out",
               clearProps: "all",
             },
-            0.15
+            0.22
           );
         }
       }
@@ -86,12 +88,12 @@ export function HomeWork() {
         if (title) {
           gsap.fromTo(
             title,
-            { opacity: 0, y: 16 },
+            { opacity: 0, y: 24 },
             {
               opacity: 1,
               y: 0,
-              duration: 0.65,
-              ease: "power2.out",
+              duration: 0.8,
+              ease: "power3.out",
               clearProps: "all",
               scrollTrigger: {
                 trigger: card,

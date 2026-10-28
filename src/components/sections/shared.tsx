@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { services } from "@/content/services";
 import { Arrow, ButtonLink, DraftNote, Eyebrow } from "../ui/primitives";
 import { HomeProcess } from "@/components/home/home-process";
+import { SplitHeading } from "@/components/motion/typography";
 
 export function PageHero({
   eyebrow,
@@ -82,12 +83,11 @@ export function ContactCta() {
     <section className="contact-cta">
       <div className="container cta-inner">
         <div>
-          <h2>
-            Ready to Bring Your<br />
-            <span>Ideas to Life?</span>
-          </h2>
+          <SplitHeading lines={["Ready to Bring Your", "Ideas to Life?"]} />
         </div>
-        <ButtonLink href="/contact">Let’s Talk</ButtonLink>
+        <div>
+          <ButtonLink href="/contact">Let’s Talk</ButtonLink>
+        </div>
       </div>
     </section>
   );

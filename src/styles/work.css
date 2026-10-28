@@ -9,8 +9,8 @@
    Page Introduction Hero (Clean, Editorial, Left-Aligned)
    -------------------------------------------------------------------------- */
 .work-hero {
-  padding-top: calc(var(--nav-height, 72px) + clamp(36px, 4.5vw, 60px));
-  padding-bottom: clamp(28px, 3.5vw, 44px);
+  padding-top: clamp(64px, 6.7vw, 96px);
+  padding-bottom: clamp(24px, 3vw, 40px);
   background: radial-gradient(ellipse at 85% 15%, #edf7ff 0%, transparent 60%), #ffffff;
   border-bottom: 1px solid #edf4fa;
 }
@@ -239,7 +239,7 @@
 
 @media (max-width: 767px) {
   .work-hero {
-    padding-top: calc(var(--nav-height, 60px) + 24px);
+    padding-top: clamp(44px, 10vw, 56px);
     padding-bottom: 24px;
   }
   .work-hero-title {

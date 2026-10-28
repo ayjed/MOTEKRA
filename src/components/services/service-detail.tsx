@@ -42,8 +42,8 @@ export function ServiceDetail({ service }: { service: Service }) {
         if (titleLine) {
           tl.fromTo(
             titleLine,
-            { yPercent: 105, opacity: 0 },
-            { yPercent: 0, opacity: 1, duration: 0.8, clearProps: "all" },
+            { yPercent: 110, opacity: 0 },
+            { yPercent: 0, opacity: 1, duration: 0.95, ease: "power3.out", clearProps: "all" },
             0
           );
         }
@@ -51,18 +51,18 @@ export function ServiceDetail({ service }: { service: Service }) {
         if (lead) {
           tl.fromTo(
             lead,
-            { opacity: 0, y: 18 },
-            { opacity: 1, y: 0, duration: 0.7, clearProps: "all" },
-            0.15
+            { opacity: 0, y: 24 },
+            { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", clearProps: "all" },
+            0.20
           );
         }
 
         if (action) {
           tl.fromTo(
             action,
-            { opacity: 0, y: 14 },
-            { opacity: 1, y: 0, duration: 0.6, clearProps: "all" },
-            0.25
+            { opacity: 0, y: 16 },
+            { opacity: 1, y: 0, duration: 0.7, ease: "power3.out", clearProps: "all" },
+            0.32
           );
         }
       }
@@ -87,8 +87,8 @@ export function ServiceDetail({ service }: { service: Service }) {
         if (showcaseHeading) {
           showcaseTl.fromTo(
             showcaseHeading,
-            { opacity: 0, y: 22 },
-            { opacity: 1, y: 0, duration: 0.75, clearProps: "all" },
+            { opacity: 0, y: 26 },
+            { opacity: 1, y: 0, duration: 0.85, ease: "power3.out", clearProps: "all" },
             0
           );
         }
@@ -96,9 +96,9 @@ export function ServiceDetail({ service }: { service: Service }) {
         if (showcaseText) {
           showcaseTl.fromTo(
             showcaseText,
-            { opacity: 0, y: 16 },
-            { opacity: 1, y: 0, duration: 0.7, clearProps: "all" },
-            0.1
+            { opacity: 0, y: 22 },
+            { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", clearProps: "all" },
+            0.18
           );
         }
 

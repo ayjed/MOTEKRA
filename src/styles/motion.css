@@ -118,25 +118,42 @@
 
 /* Universal Reference-Matched Text Line Mask */
 .text-line-mask,
+.line-mask,
+.hero-title-line,
 .davka-title-mask,
 .process-title-mask,
 .testimonials-title-mask,
 .work-title-mask,
 .services-title-mask,
-.editorial-line-mask {
+.editorial-line-mask,
+.case-hero-title-mask,
+.contact-line-mask,
+.section-title-mask {
   display: block;
   overflow: hidden;
-  padding-bottom: 0.06em;
-  margin-bottom: -0.06em;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
 }
 
 [data-line],
+[data-hero-title-line],
 [data-work-title-line],
 [data-process-title-line],
 [data-testimonials-title-line],
 [data-work-hero-line],
 [data-services-heading-line],
-[data-editorial-line] {
+[data-scope-heading-line],
+[data-editorial-line],
+[data-perspective-heading-line],
+[data-founder-heading-line],
+[data-values-heading-line],
+[data-principles-heading-line],
+[data-case-title-line],
+[data-case-heading-line],
+[data-contact-title-line],
+[data-service-hero-title],
+[data-service-section-title] {
   display: inline-block;
   will-change: transform, opacity;
+  transform-origin: 0 100%;
 }

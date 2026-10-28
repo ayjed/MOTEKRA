@@ -25,16 +25,16 @@ export function ServicesPage() {
                 </span>
               </h1>
 
-              <p className="lead" data-services-intro-elem>
+              <p className="lead" data-services-hero-lead>
                 From early product strategy to high-performance web and mobile engineering, we partner with visionary teams to turn complex ideas into digital realities.
               </p>
 
-              <div data-services-intro-elem className="services-intro-meta">
+              <div data-services-hero-meta className="services-intro-meta">
                 <DraftNote>Five core capabilities · bespoke product delivery</DraftNote>
               </div>
             </div>
 
-            <div className="services-intro-right" data-services-intro-elem>
+            <div className="services-intro-right" data-services-hero-callout>
               <div className="services-intro-callout">
                 <span className="callout-tag">END-TO-END METHODOLOGY</span>
                 <p>
@@ -72,10 +72,10 @@ export function ServicesPage() {
                 <span data-scope-heading-line>A clear agreement.</span>
               </span>
             </h2>
-            <p>
+            <p data-scope-lead>
               These capabilities are tailored to each engagement. Deliverables, platforms, timelines, responsibilities and milestones are rigorously aligned before implementation begins.
             </p>
-            <Link prefetch={false} href="/contact" className="services-scope-btn">
+            <Link prefetch={false} href="/contact" className="services-scope-btn" data-scope-cta>
               Discuss the proposed scope
             </Link>
           </div>

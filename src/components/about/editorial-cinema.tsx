@@ -5,19 +5,188 @@ import { useGsapScope } from "@/lib/animations/hooks";
 export function EditorialCinema({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   useGsapScope(ref, (gsap, ScrollTrigger, root) => {
-    // 1. Headline masked line entrance (Reference-matched vertical reveal, zero rotation)
-    const lines = root.querySelectorAll<HTMLElement>("[data-editorial-line]");
-    if (lines.length) {
-      gsap.fromTo(
-        lines,
-        { yPercent: 105, opacity: 0 },
-        { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.08, ease: "power3.out", clearProps: "all" }
-      );
-    }
-
     const entrances = gsap.context(() => {}, root);
 
-    // 2. Founder portrait frame reveal
+    // 1. Hero Entrance Timeline (Headline -> Supporting Lead -> CTA)
+    const heroSection = root.querySelector<HTMLElement>(".editorial-hero");
+    const lines = root.querySelectorAll<HTMLElement>("[data-editorial-line]");
+    const heroLead = root.querySelector<HTMLElement>("[data-editorial-lead]");
+    const heroCta = root.querySelector<HTMLElement>("[data-editorial-cta]");
+
+    if (heroSection) {
+      const heroTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: heroSection,
+          start: "top 95%",
+          once: true,
+        },
+        defaults: { ease: "power3.out" },
+      });
+
+      if (lines.length) {
+        heroTl.fromTo(
+          lines,
+          { yPercent: 110, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.95, stagger: 0.14, clearProps: "all" },
+          0
+        );
+      }
+
+      if (heroLead) {
+        heroTl.fromTo(
+          heroLead,
+          { y: 24, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, clearProps: "all" },
+          0.25
+        );
+      }
+
+      if (heroCta) {
+        heroTl.fromTo(
+          heroCta,
+          { y: 16, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.7, clearProps: "all" },
+          0.38
+        );
+      }
+    }
+
+    // 2. Section 2 Perspective Entrance Timeline
+    const perspSection = root.querySelector<HTMLElement>(".editorial-perspective");
+    const perspLines = root.querySelectorAll<HTMLElement>("[data-perspective-heading-line]");
+    const perspItems = root.querySelectorAll<HTMLElement>("[data-editorial-item]");
+
+    if (perspSection) {
+      ScrollTrigger.create({
+        trigger: perspSection,
+        start: "top 88%",
+        once: true,
+        onEnter: () =>
+          entrances.add(() => {
+            const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+            if (perspLines.length) {
+              tl.fromTo(
+                perspLines,
+                { yPercent: 110, opacity: 0 },
+                { yPercent: 0, opacity: 1, duration: 0.95, stagger: 0.12, clearProps: "all" },
+                0
+              );
+            }
+            if (perspItems.length) {
+              tl.fromTo(
+                perspItems,
+                { y: 22, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, clearProps: "all" },
+                0.22
+              );
+            }
+          }),
+      });
+    }
+
+    // 3. Section 3 Founder Entrance Timeline
+    const founderSection = root.querySelector<HTMLElement>(".editorial-founder");
+    const founderHeading = root.querySelector<HTMLElement>("[data-founder-heading-line]");
+    const founderRole = root.querySelector<HTMLElement>("[data-founder-role]");
+    const founderBio = root.querySelector<HTMLElement>("[data-founder-bio]");
+    const founderCta = root.querySelector<HTMLElement>("[data-founder-cta]");
+
+    if (founderSection) {
+      ScrollTrigger.create({
+        trigger: founderSection,
+        start: "top 88%",
+        once: true,
+        onEnter: () =>
+          entrances.add(() => {
+            const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+            if (founderHeading) {
+              tl.fromTo(
+                founderHeading,
+                { yPercent: 110, opacity: 0 },
+                { yPercent: 0, opacity: 1, duration: 0.9, clearProps: "all" },
+                0
+              );
+            }
+            if (founderRole) {
+              tl.fromTo(
+                founderRole,
+                { y: 16, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.7, clearProps: "all" },
+                0.18
+              );
+            }
+            if (founderBio) {
+              tl.fromTo(
+                founderBio,
+                { y: 22, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.8, clearProps: "all" },
+                0.26
+              );
+            }
+            if (founderCta) {
+              tl.fromTo(
+                founderCta,
+                { y: 16, opacity: 0 },
+                { y: 0, opacity: 1, duration: 0.7, clearProps: "all" },
+                0.36
+              );
+            }
+          }),
+      });
+    }
+
+    // 4. Section 4 Values Entrance
+    const values = root.querySelector<HTMLElement>(".editorial-values");
+    const valuesLines = root.querySelectorAll<HTMLElement>("[data-values-heading-line]");
+    if (values) {
+      ScrollTrigger.create({
+        trigger: values,
+        start: "top 88%",
+        once: true,
+        onEnter: () =>
+          entrances.add(() => {
+            if (valuesLines.length) {
+              gsap.fromTo(
+                valuesLines,
+                { yPercent: 110, opacity: 0 },
+                { yPercent: 0, opacity: 1, duration: 0.95, stagger: 0.14, ease: "power3.out", clearProps: "all" }
+              );
+            }
+          }),
+      });
+
+      const rail = values.querySelector<HTMLElement>("[data-values-rail]");
+      if (rail) {
+        gsap.fromTo(
+          rail,
+          { scaleY: 0 },
+          { scaleY: 1, ease: "none", scrollTrigger: { trigger: values, start: "top 55%", end: "bottom 60%", scrub: 0.4 } }
+        );
+      }
+    }
+
+    // 5. Section 5 Principles Entrance
+    const principlesSection = root.querySelector<HTMLElement>(".editorial-principles");
+    const principlesLines = root.querySelectorAll<HTMLElement>("[data-principles-heading-line]");
+    if (principlesSection) {
+      ScrollTrigger.create({
+        trigger: principlesSection,
+        start: "top 90%",
+        once: true,
+        onEnter: () =>
+          entrances.add(() => {
+            if (principlesLines.length) {
+              gsap.fromTo(
+                principlesLines,
+                { yPercent: 110, opacity: 0 },
+                { yPercent: 0, opacity: 1, duration: 0.95, stagger: 0.14, ease: "power3.out", clearProps: "all" }
+              );
+            }
+          }),
+      });
+    }
+
+    // 6. Founder portrait frame reveal
     root.querySelectorAll<HTMLElement>("[data-portrait]").forEach((portrait) => {
       const frame = portrait.querySelector<HTMLElement>("[data-portrait-frame]");
       const img = portrait.querySelector<HTMLElement>(".founder-photo-real, img");
@@ -49,61 +218,7 @@ export function EditorialCinema({ children }: { children: ReactNode }) {
       });
     });
 
-    // 3. Editorial staggered groups (Reference-matched upward glide, zero rotation)
-    root.querySelectorAll<HTMLElement>("[data-editorial-stagger]").forEach((group) => {
-      ScrollTrigger.create({
-        trigger: group,
-        start: "top 90%",
-        invalidateOnRefresh: true,
-        once: true,
-        onEnter: () =>
-          entrances.add(() =>
-            gsap.fromTo(
-              group.querySelectorAll("[data-editorial-item]"),
-              { y: 20, opacity: 0 },
-              { y: 0, opacity: 1, duration: 0.75, stagger: 0.08, ease: "power3.out", clearProps: "all" }
-            )
-          ),
-      });
-    });
-
-    // 4. Biography paragraphs (Subtle upward glide, zero rotation)
-    root.querySelectorAll<HTMLElement>(".editorial-bio p").forEach((paragraph) => {
-      ScrollTrigger.create({
-        trigger: paragraph,
-        start: "top 90%",
-        invalidateOnRefresh: true,
-        once: true,
-        onEnter: () =>
-          entrances.add(() =>
-            gsap.fromTo(
-              paragraph.querySelectorAll(".bio-word"),
-              { y: 16, opacity: 0 },
-              { y: 0, opacity: 1, duration: 0.6, stagger: 0.015, ease: "power3.out", clearProps: "all" }
-            )
-          ),
-      });
-    });
-
-    // 5. Values section rail
-    const values = root.querySelector<HTMLElement>(".editorial-values");
-    if (values) {
-      const rail = values.querySelector<HTMLElement>("[data-values-rail]");
-      if (rail) {
-        gsap.fromTo(
-          rail,
-          { scaleY: 0 },
-          { scaleY: 1, ease: "none", scrollTrigger: { trigger: values, start: "top 55%", end: "bottom 60%", scrub: 0.4 } }
-        );
-      }
-      gsap.fromTo(
-        values,
-        { "--value-glow": "0%" },
-        { "--value-glow": "100%", ease: "none", scrollTrigger: { trigger: values, start: "top bottom", end: "bottom top", scrub: 0.5 } }
-      );
-    }
-
-    // 6. Desktop parallax
+    // 7. Desktop parallax
     const desktop = gsap.matchMedia();
     desktop.add("(min-width: 768px)", () => {
       root.querySelectorAll<HTMLElement>("[data-portrait]").forEach((portrait) => {
@@ -128,12 +243,12 @@ export function EditorialCinema({ children }: { children: ReactNode }) {
 
     // Lifecycle recovery: Ensure returning from inactive tab restores visibility deterministically
     const ensureVisible = () => {
-      root.querySelectorAll<HTMLElement>("[data-editorial-line]").forEach((line) => {
+      root.querySelectorAll<HTMLElement>("[data-editorial-line], [data-perspective-heading-line], [data-founder-heading-line], [data-values-heading-line], [data-principles-heading-line]").forEach((line) => {
         gsap.set(line, { clearProps: "all" });
         line.style.opacity = "1";
         line.style.transform = "none";
       });
-      root.querySelectorAll<HTMLElement>("[data-editorial-item], .bio-word").forEach((el) => {
+      root.querySelectorAll<HTMLElement>("[data-editorial-lead], [data-editorial-cta], [data-founder-role], [data-founder-bio], [data-founder-cta], [data-editorial-item]").forEach((el) => {
         gsap.set(el, { clearProps: "all" });
         el.style.opacity = "1";
         el.style.transform = "none";
