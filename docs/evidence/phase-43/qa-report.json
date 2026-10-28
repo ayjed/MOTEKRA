@@ -1,0 +1,229 @@
+{
+  "timestamp": "2026-10-28T03:11:48.917Z",
+  "viewportsTested": [
+    "desktop",
+    "tablet",
+    "mobile"
+  ],
+  "pagesTested": [
+    "home",
+    "work",
+    "services",
+    "about",
+    "contact",
+    "case-study",
+    "profile"
+  ],
+  "results": [
+    {
+      "page": "home",
+      "path": "/",
+      "viewport": "desktop",
+      "initialTextVisible": false,
+      "finalElementsChecked": 30,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\home-desktop.png"
+    },
+    {
+      "page": "work",
+      "path": "/work",
+      "viewport": "desktop",
+      "initialTextVisible": true,
+      "finalElementsChecked": 6,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\work-desktop.png"
+    },
+    {
+      "page": "services",
+      "path": "/services",
+      "viewport": "desktop",
+      "initialTextVisible": true,
+      "finalElementsChecked": 20,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\services-desktop.png"
+    },
+    {
+      "page": "about",
+      "path": "/about",
+      "viewport": "desktop",
+      "initialTextVisible": true,
+      "finalElementsChecked": 22,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\about-desktop.png"
+    },
+    {
+      "page": "contact",
+      "path": "/contact",
+      "viewport": "desktop",
+      "initialTextVisible": true,
+      "finalElementsChecked": 6,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\contact-desktop.png"
+    },
+    {
+      "page": "case-study",
+      "path": "/work/spotlight-contest",
+      "viewport": "desktop",
+      "initialTextVisible": true,
+      "finalElementsChecked": 5,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\case-study-desktop.png"
+    },
+    {
+      "page": "profile",
+      "path": "/team/akinwumi-ayomiposi",
+      "viewport": "desktop",
+      "initialTextVisible": true,
+      "finalElementsChecked": 18,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\profile-desktop.png"
+    },
+    {
+      "page": "home",
+      "path": "/",
+      "viewport": "tablet",
+      "initialTextVisible": false,
+      "finalElementsChecked": 30,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\home-tablet.png"
+    },
+    {
+      "page": "work",
+      "path": "/work",
+      "viewport": "tablet",
+      "initialTextVisible": true,
+      "finalElementsChecked": 6,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\work-tablet.png"
+    },
+    {
+      "page": "services",
+      "path": "/services",
+      "viewport": "tablet",
+      "initialTextVisible": true,
+      "finalElementsChecked": 20,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\services-tablet.png"
+    },
+    {
+      "page": "about",
+      "path": "/about",
+      "viewport": "tablet",
+      "initialTextVisible": true,
+      "finalElementsChecked": 22,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\about-tablet.png"
+    },
+    {
+      "page": "contact",
+      "path": "/contact",
+      "viewport": "tablet",
+      "initialTextVisible": true,
+      "finalElementsChecked": 6,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\contact-tablet.png"
+    },
+    {
+      "page": "case-study",
+      "path": "/work/spotlight-contest",
+      "viewport": "tablet",
+      "initialTextVisible": true,
+      "finalElementsChecked": 5,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\case-study-tablet.png"
+    },
+    {
+      "page": "profile",
+      "path": "/team/akinwumi-ayomiposi",
+      "viewport": "tablet",
+      "initialTextVisible": true,
+      "finalElementsChecked": 18,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\profile-tablet.png"
+    },
+    {
+      "page": "home",
+      "path": "/",
+      "viewport": "mobile",
+      "initialTextVisible": false,
+      "finalElementsChecked": 30,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\home-mobile.png"
+    },
+    {
+      "page": "work",
+      "path": "/work",
+      "viewport": "mobile",
+      "initialTextVisible": true,
+      "finalElementsChecked": 6,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\work-mobile.png"
+    },
+    {
+      "page": "services",
+      "path": "/services",
+      "viewport": "mobile",
+      "initialTextVisible": true,
+      "finalElementsChecked": 20,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\services-mobile.png"
+    },
+    {
+      "page": "about",
+      "path": "/about",
+      "viewport": "mobile",
+      "initialTextVisible": true,
+      "finalElementsChecked": 22,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\about-mobile.png"
+    },
+    {
+      "page": "contact",
+      "path": "/contact",
+      "viewport": "mobile",
+      "initialTextVisible": true,
+      "finalElementsChecked": 6,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\contact-mobile.png"
+    },
+    {
+      "page": "case-study",
+      "path": "/work/spotlight-contest",
+      "viewport": "mobile",
+      "initialTextVisible": true,
+      "finalElementsChecked": 5,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\case-study-mobile.png"
+    },
+    {
+      "page": "profile",
+      "path": "/team/akinwumi-ayomiposi",
+      "viewport": "mobile",
+      "initialTextVisible": true,
+      "finalElementsChecked": 18,
+      "hiddenCount": 0,
+      "passed": true,
+      "screenshot": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\docs\\evidence\\phase-43\\profile-mobile.png"
+    }
+  ]
+}

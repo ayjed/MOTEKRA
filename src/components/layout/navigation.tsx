@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import * as motion from "motion/react-m";
 import { useEffect, useRef, useState, useCallback } from "react";
-import { useGsapScope, useMedia } from "@/lib/animations/hooks";
+import { useMedia } from "@/lib/animations/hooks";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -213,29 +213,19 @@ function MobileNavigation({ pathname }: { pathname: string }) {
 
 export function Navigation() {
   const pathname = usePathname();
-  const desktop = useMedia("(min-width: 768px)");
   const ref = useRef<HTMLDivElement>(null);
-
-  useGsapScope(
-    ref,
-    (gsap, _trigger, root) => {
-      if (pathname === "/") return; // Home coordinates entrance with its own hero timeline
-      gsap.from(root.querySelectorAll(".desktop-nav > a"), {
-        y: -6,
-        opacity: 0.5,
-        duration: 0.45,
-        stagger: 0.04,
-        ease: "power2.out",
-      });
-    },
-    desktop
-  );
+  const [hoveredHref, setHoveredHref] = useState<string | null>(null);
 
   return (
     <div ref={ref} className="navigation">
-      <nav className="desktop-nav" aria-label="Main navigation">
+      <nav
+        className="desktop-nav"
+        aria-label="Main navigation"
+        onMouseLeave={() => setHoveredHref(null)}
+      >
         {navLinks.map(({ href, label }) => {
           const active = isLinkActive(pathname, href);
+          const isHovered = hoveredHref === href;
           return (
             <Link
               prefetch={false}
@@ -243,13 +233,25 @@ export function Navigation() {
               href={href}
               aria-current={active ? "page" : undefined}
               className={`nav-link ${active ? "is-active" : ""}`}
+              onMouseEnter={() => setHoveredHref(href)}
+              onFocus={() => setHoveredHref(href)}
+              onBlur={() => setHoveredHref(null)}
             >
-              <span>{label}</span>
+              <span className="nav-link-text">{label}</span>
+              {isHovered && (
+                <motion.span
+                  className="nav-hover-pill"
+                  layoutId="navHoverPill"
+                  transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                  aria-hidden="true"
+                />
+              )}
               {active && (
                 <motion.span
                   className="active-nav-indicator"
                   layoutId="activeNavIndicator"
                   transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  aria-hidden="true"
                 />
               )}
             </Link>

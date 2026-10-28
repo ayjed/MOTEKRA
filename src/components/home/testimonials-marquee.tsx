@@ -123,6 +123,62 @@ export function TestimonialsMarquee() {
       );
       row2TweenRef.current = tween2;
 
+      // Header entrance animation
+      const titleLine = section.querySelector<HTMLElement>("[data-testimonials-title-line]");
+      const subtitle = section.querySelector<HTMLElement>("[data-testimonials-subtitle]");
+      const controls = section.querySelector<HTMLElement>("[data-testimonials-controls]");
+
+      if (titleLine) {
+        const headerTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top 88%",
+            once: true,
+          },
+          defaults: { ease: "power3.out" },
+        });
+
+        headerTl.fromTo(
+          titleLine,
+          { yPercent: 105, opacity: 0 },
+          {
+            yPercent: 0,
+            opacity: 1,
+            duration: 0.8,
+            clearProps: "all",
+          },
+          0
+        );
+
+        if (subtitle) {
+          headerTl.fromTo(
+            subtitle,
+            { y: 18, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.7,
+              clearProps: "all",
+            },
+            0.15
+          );
+        }
+
+        if (controls) {
+          headerTl.fromTo(
+            controls,
+            { y: 14, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.6,
+              clearProps: "all",
+            },
+            0.25
+          );
+        }
+      }
+
       // Start immediately when the section enters 95% of the viewport
       ScrollTrigger.create({
         trigger: section,
@@ -157,9 +213,17 @@ export function TestimonialsMarquee() {
       if (document.hidden) {
         row1TweenRef.current?.pause();
         row2TweenRef.current?.pause();
-      } else if (!isManuallyPaused) {
-        row1TweenRef.current?.play();
-        row2TweenRef.current?.play();
+      } else {
+        const titleLine = section.querySelector<HTMLElement>("[data-testimonials-title-line]");
+        const subtitle = section.querySelector<HTMLElement>("[data-testimonials-subtitle]");
+        const controls = section.querySelector<HTMLElement>("[data-testimonials-controls]");
+        if (titleLine) { gsap.set(titleLine, { clearProps: "all" }); titleLine.style.opacity = "1"; titleLine.style.transform = "none"; }
+        if (subtitle) { gsap.set(subtitle, { clearProps: "all" }); subtitle.style.opacity = "1"; subtitle.style.transform = "none"; }
+        if (controls) { gsap.set(controls, { clearProps: "all" }); controls.style.opacity = "1"; controls.style.transform = "none"; }
+        if (!isManuallyPaused) {
+          row1TweenRef.current?.play();
+          row2TweenRef.current?.play();
+        }
       }
     };
     document.addEventListener("visibilitychange", handleVisibilityChange);
@@ -193,32 +257,17 @@ export function TestimonialsMarquee() {
       aria-labelledby="testimonials-title"
     >
       <div className="container testimonials-header-center">
-        {/* Pill Badge matching Magika reference */}
-        <div className="testimonials-badge">
-          <svg
-            className="testimonials-badge-icon"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-          </svg>
-          <span>Testimonials</span>
-        </div>
-
-        <h2 id="testimonials-title" className="testimonials-title">
-          Feedback that fuels us
+        <h2 id="testimonials-title" className="testimonials-title" aria-label="Feedback that fuels us">
+          <span className="testimonials-title-mask" aria-hidden="true">
+            <span data-testimonials-title-line>Feedback that fuels us</span>
+          </span>
         </h2>
 
-        <p className="testimonials-subtitle">
+        <p className="testimonials-subtitle" data-testimonials-subtitle>
           See how our design partnership turned client ideas into momentum - and why they keep coming back.
         </p>
 
-        <div className="testimonials-controls">
+        <div className="testimonials-controls" data-testimonials-controls>
           <button
             type="button"
             className="marquee-toggle-btn"

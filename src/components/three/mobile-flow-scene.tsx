@@ -27,6 +27,39 @@ function useMobileScreen(detail: boolean, quality:"balanced"|"high") {
   useEffect(() => () => texture.dispose(), [texture]); return texture;
 }
 
+function DeterministicCamera() {
+  const { camera, size, invalidate } = useThree();
+  useEffect(() => {
+    camera.position.set(0, 0.2, 9);
+    camera.lookAt(0, 0, 0);
+    if ("aspect" in camera && size.width > 0 && size.height > 0) {
+      camera.aspect = size.width / size.height;
+      camera.updateProjectionMatrix();
+    }
+    invalidate();
+  }, [camera, size, invalidate]);
+
+  useEffect(() => {
+    const handleRestore = () => {
+      camera.position.set(0, 0.2, 9);
+      camera.lookAt(0, 0, 0);
+      if ("aspect" in camera && size.width > 0 && size.height > 0) {
+        camera.aspect = size.width / size.height;
+        camera.updateProjectionMatrix();
+      }
+      invalidate();
+    };
+    window.addEventListener("motekra-tab-restored", handleRestore);
+    window.addEventListener("focus", handleRestore);
+    return () => {
+      window.removeEventListener("motekra-tab-restored", handleRestore);
+      window.removeEventListener("focus", handleRestore);
+    };
+  }, [camera, size, invalidate]);
+
+  return null;
+}
+
 function Phones({ active, variant, onReady, quality }: { active: boolean; variant: "overview" | "prototype"; onReady: () => void; quality:"balanced"|"high" }) {
   const root = useRef<Group>(null), front = useRef<Group>(null);
   const readyFrames = useRef(0);
@@ -38,8 +71,11 @@ function Phones({ active, variant, onReady, quality }: { active: boolean; varian
     if (!active || !root.current || !front.current) return;
     const selected = variant === "prototype";
     const x = selected ? .86 : 1.12, z = selected ? .55 : -.25;
-    const ry = -.18 + pointer.x * .12, rx = .08 - pointer.y * .07;
-    const amount = Math.min(1,delta*8);
+    const px = Number.isFinite(pointer.x) ? Math.max(-1, Math.min(1, pointer.x)) : 0;
+    const py = Number.isFinite(pointer.y) ? Math.max(-1, Math.min(1, pointer.y)) : 0;
+    const ry = -.18 + px * .12, rx = .08 - py * .07;
+    const safeDelta = Math.min(Math.max(delta, 0), 0.05);
+    const amount = Math.min(1, safeDelta * 8);
     root.current.rotation.y += (ry-root.current.rotation.y)*amount;root.current.rotation.x += (rx-root.current.rotation.x)*amount;
     front.current.position.x += (x-front.current.position.x)*amount;front.current.position.z += (z-front.current.position.z)*amount;
     front.current.rotation.z += ((selected ? -.035 : -.13)-front.current.rotation.z)*amount;
@@ -50,19 +86,53 @@ function Phones({ active, variant, onReady, quality }: { active: boolean; varian
     <group ref={front} position={[1.12,-.12,-.25]} rotation={[0,-.08,-.13]}><RoundedBox args={[1.9,3.8,.19]} radius={.19} smoothness={quality==="high"?3:2}><meshPhysicalMaterial color="#081b38" metalness={.5} roughness={.2} clearcoat={1} /></RoundedBox><mesh position={[0,0,.105]}><planeGeometry args={[1.68,3.47]} /><meshBasicMaterial map={second} toneMapped={false} /></mesh><RoundedBox args={[.48,.08,.025]} position={[0,1.72,.13]} radius={.03} smoothness={2}><meshBasicMaterial color="#071326" /></RoundedBox></group>
   </group>;
 }
-function Events({ onFailure }: { onFailure: () => void }) {
+function Events({ onFailure, onReady }: { onFailure: () => void; onReady: () => void }) {
   const { gl, invalidate, performance } = useThree();
   useEffect(() => {
     const canvas=gl.domElement;
+    let restoreTimeout: ReturnType<typeof setTimeout> | undefined;
     const move=()=>{performance.regress();invalidate();};
-    const lost=(event:Event)=>{event.preventDefault();onFailure();};
-    canvas.addEventListener("pointermove",move,{passive:true});canvas.addEventListener("pointerleave",move,{passive:true});canvas.addEventListener("webglcontextlost",lost);
-    return()=>{canvas.removeEventListener("pointermove",move);canvas.removeEventListener("pointerleave",move);canvas.removeEventListener("webglcontextlost",lost);};
-  },[gl,invalidate,performance,onFailure]);return null;
+    const lost=(event:Event)=>{
+      event.preventDefault();
+      restoreTimeout = setTimeout(() => {
+        onFailure();
+      }, 3500);
+    };
+    const restored=()=>{
+      if (restoreTimeout) clearTimeout(restoreTimeout);
+      invalidate();
+      onReady();
+    };
+    canvas.addEventListener("pointermove",move,{passive:true});
+    canvas.addEventListener("pointerleave",move,{passive:true});
+    canvas.addEventListener("webglcontextlost",lost);
+    canvas.addEventListener("webglcontextrestored",restored);
+
+    const handleTabRestore = () => {
+      const ctx = gl.getContext();
+      if (ctx && "isContextLost" in ctx && (ctx as WebGLRenderingContext).isContextLost()) return;
+      invalidate();
+    };
+    window.addEventListener("motekra-tab-restored", handleTabRestore);
+    window.addEventListener("focus", handleTabRestore);
+
+    return()=>{
+      if (restoreTimeout) clearTimeout(restoreTimeout);
+      canvas.removeEventListener("pointermove",move);
+      canvas.removeEventListener("pointerleave",move);
+      canvas.removeEventListener("webglcontextlost",lost);
+      canvas.removeEventListener("webglcontextrestored",restored);
+      window.removeEventListener("motekra-tab-restored", handleTabRestore);
+      window.removeEventListener("focus", handleTabRestore);
+    };
+  },[gl,invalidate,performance,onFailure,onReady]);return null;
 }
 export default function MobileFlowScene({ active, quality, variant, onReady, onFailure }: { active:boolean;quality:"balanced"|"high";variant:"overview"|"prototype";cinematic?:boolean;onReady:()=>void;onFailure:()=>void }) {
   return <Canvas frameloop={active?"demand":"never"} dpr={quality==="high"?1.25:1} camera={{position:[0,.2,9],fov:36}} gl={{antialias:quality==="high",alpha:true,powerPreference:"low-power"}} performance={{min:.65}}>
     <ambientLight intensity={1.9} /><directionalLight position={[4,5,6]} intensity={3} color="#e8f8ff" /><directionalLight position={[-4,0,3]} intensity={2} color="#1688f7" />
-    <Bounds fit clip observe margin={1.22} maxDuration={0}><Phones active={active} variant={variant} quality={quality} onReady={onReady} /></Bounds><AdaptiveDpr pixelated /><Events onFailure={onFailure} />
+    <DeterministicCamera />
+    <Phones active={active} variant={variant} quality={quality} onReady={onReady} />
+    <AdaptiveDpr pixelated />
+    <Events onFailure={onFailure} onReady={onReady} />
   </Canvas>;
 }

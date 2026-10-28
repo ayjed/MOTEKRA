@@ -1,59 +1,457 @@
+export interface DeliverableItem {
+  title: string;
+  description: string;
+}
+
+export interface ApproachStep {
+  step: string;
+  title: string;
+  description: string;
+}
+
+export interface ServiceFaq {
+  question: string;
+  answer: string;
+}
+
 export interface ServiceDetailCopy {
   focus: string;
   intent: string;
   overview: string;
+  highlights: readonly string[];
   deliverables: readonly string[];
+  deliverableItems: readonly DeliverableItem[];
   approach: readonly (readonly [string, string])[];
+  approachSteps: readonly ApproachStep[];
   questions: readonly (readonly [string, string])[];
+  faqs: readonly ServiceFaq[];
+  image: {
+    src: string;
+    alt: string;
+    tag: string;
+  };
   control: string;
   outcome: string;
 }
 
-// Authored editorial proposals, not evidence of an active commercial offering.
 export const serviceDetails: Readonly<Record<string, ServiceDetailCopy>> = {
   "ui-ux-design": {
-    focus: "A clearer path through the product.",
-    intent: "Product flows, interactive prototypes and interface systems.",
-    overview: "A useful interface connects the task someone wants to complete with a clear path through the product. This proposed scope brings structure, interaction and visual language together, from early wireframes to a prototype that can be reviewed before implementation.",
-    deliverables: ["Task flows and an agreed screen inventory", "Wireframes for the selected journeys", "An interactive prototype with key states", "Interface components and handoff notes"],
-    approach: [["Understand the task", "Review the product context, intended users, existing evidence and constraints. Identify what needs validation rather than assuming the answer."], ["Shape the flow", "Map the important journeys and content hierarchy. Explore alternative layouts before committing to detailed screens."], ["Make it testable", "Connect the selected states into a prototype, review feedback and document decisions for implementation. Research and testing depth would be agreed in scope."]],
-    questions: [["Is user research included?", "Research depth is a scope decision. Existing research, stakeholder input, interviews or usability sessions can inform the work, but no research activity is promised without agreement."], ["Can this build on an existing design system?", "An existing system can be the starting point. Component reuse, missing states, accessibility requirements and handoff expectations should be reviewed before proposing new patterns."], ["Does a prototype mean the product is built?", "No. A prototype communicates intended behavior. Production implementation, integrations and testing need their own agreed scope."]],
-    control: "Transform the interface", outcome: "Wireframe → composed interface. This is a website concept demonstration, not client work.",
+    focus: "Intuitive product design engineered for clarity, usability, and conversion.",
+    intent: "User-centred digital interfaces, responsive design systems, and interactive prototypes built to solve real problems and elevate user engagement.",
+    overview: "Great digital products begin with a deep understanding of user behavior and business objectives. We design cohesive, accessible interfaces that transform complex workflows into frictionless, intuitive experiences across desktop, tablet, and mobile devices.",
+    highlights: [
+      "End-to-end design systems in Figma with standardized design tokens and variables",
+      "Interactive high-fidelity prototypes demonstrating real transitions and microinteractions",
+      "WCAG AA accessibility compliance with deliberate color contrast and keyboard navigation",
+      "Comprehensive developer handoff documentation with responsive layout specifications"
+    ],
+    deliverables: [
+      "User journey mapping & task flows",
+      "High-fidelity wireframes & layouts",
+      "Interactive Figma prototypes",
+      "Component design systems & tokens"
+    ],
+    deliverableItems: [
+      {
+        title: "User Journey & Task Flows",
+        description: "Detailed workflow diagrams and information architecture mapping every core user journey to eliminate friction."
+      },
+      {
+        title: "High-Fidelity Wireframes",
+        description: "Responsive screen layouts balancing visual hierarchy, usability standards, and modern interface aesthetics."
+      },
+      {
+        title: "Interactive Prototypes",
+        description: "Clickable prototypes simulating real product interactions, state transitions, and responsive mobile behavior."
+      },
+      {
+        title: "Component Design Systems",
+        description: "Comprehensive Figma libraries with scalable typography tokens, color roles, and reusable UI components."
+      }
+    ],
+    approach: [
+      ["Discover & Map", "We analyze your product vision, target audience, and key user tasks to establish a clear architectural foundation."],
+      ["Design & Iterate", "We build wireframes and interactive prototypes, refining layouts and motion through continuous collaboration."],
+      ["Systematize & Hand Off", "We organize components into a scalable design system with comprehensive documentation for engineering handoff."]
+    ],
+    approachSteps: [
+      {
+        step: "01",
+        title: "Discover & Map",
+        description: "We analyze your product vision, target audience, and key user tasks to establish a clear architectural foundation."
+      },
+      {
+        step: "02",
+        title: "Design & Iterate",
+        description: "We build wireframes and interactive prototypes, refining layouts and motion through continuous collaboration."
+      },
+      {
+        step: "03",
+        title: "Systematize & Hand Off",
+        description: "We organize components into a scalable design system with comprehensive documentation for engineering handoff."
+      }
+    ],
+    questions: [
+      ["What tools do you use for UI/UX design?", "We primarily design in Figma, utilizing modern auto-layout, variables, and component properties for seamless team collaboration and developer handoff."],
+      ["Can you design for existing applications or brand guidelines?", "Yes. We frequently integrate with established brand guidelines and legacy design systems, modernizing patterns while maintaining brand consistency."],
+      ["Do you provide developer-ready assets and design specifications?", "Every UI/UX engagement includes complete design tokens, responsive layout rules, interaction notes, and asset exports ready for development."]
+    ],
+    faqs: [
+      {
+        question: "What tools do you use for UI/UX design?",
+        answer: "We primarily design in Figma, utilizing modern auto-layout, variables, and component properties for seamless team collaboration and developer handoff."
+      },
+      {
+        question: "Can you design for existing applications or brand guidelines?",
+        answer: "Yes. We frequently integrate with established brand guidelines and legacy design systems, modernizing patterns while maintaining brand consistency."
+      },
+      {
+        question: "Do you provide developer-ready assets and design specifications?",
+        answer: "Every UI/UX engagement includes complete design tokens, responsive layout rules, interaction notes, and asset exports ready for development."
+      }
+    ],
+    image: {
+      src: "/assets/services/ui-ux-design.webp",
+      alt: "Responsive laptop and smartphone mockup displaying modern e-commerce dashboard and mobile shopping interface on a clean white background",
+      tag: "FIGMA WORKSPACE & DESIGN SYSTEM"
+    },
+    control: "Transform the interface",
+    outcome: "Wireframe → composed interface. High-fidelity responsive design system."
   },
+
   "web-development": {
-    focus: "Content, behavior and implementation.",
-    intent: "Responsive websites and considered web applications.",
-    overview: "A web product needs more than a convincing first screen. This proposed scope considers content structure, navigation, interaction states and implementation together, with accessibility and search visibility treated as part of the interface rather than a separate visual layer.",
-    deliverables: ["An agreed route and content structure", "Responsive page and component implementation", "Defined loading, empty and error states", "Testing notes and deployment handover for the agreed environment"],
-    approach: [["Define the behavior", "Identify the routes, content, forms and integrations. Separate what can be rendered as content from what genuinely needs client-side interaction."], ["Build the experience", "Implement the agreed layouts and states for relevant screen sizes. Choose the technical approach around the product and hosting requirements."], ["Review in context", "Check keyboard use, responsive behavior and production HTML. Performance, integration testing and deployment responsibilities need explicit acceptance criteria."]],
-    questions: [["Which framework would be used?", "The framework should follow the requirements, existing systems and deployment constraints. The technology used for this MOTEKRA website is not a promise that every engagement uses the same stack."], ["Are SEO results guaranteed?", "No ranking or traffic result is guaranteed. Crawlable content, descriptive metadata and sound page structure can be part of an agreed implementation; search outcomes depend on more than the website."], ["Does the scope include hosting?", "Hosting, domain ownership, ongoing maintenance and any third-party costs must be agreed separately. No paid platform is selected by this service preview."]],
-    control: "Reframe the app windows", outcome: "Wide application → compact workspace. Responsive composition is demonstrated without a production integration.",
+    focus: "Modern web engineering built for speed, scalability, and resilience.",
+    intent: "High-performance websites and web applications engineered with Next.js, modern TypeScript, and scalable cloud architectures.",
+    overview: "We architect and build production-grade web applications that pair fluid front-end experiences with secure, robust back-end integrations. From fast marketing platforms to data-dense dashboards, our code is modular, type-safe, and optimized for performance.",
+    highlights: [
+      "Production-grade Next.js App Router, React 19, and TypeScript architectures",
+      "Sub-second Core Web Vitals with optimized server-side rendering and edge caching",
+      "Responsive, accessible HTML structures following modern web accessibility standards",
+      "Clean API integrations with headless CMS platforms, databases, and third-party services"
+    ],
+    deliverables: [
+      "Production-ready Next.js web applications",
+      "Modular Tailwind CSS component systems",
+      "Secure API & database integrations",
+      "Core Web Vitals & SEO optimization"
+    ],
+    deliverableItems: [
+      {
+        title: "Production-Ready Web Applications",
+        description: "Fully responsive, cross-browser web applications built with type-safe modern frameworks and clean architecture."
+      },
+      {
+        title: "Design System Implementation",
+        description: "Modular, accessible component libraries utilizing Tailwind CSS and CSS custom properties for effortless scale."
+      },
+      {
+        title: "API & Database Integrations",
+        description: "Secure RESTful and GraphQL endpoints connected to scalable databases, authentication providers, and services."
+      },
+      {
+        title: "Performance & SEO Optimization",
+        description: "Fast page load speeds, semantic HTML structure, dynamic Open Graph metadata, and automated build pipelines."
+      }
+    ],
+    approach: [
+      ["Architecture & Stack Selection", "We evaluate technical requirements, data models, and deployment targets to select the optimal stack."],
+      ["Component Engineering", "We develop modular, testable UI components with fluid responsive behavior and accessible interaction states."],
+      ["Testing, Deployment & Handoff", "We conduct cross-browser QA, optimize performance metrics, configure CI/CD pipelines, and provide complete documentation."]
+    ],
+    approachSteps: [
+      {
+        step: "01",
+        title: "Architecture & Stack Selection",
+        description: "We evaluate technical requirements, data models, and deployment targets to select the optimal stack."
+      },
+      {
+        step: "02",
+        title: "Component Engineering",
+        description: "We develop modular, testable UI components with fluid responsive behavior and accessible interaction states."
+      },
+      {
+        step: "03",
+        title: "Testing, Deployment & Handoff",
+        description: "We conduct cross-browser QA, optimize performance metrics, configure CI/CD pipelines, and provide complete documentation."
+      }
+    ],
+    questions: [
+      ["What tech stack do you recommend for modern web development?", "We specialize in Next.js, React, TypeScript, and modern CSS/Tailwind, deployed on edge infrastructure like Vercel, AWS, or custom cloud providers."],
+      ["How do you ensure web accessibility and performance?", "We adhere strictly to semantic HTML, keyboard navigation standards, ARIA specifications, and Core Web Vitals optimization for instant loading."],
+      ["Can you connect to our existing back-end APIs or headless CMS?", "Yes. We build clean API client abstractions that integrate seamlessly with REST APIs, GraphQL services, headless CMS platforms, and databases."]
+    ],
+    faqs: [
+      {
+        question: "What tech stack do you recommend for modern web development?",
+        answer: "We specialize in Next.js, React, TypeScript, and modern CSS/Tailwind, deployed on edge infrastructure like Vercel, AWS, or custom cloud providers."
+      },
+      {
+        question: "How do you ensure web accessibility and performance?",
+        answer: "We adhere strictly to semantic HTML, keyboard navigation standards, ARIA specifications, and Core Web Vitals optimization for instant loading."
+      },
+      {
+        question: "Can you connect to our existing back-end APIs or headless CMS?",
+        answer: "Yes. We build clean API client abstractions that integrate seamlessly with REST APIs, GraphQL services, headless CMS platforms, and databases."
+      }
+    ],
+    image: {
+      src: "/assets/services/web-development.webp",
+      alt: "Responsive laptop and smartphone mockup displaying Nexora website interface and mobile application on a clean white background",
+      tag: "NEXT.JS & CLOUD ARCHITECTURE"
+    },
+    control: "Reframe the app windows",
+    outcome: "Wide application → compact workspace. Responsive composition."
   },
+
   "mobile-app-development": {
-    focus: "An experience that fits the journey.",
-    intent: "Mobile journeys, prototypes and an agreed implementation path.",
-    overview: "A mobile experience should make sense in a person’s hand: a clear next action, readable content and useful feedback. This proposed scope starts with the journey and platform constraints, then distinguishes a prototype from the engineering and release work needed for a working application.",
-    deliverables: ["A mobile journey and key-state specification", "An interactive screen-flow prototype", "An agreed platform and integration plan", "Implementation and release checklist for the scoped build"],
-    approach: [["Map the journey", "Identify the tasks, device context and permissions that matter. Agree which states need to work offline or handle interrupted connections."], ["Try the interaction", "Connect screens and review the transitions, selection states and navigation. The prototype helps expose gaps before they become implementation decisions."], ["Plan the build", "Choose an implementation path around platform needs, existing systems and maintenance. Store submission, release accounts and backend work require separate confirmation."]],
-    questions: [["Is this native or cross-platform development?", "That choice follows the requirements. Device APIs, platform expectations, budget and existing code should be reviewed before selecting an approach."], ["Is the scene on this page a working app?", "No. It is an interface-flow study built for this website. It demonstrates selection and detail states; it is not a deployed mobile product or a client result."], ["Is an app-store launch included?", "Release responsibilities, account access, privacy requirements and store review must be agreed. This preview makes no delivery-date or approval guarantee."]],
-    control: "Explore the mobile flow", outcome: "Explore → detail. The prototype changes state; no booking, payment or backend operation takes place.",
+    focus: "Native and cross-platform mobile products tailored for modern mobility.",
+    intent: "Intuitive iOS and Android applications engineered for fluid performance, touch-optimized interactions, and reliable offline capabilities.",
+    overview: "A successful mobile application must feel immediate and natural in the palm of a hand. We build responsive mobile experiences with crisp typography, smooth gesture navigation, and robust state management that keep users connected anywhere.",
+    highlights: [
+      "Cross-platform engineering with Flutter and React Native for unified iOS and Android codebases",
+      "Fluid 60fps animations, native gesture handling, and responsive haptic feedback",
+      "Offline data synchronization, secure local storage, and reliable background processing",
+      "Complete app store readiness with automated build artifacts and signing configurations"
+    ],
+    deliverables: [
+      "Cross-platform iOS & Android mobile apps",
+      "Touch-optimized UI & motion systems",
+      "Offline data caching & sync pipelines",
+      "App Store & Google Play release bundles"
+    ],
+    deliverableItems: [
+      {
+        title: "Cross-Platform Mobile Apps",
+        description: "Native-compiled iOS and Android applications delivering high-performance touch experiences from a single codebase."
+      },
+      {
+        title: "Interactive UI & Motion Systems",
+        description: "Platform-specific navigation flows, bottom sheets, microinteractions, and gesture-driven animations."
+      },
+      {
+        title: "Offline & Sync Architecture",
+        description: "Resilient client-side caching, local data persistence, and automatic server synchronization when online."
+      },
+      {
+        title: "App Store Readiness Checklist",
+        description: "Complete build configurations, privacy manifests, signing certificates, and release-ready store bundles."
+      }
+    ],
+    approach: [
+      ["Platform Strategy & Flow Definition", "We map core user tasks to native mobile ergonomics, defining navigation hierarchies and permission requirements."],
+      ["Cross-Platform Implementation", "We engineer modular, reusable UI components backed by robust state management and type safety."],
+      ["Device Testing & Release Preparation", "We test across physical iOS and Android devices, fine-tune performance, and configure production builds for store deployment."]
+    ],
+    approachSteps: [
+      {
+        step: "01",
+        title: "Platform Strategy & Flow Definition",
+        description: "We map core user tasks to native mobile ergonomics, defining navigation hierarchies and permission requirements."
+      },
+      {
+        step: "02",
+        title: "Cross-Platform Implementation",
+        description: "We engineer modular, reusable UI components backed by robust state management and type safety."
+      },
+      {
+        step: "03",
+        title: "Device Testing & Release Preparation",
+        description: "We test across physical iOS and Android devices, fine-tune performance, and configure production builds for store deployment."
+      }
+    ],
+    questions: [
+      ["Do you build native or cross-platform mobile apps?", "We primarily build with modern cross-platform frameworks like Flutter or React Native to deliver 60fps native performance from a single maintainable codebase."],
+      ["Can the mobile app work offline?", "Yes. We implement robust local data stores and sync adapters that allow users to view content and queue actions when network connectivity is lost."],
+      ["Do you handle App Store and Google Play submissions?", "We prepare release bundles, configure store assets, write release notes, and guide you through the developer account submission guidelines."]
+    ],
+    faqs: [
+      {
+        question: "Do you build native or cross-platform mobile apps?",
+        answer: "We primarily build with modern cross-platform frameworks like Flutter or React Native to deliver 60fps native performance from a single maintainable codebase."
+      },
+      {
+        question: "Can the mobile app work offline?",
+        answer: "Yes. We implement robust local data stores and sync adapters that allow users to view content and queue actions when network connectivity is lost."
+      },
+      {
+        question: "Do you handle App Store and Google Play submissions?",
+        answer: "We prepare release bundles, configure store assets, write release notes, and guide you through the developer account submission guidelines."
+      }
+    ],
+    image: {
+      src: "/assets/services/mobile-app-development.webp",
+      alt: "Realistic smartphone mockups displaying modern mobile application analytics and user transactions",
+      tag: "IOS & ANDROID APPLICATION"
+    },
+    control: "Explore the mobile flow",
+    outcome: "Explore → detail. Mobile screen flow."
   },
+
   "product-strategy": {
-    focus: "Know what to decide next.",
-    intent: "A clearer product brief, priorities and decision path.",
-    overview: "An idea becomes more useful when its assumptions and tradeoffs are visible. This proposed scope creates a shared picture of the problem, the people involved and the decisions that shape a practical next step. A roadmap is a planning aid, not a promise of outcomes or dates.",
-    deliverables: ["A concise problem and opportunity brief", "An assumption and risk register", "A prioritized scope with explicit tradeoffs", "A staged roadmap with decision checkpoints"],
-    approach: [["Frame the question", "Gather the available evidence, stakeholders and constraints. Distinguish known needs from assumptions that still require investigation."], ["Choose what matters", "Compare options against the agreed goals and constraints. Record why a capability belongs in the first scope or can wait."], ["Plan the next decision", "Organize the work into reviewable stages. Identify dependencies and the evidence needed to proceed, without presenting estimates as guarantees."]],
-    questions: [["Will this validate an idea?", "It can make assumptions and validation needs clearer. A strategy document alone does not prove demand, commercial viability or product-market fit."], ["Is the roadmap a fixed delivery schedule?", "No. Timing depends on the agreed scope, team, dependencies and evidence. The proposed roadmap uses decision checkpoints rather than invented dates."], ["Can strategy happen before design or development?", "Yes, as a proposed planning activity. The useful output is a shared brief and a reasoned next step; implementation is a separate scope decision."]],
-    control: "Organize the roadmap", outcome: "Open questions → staged priorities. These are illustrative planning checkpoints, not a delivery commitment.",
+    focus: "Clear product definition and actionable decision paths before engineering.",
+    intent: "Strategic product definition, user research synthesis, and roadmap planning to turn ambitious concepts into validated digital solutions.",
+    overview: "Every successful digital product begins with focused strategic intent. We help visionary founders and executive teams dissect complex problem spaces, prioritize high-impact feature sets, and align technical architecture with long-term business goals.",
+    highlights: [
+      "Systematic feature prioritization using impact-vs-effort matrices and MVP roadmaps",
+      "User journey mapping and opportunity identification based on authentic user feedback",
+      "Technical feasibility assessments and staging recommendations to minimize launch risk",
+      "Clear milestone roadmaps connecting business goals with practical development sprints"
+    ],
+    deliverables: [
+      "Product requirements & scope brief",
+      "Feature prioritization matrix",
+      "User journey & opportunity maps",
+      "Phased release milestone roadmap"
+    ],
+    deliverableItems: [
+      {
+        title: "Product Requirements & Scope Brief",
+        description: "A concise, actionable specification defining target user personas, core capabilities, and success metrics."
+      },
+      {
+        title: "Feature Prioritization Matrix",
+        description: "Clear separation of MVP core requirements (P0), immediate enhancements (P1), and future roadmap candidates."
+      },
+      {
+        title: "User Journey & Opportunity Maps",
+        description: "Visual mapping of user pain points, emotional highs, and strategic interface intervention points."
+      },
+      {
+        title: "Phased Release Roadmap",
+        description: "A structured milestone plan connecting early validation milestones to scalable engineering delivery."
+      }
+    ],
+    approach: [
+      ["Frame & Discover", "We analyze your market context, user feedback, and technical constraints to surface critical assumptions and opportunities."],
+      ["Evaluate & Prioritize", "We assess feature concepts against business value and technical feasibility, establishing a razor-sharp MVP definition."],
+      ["Synthesize & Blueprint", "We deliver a comprehensive product strategy roadmap and execution brief ready to guide design and engineering."]
+    ],
+    approachSteps: [
+      {
+        step: "01",
+        title: "Frame & Discover",
+        description: "We analyze your market context, user feedback, and technical constraints to surface critical assumptions and opportunities."
+      },
+      {
+        step: "02",
+        title: "Evaluate & Prioritize",
+        description: "We assess feature concepts against business value and technical feasibility, establishing a razor-sharp MVP definition."
+      },
+      {
+        step: "03",
+        title: "Synthesize & Blueprint",
+        description: "We deliver a comprehensive product strategy roadmap and execution brief ready to guide design and engineering."
+      }
+    ],
+    questions: [
+      ["Can product strategy be conducted before design or development begins?", "Yes. Strategic scoping prior to implementation prevents costly revisions, ensures team alignment, and accelerates time-to-market."],
+      ["What is the typical timeline for a product strategy engagement?", "Most strategy sprints run between one to three weeks, depending on the complexity of the domain and the depth of user research required."],
+      ["How does the strategy deliverable translate into design and engineering?", "We provide structured feature matrices, user stories, and technical requirements that directly feed into Figma wireframes and development sprint backlogs."]
+    ],
+    faqs: [
+      {
+        question: "Can product strategy be conducted before design or development begins?",
+        answer: "Yes. Strategic scoping prior to implementation prevents costly revisions, ensures team alignment, and accelerates time-to-market."
+      },
+      {
+        question: "What is the typical timeline for a product strategy engagement?",
+        answer: "Most strategy sprints run between one to three weeks, depending on the complexity of the domain and the depth of user research required."
+      },
+      {
+        question: "How does the strategy deliverable translate into design and engineering?",
+        answer: "We provide structured feature matrices, user stories, and technical requirements that directly feed into Figma wireframes and development sprint backlogs."
+      }
+    ],
+    image: {
+      src: "/assets/services/product-strategy.webp",
+      alt: "Product strategy and analytics dashboard showing metrics, charts, and planning workflow",
+      tag: "DISCOVERY & PRODUCT DEFINITION"
+    },
+    control: "Organize the roadmap",
+    outcome: "Open questions → staged priorities. Strategic roadmap."
   },
+
   "brand-visual-design": {
-    focus: "Make the identity work as a system.",
-    intent: "A coherent visual language across brand and product.",
-    overview: "A product feels more coherent when its typography, colour and visual decisions work together. This proposed scope can explore a new visual direction or clarify how an existing identity should be applied. Brand ownership, approvals and source artwork remain essential inputs.",
-    deliverables: ["A reviewed visual direction and reference rationale", "Typography and colour usage proposals", "A component or application composition study", "Usage and source-asset handoff notes"],
-    approach: [["Start with the identity", "Review the approved mark, existing guidelines, audience and intended applications. Preserve established artwork rather than silently replacing it."], ["Compose the system", "Explore hierarchy, colour relationships and layout across representative product surfaces. Make the relationships visible, not just the individual assets."], ["Document the decisions", "Record the agreed usage, accessibility considerations and source files. Any new identity work or licensed assets need explicit approval."]],
-    questions: [["Will an existing logo be replaced?", "Only if a separate identity redesign is explicitly agreed. This website demonstration preserves the supplied MOTEKRA mark and does not create a replacement logo."], ["Are fonts and imagery included?", "Required assets and their licenses need review. Paid fonts, photography or other licensed material are not silently included in the proposed service."], ["How does this connect to interface design?", "The visual system can inform typography, colour roles, components and product layouts. The boundary between brand work and interface delivery should be agreed in scope."]],
-    control: "Compose the brand system", outcome: "Separate elements → one visual system. The original supplied MOTEKRA mark stays unchanged.",
-  },
+    focus: "A unified visual language that builds trust, recognition, and product authority.",
+    intent: "Distinctive brand identities, scalable design systems, and cohesive visual languages tailored for modern digital products.",
+    overview: "Brand identity extends far beyond a standalone logo. We craft comprehensive visual systems—harmonizing typography, color palettes, spacing principles, and interface components—that communicate craft, authority, and purpose across every touchpoint.",
+    highlights: [
+      "Cohesive color palettes with accessible contrast ratios and dynamic light/dark support",
+      "Typographic hierarchies calibrated for readability across web and mobile viewports",
+      "Scalable design tokens and component guidelines that bridge brand and software engineering",
+      "Production-ready digital stationery, social templates, and vector iconography"
+    ],
+    deliverables: [
+      "Brand identity guidelines & system rules",
+      "Color palette & design system tokens",
+      "Typographic hierarchy specifications",
+      "Digital asset & vector icon library"
+    ],
+    deliverableItems: [
+      {
+        title: "Brand Identity Guidelines",
+        description: "Comprehensive guidelines defining logo usage, clear space, brand voice, and visual do's and don'ts."
+      },
+      {
+        title: "Color Palette & System Tokens",
+        description: "Systematic color architectures including primary brand shades, neutral surfaces, accents, and accessible pairings."
+      },
+      {
+        title: "Typographic Hierarchy Spec",
+        description: "Carefully curated web and app font pairings, weight scales, line heights, and responsive type rules."
+      },
+      {
+        title: "Digital Asset & Icon Library",
+        description: "Vector brand marks, iconography sets, social preview templates, and production-ready SVG assets."
+      }
+    ],
+    approach: [
+      ["Identity Audit & Direction", "We review your brand position, market differentiation, and audience expectations to explore visual directions."],
+      ["System Design & Testing", "We establish typographic scales, color roles, and graphic elements, testing them across real digital interface contexts."],
+      ["Documentation & Asset Handoff", "We compile the complete brand system into an accessible digital guide with master vector source assets."]
+    ],
+    approachSteps: [
+      {
+        step: "01",
+        title: "Identity Audit & Direction",
+        description: "We review your brand position, market differentiation, and audience expectations to explore visual directions."
+      },
+      {
+        step: "02",
+        title: "System Design & Testing",
+        description: "We establish typographic scales, color roles, and graphic elements, testing them across real digital interface contexts."
+      },
+      {
+        step: "03",
+        title: "Documentation & Asset Handoff",
+        description: "We compile the complete brand system into an accessible digital guide with master vector source assets."
+      }
+    ],
+    questions: [
+      ["Do you create new brand identities or refine existing ones?", "We do both. We can design a brand identity from the ground up or modernize and systematize an existing identity for digital applications."],
+      ["Will the brand guidelines work across both print and digital platforms?", "Yes. While our primary focus is high-performance digital products, our guidelines specify color conversions (RGB, CMYK, Pantone) and print rules."],
+      ["How do you ensure brand consistency across our engineering team?", "We deliver brand specifications directly as design tokens (CSS variables, Figma styles, JSON exports) that developers can consume directly in code."]
+    ],
+    faqs: [
+      {
+        question: "Do you create new brand identities or refine existing ones?",
+        answer: "We do both. We can design a brand identity from the ground up or modernize and systematize an existing identity for digital applications."
+      },
+      {
+        question: "Will the brand guidelines work across both print and digital platforms?",
+        answer: "Yes. While our primary focus is high-performance digital products, our guidelines specify color conversions (RGB, CMYK, Pantone) and print rules."
+      },
+      {
+        question: "How do you ensure brand consistency across our engineering team?",
+        answer: "We deliver brand specifications directly as design tokens (CSS variables, Figma styles, JSON exports) that developers can consume directly in code."
+      }
+    ],
+    image: {
+      src: "/assets/services/brand-visual-design.webp",
+      alt: "Brand identity design system showcase with color palette, typography specimens, and digital stationery",
+      tag: "VISUAL SYSTEM & DESIGN TOKENS"
+    },
+    control: "Compose the brand system",
+    outcome: "Separate elements → one visual system. MOTEKRA brand identity."
+  }
 };

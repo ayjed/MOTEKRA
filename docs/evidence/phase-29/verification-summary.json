@@ -1,0 +1,31 @@
+{
+  "success": true,
+  "heroHeading": "HaveSomething inMind?",
+  "heroLead": "Tell us about your idea. Let’s explore what’s possible.",
+  "formHeading": "Start a Project",
+  "formFields": [
+    "Your name",
+    "Your email",
+    "Project type",
+    "Tell us about your project"
+  ],
+  "primaryCTA": "Send Inquiry\n↗",
+  "privacyNotice": "We respect your privacy. Details shared are used solely to evaluate your project inquiry.",
+  "asideHeading": "Let’s build something meaningful.",
+  "officialWhatsApp": "https://wa.me/447403605289",
+  "officialLinkedIn": "https://www.linkedin.com/company/motekra/",
+  "personalLinksOnContact": 0,
+  "faqCount": 4,
+  "faqQuestions": [
+    "What information do I need to start?",
+    "Do I need a complete project brief?",
+    "When can I expect a response?",
+    "Can I share design or project links?"
+  ],
+  "closingSectionRemoved": true,
+  "scopeNoteRemoved": true,
+  "footerOfficialChannelsVerified": true,
+  "footerPersonalLinksCount": 0,
+  "mobileResponsive": true,
+  "pageErrors": []
+}

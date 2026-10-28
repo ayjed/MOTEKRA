@@ -1,0 +1,105 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Users\\DELL\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "tests/smoke/home.spec.ts",
+      "tests/smoke/motion.spec.ts"
+    ],
+    "configFile": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\playwright.config.ts",
+    "rootDir": "C:/Users/DELL/Desktop/MESH PROJECT/MOTEKRA/tests/smoke",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {},
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/DELL/Desktop/MESH PROJECT/MOTEKRA/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/DELL/Desktop/MESH PROJECT/MOTEKRA/tests/smoke",
+        "testIgnore": [],
+        "testMatch": [
+          "foundation.spec.ts"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {},
+        "name": "",
+        "testDir": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke",
+        "snapshotDir": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke",
+        "testIgnore": [],
+        "testMatch": "foundation.spec.ts",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3000",
+          "channel": "chrome",
+          "headless": true,
+          "screenshot": "only-on-failure",
+          "trace": "retain-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "docs/evidence/phase-01/foundation-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [],
+  "errors": [
+    {
+      "message": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments.",
+      "stack": "Error: No tests found.\nMake sure that arguments are regular expressions matching test files.\nYou may need to escape symbols like \"$\" or \"*\" and quote the arguments."
+    }
+  ],
+  "stats": {
+    "startTime": "2026-10-27T19:41:42.639Z",
+    "duration": 22.581000000000017,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

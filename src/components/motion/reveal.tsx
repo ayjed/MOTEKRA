@@ -3,23 +3,105 @@
 import { useRef, type ReactNode } from "react";
 import { useGsapScope } from "@/lib/animations/hooks";
 
-export function Reveal({ children, kind = "lines", className = "" }: { children: ReactNode; kind?: "lines" | "image" | "stagger"; className?: string }) {
+export function Reveal({
+  children,
+  kind = "lines",
+  className = "",
+}: {
+  children: ReactNode;
+  kind?: "lines" | "image" | "stagger" | "fade";
+  className?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
+
   useGsapScope(ref, (gsap, ScrollTrigger, root) => {
-    const targets = root.querySelectorAll<HTMLElement>(kind === "lines" ? "[data-line]" : kind === "image" ? "[data-image]" : "[data-stagger]");
+    const targets = root.querySelectorAll<HTMLElement>(
+      kind === "lines"
+        ? "[data-line]"
+        : kind === "image"
+        ? "[data-image]"
+        : kind === "fade"
+        ? "[data-fade]"
+        : "[data-stagger]"
+    );
     if (!targets.length) return;
+
+    // Check prefers-reduced-motion
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      targets.forEach((target) => {
+        gsap.set(target, { clearProps: "all" });
+        target.style.opacity = "1";
+        target.style.transform = "none";
+      });
+      return;
+    }
+
     const animations = gsap.context(() => {}, root);
-    ScrollTrigger.create({ trigger: root, start: "top 90%", once: true, onEnter: () => {
-      animations.add(() => gsap.fromTo(targets,
-        kind === "lines" ? { yPercent: 108, rotation: 2 } : kind === "image" ? { clipPath: "inset(12% 7% 12% 7% round 24px)", scale: .94, rotationY: -8 } : { x: -28, rotationY: -6 },
-        { ...(kind === "lines" ? { yPercent: 0, rotation: 0 } : kind === "image" ? { clipPath: "inset(0% 0% 0% 0% round 24px)", scale: 1, rotationY: 0 } : { x: 0, rotationY: 0 }),
-          duration: kind === "image" ? 1.15 : .85, stagger: .11, ease: "power3.out",
-          onComplete: () => targets.forEach((target) => { target.style.removeProperty("transform"); target.style.removeProperty("clip-path"); }),
-        }));
-    } });
-    // Offscreen content stays readable until its own entrance begins. A resize
-    // cannot reset a completed heading to a masked start state.
-    return () => animations.revert();
+
+    // Initial state setup:
+    // Pure vertical slide-in from bottom to top; zero rotation; zero horizontal displacement
+    const fromVars =
+      kind === "lines"
+        ? { yPercent: 105, opacity: 0 }
+        : kind === "image"
+        ? { clipPath: "inset(12% 7% 12% 7% round 24px)", scale: 0.94 }
+        : { y: 20, opacity: 0 };
+
+    const toVars =
+      kind === "lines"
+        ? { yPercent: 0, opacity: 1, duration: 0.8, stagger: 0.08, ease: "power3.out" }
+        : kind === "image"
+        ? { clipPath: "inset(0% 0% 0% 0% round 24px)", scale: 1, duration: 1.15, ease: "power3.out" }
+        : { y: 0, opacity: 1, duration: 0.75, stagger: 0.08, ease: "power3.out" };
+
+    ScrollTrigger.create({
+      trigger: root,
+      start: "top 90%",
+      once: true,
+      onEnter: () => {
+        animations.add(() =>
+          gsap.fromTo(targets, fromVars, {
+            ...toVars,
+            onComplete: () => {
+              targets.forEach((target) => {
+                gsap.set(target, { clearProps: "all" });
+                target.style.opacity = "1";
+                target.style.transform = "none";
+                target.style.removeProperty("clip-path");
+              });
+            },
+          })
+        );
+      },
+    });
+
+    // Safety recovery: Never allow text to remain stuck at opacity:0 or offscreen on tab switch / resize
+    const ensureVisible = () => {
+      targets.forEach((target) => {
+        gsap.set(target, { clearProps: "all" });
+        target.style.opacity = "1";
+        target.style.transform = "none";
+      });
+    };
+
+    document.addEventListener("visibilitychange", ensureVisible);
+    window.addEventListener("focus", ensureVisible);
+    window.addEventListener("pageshow", ensureVisible);
+    window.addEventListener("motekra-tab-restored", ensureVisible);
+
+    return () => {
+      document.removeEventListener("visibilitychange", ensureVisible);
+      window.removeEventListener("focus", ensureVisible);
+      window.removeEventListener("pageshow", ensureVisible);
+      window.removeEventListener("motekra-tab-restored", ensureVisible);
+      animations.revert();
+    };
   });
-  return <div ref={ref} className={`motion-reveal ${className}`} data-reveal={kind}>{children}</div>;
+
+  return (
+    <div ref={ref} className={`motion-reveal ${className}`} data-reveal={kind}>
+      {children}
+    </div>
+  );
 }
+

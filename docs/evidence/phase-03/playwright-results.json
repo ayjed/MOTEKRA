@@ -4,7 +4,9 @@
       "C:\\Users\\DELL\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
       "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\node_modules\\@playwright\\test\\cli.js",
       "test",
-      "--config=playwright.home.config.ts"
+      "--config=playwright.home.config.ts",
+      "-g",
+      "desktop hero"
     ],
     "configFile": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\playwright.home.config.ts",
     "rootDir": "C:/Users/DELL/Desktop/MESH PROJECT/MOTEKRA/tests/smoke",
@@ -110,42 +112,8 @@
       "line": 0,
       "specs": [
         {
-          "title": "Home HTML contains the eight-section storyboard and honest content",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 120000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 401,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-10-25T18:45:25.764Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "d318381359a9b96acb1e-fb6352a7c539b676fb91",
-          "file": "home.spec.ts",
-          "line": 9,
-          "column": 1
-        },
-        {
           "title": "desktop hero, handoff and all five process stages respond to scroll",
-          "ok": true,
+          "ok": false,
           "tags": [],
           "tests": [
             {
@@ -158,193 +126,63 @@
                 {
                   "workerIndex": 0,
                   "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 41404,
-                  "errors": [],
+                  "status": "failed",
+                  "duration": 21479,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.process-narrative')\nExpected: \u001b[32m\"1\"\u001b[39m\nReceived: \u001b[31m\"0\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.process-narrative') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.process-narrative')\u001b[22m\n\u001b[2m    13 × locator resolved to <div data-stage=\"0\" class=\"process-narrative\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"0\"\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.process-narrative')\nExpected: \u001b[32m\"1\"\u001b[39m\nReceived: \u001b[31m\"0\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.process-narrative') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.process-narrative')\u001b[22m\n\u001b[2m    13 × locator resolved to <div data-stage=\"0\" class=\"process-narrative\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"0\"\u001b[22m\n\n    at C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts:35:54",
+                    "location": {
+                      "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts",
+                      "column": 54,
+                      "line": 35
+                    },
+                    "snippet": "\u001b[0m \u001b[90m 33 |\u001b[39m   \u001b[36mfor\u001b[39m (\u001b[36mlet\u001b[39m i \u001b[33m=\u001b[39m \u001b[35m0\u001b[39m\u001b[33m;\u001b[39m i \u001b[33m<\u001b[39m \u001b[35m5\u001b[39m\u001b[33m;\u001b[39m i\u001b[33m++\u001b[39m) {\n \u001b[90m 34 |\u001b[39m     \u001b[36mawait\u001b[39m steps\u001b[33m.\u001b[39mnth(i)\u001b[33m.\u001b[39mevaluate((element) \u001b[33m=>\u001b[39m window\u001b[33m.\u001b[39mscrollTo(\u001b[35m0\u001b[39m\u001b[33m,\u001b[39m element\u001b[33m.\u001b[39mgetBoundingClientRect()\u001b[33m.\u001b[39mtop \u001b[33m+\u001b[39m scrollY \u001b[33m-\u001b[39m innerHeight \u001b[33m*\u001b[39m \u001b[35m.60\u001b[39m))\u001b[33m;\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 35 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page\u001b[33m.\u001b[39mlocator(\u001b[32m\".process-narrative\"\u001b[39m))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m\"data-stage\"\u001b[39m\u001b[33m,\u001b[39m \u001b[33mString\u001b[39m(i))\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                                                      \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 36 |\u001b[39m     \u001b[36mawait\u001b[39m expect(steps\u001b[33m.\u001b[39mnth(i))\u001b[33m.\u001b[39mtoHaveAttribute(\u001b[32m\"aria-current\"\u001b[39m\u001b[33m,\u001b[39m \u001b[32m\"step\"\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m 37 |\u001b[39m     \u001b[36mawait\u001b[39m page\u001b[33m.\u001b[39mscreenshot({ path\u001b[33m:\u001b[39m \u001b[32m`${dir}/process-${i + 1}.png`\u001b[39m })\u001b[33m;\u001b[39m\n \u001b[90m 38 |\u001b[39m   }\u001b[0m"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts",
+                        "column": 54,
+                        "line": 35
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator:  locator('.process-narrative')\nExpected: \u001b[32m\"1\"\u001b[39m\nReceived: \u001b[31m\"0\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" locator('.process-narrative') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.process-narrative')\u001b[22m\n\u001b[2m    13 × locator resolved to <div data-stage=\"0\" class=\"process-narrative\">…</div>\u001b[22m\n\u001b[2m       - unexpected value \"0\"\u001b[22m\n\n\n  33 |   for (let i = 0; i < 5; i++) {\n  34 |     await steps.nth(i).evaluate((element) => window.scrollTo(0, element.getBoundingClientRect().top + scrollY - innerHeight * .60));\n> 35 |     await expect(page.locator(\".process-narrative\")).toHaveAttribute(\"data-stage\", String(i));\n     |                                                      ^\n  36 |     await expect(steps.nth(i)).toHaveAttribute(\"aria-current\", \"step\");\n  37 |     await page.screenshot({ path: `${dir}/process-${i + 1}.png` });\n  38 |   }\n    at C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts:35:54"
+                    }
+                  ],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T18:45:26.304Z",
+                  "startTime": "2026-10-27T19:48:48.428Z",
                   "annotations": [],
-                  "attachments": []
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\home-desktop-hero-handoff--f6f0f-ss-stages-respond-to-scroll\\test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\home-desktop-hero-handoff--f6f0f-ss-stages-respond-to-scroll\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\test-results\\home-desktop-hero-handoff--f6f0f-ss-stages-respond-to-scroll\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\tests\\smoke\\home.spec.ts",
+                    "column": 54,
+                    "line": 35
+                  }
                 }
               ],
-              "status": "expected"
+              "status": "unexpected"
             }
           ],
           "id": "d318381359a9b96acb1e-e6cb7161d82890c6c8f8",
           "file": "home.spec.ts",
           "line": 22,
-          "column": 1
-        },
-        {
-          "title": "five service demonstrations work by keyboard and expose real detail links",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 120000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 10231,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-10-25T18:46:09.231Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "d318381359a9b96acb1e-1196a5ba6d68258a6048",
-          "file": "home.spec.ts",
-          "line": 45,
-          "column": 1
-        },
-        {
-          "title": "live reduced-motion changes and route returns restore the Home scene",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 120000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 19654,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-10-25T18:46:19.596Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "d318381359a9b96acb1e-b63390eab44a3e84cbba",
-          "file": "home.spec.ts",
-          "line": 62,
-          "column": 1
-        },
-        {
-          "title": "mobile, reduced-motion and no-JavaScript preserve content and actions",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 120000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 28293,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-10-25T18:46:39.365Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "d318381359a9b96acb1e-ea49906f7755b749b393",
-          "file": "home.spec.ts",
-          "line": 81,
-          "column": 1
-        },
-        {
-          "title": "axe accessibility audit at desktop and mobile reduced motion",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 120000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 15510,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-10-25T18:47:07.790Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "d318381359a9b96acb1e-fce9e6514264b69602ca",
-          "file": "home.spec.ts",
-          "line": 107,
-          "column": 1
-        },
-        {
-          "title": "record the desktop eight-section walkthrough",
-          "ok": true,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 180000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "",
-              "projectName": "",
-              "results": [
-                {
-                  "workerIndex": 0,
-                  "parallelIndex": 0,
-                  "status": "passed",
-                  "duration": 45614,
-                  "errors": [],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-10-25T18:47:23.363Z",
-                  "annotations": [],
-                  "attachments": []
-                }
-              ],
-              "status": "expected"
-            }
-          ],
-          "id": "d318381359a9b96acb1e-f3a3182170013b4bbd7c",
-          "file": "home.spec.ts",
-          "line": 119,
           "column": 1
         }
       ]
@@ -352,11 +190,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-25T18:45:23.769Z",
-    "duration": 165875.624,
-    "expected": 7,
+    "startTime": "2026-10-27T19:48:46.044Z",
+    "duration": 26527.713,
+    "expected": 0,
     "skipped": 0,
-    "unexpected": 0,
+    "unexpected": 1,
     "flaky": 0
   }
 }

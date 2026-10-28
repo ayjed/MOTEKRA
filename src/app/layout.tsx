@@ -8,8 +8,10 @@ import { isIndexable } from "@/lib/seo/site";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { RouteTransition } from "@/components/motion/route-transition";
 import { CustomCursor } from "@/components/ui/custom-cursor";
+import { CinematicPreloader } from "@/components/ui/cinematic-preloader";
 import "@/styles/globals.css";
 import "@/styles/motion.css";
+import "@/styles/liquid-glass-header.css";
 
 const displayFont = localFont({ src: "../styles/fonts/manrope-latin-variable.woff2", variable: "--font-manrope", display: "swap", weight: "200 800" });
 
@@ -23,8 +25,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={displayFont.variable}>
-      <body id="top">
+      {/* Grammarly can inject body attributes before React hydrates. */}
+      <body id="top" suppressHydrationWarning>
         <a href="#main-content" className="skip-link">Skip to content</a>
+        <noscript>
+          <style>{`.motekra-preloader { display: none !important; } body.preloader-active { overflow: auto !important; }`}</style>
+        </noscript>
+        <CinematicPreloader />
         <CustomCursor />
         <JsonLd data={organizationSchema()}/>
         <JsonLd data={websiteSchema()}/>

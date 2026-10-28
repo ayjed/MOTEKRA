@@ -1,24 +1,25 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { services } from "@/content/services";
 import { serviceDetails } from "@/content/services/details";
+import { useGsapScope } from "@/lib/animations/hooks";
 
 interface ServicesAccordionProps {
-  initialActiveSlug?: string;
+  initialActiveSlug?: string | null;
 }
 
 const SERVICE_IMAGES: Record<string, { src: string; alt: string; tag: string }> = {
   "ui-ux-design": {
-    src: "/assets/services/ui-ux-design.jpg",
-    alt: "Figma UI/UX design workspace showing product flows, design systems, and wireframes",
+    src: "/assets/services/ui-ux-design.webp",
+    alt: "Responsive laptop and smartphone mockup displaying modern e-commerce dashboard and mobile shopping interface on a clean white background",
     tag: "FIGMA WORKSPACE & DESIGN SYSTEM",
   },
   "web-development": {
-    src: "/assets/services/web-development.jpg",
-    alt: "Full-stack web application interface and responsive development workstation",
+    src: "/assets/services/web-development.webp",
+    alt: "Responsive laptop and smartphone mockup displaying Nexora website interface and mobile application on a clean white background",
     tag: "NEXT.JS & CLOUD ARCHITECTURE",
   },
   "mobile-app-development": {
@@ -38,27 +39,79 @@ const SERVICE_IMAGES: Record<string, { src: string; alt: string; tag: string }> 
   },
 };
 
-export function ServicesAccordion({ initialActiveSlug = "ui-ux-design" }: ServicesAccordionProps) {
-  const [activeSlug, setActiveSlug] = useState<string>(initialActiveSlug);
+export function ServicesAccordion({ initialActiveSlug = null }: ServicesAccordionProps) {
+  // Nullable active service state:
+  // - On initial load, all five services are collapsed (activeSlug is null).
+  // - Clicking an open service collapses it to null.
+  // - Clicking a collapsed service opens it and closes any previously opened service.
+  // - Scrolling never changes the selected service.
+  const [activeSlug, setActiveSlug] = useState<string | null>(initialActiveSlug);
+  const [lastSelectedSlug, setLastSelectedSlug] = useState<string>(initialActiveSlug ?? "ui-ux-design");
+  const containerRef = useRef<HTMLDivElement>(null);
   const previewRef = useRef<HTMLDivElement>(null);
-  const [pointerOffset, setPointerOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
-  // Handle subtle 3D tilt tracking for desktop pointer
+  // Subtle 3D tilt tracking for desktop pointer via CSS variables (conflict-free, no re-renders)
   const handlePointerMove = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (e.pointerType === "touch") return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
-    setPointerOffset({ x: x * 8, y: -y * 8 });
+    e.currentTarget.style.setProperty("--tilt-x", `${(x * 5).toFixed(2)}deg`);
+    e.currentTarget.style.setProperty("--tilt-y", `${(-y * 5).toFixed(2)}deg`);
   }, []);
 
-  const handlePointerLeave = useCallback(() => {
-    setPointerOffset({ x: 0, y: 0 });
+  const handlePointerLeave = useCallback((e: React.PointerEvent<HTMLDivElement>) => {
+    e.currentTarget.style.setProperty("--tilt-x", "0deg");
+    e.currentTarget.style.setProperty("--tilt-y", "0deg");
   }, []);
 
-  const handleSelectService = (slug: string) => {
-    setActiveSlug(slug);
+  // Subtle scroll-following parallax and perspective depth within Services container
+  useGsapScope(containerRef, (gsap, ScrollTrigger, root) => {
+    const mm = gsap.matchMedia();
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const card = root.querySelector<HTMLElement>(".services-preview-card");
+      if (card) {
+        gsap.fromTo(
+          card,
+          { y: -8, rotateX: 1.2 },
+          {
+            y: 10,
+            rotateX: -1.2,
+            ease: "none",
+            scrollTrigger: {
+              trigger: root,
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.45,
+            },
+          }
+        );
+      }
+    });
+    return () => mm.revert();
+  });
+
+  const handleToggleService = (slug: string) => {
+    if (activeSlug === slug) {
+      // Independent collapse: clicking the open service collapses it to null
+      setActiveSlug(null);
+    } else {
+      // Opening another service smoothly closes the previously expanded one
+      setActiveSlug(slug);
+      setLastSelectedSlug(slug);
+    }
+
+    // Refresh ScrollTrigger after accordion panel expansion/collapse finishes
+    setTimeout(() => {
+      if (typeof window !== "undefined") {
+        import("gsap/ScrollTrigger")
+          .then(({ ScrollTrigger }) => {
+            ScrollTrigger.refresh();
+          })
+          .catch(() => { });
+      }
+    }, 420);
   };
 
   const fallbackImage = {
@@ -67,40 +120,38 @@ export function ServicesAccordion({ initialActiveSlug = "ui-ux-design" }: Servic
     tag: "CAPABILITY OVERVIEW",
   };
 
-  const activeService = services.find((s) => s.slug === activeSlug) ?? services[0]!;
-  const activeImage = SERVICE_IMAGES[activeSlug] ?? fallbackImage;
+  // Preview displays active service or retains last selected image when collapsed
+  const displaySlug = activeSlug ?? lastSelectedSlug;
+  const activeService = services.find((s) => s.slug === displaySlug) ?? services[0]!;
 
   return (
-    <div className="services-container-shell" data-services-container>
+    <div className="services-container-shell" data-services-container ref={containerRef}>
       <div className="services-container-grid">
-        {/* Left Column: Interactive Visual Preview (~40% on desktop) */}
+        {/* Left Column: Scroll-following visual preview (sticky within Services container) */}
         <div className="services-preview-column" aria-hidden="true">
           <div
             className="services-preview-card"
             ref={previewRef}
             onPointerMove={handlePointerMove}
             onPointerLeave={handlePointerLeave}
-            style={{
-              transform: `perspective(1000px) rotateY(${pointerOffset.x}deg) rotateX(${pointerOffset.y}deg)`,
-            }}
           >
             <div className="services-preview-media-stack">
               {services.map((service) => {
                 const img = SERVICE_IMAGES[service.slug] ?? fallbackImage;
-                const isActive = service.slug === activeSlug;
+                const isLayerActive = service.slug === displaySlug;
                 return (
                   <div
                     key={service.slug}
-                    className={`services-preview-layer ${isActive ? "is-active" : ""}`}
+                    className={`services-preview-layer ${isLayerActive ? "is-active" : ""}`}
                     data-preview-slug={service.slug}
                   >
                     <Image
                       src={img.src}
                       alt={img.alt}
                       fill
-                      sizes="(min-width: 1200px) 480px, (min-width: 768px) 40vw, 90vw"
+                      sizes="(min-width: 1200px) 460px, (min-width: 768px) 40vw, 90vw"
                       className="services-preview-img"
-                      priority={service.slug === initialActiveSlug}
+                      priority={service.slug === "ui-ux-design"}
                     />
                     <div className="services-preview-glass-glare" />
                     <div className="services-preview-badge">
@@ -111,17 +162,13 @@ export function ServicesAccordion({ initialActiveSlug = "ui-ux-design" }: Servic
                 );
               })}
             </div>
-            <div className="services-preview-caption-bar">
-              <span className="caption-label">SELECTED CAPABILITY</span>
-              <span className="caption-title">{activeService.title}</span>
-            </div>
           </div>
         </div>
 
-        {/* Right Column: Interactive Vertical Accordion (~60% on desktop) */}
+        {/* Right Column: Interactive Vertical Accordion — Click-activated only */}
         <div className="services-accordion-column" role="region" aria-label="MOTEKRA Capabilities Accordion">
           <div className="services-accordion-list">
-            {services.map((service, index) => {
+            {services.map((service) => {
               const isActive = service.slug === activeSlug;
               const details = serviceDetails[service.slug];
               const panelId = `service-panel-${service.slug}`;
@@ -139,7 +186,13 @@ export function ServicesAccordion({ initialActiveSlug = "ui-ux-design" }: Servic
                     aria-expanded={isActive}
                     aria-controls={panelId}
                     className="service-accordion-header"
-                    onClick={() => handleSelectService(service.slug)}
+                    onClick={() => handleToggleService(service.slug)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        handleToggleService(service.slug);
+                      }
+                    }}
                   >
                     <span className="service-accordion-title" data-accordion-title>
                       {service.title}
@@ -155,7 +208,7 @@ export function ServicesAccordion({ initialActiveSlug = "ui-ux-design" }: Servic
                     role="region"
                     aria-labelledby={headingId}
                     className="service-accordion-panel"
-                    hidden={!isActive}
+                    aria-hidden={!isActive}
                   >
                     <div className="service-accordion-panel-inner">
                       {/* Mobile Visual Preview shown directly in panel on small viewports */}

@@ -9,7 +9,9 @@ export function ServicesCinema({ children }: { children: ReactNode }) {
   useGsapScope(ref, (gsap, ScrollTrigger, root) => {
     // 1. Entrance timeline for introduction section (activates immediately at top 95%)
     const introSection = root.querySelector<HTMLElement>(".services-intro-section");
-    const headingLines = root.querySelectorAll<HTMLElement>("[data-services-heading-line]");
+    const headingLines = introSection
+      ? introSection.querySelectorAll<HTMLElement>("[data-services-heading-line]")
+      : root.querySelectorAll<HTMLElement>("[data-services-heading-line]");
     const introElements = root.querySelectorAll<HTMLElement>("[data-services-intro-elem]");
 
     if (introSection) {
@@ -24,31 +26,32 @@ export function ServicesCinema({ children }: { children: ReactNode }) {
       if (headingLines.length) {
         introTl.fromTo(
           headingLines,
-          { yPercent: 115, opacity: 0 },
+          { yPercent: 105, opacity: 0 },
           {
             yPercent: 0,
             opacity: 1,
-            duration: 0.95,
-            stagger: 0.1,
+            duration: 0.8,
+            stagger: 0.08,
             ease: "power3.out",
-            clearProps: "transform,opacity",
-          }
+            clearProps: "all",
+          },
+          0
         );
       }
 
       if (introElements.length) {
         introTl.fromTo(
           introElements,
-          { y: 24, opacity: 0 },
+          { y: 18, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.75,
+            duration: 0.7,
             stagger: 0.08,
-            ease: "power2.out",
-            clearProps: "transform,opacity",
+            ease: "power3.out",
+            clearProps: "all",
           },
-          "-=0.5"
+          0.15
         );
       }
     }
@@ -66,54 +69,83 @@ export function ServicesCinema({ children }: { children: ReactNode }) {
 
       containerTl.fromTo(
         container,
-        { y: 45, opacity: 0, scale: 0.985 },
+        { y: 35, opacity: 0, scale: 0.99 },
         {
           y: 0,
           opacity: 1,
           scale: 1,
-          duration: 1.05,
+          duration: 0.9,
           ease: "power3.out",
-          clearProps: "scale",
+          clearProps: "all",
         }
       );
 
+      // Ensure all accordion items and preview card inside are immediately visible
       const previewCard = container.querySelector<HTMLElement>(".services-preview-card");
       if (previewCard) {
-        containerTl.fromTo(
-          previewCard,
-          { opacity: 0, scale: 0.96, y: 25 },
-          {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 0.85,
-            ease: "power2.out",
-            clearProps: "scale,opacity",
-          },
-          "-=0.7"
-        );
+        gsap.set(previewCard, { opacity: 1 });
       }
-
       const accordionItems = container.querySelectorAll<HTMLElement>("[data-accordion-item]");
-      if (accordionItems.length) {
-        containerTl.fromTo(
-          accordionItems,
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.75,
-            stagger: 0.08,
-            ease: "power2.out",
-            clearProps: "transform,opacity",
-          },
-          "-=0.6"
-        );
-      }
+      accordionItems.forEach((item) => gsap.set(item, { opacity: 1, clearProps: "opacity" }));
     }
 
+    // 3. Entrance timeline for scope section
+    const scopeSection = root.querySelector<HTMLElement>(".services-scope-section");
+    const scopeLines = scopeSection
+      ? scopeSection.querySelectorAll<HTMLElement>("[data-scope-heading-line]")
+      : root.querySelectorAll<HTMLElement>("[data-scope-heading-line]");
+
+    if (scopeSection && scopeLines.length) {
+      const scopeTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: scopeSection,
+          start: "top 85%",
+          once: true,
+        },
+      });
+
+      scopeTl.fromTo(
+        scopeLines,
+        { yPercent: 105, opacity: 0 },
+        {
+          yPercent: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.08,
+          ease: "power3.out",
+          clearProps: "all",
+        },
+        0
+      );
+    }
+
+    // Lifecycle recovery: Ensure returning from inactive tab restores visibility deterministically
+    const ensureVisible = () => {
+      headingLines.forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+      scopeLines.forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+      introElements.forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+      if (container) {
+        container.style.opacity = "1";
+        container.style.transform = "none";
+      }
+    };
+    window.addEventListener("motekra-tab-restored", ensureVisible);
+    document.addEventListener("visibilitychange", ensureVisible);
+    window.addEventListener("focus", ensureVisible);
+
     return () => {
-      // Automatic cleanup handled by gsap.context in useGsapScope
+      window.removeEventListener("motekra-tab-restored", ensureVisible);
+      document.removeEventListener("visibilitychange", ensureVisible);
+      window.removeEventListener("focus", ensureVisible);
     };
   });
 

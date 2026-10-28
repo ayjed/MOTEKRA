@@ -1,27 +1,219 @@
+"use client";
+
+import { useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { ContactCta } from "@/components/sections/shared";
-import { ButtonLink, Eyebrow } from "@/components/ui/primitives";
-import { filterWork, getWorkItems, workCategories } from "@/lib/data/work";
-import { WorkFilters } from "./work-filters";
-import { WorkCard } from "./work-card";
-import { WorkCinema } from "./work-cinema";
+import { candidates, candidateImage } from "@/content/projects/candidates";
+import { useGsapScope } from "@/lib/animations/hooks";
 import "@/styles/work.css";
 
-const emptyCopy = {
-  all: "Approved entries will appear here with their precise contribution and status.",
-  company: "No company engagement is currently cleared for publication. Delivery under MOTEKRA, contribution and display permission must be established first.",
-  founder: "Founder-independent and collaborative work will appear with Akinwumi Ayomiposi’s precise contribution. No candidate has that attribution approved yet.",
-  concept: "Concepts appear with explicit non-production labels and verified attribution.",
-  development: "Experiments are labelled as work in progress, without implied delivery or client results.",
-  draft: "Candidate project cases are withheld outside the local draft review. No unverified work is represented as a completed client engagement.",
+const PROJECT_CATEGORIES: Record<string, string> = {
+  "spotlight-contest": "Web Application",
+  "lad-global-travels": "Travel & Mobility",
+  "tog-africa": "Corporate Platform",
+  "connectapi": "UI/UX Concept",
 };
 
 export function WorkPage() {
-  const all = getWorkItems(true);
-  const counts = Object.fromEntries(workCategories.map(([key]) => [key, filterWork(all, key).length]));
-  return <WorkCinema><section className="work-hero"><div className="container"><Eyebrow>Work / a considered collection</Eyebrow><div className="work-hero-grid"><h1 aria-label="Real Ideas. Real Impact."><span className="work-title-mask" aria-hidden="true"><span data-work-line>Real Ideas.</span></span><span className="work-title-mask accent" aria-hidden="true"><span data-work-line>Real Impact.</span></span></h1><div className="work-hero-copy"><p className="lead">One portfolio.<br />Every contribution in context.</p><p>Company engagements, founder work, concepts and experiments belong in one place—with a clear account of who did what and where each project stands.</p><ButtonLink href="#work-collection" secondary>Explore the collection</ButtonLink></div></div><div className="work-hero-baseline"><span>DESIGN / DEVELOPMENT / EXPLORATION</span><span>Evidence before claims <span aria-hidden="true">↘</span></span></div></div></section>
-    <section className="work-collection section" id="work-collection" aria-labelledby="collection-title"><div className="container"><div className="work-collection-heading"><Eyebrow>Selected perspectives</Eyebrow><h2 id="collection-title" className="sr-only">Work collection</h2><p>Explore by attribution and stage.</p></div><WorkFilters counts={counts}><WorkCinema gallery><div className="work-editorial-grid">{all.map((item,index)=><WorkCard item={item} index={index} key={item.id}/>)}</div></WorkCinema>{workCategories.filter(([key])=>key!=='draft'&&!counts[key]).map(([key])=><div className="work-empty" data-empty-category={key} key={key}><span aria-hidden="true">↗</span><h2>{key==='company'?'Company work, with proof.':key==='founder'?'The contribution comes first.':'A clear place for what’s next.'}</h2><p>{emptyCopy[key]}</p><Link prefetch={false} className="text-link" href="/work#work-collection">View the available explorations ↗</Link></div>)}</WorkFilters>
-    </div></section>
-    <section className="work-attribution-section"><div className="container"><Eyebrow>One website / clear credit</Eyebrow><div className="work-attribution-grid">{[["Company & shipped", "Delivery under MOTEKRA must be confirmed. A screenshot alone does not establish an engagement."], ["Founder & collaborative", "Independent and team projects credit the founder’s exact role, separately from company work."], ["Concepts & in development", "Explorations and unfinished work keep their status visible. Interface data never becomes a business result."]].map(([title, description]) => <div key={title}><h2>{title}</h2><p>{description}</p></div>)}</div><div className="work-editorial-strip" aria-hidden="true">IDEAS WITH DEPTH. / CREDIT WITH CLARITY.</div></div></section><ContactCta /></WorkCinema>;
-}
+  const containerRef = useRef<HTMLDivElement>(null);
 
+  useGsapScope(containerRef, (gsap, ScrollTrigger, root) => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      // In reduced-motion mode, cards remain statically visible
+    });
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      const hero = root.querySelector<HTMLElement>(".work-hero");
+      const cards = root.querySelectorAll<HTMLElement>("[data-work-card]");
+
+      // Header entrance animation
+      if (hero) {
+        const lead = hero.querySelector<HTMLElement>(".work-hero-lead");
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: hero,
+            start: "top 90%",
+            once: true,
+          },
+        });
+
+        const titleLine = hero.querySelector<HTMLElement>("[data-work-hero-line]");
+        if (titleLine) {
+          tl.fromTo(
+            titleLine,
+            { yPercent: 105, opacity: 0 },
+            { yPercent: 0, opacity: 1, duration: 0.8, ease: "power3.out", clearProps: "all" },
+            0
+          );
+        }
+        if (lead) {
+          tl.fromTo(
+            lead,
+            { opacity: 0, y: 18 },
+            { opacity: 1, y: 0, duration: 0.7, ease: "power3.out", clearProps: "all" },
+            0.15
+          );
+        }
+      }
+
+      // Elegant masked reveal for each card in the 2-column grid
+      cards.forEach((card, idx) => {
+        const media = card.querySelector<HTMLElement>(".work-card-media-wrap");
+        const footer = card.querySelector<HTMLElement>(".work-card-footer");
+
+        if (media) {
+          gsap.fromTo(
+            media,
+            {
+              clipPath: "inset(0 0 8% 0 round 16px)",
+              opacity: 0.8,
+              y: 20,
+            },
+            {
+              clipPath: "inset(0 0 0% 0 round 16px)",
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              delay: (idx % 2) * 0.12,
+              ease: "power3.out",
+              clearProps: "all",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 92%",
+                once: true,
+              },
+            }
+          );
+        }
+
+        if (footer) {
+          gsap.fromTo(
+            footer,
+            { opacity: 0, y: 12 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              delay: (idx % 2) * 0.12 + 0.15,
+              ease: "power2.out",
+              clearProps: "all",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 92%",
+                once: true,
+              },
+            }
+          );
+        }
+      });
+    });
+
+    // Lifecycle recovery: Ensure returning from inactive tab restores visibility deterministically
+    const ensureVisible = () => {
+      const hero = root.querySelector<HTMLElement>(".work-hero");
+      if (hero) {
+        const title = hero.querySelector<HTMLElement>(".work-hero-title");
+        const lead = hero.querySelector<HTMLElement>(".work-hero-lead");
+        if (title) { title.style.opacity = "1"; title.style.transform = "none"; }
+        if (lead) { lead.style.opacity = "1"; lead.style.transform = "none"; }
+      }
+      root.querySelectorAll<HTMLElement>("[data-work-card]").forEach((card) => {
+        const media = card.querySelector<HTMLElement>(".work-card-media-wrap");
+        const footer = card.querySelector<HTMLElement>(".work-card-footer");
+        if (media) { media.style.opacity = "1"; media.style.clipPath = "none"; }
+        if (footer) { footer.style.opacity = "1"; footer.style.transform = "none"; }
+      });
+    };
+    window.addEventListener("motekra-tab-restored", ensureVisible);
+    document.addEventListener("visibilitychange", ensureVisible);
+    window.addEventListener("focus", ensureVisible);
+
+    return () => {
+      window.removeEventListener("motekra-tab-restored", ensureVisible);
+      document.removeEventListener("visibilitychange", ensureVisible);
+      window.removeEventListener("focus", ensureVisible);
+      mm.revert();
+    };
+  });
+
+  return (
+    <div className="work-cinema" ref={containerRef}>
+      {/* Editorial Work Page Hero */}
+      <section className="work-hero" aria-labelledby="work-main-heading">
+        <div className="container">
+          <div className="work-hero-inner">
+            <div className="work-hero-headline-wrap">
+              <h1 id="work-main-heading" className="work-hero-title" aria-label="Selected Work.">
+                <span className="work-title-mask" aria-hidden="true">
+                  <span data-work-hero-line>Selected Work.</span>
+                </span>
+              </h1>
+              <p className="work-hero-lead">
+                A selection of digital products, websites, and interfaces.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Editorial 2-Column Portfolio Grid */}
+      <section className="work-portfolio-section" aria-label="Selected Projects">
+        <div className="container">
+          <div className="work-portfolio-grid" role="region" aria-label="Portfolio Grid">
+            {candidates.map((project, idx) => {
+              const img = candidateImage(project.slug, "hero");
+              const category = PROJECT_CATEGORIES[project.slug] ?? "Digital Product";
+
+              return (
+                <article
+                  key={project.slug}
+                  data-work-card
+                  data-project={project.slug}
+                  className="work-portfolio-card"
+                >
+                  <Link
+                    prefetch={false}
+                    href={`/work/${project.slug}`}
+                    className="work-card-link"
+                    aria-label={`View ${project.title} case study — ${category}`}
+                  >
+                    <div className="work-card-media-wrap">
+                      <div className="work-card-media">
+                        <Image
+                          src={img.src}
+                          alt={`${project.title} — ${category} interface visual`}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 680px"
+                          className="work-card-img"
+                          priority={idx < 2}
+                        />
+                        <div className="work-card-scrim" />
+                      </div>
+                    </div>
+
+                    <div className="work-card-footer">
+                      <div className="work-card-meta">
+                        <h2 className="work-card-title">{project.title}</h2>
+                        <span className="work-card-category">{category}</span>
+                      </div>
+                      <span className="work-card-arrow" aria-hidden="true">
+                        ↗
+                      </span>
+                    </div>
+                  </Link>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact CTA */}
+      <ContactCta />
+    </div>
+  );
+}

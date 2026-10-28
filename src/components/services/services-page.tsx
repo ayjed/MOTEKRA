@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Eyebrow, DraftNote } from "@/components/ui/primitives";
+import { DraftNote } from "@/components/ui/primitives";
 import { ContactCta, Process } from "@/components/sections/shared";
 import { ServicesAccordion } from "./services-accordion";
 import { ServicesCinema } from "./services-cinema";
@@ -13,10 +13,6 @@ export function ServicesPage() {
         <div className="container">
           <div className="services-intro-grid">
             <div className="services-intro-left">
-              <div data-services-intro-elem>
-                <Eyebrow>CAPABILITIES & PRACTICE</Eyebrow>
-              </div>
-
               <h1 id="services-main-heading" aria-label="What We Bring to Life.">
                 <span className="services-title-mask" aria-hidden="true">
                   <span data-services-heading-line>What We</span>
@@ -57,7 +53,7 @@ export function ServicesPage() {
       {/* Large Rounded Dark-Navy Services Container */}
       <section className="services-interactive-section" aria-label="Interactive Capabilities Directory">
         <div className="container">
-          <ServicesAccordion initialActiveSlug="ui-ux-design" />
+          <ServicesAccordion />
         </div>
       </section>
 
@@ -68,10 +64,13 @@ export function ServicesPage() {
       <section className="services-scope-section">
         <div className="container services-scope-grid">
           <div>
-            <Eyebrow>Start with the right scope</Eyebrow>
-            <h2>
-              A connected approach.<br />
-              <span>A clear agreement.</span>
+            <h2 aria-label="A connected approach. A clear agreement.">
+              <span className="services-title-mask" aria-hidden="true">
+                <span data-scope-heading-line>A connected approach.</span>
+              </span>
+              <span className="services-title-mask" aria-hidden="true">
+                <span data-scope-heading-line>A clear agreement.</span>
+              </span>
             </h2>
             <p>
               These capabilities are tailored to each engagement. Deliverables, platforms, timelines, responsibilities and milestones are rigorously aligned before implementation begins.

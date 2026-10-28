@@ -1,40 +1,327 @@
-import { JsonLd } from "@/components/seo/json-ld";
-import { Breadcrumbs } from "@/components/seo/breadcrumbs";
-import { projectSchema } from "@/lib/seo/schema";
-import { team } from "@/content/team";
-import { services } from "@/content/services";
+"use client";
+
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/content/models";
-import { candidates, candidateImage, isCandidate } from "@/content/projects/candidates";
-import { projects } from "@/content/projects";
-import { publishableProjects } from "@/content/models";
-import { ownershipLabel, statusLabel } from "@/lib/data/work";
-import { ContactCta } from "@/components/sections/shared";
-import { Eyebrow } from "@/components/ui/primitives";
-import { WorkCinema } from "./work-cinema";
-import "@/styles/work.css";
+import { caseStudies } from "@/content/projects/case-studies";
+import { JsonLd } from "@/components/seo/json-ld";
+import { projectSchema } from "@/lib/seo/schema";
+import { useGsapScope } from "@/lib/animations/hooks";
+import "@/styles/case-study.css";
+
+const PROJECT_ORDER = [
+  "spotlight-contest",
+  "lad-global-travels",
+  "tog-africa",
+  "connectapi",
+] as const;
 
 export function ProjectDetail({ project }: { project: Project }) {
-  const draft = isCandidate(project);
-  const image = draft ? candidateImage(project.slug, "hero") : project.images?.[0];
-  const nextItems = draft ? candidates : publishableProjects(projects);
-  const next = nextItems.length > 1 ? nextItems[(nextItems.findIndex((p) => p.slug === project.slug) + 1) % nextItems.length] : undefined;
-  const relatedServices=services.filter(service=>service.publication==="approved"&&project.serviceSlugs?.includes(service.slug));
-  const credits=(project.contributions??[]).filter(credit=>credit.approved&&credit.role.trim()).flatMap(credit=>{const person=team.find(person=>person.slug===credit.personSlug&&person.publication==="approved");return person?[{person,role:credit.role}]:[];});
-  return <WorkCinema><JsonLd data={projectSchema(project)}/><header className="case-hero"><div className="container"><Breadcrumbs items={[{name:"Home",path:"/"},{name:"Work",path:"/work"},{name:project.title,path:`/work/${project.slug}`}]}/><div className="case-hero-grid"><div><Eyebrow>{draft ? "Draft evidence / local review only" : `${ownershipLabel(project)} / ${statusLabel(project)}`}</Eyebrow><h1>{project.title}</h1><p className="lead">{project.summary}</p></div><dl className="case-facts"><div><dt>Attribution</dt><dd>{ownershipLabel(project)}</dd></div><div><dt>Stage</dt><dd>{statusLabel(project)}</dd></div><div><dt>Contribution</dt><dd>{project.role ?? "Unverified — awaiting exact role"}</dd></div><div><dt>Publication</dt><dd>{draft ? "Draft — display permission pending" : "Approved for display"}</dd></div></dl></div>
-    {draft && <aside className="case-draft-notice"><strong>Evidence review, not a completed client case.</strong><p>Source screenshots establish visible interface content. They do not verify ownership, implementation, completion, production integrations or business results. This review is excluded from indexing.</p></aside>}
-    {image && <figure className="case-hero-evidence"><Image src={image.src} width={image.width} height={image.height} alt={draft ? `${project.title}: interface evidence cropped from the supplied screenshot` : project.images?.[0]?.alt ?? project.title} unoptimized={draft} loading="eager" sizes="100vw" /><figcaption>{draft ? (project.slug === "connectapi" ? "Concept UI screenshot. Figures are sample interface data, not verified usage or business results. Authorship and display permission remain unverified." : "Supplied interface screenshot crop. Original artwork preserved; role, status and permissions require verification.") : project.images?.[0]?.caption}</figcaption></figure>}
-    </div></header><div className="container case-body"><nav className="case-section-nav" aria-label="Case study sections"><a href="#case-overview">{draft ? "Evidence" : "Overview"}</a>{project.problem && <a href="#case-problem">Problem</a>}{project.process?.length ? <a href="#case-process">Process</a> : null}{project.solution && <a href="#case-solution">Solution</a>}{project.technologies?.length ? <a href="#case-technology">Technology</a> : null}{project.resultsVerified.length ? <a href="#case-results">Results</a> : null}{draft && <a href="#case-verification">Verification</a>}</nav><div className="case-prose">
-      {!draft&&(relatedServices.length>0||credits.length>0)&&<aside className="case-context-links"><h2>Services and contribution</h2>{relatedServices.map(service=><p key={service.slug}><Link prefetch={false} href={`/services/${service.slug}`}>{service.title}</Link></p>)}{credits.map(({person,role})=><p key={person.slug}><Link prefetch={false} href={`/team/${person.slug}`}>{person.name}</Link> — {role}</p>)}</aside>}<section id="case-overview"><Eyebrow>{draft ? "Observed source evidence" : "Overview"}</Eyebrow><h2>{draft ? "What the screenshot shows." : "The project, in context."}</h2><p>{draft ? project.observation : project.summary}</p>{draft && <p className="case-source-reference">Source: supplied {project.evidenceFile}, page 1. Visual description only; no external deployment or repository is verified.</p>}</section>
-      {project.problem && <section id="case-problem"><Eyebrow>Context</Eyebrow><h2>The problem.</h2><p>{project.problem}</p></section>}
-      {project.process?.length ? <section id="case-process"><Eyebrow>Approach</Eyebrow><h2>The process.</h2><ol>{project.process.map((step) => <li key={step}>{step}</li>)}</ol></section> : null}
-      {project.solution && <section id="case-solution"><Eyebrow>Implementation</Eyebrow><h2>The solution.</h2><p>{project.solution}</p></section>}
-      {project.technologies?.length ? <section id="case-technology"><h2>Verified technology.</h2><ul className="case-tech-list">{project.technologies.map((technology) => <li key={technology}>{technology}</li>)}</ul></section> : null}
-      {draft && <figure className="case-detail-evidence"><Image {...candidateImage(project.slug, "detail")} alt={`Additional ${project.title} interface detail from the supplied presentation`} unoptimized loading="lazy" sizes="(max-width: 767px) 100vw, 70vw" /><figcaption>{project.slug === "connectapi" ? "Design/concept presentation. Any numbers shown are interface sample data, not verified usage, uptime or business outcomes. Profile controls and comments outside the presentation are excluded." : "Additional source interface detail. The visual is not proof of a working feature or a result delivered by MOTEKRA."}</figcaption></figure>}
-      {project.resultsVerified.length > 0 && <section id="case-results"><Eyebrow>Evidence-backed outcomes</Eyebrow><h2>Verified results.</h2><ul>{project.resultsVerified.map((result) => <li key={result}>{result}</li>)}</ul></section>}
-      {draft && <section id="case-verification" className="case-verification"><Eyebrow>Before publication</Eyebrow><h2>The story still needs its facts.</h2><p>No project problem, process, solution, stack or result is inferred to fill this template. The following require confirmation:</p><ul>{project.verificationNotes.map((note) => <li key={note}><span aria-hidden="true">↗</span>{note}</li>)}</ul><p>Company engagements, founder-independent work and collaborations will retain distinct credit. This record is a draft until the necessary evidence and permission are approved.</p></section>}
-    </div></div>{next && <section className="case-next"><div className="container"><Eyebrow>{draft ? "Continue the evidence review" : "Next project"}</Eyebrow><Link href={`/work/${next.slug}`} prefetch={false}><span>{next.title}</span><span aria-hidden="true">↗</span></Link><p>{draft ? "Draft — ownership and contribution unverified" : ownershipLabel(next)}</p></div></section>}<ContactCta /></WorkCinema>;
+  const containerRef = useRef<HTMLDivElement>(null);
+  const study = caseStudies[project.slug] ?? {
+    slug: project.slug,
+    title: project.title,
+    category: project.category ?? "Digital Product",
+    badge: project.category ?? "Digital Product",
+    type: "Platform Experience",
+    focus: "Product Design & Architecture",
+    lead: project.summary ?? "A modern digital product experience.",
+    overview: project.summary ?? "A modern digital product experience.",
+    capabilitiesTitle: "Key Capabilities",
+    capabilities: [],
+    heroImage: {
+      src: `/assets/work/${project.slug}-hero.webp`,
+      width: 1400,
+      height: 800,
+      alt: `${project.title} interface showcase`,
+      caption: `${project.title} platform overview.`,
+      bg: "#08152b",
+    },
+    detailImage: {
+      src: `/assets/work/${project.slug}-detail.webp`,
+      width: 1400,
+      height: 800,
+      alt: `${project.title} interface detail`,
+      caption: `${project.title} interface details.`,
+      bg: "#08152b",
+    },
+    galleryHeading: "Interface Exploration",
+    galleryDescription: "Exploring the interaction details and layout structure.",
+  };
+
+  const currentIndex = PROJECT_ORDER.indexOf(project.slug as typeof PROJECT_ORDER[number]);
+  const safeIndex = currentIndex >= 0 ? currentIndex : 0;
+  const nextSlug = PROJECT_ORDER[(safeIndex + 1) % PROJECT_ORDER.length] as string;
+  const nextStudy = caseStudies[nextSlug];
+
+  useGsapScope(containerRef, (gsap, ScrollTrigger, root) => {
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      // In reduced-motion mode, all elements remain statically visible
+    });
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      // 1. Hero Title Slide-in
+      const heroTitle = root.querySelector<HTMLElement>("[data-case-title-line]");
+      if (heroTitle) {
+        gsap.fromTo(
+          heroTitle,
+          { yPercent: 105, opacity: 0 },
+          { yPercent: 0, opacity: 1, duration: 0.8, ease: "power3.out", clearProps: "all" }
+        );
+      }
+
+      // 2. Headings on Scroll
+      const animatedHeadings = root.querySelectorAll<HTMLElement>("[data-case-heading]");
+      animatedHeadings.forEach((heading) => {
+        const line = heading.querySelector<HTMLElement>("[data-case-heading-line]");
+        if (line) {
+          gsap.fromTo(
+            line,
+            { yPercent: 105, opacity: 0 },
+            {
+              yPercent: 0,
+              opacity: 1,
+              duration: 0.8,
+              ease: "power3.out",
+              clearProps: "all",
+              scrollTrigger: {
+                trigger: heading,
+                start: "top 88%",
+                once: true,
+              },
+            }
+          );
+        }
+      });
+    });
+
+    // Tab restoration safeguards
+    const ensureVisible = () => {
+      root.querySelectorAll<HTMLElement>("[data-case-title-line], [data-case-heading-line]").forEach((el) => {
+        gsap.set(el, { clearProps: "all" });
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+    };
+
+    document.addEventListener("visibilitychange", ensureVisible);
+    window.addEventListener("focus", ensureVisible);
+    window.addEventListener("pageshow", ensureVisible);
+    window.addEventListener("motekra-tab-restored", ensureVisible);
+
+    return () => {
+      document.removeEventListener("visibilitychange", ensureVisible);
+      window.removeEventListener("focus", ensureVisible);
+      window.removeEventListener("pageshow", ensureVisible);
+      window.removeEventListener("motekra-tab-restored", ensureVisible);
+    };
+  });
+
+  return (
+    <article className="case-study-page" ref={containerRef}>
+      <JsonLd data={projectSchema(project)} />
+
+      {/* SECTION ONE — PROJECT HERO */}
+      <header className="case-hero-section">
+        <div className="container">
+          <div className="case-hero-inner">
+            <nav className="case-breadcrumb-nav" aria-label="Breadcrumbs">
+              <Link href="/" className="case-breadcrumb-link">
+                Home
+              </Link>
+              <span className="case-breadcrumb-sep" aria-hidden="true">
+                /
+              </span>
+              <Link href="/work" className="case-breadcrumb-link">
+                Work
+              </Link>
+              <span className="case-breadcrumb-sep" aria-hidden="true">
+                /
+              </span>
+              <span className="case-breadcrumb-current" aria-current="page">
+                {study.title}
+              </span>
+            </nav>
+
+            <span className="case-category-badge">{study.badge}</span>
+
+            <div className="case-hero-title-mask">
+              <h1 className="case-hero-title">
+                <span data-case-title-line style={{ display: "inline-block" }}>
+                  {study.title}
+                </span>
+              </h1>
+            </div>
+
+            <p className="case-hero-lead">{study.lead}</p>
+
+            <div className="case-meta-bar" role="list">
+              <div className="case-meta-item" role="listitem">
+                <span className="case-meta-label">Category</span>
+                <span className="case-meta-value">{study.category}</span>
+              </div>
+              <div className="case-meta-item" role="listitem">
+                <span className="case-meta-label">Focus</span>
+                <span className="case-meta-value">{study.focus}</span>
+              </div>
+              <div className="case-meta-item" role="listitem">
+                <span className="case-meta-label">Discipline</span>
+                <span className="case-meta-value">{study.type}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* SECTION TWO — FULL-WIDTH PRIMARY SHOWCASE */}
+      <section className="case-showcase-section" aria-label={`${study.title} Primary Showcase`}>
+        <div className="container">
+          <div
+            className="case-showcase-frame"
+            style={{ backgroundColor: study.heroImage.bg }}
+          >
+            <Image
+              src={study.heroImage.src}
+              width={study.heroImage.width}
+              height={study.heroImage.height}
+              alt={study.heroImage.alt}
+              className="case-showcase-img"
+              priority
+              sizes="(max-width: 1400px) 100vw, 1360px"
+            />
+          </div>
+          <figcaption className="case-image-caption">
+            {study.heroImage.caption}
+          </figcaption>
+        </div>
+      </section>
+
+      {/* SECTION THREE — PROJECT OVERVIEW */}
+      <section className="case-overview-section" aria-label="Project Overview">
+        <div className="container">
+          <div className="case-overview-grid">
+            <div className="case-overview-context">
+              <span className="case-section-eyebrow">Overview</span>
+              <div className="case-hero-title-mask" data-case-heading>
+                <h2 className="case-section-heading">
+                  <span data-case-heading-line style={{ display: "inline-block" }}>
+                    About the Project
+                  </span>
+                </h2>
+              </div>
+              <p className="case-overview-body">{study.overview}</p>
+
+              {study.scopeNote && (
+                <div className="case-scope-note" role="note">
+                  <strong>Concept Notice</strong>
+                  <span>{study.scopeNote}</span>
+                </div>
+              )}
+            </div>
+
+            <div className="case-capabilities-wrap">
+              <h3 className="case-capabilities-title">{study.capabilitiesTitle}</h3>
+              <div className="case-capabilities-grid">
+                {study.capabilities.map((item, idx) => (
+                  <div key={idx} className="case-capability-card">
+                    <div className="case-capability-icon" aria-hidden="true">
+                      {String(idx + 1).padStart(2, "0")}
+                    </div>
+                    <h4 className="case-capability-title">{item.title}</h4>
+                    <p className="case-capability-desc">{item.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION FOUR — VISUAL PROJECT GALLERY */}
+      {study.detailImage && (
+        <section className="case-gallery-section" aria-label="Interface Detail">
+          <div className="container">
+            <div className="case-gallery-header">
+              <span className="case-section-eyebrow">Interface Exploration</span>
+              <div className="case-hero-title-mask" data-case-heading>
+                <h2 className="case-section-heading">
+                  <span data-case-heading-line style={{ display: "inline-block" }}>
+                    {study.galleryHeading}
+                  </span>
+                </h2>
+              </div>
+              <p className="case-gallery-desc">{study.galleryDescription}</p>
+            </div>
+
+            <div
+              className="case-gallery-frame"
+              style={{ backgroundColor: study.detailImage.bg }}
+            >
+              <Image
+                src={study.detailImage.src}
+                width={study.detailImage.width}
+                height={study.detailImage.height}
+                alt={study.detailImage.alt}
+                className="case-gallery-img"
+                loading="lazy"
+                sizes="(max-width: 1400px) 100vw, 1360px"
+              />
+            </div>
+            <figcaption className="case-image-caption">
+              {study.detailImage.caption}
+            </figcaption>
+          </div>
+        </section>
+      )}
+
+      {/* SECTION FIVE — PROJECT ACTION */}
+      <section className="case-action-section" aria-label="Project Actions">
+        <div className="container">
+          <div className="case-action-card">
+            <span className="case-section-eyebrow">Start What&apos;s Next</span>
+            <h2 className="case-action-heading">Have Something in Mind?</h2>
+            <p className="case-action-text">
+              We design and develop high-performance digital products, web platforms, and brand experiences. Let&apos;s build something extraordinary together.
+            </p>
+            <div className="case-action-buttons">
+              <Link href="/contact" className="case-btn-primary">
+                <span>Discuss Your Project</span>
+                <span aria-hidden="true">→</span>
+              </Link>
+              <Link href="/work" className="case-btn-secondary">
+                <span>Explore All Projects</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION SIX — NEXT PROJECT */}
+      {nextStudy && (
+        <section className="case-next-section" aria-label="Next Project">
+          <div className="container">
+            <Link
+              href={`/work/${nextStudy.slug}`}
+              className="case-next-link"
+              prefetch={false}
+            >
+              <span className="case-next-eyebrow">
+                <span>Next Project</span>
+                <span aria-hidden="true">→</span>
+              </span>
+              <div className="case-next-row">
+                <h2 className="case-next-title">{nextStudy.title}</h2>
+                <div className="case-next-arrow-circle" aria-hidden="true">
+                  <span>→</span>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </section>
+      )}
+    </article>
+  );
 }
-
-

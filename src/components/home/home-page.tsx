@@ -1,28 +1,57 @@
 import type { CSSProperties } from "react";
 import { HomeSectionCinema } from "./section-cinema";
-import Image from "next/image";
-import Link from "next/link";
 import { HomeCinema } from "./home-cinema";
 import { HeroProduct } from "./hero-product";
 import { SplitHeading } from "../motion/typography";
-import { HoverPreview, PointerTilt } from "../motion/tactile";
 import { ProductPoster } from "../three/product-poster";
-import { ButtonLink, Eyebrow } from "../ui/primitives";
-import { studies } from "@/content/studies";
-import { founderProfiles } from "@/content/team";
-import { candidates, candidateImage } from "@/content/projects/candidates";
+import { ButtonLink } from "../ui/primitives";
 import { pageMetadata } from "@/lib/seo/site";
 import { TestimonialsMarquee } from "./testimonials-marquee";
 import { ServicesAccordion } from "../services/services-accordion";
 import { HomeProcess } from "./home-process";
 import { HomeWork } from "./home-work";
+import { ConceptCreationVisual } from "./concept-creation-visual";
 import "@/styles/home.css";
 import "@/styles/services.css";
 
 export const metadata = pageMetadata("Digital products for what’s next", "We design and build high-performance web and mobile applications that help ambitious businesses grow, scale, and create real impact.", "/");
 
+const HERO_LINES = [
+  { lineIndex: 0, words: ["Digital", "Products"] },
+  { lineIndex: 1, words: ["for", "What’s", "Next."], highlight: "Next." },
+];
+
 function HeroHeading() {
-  return <h1 className="cinema-title" aria-label="Digital Products for What’s Next.">{["Digital Products", "for what’s", "Next."].map((line, index) => <span className={`hero-title-line title-line-${index}`} key={line} aria-hidden="true">{line.split(" ").map((word, wordIndex) => <span className="hero-word" key={word} style={{"--word-order":index*2+wordIndex} as CSSProperties}>{wordIndex > 0 ? " " : ""}{Array.from(word).map((char, i) => <span data-hero-glyph key={i} style={{"--glyph-order":index*5+wordIndex*2+i} as CSSProperties}>{char}</span>)}</span>)}{index < 2 ? " " : null}</span>)}</h1>;
+  return (
+    <h1 className="cinema-title" aria-label="Digital Products for What’s Next.">
+      {HERO_LINES.map(({ lineIndex, words, highlight }) => (
+        <span className={`hero-title-line title-line-${lineIndex}`} key={lineIndex} aria-hidden="true">
+          {words.map((word, wordIndex) => {
+            const isHighlight = word === highlight;
+            const globalWordOrder = lineIndex === 0 ? wordIndex : 2 + wordIndex;
+            return (
+              <span
+                className={`hero-word ${isHighlight ? "hero-word-accent" : "hero-word-navy"}`}
+                key={word}
+                style={{ "--word-order": globalWordOrder } as CSSProperties}
+              >
+                {wordIndex > 0 ? " " : ""}
+                {Array.from(word).map((char, i) => (
+                  <span
+                    data-hero-glyph
+                    key={i}
+                    style={{ "--glyph-order": globalWordOrder * 5 + i } as CSSProperties}
+                  >
+                    {char}
+                  </span>
+                ))}
+              </span>
+            );
+          })}
+        </span>
+      ))}
+    </h1>
+  );
 }
 
 export default function HomePage() {
@@ -34,14 +63,54 @@ export default function HomePage() {
           <p className="lead" data-hero-support>We design and build high-performance web and mobile applications that help ambitious businesses grow, scale, and create real impact.</p>
           <div className="button-group" data-hero-support>
             <ButtonLink href="/work">See Our Work</ButtonLink>
-            <ButtonLink href="/contact" secondary>Start a Project</ButtonLink>
+            <ButtonLink href="/contact" secondary>Get in Touch</ButtonLink>
+          </div>
+          <div className="hero-capabilities-row" data-hero-support aria-label="Core Capabilities">
+            <div className="hero-capability-item">
+              <div className="hero-capability-icon" aria-hidden="true">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                </svg>
+              </div>
+              <div className="hero-capability-text">
+                <strong>Web Development</strong>
+                <span>Modern, scalable solutions.</span>
+              </div>
+            </div>
+            <div className="hero-capability-divider" aria-hidden="true" />
+            <div className="hero-capability-item">
+              <div className="hero-capability-icon" aria-hidden="true">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                  <line x1="12" y1="18" x2="12.01" y2="18" />
+                </svg>
+              </div>
+              <div className="hero-capability-text">
+                <strong>Mobile Applications</strong>
+                <span>iOS &amp; Android experiences.</span>
+              </div>
+            </div>
+            <div className="hero-capability-divider" aria-hidden="true" />
+            <div className="hero-capability-item">
+              <div className="hero-capability-icon" aria-hidden="true">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 20h9" />
+                  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                </svg>
+              </div>
+              <div className="hero-capability-text">
+                <strong>UI/UX Design</strong>
+                <span>User-centred digital products.</span>
+              </div>
+            </div>
           </div>
         </div>
         <div className="hero-product-handoff" id="hero-product">
           <div className="hero-orbit" aria-hidden="true" />
           <HeroProduct poster={<ProductPoster />} />
-          <div className="capability-tag tag-design" aria-hidden="true"><span>UI & Product Design</span> ↗</div>
-          <div className="capability-tag tag-build" aria-hidden="true"><span>Web & Mobile Development</span> ↗</div>
+          <div className="capability-tag tag-solutions" aria-hidden="true"><span>Scalable Solutions</span> ↗</div>
+          <div className="capability-tag tag-build" aria-hidden="true"><span>Web &amp; Mobile Development</span> ↗</div>
         </div>
       </div>
     </section>
@@ -50,7 +119,6 @@ export default function HomePage() {
 
     <section className="section home-services" id="home-services" data-home-section="services" aria-labelledby="services-title">
       <div className="container">
-        <Eyebrow>Our services / from thought to product</Eyebrow>
         <div className="section-heading">
           <div id="services-title">
             <SplitHeading lines={["What We", "Bring to Life."]} />
@@ -60,18 +128,29 @@ export default function HomePage() {
             <ButtonLink href="/services" secondary>Explore All Services</ButtonLink>
           </div>
         </div>
-        <ServicesAccordion initialActiveSlug="ui-ux-design" />
+        <ServicesAccordion />
       </div>
     </section>
 
     <HomeProcess />
 
-    <HomeSectionCinema kind="founder"><section className="section home-founder" id="home-founder" data-home-section="founder" aria-labelledby="founder-title"><div className="container founder-grid"><div><Eyebrow>About MOTEKRA / Creative Technologist</Eyebrow><div id="founder-title"><SplitHeading lines={["A Studio","for What’s Next."]} /></div><p className="lead">Design and engineering, considered together.</p><ButtonLink href="/about">More About MOTEKRA</ButtonLink></div><div className="founder-editorial"><div className="founder-photo-frame"><Image src="/assets/team/ayomiposi.webp" alt="Akinwumi Ayomiposi — Software Developer & Creative Technologist" width={834} height={1024} className="founder-photo-real" sizes="(max-width: 767px) 90vw, 42vw" priority /></div><div className="founder-byline"><p className="eyebrow">Akinwumi Ayomiposi</p><h3>Software Developer &amp;<br />Creative Technologist</h3><p>MOTEKRA</p><Link prefetch={false} href="/team/akinwumi-ayomiposi" className="text-link">Developer profile ↗</Link><nav className="founder-socials" aria-label="Professional profiles">{founderProfiles.map(([label,href]) => <a href={href} key={label}>{label}<span aria-hidden="true">↗</span></a>)}</nav></div></div></div></section></HomeSectionCinema>
-
-    <section className="section home-lab" id="creative-lab" data-home-section="lab" aria-labelledby="creative-lab-title"><div className="container"><Eyebrow>Creative lab / live interaction studies</Eyebrow><div className="section-heading"><div id="creative-lab-title"><SplitHeading lines={["Experiments","in the Making."]} /></div><p>Ideas made tangible.<br />Honest about where they stand.</p></div><div className="creative-study-grid">{studies.map((study) => <PointerTilt key={study.title}><HoverPreview preview={<span>Explore this working website study ↗</span>}><article className={`creative-study study-${study.visual}`}><div className="study-meta"><span className="status-pill">{study.status}</span><span className="study-tag">Live Study</span></div><a className="study-visual" href={study.href} aria-label={`Explore ${study.title}`}><div className="study-object" aria-hidden="true">{study.visual === "device" ? <><i /><i /></> : study.visual === "system" ? <><i /><i /><i /><i /></> : <><i /><i /><i /><i /><i /></>}</div></a><p>{study.type}</p><h3><a href={study.href}>{study.title} <span aria-hidden="true">↗</span></a></h3></article></HoverPreview></PointerTilt>)}</div><p className="study-attribution">Built as part of this website exploration. These studies are not client engagements or measured business outcomes.</p></div></section>
-
     <TestimonialsMarquee />
 
-    <HomeSectionCinema kind="contact"><section className="home-contact" id="home-contact" data-home-section="contact" aria-labelledby="contact-title"><div className="container home-contact-inner"><div className="contact-copy"><Eyebrow>Let’s create the next perspective</Eyebrow><div id="contact-title"><SplitHeading lines={["Have Something","in Mind?"]} /></div><div className="button-group"><ButtonLink href="/contact">Let’s Talk</ButtonLink><p>Inquiry channel details<br />are being confirmed.</p></div></div><div className="contact-sculpture" aria-hidden="true"><div className="sculpture-panel sculpture-back"><span /><i /><i /></div><div className="sculpture-panel sculpture-mid"><span /><i /><i /></div><div className="sculpture-panel sculpture-front"><span /><i /><i /><b>↗</b></div><div className="sculpture-halo" /></div></div></section></HomeSectionCinema>
+    <HomeSectionCinema kind="contact">
+      <section className="home-contact" id="home-contact" data-home-section="contact" aria-labelledby="contact-title">
+        <div className="container home-contact-inner">
+          <div className="contact-copy">
+            <div id="contact-title">
+              <SplitHeading lines={["Have Something", "in Mind?"]} />
+            </div>
+            <div className="button-group">
+              <ButtonLink href="/contact">Let’s Talk</ButtonLink>
+              <p>Tell us about your idea.<br />Let’s explore what’s possible.</p>
+            </div>
+          </div>
+          <ConceptCreationVisual />
+        </div>
+      </section>
+    </HomeSectionCinema>
   </HomeCinema>;
 }

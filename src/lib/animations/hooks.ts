@@ -17,7 +17,15 @@ export function useMedia(query:string,fallback=false){
 
 function subscribeVisibility(notify: () => void) {
   document.addEventListener("visibilitychange", notify);
-  return () => document.removeEventListener("visibilitychange", notify);
+  window.addEventListener("pageshow", notify);
+  window.addEventListener("focus", notify);
+  window.addEventListener("blur", notify);
+  return () => {
+    document.removeEventListener("visibilitychange", notify);
+    window.removeEventListener("pageshow", notify);
+    window.removeEventListener("focus", notify);
+    window.removeEventListener("blur", notify);
+  };
 }
 
 export function usePageVisible() {
@@ -77,9 +85,31 @@ export function useGsapScope(ref: RefObject<HTMLElement | null>, build: Builder,
       const profiling=profilingEnabled(),previous=profiling?new Set(ScrollTrigger.getAll()):null,began=performance.now();root.dataset.motionActive='true';let cleanup:void|(()=>void);
       const context=gsap.context(()=>{cleanup=buildRef.current(gsap,ScrollTrigger,root);},root);
       const profile=profiling?trackMotionScope(root,performance.now()-began,ScrollTrigger.getAll().filter(trigger=>!previous?.has(trigger)),()=>ScrollTrigger.getAll()):()=>{};
-      const paused=new Set<gsap.core.Animation>();const visibility=()=>{if(document.hidden){root.dataset.motionHidden='true';for(const tween of context.getTweens()){let animation:gsap.core.Animation=tween;while(animation.parent&&animation.parent!==gsap.globalTimeline)animation=animation.parent;if(animation.isActive()){animation.pause();paused.add(animation);}}}else{delete root.dataset.motionHidden;paused.forEach(animation=>animation.resume());paused.clear();}};
-      document.addEventListener('visibilitychange',visibility);visibility();
-      return()=>{document.removeEventListener('visibilitychange',visibility);paused.clear();cleanup?.();context.revert();profile();delete root.dataset.motionActive;delete root.dataset.motionHidden;};
+      const visibility=()=>{
+        if(document.hidden){
+          root.dataset.motionHidden='true';
+        }else{
+          delete root.dataset.motionHidden;
+          // Wake GSAP ticker from background sleep and re-sync geometry safely
+          gsap.ticker.wake();
+          scheduleRefresh(()=>ScrollTrigger.refresh());
+          window.dispatchEvent(new CustomEvent('motekra-tab-restored'));
+        }
+      };
+      document.addEventListener('visibilitychange',visibility);
+      window.addEventListener('pageshow',visibility);
+      window.addEventListener('focus',visibility);
+      visibility();
+      return()=>{
+        document.removeEventListener('visibilitychange',visibility);
+        window.removeEventListener('pageshow',visibility);
+        window.removeEventListener('focus',visibility);
+        cleanup?.();
+        context.revert();
+        profile();
+        delete root.dataset.motionActive;
+        delete root.dataset.motionHidden;
+      };
      },root);
      if(document.fonts.status!=='loaded')void document.fonts.ready.then(()=>{if(!cancelled)cancelRefresh=scheduleRefresh(()=>ScrollTrigger.refresh());});
      }catch{media.revert();delete root.dataset.motionActive;}
@@ -87,7 +117,19 @@ export function useGsapScope(ref: RefObject<HTMLElement | null>, build: Builder,
    }).catch(()=>{loading=false;});
   };
   const observer=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting)){near=true;observer.disconnect();start();}},{rootMargin:'300px'});observer.observe(root);
-  preference.addEventListener('change',start);document.addEventListener('visibilitychange',start);
-  return()=>{cancelled=true;observer.disconnect();preference.removeEventListener('change',start);document.removeEventListener('visibilitychange',start);cancelSetup();cancelRefresh();media?.revert();delete root.dataset.motionActive;};
+  preference.addEventListener('change',start);
+  document.addEventListener('visibilitychange',start);
+  window.addEventListener('pageshow',start);
+  return()=>{
+    cancelled=true;
+    observer.disconnect();
+    preference.removeEventListener('change',start);
+    document.removeEventListener('visibilitychange',start);
+    window.removeEventListener('pageshow',start);
+    cancelSetup();
+    cancelRefresh();
+    media?.revert();
+    delete root.dataset.motionActive;
+  };
  },[ref,enabled]);
 }

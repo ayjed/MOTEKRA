@@ -1,0 +1,152 @@
+/* MOTEKRA — Premium Cinematic Preloader */
+.motekra-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background-color: #08152b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  user-select: none;
+  will-change: transform;
+  border-bottom: 2px solid rgba(18, 205, 228, 0.45);
+  box-shadow: 0 10px 50px rgba(8, 21, 43, 0.95), 0 2px 20px rgba(22, 136, 247, 0.35);
+}
+
+body.preloader-active {
+  overflow: hidden !important;
+}
+
+body.preloader-finished .motekra-preloader {
+  pointer-events: none !important;
+}
+
+.motekra-preloader-inner {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.2vw, 24px);
+  will-change: transform, opacity;
+}
+
+/* ==========================================================================
+   AUTHENTIC LOGO ASSEMBLY (5 GEOMETRIC PIECES)
+   ========================================================================== */
+.motekra-preloader-symbol {
+  width: 64px;
+  height: 64px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 14px;
+}
+
+.motekra-preloader-mark-solid {
+  position: absolute;
+  inset: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  overflow: hidden;
+  opacity: 0;
+  will-change: transform, opacity, filter;
+  filter: drop-shadow(0 4px 18px rgba(22, 136, 247, 0.35));
+}
+
+.motekra-preloader-assembly-pieces {
+  position: absolute;
+  inset: 0;
+  width: 64px;
+  height: 64px;
+  pointer-events: none;
+  border-radius: 14px;
+}
+
+.assembly-piece {
+  position: absolute;
+  inset: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  overflow: hidden;
+  will-change: transform, opacity;
+}
+
+/* Quadrant & Core Clipping Masks matching authentic mark geometry */
+.assembly-piece-tl {
+  clip-path: polygon(0% 0%, 48% 0%, 48% 50%, 0% 50%);
+}
+
+.assembly-piece-bl {
+  clip-path: polygon(0% 50%, 48% 50%, 48% 100%, 0% 100%);
+}
+
+.assembly-piece-center {
+  clip-path: polygon(36% 26%, 64% 26%, 64% 74%, 36% 74%);
+}
+
+.assembly-piece-tr {
+  clip-path: polygon(52% 0%, 100% 0%, 100% 52%, 52% 52%);
+}
+
+.assembly-piece-br {
+  clip-path: polygon(52% 48%, 100% 48%, 100% 100%, 52% 100%);
+}
+
+.motekra-preloader-mark-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  display: block;
+  border-radius: 14px;
+}
+
+/* ==========================================================================
+   WORDMARK HORIZONTAL MASK REVEAL
+   ========================================================================== */
+.motekra-preloader-wordmark-mask {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  padding-block: 6px;
+  padding-right: 6px;
+  clip-path: inset(0 100% 0 0);
+  will-change: clip-path;
+}
+
+.motekra-preloader-wordmark-wrap {
+  display: inline-flex;
+  align-items: center;
+  will-change: transform, opacity;
+  opacity: 0;
+}
+
+.motekra-preloader-wordmark-img {
+  width: clamp(160px, 18vw, 220px);
+  height: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 2px 10px rgba(22, 136, 247, 0.25));
+}
+
+.motekra-preloader-scan-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  left: 0;
+  background: linear-gradient(180deg, transparent, #12cde4, #1688f7, transparent);
+  box-shadow: 0 0 10px #12cde4, 0 0 18px rgba(22, 136, 247, 0.85);
+  pointer-events: none;
+  opacity: 0;
+  will-change: left, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .motekra-preloader {
+    display: none !important;
+  }
+}

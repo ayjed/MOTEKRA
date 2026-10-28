@@ -2,19 +2,106 @@ import Link from "next/link";
 import { ContactCinema } from "@/components/contact/contact-cinema";
 import { ContactArtwork } from "@/components/contact/contact-artwork";
 import { InquiryForm } from "@/components/contact/inquiry-form";
-import { SocialLinks } from "@/components/about/profile-sections";
-import { Eyebrow } from "@/components/ui/primitives";
+import { ContactFaq } from "@/components/contact/contact-faq";
+import { LinkedInIcon } from "@/components/ui/icons";
 import { pageMetadata } from "@/lib/seo/site";
 import "@/styles/contact.css";
-export const runtime="nodejs";
-export const metadata=pageMetadata("Contact — start a project conversation","Share your digital product idea with MOTEKRA. Explore project inquiries, useful starting questions and verified contact availability.","/contact");
-export default function Contact(){return <ContactCinema><section className="contact-hero"><div className="container contact-hero-grid"><div><Eyebrow>A conversation starts here</Eyebrow><h1>{["Have Something","in Mind?"].map((line,i)=><span className="contact-line" key={line}>{line.split(' ').map((word,j)=><span data-contact-word key={word}>{word}{j===0?' ':''}</span>)}{i===0?' ':''}</span>)}</h1><p className="lead">An idea, a product, a new direction.<br/>Let’s find a thoughtful way forward.</p><Link prefetch={false} className="contact-scroll-link" href="#inquiry">Start the conversation <span aria-hidden="true">↓</span></Link></div><ContactArtwork/></div></section>
-<section className="section contact-inquiry" id="inquiry"><div className="container contact-form-grid"><div className="inquiry-panel" data-contact-reveal><Eyebrow>A little context goes a long way</Eyebrow><h2>Tell us what<br/><span>you have in mind.</span></h2><InquiryForm/></div><aside className="inquiry-aside" data-contact-reveal><Eyebrow>The next conversation</Eyebrow><h2>Let’s make<br/><span>it meaningful.</span></h2><p>Share the challenge, the people it’s for, and any constraints you already know. You don’t need a finished brief.</p><div className="contact-availability"><h3>Direct contact</h3><p>Please use the inquiry form. No direct email address is published.</p><p>No phone number or office address has been approved for publication.</p></div><h3>The founder’s professional profiles</h3><p>Akinwumi Ayomiposi<br/>Founder &amp; Creative Technologist</p><SocialLinks/><div className="contact-scope-note"><span aria-hidden="true">↗</span><p>The five project areas are proposed scope. We’ll need to confirm fit and deliverables before making commitments.</p></div></aside></div></section>
-<section className="section contact-faq" id="questions"><div className="container contact-faq-grid"><div><Eyebrow>Before the conversation</Eyebrow><h2>Got Questions?<br/><span>Start Here.</span></h2></div><div className="faq" data-contact-reveal>{[
-['What information helps start a project?','A short description of the idea, the people it is for and the problem you want to address. If you have references, constraints or an existing product, describe them in your message.'],
-['Do I need a complete brief?','No. Start with what you know and the questions you still have. Scope, priorities and technical needs can be discussed before any project commitment.'],
-['Which project areas can I ask about?','UI/UX design, web development, mobile app development, product strategy, and brand and visual design are proposed areas. Final availability, deliverables and fit still need confirmation.'],
-['When will I receive a reply?','A response-time commitment has not been confirmed. An email-server acceptance message does not guarantee inbox arrival or a reply within a specific period.'],
-['What happens when I send the form?','When configured, a minimal email endpoint validates your inquiry and hands it to the email provider. Acceptance and failures are reported honestly. Actual delivery is pending until configuration and a real inbox test are complete.'],
-['Can I attach a file?','Attachments are not collected here. Describe your references or include relevant links in your message.']
-].map(([question,answer])=><details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</div></div></section><section className="contact-closing"><div className="container"><Eyebrow>One considered first step</Eyebrow><h2>A clearer direction<br/><span>starts with a conversation.</span></h2><Link prefetch={false} className="button button-primary" href="#inquiry">Back to the inquiry <span aria-hidden="true">↗</span></Link></div></section></ContactCinema>;}
+
+export const runtime = "nodejs";
+
+export const metadata = pageMetadata(
+  "Contact — Start a Digital Product Conversation",
+  "Partner with MOTEKRA on your next web application, mobile product, or design system. Submit your project inquiry and explore our collaborative approach.",
+  "/contact"
+);
+
+export default function Contact() {
+  return (
+    <ContactCinema>
+      {/* Contact Hero */}
+      <section className="contact-hero" aria-labelledby="contact-hero-title">
+        <div className="container contact-hero-grid">
+          <div>
+            <h1 id="contact-hero-title">
+              {["Have Something", "in Mind?"].map((line) => (
+                <span className="contact-line" key={line}>
+                  {line.split(" ").map((word, j) => (
+                    <span key={word}>
+                      {j > 0 && " "}
+                      <span data-contact-word>{word}</span>
+                    </span>
+                  ))}
+                </span>
+              ))}
+            </h1>
+            <p className="lead">
+              Tell us about your idea. Let’s explore what’s possible.
+            </p>
+            <Link prefetch={false} className="contact-scroll-link" href="#inquiry">
+              <span>Start the conversation</span>
+              <span aria-hidden="true">↓</span>
+            </Link>
+          </div>
+
+          <ContactArtwork />
+        </div>
+      </section>
+
+      {/* Inquiry Form & Aside Context */}
+      <section className="section contact-inquiry" id="inquiry" aria-labelledby="inquiry-heading">
+        <div className="container contact-form-grid">
+          <div className="inquiry-panel" data-contact-reveal>
+            <h2 id="inquiry-heading">
+              Tell Us About Your Project.
+            </h2>
+            <p className="inquiry-lead">
+              Share a few details about what you have in mind.
+            </p>
+            <InquiryForm />
+          </div>
+
+          <aside className="inquiry-aside" data-contact-reveal aria-label="Official Contact Channels">
+            <h2>
+              Let’s build<br />
+              <span>something meaningful.</span>
+            </h2>
+            <p className="inquiry-aside-intro">
+              Share your vision and we’ll explore the next steps together.
+            </p>
+
+            <div className="contact-channels-card">
+              <h3 className="channels-heading">Connect with MOTEKRA</h3>
+              <p className="channels-subtext">
+                For company news, insights, and official updates, connect with our approved corporate channel.
+              </p>
+
+              <div className="official-channels-group">
+                <a
+                  href="https://www.linkedin.com/company/motekra/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="channel-btn linkedin-btn"
+                  aria-label="Visit MOTEKRA on LinkedIn"
+                >
+                  <LinkedInIcon className="channel-icon" />
+                  <span className="channel-btn-text">
+                    <strong>MOTEKRA on LinkedIn</strong>
+                    <span className="channel-btn-detail">Official Company Page</span>
+                  </span>
+                  <span className="channel-arrow" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      {/* FAQ Section with Animated Accordion & Scroll-Following Headline */}
+      <section className="section contact-faq" id="questions" aria-labelledby="faq-heading">
+        <div className="container">
+          <ContactFaq />
+        </div>
+      </section>
+    </ContactCinema>
+  );
+}

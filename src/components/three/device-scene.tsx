@@ -393,62 +393,217 @@ function Keyboard() {
   return <instancedMesh ref={keys} args={[undefined, undefined, 52]}><boxGeometry args={[.25, .018, .16]} /><meshStandardMaterial color="#243d53" metalness={.4} roughness={.4} /></instancedMesh>;
 }
 
+function DeterministicCamera() {
+  const { camera, size, invalidate } = useThree();
+  useEffect(() => {
+    camera.position.set(0, 0.45, 9.8);
+    camera.lookAt(0, 0, 0);
+    if ("aspect" in camera && size.width > 0 && size.height > 0) {
+      camera.aspect = size.width / size.height;
+      camera.updateProjectionMatrix();
+    }
+    invalidate();
+  }, [camera, size, invalidate]);
+
+  useEffect(() => {
+    const handleRestore = () => {
+      camera.position.set(0, 0.45, 9.8);
+      camera.lookAt(0, 0, 0);
+      if ("aspect" in camera && size.width > 0 && size.height > 0) {
+        camera.aspect = size.width / size.height;
+        camera.updateProjectionMatrix();
+      }
+      invalidate();
+    };
+    window.addEventListener("motekra-tab-restored", handleRestore);
+    window.addEventListener("focus", handleRestore);
+    return () => {
+      window.removeEventListener("motekra-tab-restored", handleRestore);
+      window.removeEventListener("focus", handleRestore);
+    };
+  }, [camera, size, invalidate]);
+
+  return null;
+}
+
+const REST_X = -0.15;
+const REST_Y = 0.22;
+const REST_ROT_X = 0.06;
+const REST_ROT_Y = -0.18;
+const REST_PHONE_X = 2.25;
+const REST_PHONE_Y = -0.4;
+const REST_PHONE_ROT_Y = -0.06;
+
 function Devices({ active, variant, cinematic, onReady, quality }: { active: boolean; variant: "overview" | "prototype"; cinematic: boolean; onReady: () => void; quality: "balanced"|"high" }) {
   const group = useRef<Group>(null);
   const lid = useRef<Group>(null), base = useRef<Group>(null), handset = useRef<Group>(null);
-  const elapsed = useRef(2.2);
   const screen = useInterfaceTexture(variant,false,quality);
   const phone = useInterfaceTexture(variant,true,quality);
-  const { invalidate } = useThree();
+  const { invalidate, gl } = useThree();
   const readyFrames = useRef(0);
+  const pointerInside = useRef(true);
+
+  useEffect(() => {
+    const canvas = gl.domElement;
+    const handleLeave = () => {
+      pointerInside.current = false;
+      invalidate();
+    };
+    const handleEnter = () => {
+      pointerInside.current = true;
+      invalidate();
+    };
+    canvas.addEventListener("pointerleave", handleLeave, { passive: true });
+    canvas.addEventListener("pointerenter", handleEnter, { passive: true });
+    return () => {
+      canvas.removeEventListener("pointerleave", handleLeave);
+      canvas.removeEventListener("pointerenter", handleEnter);
+    };
+  }, [gl, invalidate]);
+
   useEffect(() => { if (active) invalidate(); }, [active, variant, invalidate]);
+
   useFrame(({ pointer }, delta) => {
-    // Verify that the scene has rendered complete frames and Bounds settled before signaling ready
-    if (readyFrames.current < 3 && ++readyFrames.current === 3) onReady();
+    // Verify that the scene has rendered complete frames before signaling ready
+    if (readyFrames.current < 2) {
+      if (++readyFrames.current === 2) onReady();
+      invalidate();
+    }
     if (!active || !group.current) return;
-    const targetY = pointer.x * .14 - .18, targetX = -pointer.y * .08 + .06;
-    const amount = Math.min(1, delta * 8);
-    group.current.rotation.y += (targetY - group.current.rotation.y) * amount;
-    group.current.rotation.x += (targetX - group.current.rotation.x) * amount;
-    if (Math.abs(targetY - group.current.rotation.y) + Math.abs(targetX - group.current.rotation.x) > .0005) invalidate();
+
+    // Clamped pointer coordinates; smoothly return to 0 when cursor exits canvas
+    const isInside = pointerInside.current;
+    const px = (isInside && Number.isFinite(pointer.x)) ? Math.max(-1, Math.min(1, pointer.x)) : 0;
+    const py = (isInside && Number.isFinite(pointer.y)) ? Math.max(-1, Math.min(1, pointer.y)) : 0;
+
+    // Directional translation: Left/Right (±20px), Up/Down (±12px)
+    const targetX = REST_X + px * 0.22;
+    const targetY = REST_Y + py * 0.12;
+
+    // Controlled 3D rotation: ±3 degrees (±0.052 rad)
+    const targetRotY = REST_ROT_Y + px * 0.052;
+    const targetRotX = REST_ROT_X - py * 0.045;
+
+    const safeDelta = Math.min(Math.max(delta, 0), 0.05);
+    const amount = Math.min(1, safeDelta * 6.5);
+
+    group.current.position.x += (targetX - group.current.position.x) * amount;
+    group.current.position.y += (targetY - group.current.position.y) * amount;
+    group.current.rotation.x += (targetRotX - group.current.rotation.x) * amount;
+    group.current.rotation.y += (targetRotY - group.current.rotation.y) * amount;
+
+    // Smartphone independent parallax for natural depth
+    if (handset.current) {
+      const targetPhoneX = REST_PHONE_X + px * 0.08;
+      const targetPhoneY = REST_PHONE_Y + py * 0.05;
+      const targetPhoneRotY = REST_PHONE_ROT_Y + px * 0.025;
+      handset.current.position.x += (targetPhoneX - handset.current.position.x) * amount;
+      handset.current.position.y += (targetPhoneY - handset.current.position.y) * amount;
+      handset.current.rotation.y += (targetPhoneRotY - handset.current.rotation.y) * amount;
+    }
+
+    const motionDelta = Math.abs(targetX - group.current.position.x) +
+                        Math.abs(targetY - group.current.position.y) +
+                        Math.abs(targetRotY - group.current.rotation.y) +
+                        Math.abs(targetRotX - group.current.rotation.x);
+    if (motionDelta > 0.0002) invalidate();
   });
-  return <group ref={group} rotation={[.06, -.18, .025]} position={[-.25, .25, 0]}>
+
+  return <group ref={group} rotation={[REST_ROT_X, REST_ROT_Y, .025]} position={[REST_X, REST_Y, 0]} scale={1.16}>
     <group ref={lid}>
-    <RoundedBox args={[4.6, 2.95, .16]} radius={.12} smoothness={quality==="high"?3:2}><meshPhysicalMaterial color="#102844" metalness={.55} roughness={.22} clearcoat={.9} clearcoatRoughness={.18} /></RoundedBox>
-    <mesh position={[0, .02, .091]}><planeGeometry args={[4.28, 2.62]} /><meshBasicMaterial map={screen} toneMapped={false} /></mesh>
-    <RoundedBox args={[4.25, .025, .02]} radius={.009} smoothness={2} position={[0, -1.42, .09]}><meshBasicMaterial color="#12cde4" /></RoundedBox>
+      <RoundedBox args={[4.6, 2.95, .16]} radius={.12} smoothness={quality==="high"?3:2}>
+        <meshPhysicalMaterial color="#0b1e36" metalness={.72} roughness={.2} clearcoat={.9} clearcoatRoughness={.15} />
+      </RoundedBox>
+      <mesh position={[0, .02, .091]}>
+        <planeGeometry args={[4.28, 2.62]} />
+        <meshBasicMaterial map={screen} toneMapped={false} />
+      </mesh>
+      <RoundedBox args={[4.25, .025, .02]} radius={.009} smoothness={2} position={[0, -1.42, .09]}>
+        <meshBasicMaterial color="#12cde4" />
+      </RoundedBox>
     </group>
     <group ref={base}>
-    <RoundedBox args={[4.95, .14, 2.6]} radius={.06} smoothness={quality==="high"?3:2} position={[0, -1.55, 1.18]}><meshStandardMaterial color="#b3c9db" metalness={.75} roughness={.3} /></RoundedBox>
-    <Keyboard />
-    <RoundedBox args={[1.5, .018, .16]} radius={.025} smoothness={2} position={[0, -1.467, 1.25]}><meshStandardMaterial color="#243d53" metalness={.4} roughness={.4} /></RoundedBox>
-    <RoundedBox args={[1.35, .012, .78]} radius={.04} smoothness={2} position={[0, -1.47, 1.72]}><meshStandardMaterial color="#7796b3" metalness={.5} roughness={.45} /></RoundedBox>
+      <RoundedBox args={[4.95, .14, 2.6]} radius={.06} smoothness={quality==="high"?3:2} position={[0, -1.55, 1.18]}>
+        <meshStandardMaterial color="#c5d8eb" metalness={.82} roughness={.22} />
+      </RoundedBox>
+      <Keyboard />
+      <RoundedBox args={[1.5, .018, .16]} radius={.025} smoothness={2} position={[0, -1.467, 1.25]}>
+        <meshStandardMaterial color="#243d53" metalness={.4} roughness={.4} />
+      </RoundedBox>
+      <RoundedBox args={[1.35, .012, .78]} radius={.04} smoothness={2} position={[0, -1.47, 1.72]}>
+        <meshStandardMaterial color="#88a8c7" metalness={.65} roughness={.35} />
+      </RoundedBox>
     </group>
-    <group ref={handset} position={[2.25, -.4, 1.8]} rotation={[0, -.06, -.12]}>
-      <RoundedBox args={[1.16, 2.3, .16]} radius={.13} smoothness={quality==="high"?3:2}><meshPhysicalMaterial color="#06182f" metalness={.45} roughness={.2} clearcoat={1} /></RoundedBox>
-      <mesh position={[0, 0, .09]}><planeGeometry args={[1, 2.04]} /><meshBasicMaterial map={phone} toneMapped={false} /></mesh>
-      <RoundedBox args={[.35, .06, .02]} radius={.02} smoothness={2} position={[0, 1.02, .11]}><meshBasicMaterial color="#08152b" /></RoundedBox>
+    <group ref={handset} position={[REST_PHONE_X, REST_PHONE_Y, 1.8]} rotation={[0, REST_PHONE_ROT_Y, -.12]}>
+      <RoundedBox args={[1.16, 2.3, .16]} radius={.13} smoothness={quality==="high"?3:2}>
+        <meshPhysicalMaterial color="#08182d" metalness={.65} roughness={.18} clearcoat={1} clearcoatRoughness={.1} />
+      </RoundedBox>
+      <mesh position={[0, 0, .09]}>
+        <planeGeometry args={[1, 2.04]} />
+        <meshBasicMaterial map={phone} toneMapped={false} />
+      </mesh>
+      <RoundedBox args={[.35, .06, .02]} radius={.02} smoothness={2} position={[0, 1.02, .11]}>
+        <meshBasicMaterial color="#08152b" />
+      </RoundedBox>
     </group>
   </group>;
 }
 
-function ContextMonitor({ onFailure }: { onFailure: () => void }) {
+function ContextMonitor({ onFailure, onReady }: { onFailure: () => void; onReady: () => void }) {
   const { gl, invalidate, performance } = useThree();
   useEffect(() => {
     const canvas = gl.domElement;
-    const lost = (event: Event) => { event.preventDefault(); onFailure(); };
+    let restoreTimeout: ReturnType<typeof setTimeout> | undefined;
+
+    const lost = (event: Event) => {
+      event.preventDefault(); // Permit browser to restore WebGL context
+      restoreTimeout = setTimeout(() => {
+        // Fallback to static poster if WebGL cannot be restored after 3.5s
+        onFailure();
+      }, 3500);
+    };
+
+    const restored = () => {
+      if (restoreTimeout) clearTimeout(restoreTimeout);
+      invalidate();
+      onReady();
+    };
+
     const move = () => { performance.regress(); invalidate(); };
     canvas.addEventListener("webglcontextlost", lost);
+    canvas.addEventListener("webglcontextrestored", restored);
     canvas.addEventListener("pointermove", move, { passive: true });
     canvas.addEventListener("pointerleave", move, { passive: true });
-    return () => { canvas.removeEventListener("webglcontextlost", lost); canvas.removeEventListener("pointermove", move); canvas.removeEventListener("pointerleave", move); };
-  }, [gl, invalidate, performance, onFailure]);
+
+    const handleTabRestore = () => {
+      const ctx = gl.getContext();
+      if (ctx && "isContextLost" in ctx && (ctx as WebGLRenderingContext).isContextLost()) {
+        return;
+      }
+      invalidate();
+    };
+    window.addEventListener("motekra-tab-restored", handleTabRestore);
+    window.addEventListener("focus", handleTabRestore);
+
+    return () => {
+      if (restoreTimeout) clearTimeout(restoreTimeout);
+      canvas.removeEventListener("webglcontextlost", lost);
+      canvas.removeEventListener("webglcontextrestored", restored);
+      canvas.removeEventListener("pointermove", move);
+      canvas.removeEventListener("pointerleave", move);
+      window.removeEventListener("motekra-tab-restored", handleTabRestore);
+      window.removeEventListener("focus", handleTabRestore);
+    };
+  }, [gl, invalidate, performance, onFailure, onReady]);
   return null;
 }
 
 export default function DeviceScene({ active, quality, variant, cinematic = false, onReady, onFailure }: { active: boolean; quality: "balanced" | "high"; variant: "overview" | "prototype"; cinematic?: boolean; onReady: () => void; onFailure: () => void }) {
   return <Canvas frameloop={active ? "demand" : "never"} dpr={quality === "high" ? 1.25 : 1} camera={{ position: [0, .45, 9.8], fov: 37 }} gl={{ antialias: quality === "high", alpha: true, powerPreference: "low-power" }} performance={{ min: .65 }} fallback={null}>
     <ambientLight intensity={1.8} /><directionalLight position={[3, 5, 6]} intensity={3} color="#ddf5ff" /><directionalLight position={[-5, 0, 3]} intensity={2} color="#1688f7" />
-    <Bounds fit clip observe margin={1.04} maxDuration={0}><Devices active={active} variant={variant} cinematic={cinematic} quality={quality} onReady={onReady} /></Bounds><AdaptiveDpr /><ContextMonitor onFailure={onFailure} />
+    <DeterministicCamera />
+    <Devices active={active} variant={variant} cinematic={cinematic} quality={quality} onReady={onReady} />
+    <AdaptiveDpr />
+    <ContextMonitor onFailure={onFailure} onReady={onReady} />
   </Canvas>;
 }

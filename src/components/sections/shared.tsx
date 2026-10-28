@@ -2,19 +2,67 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { services } from "@/content/services";
 import { Arrow, ButtonLink, DraftNote, Eyebrow } from "../ui/primitives";
+import { HomeProcess } from "@/components/home/home-process";
 
-export function PageHero({ eyebrow, title, description, visual }: { eyebrow: string; title: ReactNode; description: string; visual?: ReactNode }) {
-  return <section className={`page-hero ${visual ? "has-visual" : ""}`}><div className="container page-hero-grid"><div><Eyebrow>{eyebrow}</Eyebrow><h1>{title}</h1><p className="lead">{description}</p></div>{visual}</div></section>;
+export function PageHero({
+  eyebrow,
+  title,
+  description,
+  visual,
+}: {
+  eyebrow: string;
+  title: ReactNode;
+  description: string;
+  visual?: ReactNode;
+}) {
+  return (
+    <section className={`page-hero ${visual ? "has-visual" : ""}`}>
+      <div className="container page-hero-grid">
+        <div>
+          <Eyebrow>{eyebrow}</Eyebrow>
+          <h1>{title}</h1>
+          <p className="lead">{description}</p>
+        </div>
+        {visual}
+      </div>
+    </section>
+  );
 }
 
 export function ServiceList({ full = false }: { full?: boolean }) {
-  return <><DraftNote>Proposed service scope · awaiting confirmation</DraftNote><div className={`service-list ${full ? "service-list-full" : ""}`}>
-    {services.map((service) => <article className="service-row" key={service.slug}>
-      <span className="service-number">◆</span><div className={`service-glyph glyph-${service.visual}`} aria-hidden="true"><i /><i /><i /></div>
-      <div><h3><Link prefetch={false} href={`/services/${service.slug}`}>{service.title}</Link></h3><p>{service.description}</p></div>
-      <Link prefetch={false} href={`/services/${service.slug}`} className="circle-link" aria-label={`Explore ${service.title} proposed scope`}><Arrow diagonal /></Link>
-    </article>)}
-  </div></>;
+  return (
+    <>
+      <DraftNote>Proposed service scope · awaiting confirmation</DraftNote>
+      <div className={`service-list ${full ? "service-list-full" : ""}`}>
+        {services.map((service) => (
+          <article className="service-row" key={service.slug}>
+            <span className="service-number">◆</span>
+            <div className={`service-glyph glyph-${service.visual}`} aria-hidden="true">
+              <i />
+              <i />
+              <i />
+            </div>
+            <div>
+              <h3>
+                <Link prefetch={false} href={`/services/${service.slug}`}>
+                  {service.title}
+                </Link>
+              </h3>
+              <p>{service.description}</p>
+            </div>
+            <Link
+              prefetch={false}
+              href={`/services/${service.slug}`}
+              className="circle-link"
+              aria-label={`Explore ${service.title} proposed scope`}
+            >
+              <Arrow diagonal />
+            </Link>
+          </article>
+        ))}
+      </div>
+    </>
+  );
 }
 
 export const processSteps = [
@@ -26,11 +74,21 @@ export const processSteps = [
 ] as const;
 
 export function Process() {
-  return <section className="section dark process-section" aria-labelledby="process-title"><div className="container"><Eyebrow>The process · proposed approach</Eyebrow><div className="section-heading"><h2 id="process-title">From Idea<br />to <span>Impact.</span></h2><p>A clear path from the first conversation<br />to something people can use.</p></div>
-    <ol className="process-grid">{processSteps.map(([title, description]) => <li key={title}><span className="process-index">◆</span><h3>{title}</h3><p>{description}</p></li>)}</ol>
-  </div></section>;
+  return <HomeProcess />;
 }
 
 export function ContactCta() {
-  return <section className="contact-cta"><div className="container cta-inner"><div><Eyebrow>Start a project conversation</Eyebrow><h2>Ready to Bring Your<br /><span>Ideas to Life?</span></h2></div><ButtonLink href="/contact">Let’s Talk</ButtonLink></div></section>;
+  return (
+    <section className="contact-cta">
+      <div className="container cta-inner">
+        <div>
+          <h2>
+            Ready to Bring Your<br />
+            <span>Ideas to Life?</span>
+          </h2>
+        </div>
+        <ButtonLink href="/contact">Let’s Talk</ButtonLink>
+      </div>
+    </section>
+  );
 }
