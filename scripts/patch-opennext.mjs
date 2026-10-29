@@ -72,7 +72,7 @@ patchFile(bundleServerFile, "ignore-sharp plugin in bundle-server.js", (code) =>
   );
 });
 
-// 3. Patch copyTracedFiles.js for Windows symlink EPERM fallback
+// 3. Patch copyTracedFiles.js for Windows filesystem compatibility (prevent broken relative symlinks)
 function findFiles(dir, matchName, results = []) {
   if (!fs.existsSync(dir)) return results;
   const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -93,29 +93,61 @@ const copyTracedFilesMatches = findFiles(
 );
 
 for (const copyTracedFile of copyTracedFilesMatches) {
-  patchFile(copyTracedFile, `EPERM fallback in ${copyTracedFile}`, (code) => {
-    if (code.includes("junction")) return code;
+  patchFile(copyTracedFile, `Windows absolute junction resolution in ${copyTracedFile}`, (code) => {
+    let updated = code;
 
-    return code.replace(
-      /try\s*\{\s*symlinkSync\(([^)]+)\);\s*\}\s*catch\s*\(([^)]+)\)\s*\{/g,
-      `try {
-                symlinkSync($1);
-            }
-            catch ($2) {
-                if ($2.code === "EPERM") {
+    // Ensure rmSync is imported
+    if (!updated.includes("rmSync,")) {
+      updated = updated.replace(
+        /readlinkSync,\s*statSync,/,
+        "readlinkSync, rmSync, statSync,"
+      );
+    }
+
+    const targetSectionRegex = /if\s*\(symlink\)\s*\{[\s\S]*?else\s*\{\s*\/\/\s*Adding this inside a try-catch/;
+    const replacement = `if (symlink) {
+            if (process.platform === "win32") {
+                const absSource = path.isAbsolute(symlink) ? symlink : path.resolve(path.dirname(from), symlink);
+                const absDest = absSource.replace(standaloneDir, outputDir);
+                const target = existsSync(absDest) ? absDest : absSource;
+                let isDir = false;
+                try {
+                    isDir = statSync(target).isDirectory();
+                } catch {}
+                try {
+                    rmSync(to, { force: true, recursive: true });
+                } catch {}
+                if (isDir) {
                     try {
-                        symlinkSync(symlink, to, "junction");
-                    }
-                    catch {
+                        symlinkSync(target, to, "junction");
+                    } catch {
                         try {
-                            cpSync(from, to, { recursive: true, dereference: true });
-                        }
-                        catch (err) {
+                            cpSync(target, to, { recursive: true, dereference: true });
+                        } catch (err) {
                             if (err.code !== "EEXIST") throw err;
                         }
                     }
-                }`
-    );
+                } else {
+                    try {
+                        copyFileSync(target, to);
+                    } catch (err) {
+                        if (err.code !== "EEXIST") throw err;
+                    }
+                }
+            } else {
+                try {
+                    symlinkSync(symlink, to);
+                }
+                catch (e) {
+                    if (e.code !== "EEXIST") {
+                        throw e;
+                    }
+                }
+            }
+        }
+        else {
+            // Adding this inside a try-catch`;
+
+    return updated.replace(targetSectionRegex, replacement);
   });
 }
-
