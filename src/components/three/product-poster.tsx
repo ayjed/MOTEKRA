@@ -24,6 +24,7 @@ export function ProductPoster({ compact = false }: { compact?: boolean }) {
           height={1152}
           loading="eager"
           decoding="async"
+          fetchPriority="high"
           className="product-poster-img"
         />
       </picture>

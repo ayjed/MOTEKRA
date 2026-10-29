@@ -256,7 +256,7 @@ export function HomeWork() {
                       fill
                       sizes="(max-width: 768px) 96vw, (max-width: 1280px) 92vw, 1280px"
                       className="davka-project-img"
-                      priority
+                      priority={false}
                     />
                     <div className="davka-project-overlay" />
                   </div>

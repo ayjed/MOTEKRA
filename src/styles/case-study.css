@@ -14,8 +14,8 @@
    -------------------------------------------------------------------------- */
 .case-hero-section {
   position: relative;
-  padding-top: calc(var(--nav-height, 88px) + clamp(28px, 3.5vw, 48px));
-  padding-bottom: clamp(36px, 4.5vw, 64px);
+  padding-top: clamp(64px, 6.7vw, 96px);
+  padding-bottom: clamp(36px, 4.5vw, 56px);
   background: radial-gradient(ellipse at 85% 15%, #edf7ff 0%, transparent 60%), #ffffff;
   border-bottom: 1px solid #edf4fa;
 }
@@ -41,6 +41,11 @@
   color: #5c7894;
   text-decoration: none;
   transition: color 0.2s ease;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding-block: 8px;
+  margin-block: -8px;
 }
 
 .case-breadcrumb-link:hover {
@@ -547,7 +552,7 @@
 
 @media (max-width: 767px) {
   .case-hero-section {
-    padding-top: calc(var(--nav-height, 76px) + 24px);
+    padding-top: clamp(44px, 10vw, 56px);
     padding-bottom: 32px;
   }
 

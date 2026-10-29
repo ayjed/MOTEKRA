@@ -14,7 +14,7 @@
    -------------------------------------------------------------------------- */
 .service-subpage-hero {
   background: radial-gradient(ellipse at 85% 0%, #edf7ff 0%, #ffffff 65%), #ffffff;
-  padding-top: calc(var(--nav-height, 88px) + clamp(28px, 3.5vw, 44px));
+  padding-top: clamp(64px, 6.7vw, 96px);
   padding-bottom: clamp(36px, 4.5vw, 56px);
   border-bottom: 1px solid #edf4fa;
 }
@@ -39,6 +39,11 @@
 .service-subpage-breadcrumbs a {
   color: #4a6884;
   transition: color 0.2s ease;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  padding-block: 8px;
+  margin-block: -8px;
 }
 
 .service-subpage-breadcrumbs a:hover {
@@ -530,6 +535,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  min-height: 44px;
   font-size: 13.5px;
   font-weight: 600;
   color: #12cde4;
@@ -567,7 +573,7 @@
 
 @media (max-width: 767px) {
   .service-subpage-hero {
-    padding-top: calc(var(--nav-height, 76px) + 24px);
+    padding-top: clamp(44px, 10vw, 56px);
     padding-bottom: 32px;
   }
 

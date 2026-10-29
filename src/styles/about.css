@@ -5,3 +5,6 @@
 
 
 .editorial-values{position:relative;background:radial-gradient(ellipse at 100% var(--value-glow,50%),#0a3454,transparent 65%),#08152b}.values-stack{position:relative}.values-rail{position:absolute;z-index:1;left:0;top:0;bottom:0;width:2px;background:linear-gradient(#12cde4,#1688f7);transform-origin:top;pointer-events:none}.values-stack details{background:#08152bf2}
+
+.founder-hero .seo-breadcrumbs { margin-bottom: clamp(16px, 2vw, 24px); }
+.founder-hero .seo-breadcrumbs a, .founder-hero .seo-breadcrumbs span { display: inline-flex; align-items: center; min-height: 44px; padding-block: 8px; margin-block: -8px; }

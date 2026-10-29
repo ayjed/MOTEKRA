@@ -22,9 +22,6 @@ export default async function FounderProfile({ params }: { params: Promise<{ slu
   return (
     <>
       <JsonLd data={founderStructuredData(person)} />
-      <div className="container">
-        <Breadcrumbs items={[{ name: "Home", path: "/" }, { name: "About", path: "/about" }, { name: person.name, path: `/team/${person.slug}` }]} />
-      </div>
       <FounderPage person={person} />
       <FloatingWhatsApp personName="Ayomiposi" phoneNumber="447403605289" />
     </>

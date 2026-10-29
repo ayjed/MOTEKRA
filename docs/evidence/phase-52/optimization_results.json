@@ -1,0 +1,2384 @@
+{
+  "viewport_results": {
+    "1920_large_desktop": {
+      "Home": {
+        "status": "PASS",
+        "scrollWidth": 1920,
+        "clientWidth": 1920,
+        "navGap": 180,
+        "h1": {
+          "text": "Digital Products\nfor What\u2019s Ne",
+          "width": 601,
+          "height": 173,
+          "top": 268,
+          "fontSize": "72px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Work": {
+        "status": "PASS",
+        "scrollWidth": 1920,
+        "clientWidth": 1920,
+        "navGap": 82,
+        "h1": {
+          "text": "Selected Work.",
+          "width": 820,
+          "height": 86,
+          "top": 170,
+          "fontSize": "84px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Services": {
+        "status": "PASS",
+        "scrollWidth": 1920,
+        "clientWidth": 1920,
+        "navGap": 82,
+        "h1": {
+          "text": "What We Bring to Life.",
+          "width": 754,
+          "height": 199,
+          "top": 170,
+          "fontSize": "94px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "About": {
+        "status": "PASS",
+        "scrollWidth": 1920,
+        "clientWidth": 1920,
+        "navGap": 82,
+        "h1": {
+          "text": "A Studio for\nWhat\u2019s Next.",
+          "width": 662,
+          "height": 227,
+          "top": 170,
+          "fontSize": "102px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Contact": {
+        "status": "PASS",
+        "scrollWidth": 1920,
+        "clientWidth": 1920,
+        "navGap": 82,
+        "h1": {
+          "text": "Have Something\nin Mind?",
+          "width": 764,
+          "height": 194,
+          "top": 170,
+          "fontSize": "90px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_UI_UX": {
+        "status": "PASS",
+        "scrollWidth": 1920,
+        "clientWidth": 1920,
+        "navGap": 142,
+        "h1": {
+          "text": "UI/UX Design",
+          "width": 880,
+          "height": 85,
+          "top": 230,
+          "fontSize": "82px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Web_Dev": {
+        "status": "PASS",
+        "scrollWidth": 1920,
+        "clientWidth": 1920,
+        "navGap": 142,
+        "h1": {
+          "text": "Web Development",
+          "width": 880,
+          "height": 85,
+          "top": 230,
+          "fontSize": "82px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Mobile_Dev": {
+        "status": "PASS",
+        "scrollWidth": 1920,
+        "clientWidth": 1920,
+        "navGap": 142,
+        "h1": {
+          "text": "Mobile App Development",
+          "width": 880,
+          "height": 171,
+          "top": 230,
+          "fontSize": "82px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Product_Strategy": {
+        "status": "PASS",
+        "scrollWidth": 1920,
+        "clientWidth": 1920,
+        "navGap": 142,
+        "h1": {
+          "text": "Product Strategy",
+          "width": 880,
+          "height": 85,
+          "top": 230,
+          "fontSize": "82px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Brand_Design": {
+        "status": "PASS",
+        "scrollWidth": 1920,
+        "clientWidth": 1920,
+        "navGap": 142,
+        "h1": {
+          "text": "Brand & Visual Design",
+          "width": 880,
+          "height": 85,
+          "top": 230,
+          "fontSize": "82px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Case_Spotlight": {
+        "status": "PASS",
+        "scrollWidth": 1920,
+        "clientWidth": 1920,
+        "navGap": 210,
+        "h1": {
+          "text": "Spotlight Contest",
+          "width": 1392,
+          "height": 79,
+          "top": 298,
+          "fontSize": "76px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_LAD_Travels": {
+        "status": "PASS",
+        "scrollWidth": 1920,
+        "clientWidth": 1920,
+        "navGap": 210,
+        "h1": {
+          "text": "LAD Global Travels",
+          "width": 1392,
+          "height": 79,
+          "top": 298,
+          "fontSize": "76px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_TOG_Africa": {
+        "status": "PASS",
+        "scrollWidth": 1920,
+        "clientWidth": 1920,
+        "navGap": 210,
+        "h1": {
+          "text": "TOG Africa",
+          "width": 1392,
+          "height": 79,
+          "top": 298,
+          "fontSize": "76px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_ConnectAPI": {
+        "status": "PASS",
+        "scrollWidth": 1920,
+        "clientWidth": 1920,
+        "navGap": 210,
+        "h1": {
+          "text": "ConnectAPI",
+          "width": 1392,
+          "height": 79,
+          "top": 298,
+          "fontSize": "76px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Team_Founder": {
+        "status": "PASS",
+        "scrollWidth": 1920,
+        "clientWidth": 1920,
+        "navGap": 223,
+        "h1": {
+          "text": "Akinwumi\nAyomiposi",
+          "width": 662,
+          "height": 192,
+          "top": 311,
+          "fontSize": "86px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 5
+      }
+    },
+    "1440_desktop": {
+      "Home": {
+        "status": "PASS",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "navGap": 104,
+        "h1": {
+          "text": "Digital Products\nfor What\u2019s Ne",
+          "width": 551,
+          "height": 166,
+          "top": 192,
+          "fontSize": "69.12px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Work": {
+        "status": "PASS",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "navGap": 82,
+        "h1": {
+          "text": "Selected Work.",
+          "width": 820,
+          "height": 86,
+          "top": 170,
+          "fontSize": "84px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Services": {
+        "status": "PASS",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "navGap": 82,
+        "h1": {
+          "text": "What We Bring to Life.",
+          "width": 690,
+          "height": 199,
+          "top": 170,
+          "fontSize": "94px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "About": {
+        "status": "PASS",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "navGap": 82,
+        "h1": {
+          "text": "A Studio for\nWhat\u2019s Next.",
+          "width": 611,
+          "height": 212,
+          "top": 170,
+          "fontSize": "95.04px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Contact": {
+        "status": "PASS",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "navGap": 82,
+        "h1": {
+          "text": "Have Something\nin Mind?",
+          "width": 699,
+          "height": 187,
+          "top": 170,
+          "fontSize": "86.4px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_UI_UX": {
+        "status": "PASS",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "navGap": 142,
+        "h1": {
+          "text": "UI/UX Design",
+          "width": 880,
+          "height": 85,
+          "top": 230,
+          "fontSize": "82px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Web_Dev": {
+        "status": "PASS",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "navGap": 142,
+        "h1": {
+          "text": "Web Development",
+          "width": 880,
+          "height": 85,
+          "top": 230,
+          "fontSize": "82px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Mobile_Dev": {
+        "status": "PASS",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "navGap": 142,
+        "h1": {
+          "text": "Mobile App Development",
+          "width": 880,
+          "height": 171,
+          "top": 230,
+          "fontSize": "82px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Product_Strategy": {
+        "status": "PASS",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "navGap": 142,
+        "h1": {
+          "text": "Product Strategy",
+          "width": 880,
+          "height": 85,
+          "top": 230,
+          "fontSize": "82px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Brand_Design": {
+        "status": "PASS",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "navGap": 142,
+        "h1": {
+          "text": "Brand & Visual Design",
+          "width": 880,
+          "height": 85,
+          "top": 230,
+          "fontSize": "82px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Case_Spotlight": {
+        "status": "PASS",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "navGap": 210,
+        "h1": {
+          "text": "Spotlight Contest",
+          "width": 1280,
+          "height": 79,
+          "top": 298,
+          "fontSize": "76px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_LAD_Travels": {
+        "status": "PASS",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "navGap": 210,
+        "h1": {
+          "text": "LAD Global Travels",
+          "width": 1280,
+          "height": 79,
+          "top": 298,
+          "fontSize": "76px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_TOG_Africa": {
+        "status": "PASS",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "navGap": 210,
+        "h1": {
+          "text": "TOG Africa",
+          "width": 1280,
+          "height": 79,
+          "top": 298,
+          "fontSize": "76px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_ConnectAPI": {
+        "status": "PASS",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "navGap": 210,
+        "h1": {
+          "text": "ConnectAPI",
+          "width": 1280,
+          "height": 79,
+          "top": 298,
+          "fontSize": "76px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Team_Founder": {
+        "status": "PASS",
+        "scrollWidth": 1440,
+        "clientWidth": 1440,
+        "navGap": 223,
+        "h1": {
+          "text": "Akinwumi\nAyomiposi",
+          "width": 611,
+          "height": 183,
+          "top": 311,
+          "fontSize": "82.08px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 5
+      }
+    },
+    "1280_laptop": {
+      "Home": {
+        "status": "PASS",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "navGap": 104,
+        "h1": {
+          "text": "Digital Products\nfor What\u2019s Ne",
+          "width": 530,
+          "height": 147,
+          "top": 192,
+          "fontSize": "61.44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Work": {
+        "status": "PASS",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "navGap": 72,
+        "h1": {
+          "text": "Selected Work.",
+          "width": 820,
+          "height": 85,
+          "top": 160,
+          "fontSize": "83.2px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Services": {
+        "status": "PASS",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "navGap": 72,
+        "h1": {
+          "text": "What We Bring to Life.",
+          "width": 626,
+          "height": 185,
+          "top": 160,
+          "fontSize": "87.04px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "About": {
+        "status": "PASS",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "navGap": 72,
+        "h1": {
+          "text": "A Studio for\nWhat\u2019s Next.",
+          "width": 557,
+          "height": 188,
+          "top": 160,
+          "fontSize": "84.48px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Contact": {
+        "status": "PASS",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "navGap": 72,
+        "h1": {
+          "text": "Have Something\nin Mind?",
+          "width": 637,
+          "height": 166,
+          "top": 160,
+          "fontSize": "76.8px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_UI_UX": {
+        "status": "PASS",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "navGap": 132,
+        "h1": {
+          "text": "UI/UX Design",
+          "width": 880,
+          "height": 77,
+          "top": 220,
+          "fontSize": "74.24px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Web_Dev": {
+        "status": "PASS",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "navGap": 132,
+        "h1": {
+          "text": "Web Development",
+          "width": 880,
+          "height": 77,
+          "top": 220,
+          "fontSize": "74.24px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Mobile_Dev": {
+        "status": "PASS",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "navGap": 132,
+        "h1": {
+          "text": "Mobile App Development",
+          "width": 880,
+          "height": 77,
+          "top": 220,
+          "fontSize": "74.24px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Product_Strategy": {
+        "status": "PASS",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "navGap": 132,
+        "h1": {
+          "text": "Product Strategy",
+          "width": 880,
+          "height": 77,
+          "top": 220,
+          "fontSize": "74.24px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Brand_Design": {
+        "status": "PASS",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "navGap": 132,
+        "h1": {
+          "text": "Brand & Visual Design",
+          "width": 880,
+          "height": 77,
+          "top": 220,
+          "fontSize": "74.24px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Case_Spotlight": {
+        "status": "PASS",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "navGap": 200,
+        "h1": {
+          "text": "Spotlight Contest",
+          "width": 1165,
+          "height": 79,
+          "top": 288,
+          "fontSize": "76px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_LAD_Travels": {
+        "status": "PASS",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "navGap": 200,
+        "h1": {
+          "text": "LAD Global Travels",
+          "width": 1165,
+          "height": 79,
+          "top": 288,
+          "fontSize": "76px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_TOG_Africa": {
+        "status": "PASS",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "navGap": 200,
+        "h1": {
+          "text": "TOG Africa",
+          "width": 1165,
+          "height": 79,
+          "top": 288,
+          "fontSize": "76px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_ConnectAPI": {
+        "status": "PASS",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "navGap": 200,
+        "h1": {
+          "text": "ConnectAPI",
+          "width": 1165,
+          "height": 79,
+          "top": 288,
+          "fontSize": "76px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Team_Founder": {
+        "status": "PASS",
+        "scrollWidth": 1280,
+        "clientWidth": 1280,
+        "navGap": 212,
+        "h1": {
+          "text": "Akinwumi\nAyomiposi",
+          "width": 557,
+          "height": 163,
+          "top": 300,
+          "fontSize": "72.96px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 5
+      }
+    },
+    "1024_tablet_landscape": {
+      "Home": {
+        "status": "PASS",
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "navGap": 10,
+        "h1": {
+          "text": "Digital Products\nfor What\u2019s Ne",
+          "width": 932,
+          "height": 118,
+          "top": 98,
+          "fontSize": "50px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Work": {
+        "status": "PASS",
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "navGap": 55,
+        "h1": {
+          "text": "Selected Work.",
+          "width": 820,
+          "height": 68,
+          "top": 143,
+          "fontSize": "66.56px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Services": {
+        "status": "PASS",
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "navGap": 55,
+        "h1": {
+          "text": "What We Bring to Life.",
+          "width": 500,
+          "height": 148,
+          "top": 143,
+          "fontSize": "69.632px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "About": {
+        "status": "PASS",
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "navGap": 55,
+        "h1": {
+          "text": "A Studio for\nWhat\u2019s Next.",
+          "width": 446,
+          "height": 151,
+          "top": 143,
+          "fontSize": "67.584px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Contact": {
+        "status": "PASS",
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "navGap": 55,
+        "h1": {
+          "text": "Have Something\nin Mind?",
+          "width": 509,
+          "height": 133,
+          "top": 143,
+          "fontSize": "61.44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_UI_UX": {
+        "status": "PASS",
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "navGap": 108,
+        "h1": {
+          "text": "UI/UX Design",
+          "width": 880,
+          "height": 62,
+          "top": 196,
+          "fontSize": "59.392px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Web_Dev": {
+        "status": "PASS",
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "navGap": 108,
+        "h1": {
+          "text": "Web Development",
+          "width": 880,
+          "height": 62,
+          "top": 196,
+          "fontSize": "59.392px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Mobile_Dev": {
+        "status": "PASS",
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "navGap": 108,
+        "h1": {
+          "text": "Mobile App Development",
+          "width": 880,
+          "height": 62,
+          "top": 196,
+          "fontSize": "59.392px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Product_Strategy": {
+        "status": "PASS",
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "navGap": 108,
+        "h1": {
+          "text": "Product Strategy",
+          "width": 880,
+          "height": 62,
+          "top": 196,
+          "fontSize": "59.392px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Brand_Design": {
+        "status": "PASS",
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "navGap": 108,
+        "h1": {
+          "text": "Brand & Visual Design",
+          "width": 880,
+          "height": 62,
+          "top": 196,
+          "fontSize": "59.392px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Case_Spotlight": {
+        "status": "PASS",
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "navGap": 170,
+        "h1": {
+          "text": "Spotlight Contest",
+          "width": 932,
+          "height": 64,
+          "top": 258,
+          "fontSize": "61.44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_LAD_Travels": {
+        "status": "PASS",
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "navGap": 170,
+        "h1": {
+          "text": "LAD Global Travels",
+          "width": 932,
+          "height": 64,
+          "top": 258,
+          "fontSize": "61.44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_TOG_Africa": {
+        "status": "PASS",
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "navGap": 170,
+        "h1": {
+          "text": "TOG Africa",
+          "width": 932,
+          "height": 64,
+          "top": 258,
+          "fontSize": "61.44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_ConnectAPI": {
+        "status": "PASS",
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "navGap": 170,
+        "h1": {
+          "text": "ConnectAPI",
+          "width": 932,
+          "height": 64,
+          "top": 258,
+          "fontSize": "61.44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Team_Founder": {
+        "status": "PASS",
+        "scrollWidth": 1024,
+        "clientWidth": 1024,
+        "navGap": 192,
+        "h1": {
+          "text": "Akinwumi\nAyomiposi",
+          "width": 446,
+          "height": 130,
+          "top": 280,
+          "fontSize": "58.368px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 5
+      }
+    },
+    "768_tablet_portrait": {
+      "Home": {
+        "status": "PASS",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "navGap": 11,
+        "h1": {
+          "text": "Digital Products\nfor What\u2019s Ne",
+          "width": 699,
+          "height": 94,
+          "top": 99,
+          "fontSize": "39.936px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Work": {
+        "status": "PASS",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "navGap": 50,
+        "h1": {
+          "text": "Selected Work.",
+          "width": 699,
+          "height": 51,
+          "top": 138,
+          "fontSize": "49.92px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Services": {
+        "status": "PASS",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "navGap": 50,
+        "h1": {
+          "text": "What We Bring to Life.",
+          "width": 699,
+          "height": 55,
+          "top": 138,
+          "fontSize": "52.224px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "About": {
+        "status": "PASS",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "navGap": 50,
+        "h1": {
+          "text": "A Studio for\nWhat\u2019s Next.",
+          "width": 334,
+          "height": 113,
+          "top": 138,
+          "fontSize": "50.688px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Contact": {
+        "status": "PASS",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "navGap": 50,
+        "h1": {
+          "text": "Have Something\nin Mind?",
+          "width": 386,
+          "height": 104,
+          "top": 138,
+          "fontSize": "48px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_UI_UX": {
+        "status": "PASS",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "navGap": 98,
+        "h1": {
+          "text": "UI/UX Design",
+          "width": 699,
+          "height": 46,
+          "top": 186,
+          "fontSize": "44.544px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Web_Dev": {
+        "status": "PASS",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "navGap": 98,
+        "h1": {
+          "text": "Web Development",
+          "width": 699,
+          "height": 46,
+          "top": 186,
+          "fontSize": "44.544px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Mobile_Dev": {
+        "status": "PASS",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "navGap": 98,
+        "h1": {
+          "text": "Mobile App Development",
+          "width": 699,
+          "height": 46,
+          "top": 186,
+          "fontSize": "44.544px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Product_Strategy": {
+        "status": "PASS",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "navGap": 98,
+        "h1": {
+          "text": "Product Strategy",
+          "width": 699,
+          "height": 46,
+          "top": 186,
+          "fontSize": "44.544px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Brand_Design": {
+        "status": "PASS",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "navGap": 98,
+        "h1": {
+          "text": "Brand & Visual Design",
+          "width": 699,
+          "height": 46,
+          "top": 186,
+          "fontSize": "44.544px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Case_Spotlight": {
+        "status": "PASS",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "navGap": 154,
+        "h1": {
+          "text": "Spotlight Contest",
+          "width": 699,
+          "height": 48,
+          "top": 242,
+          "fontSize": "46.08px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_LAD_Travels": {
+        "status": "PASS",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "navGap": 154,
+        "h1": {
+          "text": "LAD Global Travels",
+          "width": 699,
+          "height": 48,
+          "top": 242,
+          "fontSize": "46.08px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_TOG_Africa": {
+        "status": "PASS",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "navGap": 154,
+        "h1": {
+          "text": "TOG Africa",
+          "width": 699,
+          "height": 48,
+          "top": 242,
+          "fontSize": "46.08px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_ConnectAPI": {
+        "status": "PASS",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "navGap": 154,
+        "h1": {
+          "text": "ConnectAPI",
+          "width": 699,
+          "height": 48,
+          "top": 242,
+          "fontSize": "46.08px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Team_Founder": {
+        "status": "PASS",
+        "scrollWidth": 768,
+        "clientWidth": 768,
+        "navGap": 199,
+        "h1": {
+          "text": "Akinwumi\nAyomiposi",
+          "width": 334,
+          "height": 98,
+          "top": 287,
+          "fontSize": "43.776px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 5
+      }
+    },
+    "430_large_phone": {
+      "Home": {
+        "status": "PASS",
+        "scrollWidth": 430,
+        "clientWidth": 430,
+        "navGap": 27,
+        "h1": {
+          "text": "Digital Products\nfor What\u2019s Ne",
+          "width": 390,
+          "height": 88,
+          "top": 101,
+          "fontSize": "36.55px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Work": {
+        "status": "PASS",
+        "scrollWidth": 430,
+        "clientWidth": 430,
+        "navGap": 34,
+        "h1": {
+          "text": "Selected Work.",
+          "width": 390,
+          "height": 44,
+          "top": 108,
+          "fontSize": "43px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Services": {
+        "status": "PASS",
+        "scrollWidth": 430,
+        "clientWidth": 430,
+        "navGap": 34,
+        "h1": {
+          "text": "What We Bring to Life.",
+          "width": 390,
+          "height": 110,
+          "top": 108,
+          "fontSize": "52px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "About": {
+        "status": "PASS",
+        "scrollWidth": 430,
+        "clientWidth": 430,
+        "navGap": 34,
+        "h1": {
+          "text": "A Studio for\nWhat\u2019s Next.",
+          "width": 390,
+          "height": 98,
+          "top": 108,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Contact": {
+        "status": "PASS",
+        "scrollWidth": 430,
+        "clientWidth": 430,
+        "navGap": 34,
+        "h1": {
+          "text": "Have Something\nin Mind?",
+          "width": 390,
+          "height": 84,
+          "top": 108,
+          "fontSize": "38.7px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_UI_UX": {
+        "status": "PASS",
+        "scrollWidth": 430,
+        "clientWidth": 430,
+        "navGap": 82,
+        "h1": {
+          "text": "UI/UX Design",
+          "width": 390,
+          "height": 46,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Web_Dev": {
+        "status": "PASS",
+        "scrollWidth": 430,
+        "clientWidth": 430,
+        "navGap": 82,
+        "h1": {
+          "text": "Web Development",
+          "width": 390,
+          "height": 46,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Mobile_Dev": {
+        "status": "PASS",
+        "scrollWidth": 430,
+        "clientWidth": 430,
+        "navGap": 82,
+        "h1": {
+          "text": "Mobile App Development",
+          "width": 390,
+          "height": 92,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Product_Strategy": {
+        "status": "PASS",
+        "scrollWidth": 430,
+        "clientWidth": 430,
+        "navGap": 82,
+        "h1": {
+          "text": "Product Strategy",
+          "width": 390,
+          "height": 46,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Brand_Design": {
+        "status": "PASS",
+        "scrollWidth": 430,
+        "clientWidth": 430,
+        "navGap": 82,
+        "h1": {
+          "text": "Brand & Visual Design",
+          "width": 390,
+          "height": 92,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Case_Spotlight": {
+        "status": "PASS",
+        "scrollWidth": 430,
+        "clientWidth": 430,
+        "navGap": 138,
+        "h1": {
+          "text": "Spotlight Contest",
+          "width": 390,
+          "height": 42,
+          "top": 212,
+          "fontSize": "40px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_LAD_Travels": {
+        "status": "PASS",
+        "scrollWidth": 430,
+        "clientWidth": 430,
+        "navGap": 138,
+        "h1": {
+          "text": "LAD Global Travels",
+          "width": 390,
+          "height": 42,
+          "top": 212,
+          "fontSize": "40px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_TOG_Africa": {
+        "status": "PASS",
+        "scrollWidth": 430,
+        "clientWidth": 430,
+        "navGap": 138,
+        "h1": {
+          "text": "TOG Africa",
+          "width": 390,
+          "height": 42,
+          "top": 212,
+          "fontSize": "40px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_ConnectAPI": {
+        "status": "PASS",
+        "scrollWidth": 430,
+        "clientWidth": 430,
+        "navGap": 138,
+        "h1": {
+          "text": "ConnectAPI",
+          "width": 390,
+          "height": 42,
+          "top": 212,
+          "fontSize": "40px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Team_Founder": {
+        "status": "PASS",
+        "scrollWidth": 430,
+        "clientWidth": 430,
+        "navGap": 183,
+        "h1": {
+          "text": "Akinwumi\nAyomiposi",
+          "width": 390,
+          "height": 92,
+          "top": 257,
+          "fontSize": "41.28px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 5
+      }
+    },
+    "390_standard_phone": {
+      "Home": {
+        "status": "PASS",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "navGap": 27,
+        "h1": {
+          "text": "Digital Products\nfor What\u2019s Ne",
+          "width": 350,
+          "height": 80,
+          "top": 101,
+          "fontSize": "33.15px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Work": {
+        "status": "PASS",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "navGap": 34,
+        "h1": {
+          "text": "Selected Work.",
+          "width": 350,
+          "height": 40,
+          "top": 108,
+          "fontSize": "39px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Services": {
+        "status": "PASS",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "navGap": 34,
+        "h1": {
+          "text": "What We Bring to Life.",
+          "width": 350,
+          "height": 110,
+          "top": 108,
+          "fontSize": "52px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "About": {
+        "status": "PASS",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "navGap": 34,
+        "h1": {
+          "text": "A Studio for\nWhat\u2019s Next.",
+          "width": 350,
+          "height": 98,
+          "top": 108,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Contact": {
+        "status": "PASS",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "navGap": 34,
+        "h1": {
+          "text": "Have Something\nin Mind?",
+          "width": 350,
+          "height": 82,
+          "top": 108,
+          "fontSize": "38px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_UI_UX": {
+        "status": "PASS",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "navGap": 82,
+        "h1": {
+          "text": "UI/UX Design",
+          "width": 350,
+          "height": 46,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Web_Dev": {
+        "status": "PASS",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "navGap": 82,
+        "h1": {
+          "text": "Web Development",
+          "width": 350,
+          "height": 92,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Mobile_Dev": {
+        "status": "PASS",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "navGap": 82,
+        "h1": {
+          "text": "Mobile App Development",
+          "width": 350,
+          "height": 92,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Product_Strategy": {
+        "status": "PASS",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "navGap": 82,
+        "h1": {
+          "text": "Product Strategy",
+          "width": 350,
+          "height": 46,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Brand_Design": {
+        "status": "PASS",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "navGap": 82,
+        "h1": {
+          "text": "Brand & Visual Design",
+          "width": 350,
+          "height": 92,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Case_Spotlight": {
+        "status": "PASS",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "navGap": 138,
+        "h1": {
+          "text": "Spotlight Contest",
+          "width": 350,
+          "height": 42,
+          "top": 212,
+          "fontSize": "40px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_LAD_Travels": {
+        "status": "PASS",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "navGap": 138,
+        "h1": {
+          "text": "LAD Global Travels",
+          "width": 350,
+          "height": 42,
+          "top": 212,
+          "fontSize": "40px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_TOG_Africa": {
+        "status": "PASS",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "navGap": 138,
+        "h1": {
+          "text": "TOG Africa",
+          "width": 350,
+          "height": 42,
+          "top": 212,
+          "fontSize": "40px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_ConnectAPI": {
+        "status": "PASS",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "navGap": 138,
+        "h1": {
+          "text": "ConnectAPI",
+          "width": 350,
+          "height": 42,
+          "top": 212,
+          "fontSize": "40px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Team_Founder": {
+        "status": "PASS",
+        "scrollWidth": 390,
+        "clientWidth": 390,
+        "navGap": 183,
+        "h1": {
+          "text": "Akinwumi\nAyomiposi",
+          "width": 350,
+          "height": 85,
+          "top": 257,
+          "fontSize": "38px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 5
+      }
+    },
+    "375_small_phone": {
+      "Home": {
+        "status": "PASS",
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "navGap": 27,
+        "h1": {
+          "text": "Digital Products\nfor What\u2019s Ne",
+          "width": 335,
+          "height": 76,
+          "top": 101,
+          "fontSize": "31.875px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Work": {
+        "status": "PASS",
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "navGap": 34,
+        "h1": {
+          "text": "Selected Work.",
+          "width": 335,
+          "height": 39,
+          "top": 108,
+          "fontSize": "38px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Services": {
+        "status": "PASS",
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "navGap": 34,
+        "h1": {
+          "text": "What We Bring to Life.",
+          "width": 335,
+          "height": 110,
+          "top": 108,
+          "fontSize": "52px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "About": {
+        "status": "PASS",
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "navGap": 34,
+        "h1": {
+          "text": "A Studio for\nWhat\u2019s Next.",
+          "width": 335,
+          "height": 98,
+          "top": 108,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Contact": {
+        "status": "PASS",
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "navGap": 34,
+        "h1": {
+          "text": "Have Something\nin Mind?",
+          "width": 335,
+          "height": 82,
+          "top": 108,
+          "fontSize": "38px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_UI_UX": {
+        "status": "PASS",
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "navGap": 82,
+        "h1": {
+          "text": "UI/UX Design",
+          "width": 335,
+          "height": 46,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Web_Dev": {
+        "status": "PASS",
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "navGap": 82,
+        "h1": {
+          "text": "Web Development",
+          "width": 335,
+          "height": 92,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Mobile_Dev": {
+        "status": "PASS",
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "navGap": 82,
+        "h1": {
+          "text": "Mobile App Development",
+          "width": 335,
+          "height": 92,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Product_Strategy": {
+        "status": "PASS",
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "navGap": 82,
+        "h1": {
+          "text": "Product Strategy",
+          "width": 335,
+          "height": 92,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Brand_Design": {
+        "status": "PASS",
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "navGap": 82,
+        "h1": {
+          "text": "Brand & Visual Design",
+          "width": 335,
+          "height": 92,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Case_Spotlight": {
+        "status": "PASS",
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "navGap": 138,
+        "h1": {
+          "text": "Spotlight Contest",
+          "width": 335,
+          "height": 42,
+          "top": 212,
+          "fontSize": "40px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_LAD_Travels": {
+        "status": "PASS",
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "navGap": 138,
+        "h1": {
+          "text": "LAD Global Travels",
+          "width": 335,
+          "height": 42,
+          "top": 212,
+          "fontSize": "40px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_TOG_Africa": {
+        "status": "PASS",
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "navGap": 138,
+        "h1": {
+          "text": "TOG Africa",
+          "width": 335,
+          "height": 42,
+          "top": 212,
+          "fontSize": "40px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_ConnectAPI": {
+        "status": "PASS",
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "navGap": 138,
+        "h1": {
+          "text": "ConnectAPI",
+          "width": 335,
+          "height": 42,
+          "top": 212,
+          "fontSize": "40px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Team_Founder": {
+        "status": "PASS",
+        "scrollWidth": 375,
+        "clientWidth": 375,
+        "navGap": 183,
+        "h1": {
+          "text": "Akinwumi\nAyomiposi",
+          "width": 335,
+          "height": 85,
+          "top": 257,
+          "fontSize": "38px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 5
+      }
+    },
+    "320_narrow_phone": {
+      "Home": {
+        "status": "PASS",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "navGap": 28,
+        "h1": {
+          "text": "Digital Products\nfor What\u2019s Ne",
+          "width": 280,
+          "height": 72,
+          "top": 102,
+          "fontSize": "30px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Work": {
+        "status": "PASS",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "navGap": 34,
+        "h1": {
+          "text": "Selected Work.",
+          "width": 280,
+          "height": 39,
+          "top": 108,
+          "fontSize": "38px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Services": {
+        "status": "PASS",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "navGap": 34,
+        "h1": {
+          "text": "What We Bring to Life.",
+          "width": 280,
+          "height": 165,
+          "top": 108,
+          "fontSize": "52px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "About": {
+        "status": "PASS",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "navGap": 34,
+        "h1": {
+          "text": "A Studio for\nWhat\u2019s Next.",
+          "width": 280,
+          "height": 98,
+          "top": 108,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 2
+      },
+      "Contact": {
+        "status": "PASS",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "navGap": 34,
+        "h1": {
+          "text": "Have Something\nin Mind?",
+          "width": 280,
+          "height": 82,
+          "top": 108,
+          "fontSize": "38px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_UI_UX": {
+        "status": "PASS",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "navGap": 82,
+        "h1": {
+          "text": "UI/UX Design",
+          "width": 280,
+          "height": 46,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Web_Dev": {
+        "status": "PASS",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "navGap": 82,
+        "h1": {
+          "text": "Web Development",
+          "width": 280,
+          "height": 92,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Mobile_Dev": {
+        "status": "PASS",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "navGap": 112,
+        "h1": {
+          "text": "Mobile App Development",
+          "width": 280,
+          "height": 92,
+          "top": 186,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Product_Strategy": {
+        "status": "PASS",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "navGap": 82,
+        "h1": {
+          "text": "Product Strategy",
+          "width": 280,
+          "height": 92,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Service_Brand_Design": {
+        "status": "PASS",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "navGap": 82,
+        "h1": {
+          "text": "Brand & Visual Design",
+          "width": 280,
+          "height": 92,
+          "top": 156,
+          "fontSize": "44px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 3
+      },
+      "Case_Spotlight": {
+        "status": "PASS",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "navGap": 138,
+        "h1": {
+          "text": "Spotlight Contest",
+          "width": 280,
+          "height": 83,
+          "top": 212,
+          "fontSize": "40px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_LAD_Travels": {
+        "status": "PASS",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "navGap": 138,
+        "h1": {
+          "text": "LAD Global Travels",
+          "width": 280,
+          "height": 83,
+          "top": 212,
+          "fontSize": "40px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_TOG_Africa": {
+        "status": "PASS",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "navGap": 138,
+        "h1": {
+          "text": "TOG Africa",
+          "width": 280,
+          "height": 42,
+          "top": 212,
+          "fontSize": "40px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Case_ConnectAPI": {
+        "status": "PASS",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "navGap": 138,
+        "h1": {
+          "text": "ConnectAPI",
+          "width": 280,
+          "height": 42,
+          "top": 212,
+          "fontSize": "40px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      },
+      "Team_Founder": {
+        "status": "PASS",
+        "scrollWidth": 320,
+        "clientWidth": 320,
+        "navGap": 183,
+        "h1": {
+          "text": "Akinwumi\nAyomiposi",
+          "width": 280,
+          "height": 85,
+          "top": 257,
+          "fontSize": "38px",
+          "opacity": "1",
+          "isVisible": true
+        },
+        "smallTouchCount": 4
+      }
+    }
+  },
+  "overflow_issues": [],
+  "performance_optimized": {
+    "desktop": {
+      "Home": {
+        "ttfb": 645,
+        "domInteractive": 3946,
+        "domContentLoaded": 3949,
+        "loadTime": 3952,
+        "lcp": 4188,
+        "cls": 0.0002,
+        "jsBytes": 525830,
+        "cssBytes": 35008,
+        "imgBytes": 312791,
+        "fontBytes": 25136,
+        "resourceCount": 38
+      },
+      "Work": {
+        "ttfb": 8,
+        "domInteractive": 276,
+        "domContentLoaded": 277,
+        "loadTime": 278,
+        "lcp": 400,
+        "cls": 0.0004,
+        "jsBytes": 755168,
+        "cssBytes": 78846,
+        "imgBytes": 199798,
+        "fontBytes": 24836,
+        "resourceCount": 29
+      },
+      "Services": {
+        "ttfb": 66,
+        "domInteractive": 153,
+        "domContentLoaded": 153,
+        "loadTime": 249,
+        "lcp": 376,
+        "cls": 0.0005,
+        "jsBytes": 739963,
+        "cssBytes": 87377,
+        "imgBytes": 1500,
+        "fontBytes": 24836,
+        "resourceCount": 27
+      },
+      "About": {
+        "ttfb": 116,
+        "domInteractive": 245,
+        "domContentLoaded": 246,
+        "loadTime": 465,
+        "lcp": 568,
+        "cls": 0.0005,
+        "jsBytes": 731842,
+        "cssBytes": 72565,
+        "imgBytes": 73642,
+        "fontBytes": 24836,
+        "resourceCount": 26
+      },
+      "Contact": {
+        "ttfb": 70,
+        "domInteractive": 184,
+        "domContentLoaded": 185,
+        "loadTime": 460,
+        "lcp": 748,
+        "cls": 0.0002,
+        "jsBytes": 1660500,
+        "cssBytes": 60933,
+        "imgBytes": 1200,
+        "fontBytes": 24836,
+        "resourceCount": 26
+      },
+      "Service_UI_UX": {
+        "ttfb": 208,
+        "domInteractive": 555,
+        "domContentLoaded": 556,
+        "loadTime": 651,
+        "lcp": 896,
+        "cls": 0.0013,
+        "jsBytes": 876634,
+        "cssBytes": 132824,
+        "imgBytes": 1500,
+        "fontBytes": 24836,
+        "resourceCount": 37
+      },
+      "Case_Spotlight": {
+        "ttfb": 117,
+        "domInteractive": 351,
+        "domContentLoaded": 353,
+        "loadTime": 384,
+        "lcp": 464,
+        "cls": 0.0009,
+        "jsBytes": 853372,
+        "cssBytes": 141421,
+        "imgBytes": 97730,
+        "fontBytes": 24836,
+        "resourceCount": 38
+      }
+    },
+    "mobile": {
+      "Home": {
+        "ttfb": 27,
+        "domInteractive": 973,
+        "domContentLoaded": 973,
+        "loadTime": 1158,
+        "lcp": 1144,
+        "cls": 0.0005,
+        "jsBytes": 268532,
+        "cssBytes": 32242,
+        "imgBytes": 791329,
+        "fontBytes": 25136,
+        "resourceCount": 36
+      },
+      "Work": {
+        "ttfb": 14,
+        "domInteractive": 284,
+        "domContentLoaded": 285,
+        "loadTime": 350,
+        "lcp": 368,
+        "cls": 0.0009,
+        "jsBytes": 734244,
+        "cssBytes": 72766,
+        "imgBytes": 199798,
+        "fontBytes": 24836,
+        "resourceCount": 29
+      },
+      "Services": {
+        "ttfb": 23,
+        "domInteractive": 148,
+        "domContentLoaded": 148,
+        "loadTime": 320,
+        "lcp": 364,
+        "cls": 0.0015,
+        "jsBytes": 739963,
+        "cssBytes": 87377,
+        "imgBytes": 2700,
+        "fontBytes": 24836,
+        "resourceCount": 31
+      },
+      "About": {
+        "ttfb": 12,
+        "domInteractive": 126,
+        "domContentLoaded": 127,
+        "loadTime": 330,
+        "lcp": 2272,
+        "cls": 0.0018,
+        "jsBytes": 731842,
+        "cssBytes": 72565,
+        "imgBytes": 73642,
+        "fontBytes": 24836,
+        "resourceCount": 26
+      },
+      "Contact": {
+        "ttfb": 60,
+        "domInteractive": 368,
+        "domContentLoaded": 369,
+        "loadTime": 404,
+        "lcp": 2368,
+        "cls": 0.0035,
+        "jsBytes": 734302,
+        "cssBytes": 60933,
+        "imgBytes": 1200,
+        "fontBytes": 24836,
+        "resourceCount": 24
+      },
+      "Service_UI_UX": {
+        "ttfb": 14,
+        "domInteractive": 365,
+        "domContentLoaded": 366,
+        "loadTime": 413,
+        "lcp": 472,
+        "cls": 0.005,
+        "jsBytes": 876634,
+        "cssBytes": 132824,
+        "imgBytes": 1500,
+        "fontBytes": 24836,
+        "resourceCount": 37
+      },
+      "Case_Spotlight": {
+        "ttfb": 12,
+        "domInteractive": 144,
+        "domContentLoaded": 145,
+        "loadTime": 265,
+        "lcp": 328,
+        "cls": 0.003,
+        "jsBytes": 853372,
+        "cssBytes": 141421,
+        "imgBytes": 97730,
+        "fontBytes": 24836,
+        "resourceCount": 38
+      }
+    }
+  },
+  "touch_target_results": {},
+  "mobile_nav_checks": {
+    "390_standard_phone": {
+      "toggle_works": true,
+      "dialog_open": true,
+      "drawer_visible": true
+    },
+    "320_narrow_phone": {
+      "toggle_works": true,
+      "dialog_open": true,
+      "drawer_visible": true
+    }
+  }
+}
