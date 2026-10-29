@@ -1,0 +1,30 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "motekra",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-03-01",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  },
+  // Public non-sensitive environment variables
+  "vars": {
+    "CONTACT_ORIGIN": "https://motekra.com",
+    "CONTACT_DELIVERY_ENABLED": "false",
+    "CONTACT_TRUST_PROXY": "true"
+  }
+  // Custom Domain Configuration:
+  // Once your domain motekra.com is active in your Cloudflare dashboard (nameservers updated at Hostinger),
+  // you can enable the routes below or add them in Dashboard -> Workers & Pages -> motekra -> Settings -> Domains & Routes.
+  //
+  // "routes": [
+  //   { "pattern": "motekra.com/*", "custom_domain": true },
+  //   { "pattern": "www.motekra.com/*", "custom_domain": true }
+  // ]
+}
