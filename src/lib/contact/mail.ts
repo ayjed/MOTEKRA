@@ -2,8 +2,13 @@ import type { ContactConfig } from "./config";
 import type { Inquiry } from "./schema";
 
 export class DeliveryError extends Error {
-  constructor(public status: number) {
-    super("Email provider did not confirm acceptance");
+  constructor(
+    public status: number,
+    public providerCode?: string,
+    message?: string
+  ) {
+    super(message ?? `Email provider rejected delivery with status ${status}`);
+    this.name = "DeliveryError";
   }
 }
 
@@ -138,6 +143,9 @@ export async function deliverInquiry(
 ) {
   const { subject, text, html } = formatInquiryEmail(data, reference);
 
+  // Cloudflare Workers workerd compatibility:
+  // Do NOT pass `redirect: "error"` — workerd explicitly forbids "error" and throws TypeError.
+  // Standard "follow" or omitting redirect allows normal edge HTTPS traversal.
   const response = await fetchApi("https://api.resend.com/emails", {
     method: "POST",
     headers: {
@@ -154,11 +162,29 @@ export async function deliverInquiry(
       html,
     }),
     signal: AbortSignal.timeout(12000),
-    redirect: "error",
-    cache: "no-store",
   });
 
-  if (!response.ok) throw new DeliveryError(response.status);
+  if (!response.ok) {
+    let providerCode = "provider_error";
+    try {
+      const errPayload: unknown = await response.json();
+      if (errPayload && typeof errPayload === "object") {
+        const payloadRecord = errPayload as Record<string, unknown>;
+        if (typeof payloadRecord["name"] === "string") {
+          providerCode = payloadRecord["name"];
+        } else if (typeof payloadRecord["message"] === "string") {
+          const clean = payloadRecord["message"]
+            .replace(/[^a-zA-Z0-9_]/g, "_")
+            .slice(0, 32);
+          if (clean) providerCode = clean;
+        }
+      }
+    } catch {
+      // Body was not JSON
+    }
+    throw new DeliveryError(response.status, providerCode);
+  }
+
   const payload: unknown = await response.json();
   if (
     !payload ||
@@ -167,6 +193,6 @@ export async function deliverInquiry(
     typeof payload.id !== "string" ||
     !payload.id
   ) {
-    throw new DeliveryError(502);
+    throw new DeliveryError(502, "malformed_provider_payload");
   }
 }

@@ -1,9 +1,11 @@
 name: Deploy MOTEKRA to Cloudflare Workers
 
 on:
-  push:
-    branches:
-      - main
+  # Note: Push triggers disabled in favor of Cloudflare Workers Builds native integration
+  # to prevent GitHub Actions billing lock errors. Manual dispatch preserved.
+  # push:
+  #   branches:
+  #     - main
   workflow_dispatch:
 
 concurrency:

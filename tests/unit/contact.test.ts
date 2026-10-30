@@ -1,4 +1,4 @@
-import { beforeEach, expect, it } from "vitest";
+import { beforeEach, expect, it, vi } from "vitest";
 import { createServer } from "node:http";
 import type { AddressInfo } from "node:net";
 import { contactConfig, type ContactConfig } from "@/lib/contact/config";
@@ -170,7 +170,7 @@ it("returns honeypot and field errors without contacting provider", async () => 
   expect(calls).toBe(0);
 });
 
-it("passes a fixed private recipient, visitor Reply-To, HTML body and stable provider idempotency key", async () => {
+it("passes a fixed private recipient, visitor Reply-To, HTML body, stable idempotency key and Cloudflare-compatible fetch options", async () => {
   const captured: RequestInit[] = [];
   const fetchApi: typeof fetch = async (url, init) => {
     expect(url).toBe("https://api.resend.com/emails");
@@ -197,6 +197,9 @@ it("passes a fixed private recipient, visitor Reply-To, HTML body and stable pro
   expect(new Headers(captured[0]!.headers).get("Idempotency-Key")).toMatch(
     /^motekra-inquiry\/[a-f0-9]{64}$/
   );
+  // Critical Cloudflare Workers compatibility:
+  // Must NOT set redirect: "error" because workerd forbids it
+  expect(captured[0]!.redirect).not.toBe("error");
 });
 
 it("permits both apex and www origins while rejecting unauthorized origins", async () => {
@@ -397,4 +400,80 @@ it("never derives the public receipt from the private recipient address", async 
     fetchApi: accepted,
   });
   expect((await first.json()).reference).toBe((await second.json()).reference);
+});
+
+it("captures structured diagnostics on provider failure without leaking sensitive data", async () => {
+  const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+  const logSpy = vi.spyOn(console, "log").mockImplementation(() => {});
+
+  const failingFetch: typeof fetch = async () =>
+    Response.json(
+      { name: "validation_error", message: "Domain not verified", statusCode: 403 },
+      { status: 403 }
+    );
+
+  const res = await handleContact(request(), {
+    config,
+    limiter: createContactLimiter(),
+    fetchApi: failingFetch,
+  });
+
+  expect(res.status).toBe(502);
+  expect(errorSpy).toHaveBeenCalled();
+
+  const lastCall = errorSpy.mock.calls[errorSpy.mock.calls.length - 1]?.[0];
+  expect(typeof lastCall).toBe("string");
+  const logData = JSON.parse(lastCall!);
+
+  expect(logData.event).toBe("contact_inquiry_failed");
+  expect(logData.stage).toBe("provider_rejection");
+  expect(logData.status).toBe(403);
+  expect(logData.providerCode).toBe("validation_error");
+  expect(typeof logData.durationMs).toBe("number");
+  expect(typeof logData.reference).toBe("string");
+
+  // Verify strict confidentiality: zero sensitive credentials or message contents in logs
+  const logString = JSON.stringify(logData);
+  expect(logString).not.toContain(config.apiKey);
+  expect(logString).not.toContain(config.recipient);
+  expect(logString).not.toContain(values.email);
+  expect(logString).not.toContain(values.message);
+
+  errorSpy.mockRestore();
+  logSpy.mockRestore();
+});
+
+it("captures runtime dispatch errors gracefully with safe diagnostic information", async () => {
+  const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+  const runtimeErrorFetch: typeof fetch = async () => {
+    throw new TypeError('Invalid redirect value, must be one of "follow" or "manual"');
+  };
+
+  const res = await handleContact(request(), {
+    config,
+    limiter: createContactLimiter(),
+    fetchApi: runtimeErrorFetch,
+  });
+
+  expect(res.status).toBe(502);
+  expect(errorSpy).toHaveBeenCalled();
+
+  const lastCall = errorSpy.mock.calls[errorSpy.mock.calls.length - 1]?.[0];
+  const logData = JSON.parse(lastCall!);
+
+  expect(logData.event).toBe("contact_inquiry_failed");
+  expect(logData.stage).toBe("dispatch_runtime_error");
+  expect(logData.status).toBe(502);
+  expect(logData.errorName).toBe("TypeError");
+  expect(logData.errorMessage).toContain("Invalid redirect value");
+
+  // Strict privacy verification
+  const logString = JSON.stringify(logData);
+  expect(logString).not.toContain(config.apiKey);
+  expect(logString).not.toContain(config.recipient);
+  expect(logString).not.toContain(values.email);
+  expect(logString).not.toContain(values.message);
+
+  errorSpy.mockRestore();
 });
