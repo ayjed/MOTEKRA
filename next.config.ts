@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // CI/CD Automated Deployment Trigger: Phase 56 verification test
   poweredByHeader: false,
   experimental: { optimizePackageImports: ["@react-three/drei"] },
   // Local assets are prepared in the repo; avoid a runtime image-optimizer service.
