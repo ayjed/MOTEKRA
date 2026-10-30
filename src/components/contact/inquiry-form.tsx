@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useRef, useState, type FormEvent } from "react";
 import { services } from "@/content/services";
 import { validateInquiry, type FieldErrors } from "@/lib/contact/schema";
 import type { ContactResult } from "@/lib/contact/handler";

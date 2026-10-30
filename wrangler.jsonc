@@ -13,10 +13,14 @@
   "observability": {
     "enabled": true
   },
+  "keep_vars": true,
   // Public non-sensitive environment variables
+  // Note: RESEND_API_KEY and CONTACT_EMAIL are managed as encrypted Cloudflare secrets
+  // via `pnpm exec wrangler secret put` and are kept strictly out of git for security.
   "vars": {
     "CONTACT_ORIGIN": "https://motekra.com",
-    "CONTACT_DELIVERY_ENABLED": "false",
+    "CONTACT_FROM": "inquiries@motekra.com",
+    "CONTACT_DELIVERY_ENABLED": "true",
     "CONTACT_TRUST_PROXY": "true"
   }
   // Custom Domain Configuration:

@@ -21,7 +21,7 @@
     "postinstall": "node scripts/patch-opennext.mjs",
     "build:worker": "opennextjs-cloudflare build",
     "preview:worker": "opennextjs-cloudflare build && wrangler dev",
-    "deploy:worker": "opennextjs-cloudflare build && wrangler deploy",
+    "deploy:worker": "opennextjs-cloudflare build && wrangler deploy --keep-vars",
     "test:work": "playwright test --config=playwright.work.config.ts",
     "test:services": "playwright test --config=playwright.services.config.ts",
     "test:about": "playwright test --config=playwright.about.config.ts",
