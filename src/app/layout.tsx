@@ -4,7 +4,6 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { organizationSchema,websiteSchema } from "@/lib/seo/schema";
 import { JsonLd } from "@/components/seo/json-ld";
-import { isIndexable } from "@/lib/seo/site";
 import { MotionProvider } from "@/components/motion/motion-provider";
 import { RouteTransition } from "@/components/motion/route-transition";
 import { CustomCursor } from "@/components/ui/custom-cursor";
@@ -18,7 +17,6 @@ const displayFont = localFont({ src: "../styles/fonts/manrope-latin-variable.wof
 export const metadata: Metadata = {
   title: { default: "MOTEKRA | Digital products for what’s next", template: "%s | MOTEKRA" },
   description: "MOTEKRA — digital product design and development. Company and independent work, with clear attribution.",
-  robots: { index: isIndexable(), follow: isIndexable() },
   icons: { icon: "/assets/brand/motekra-mark.png" },
 };
 

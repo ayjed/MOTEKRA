@@ -35,7 +35,12 @@ export async function generateMetadata({
     return {
       title: `${project.title} — Case Study | MOTEKRA`,
       description: study?.lead ?? project.summary ?? "A modern digital product portfolio case study by MOTEKRA.",
-      robots: { index: false, follow: false, nosnippet: true },
+      robots: {
+        index: false,
+        follow: false,
+        nosnippet: true,
+        googleBot: { index: false, follow: false, nosnippet: true },
+      },
       alternates: { canonical: null },
     };
   }

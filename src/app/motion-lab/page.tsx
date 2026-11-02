@@ -9,7 +9,11 @@ import { ButtonLink, DraftNote, Eyebrow } from "@/components/ui/primitives";
 import { LabDiagnostics } from "@/components/motion/lab-diagnostics";
 
 // Build-time gated static demo; no request-time server feature.
-export const metadata = { title: "Private motion lab", description: "MOTEKRA internal motion architecture evaluation.", robots: { index: false, follow: false } };
+export const metadata = {
+  title: "Private motion lab",
+  description: "MOTEKRA internal motion architecture evaluation.",
+  robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+};
 
 export default function MotionLab() {
   if (process.env.MOTION_LAB_ENABLED !== "true") notFound();
