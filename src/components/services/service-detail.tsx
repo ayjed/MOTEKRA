@@ -321,10 +321,6 @@ export function ServiceDetail({ service }: { service: Service }) {
                 sizes="(min-width: 1024px) 560px, (min-width: 768px) 50vw, 92vw"
                 className="service-showcase-img"
               />
-              <div className="service-showcase-badge" aria-hidden="true">
-                <span className="service-badge-dot" />
-                <span className="service-badge-text">{copy.image.tag}</span>
-              </div>
             </div>
           </div>
         </div>

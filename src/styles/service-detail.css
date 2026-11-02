@@ -202,39 +202,6 @@
   transform: scale(1.02);
 }
 
-.service-showcase-badge {
-  position: absolute;
-  top: 18px;
-  left: 18px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(8, 21, 43, 0.88);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(18, 205, 228, 0.32);
-  border-radius: 20px;
-  padding: 6px 14px;
-  z-index: 2;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
-}
-
-.service-badge-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #12cde4;
-  box-shadow: 0 0 8px #12cde4;
-}
-
-.service-badge-text {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  color: #12cde4;
-  text-transform: uppercase;
-}
-
 /* --------------------------------------------------------------------------
    Section 3 — What We Deliver
    -------------------------------------------------------------------------- */

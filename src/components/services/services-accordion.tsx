@@ -11,7 +11,7 @@ interface ServicesAccordionProps {
   initialActiveSlug?: string | null;
 }
 
-const SERVICE_IMAGES: Record<string, { src: string; alt: string; tag: string }> = {
+const SERVICE_IMAGES: Record<string, { src: string; alt: string; tag?: string }> = {
   "ui-ux-design": {
     src: "/assets/services/ui-ux-design.webp",
     alt: "Responsive laptop and smartphone mockup displaying modern e-commerce dashboard and mobile shopping interface on a clean white background",
@@ -122,7 +122,6 @@ export function ServicesAccordion({ initialActiveSlug = null }: ServicesAccordio
 
   // Preview displays active service or retains last selected image when collapsed
   const displaySlug = activeSlug ?? lastSelectedSlug;
-  const activeService = services.find((s) => s.slug === displaySlug) ?? services[0]!;
 
   return (
     <div className="services-container-shell" data-services-container ref={containerRef}>
@@ -154,10 +153,6 @@ export function ServicesAccordion({ initialActiveSlug = null }: ServicesAccordio
                       priority={service.slug === "ui-ux-design"}
                     />
                     <div className="services-preview-glass-glare" />
-                    <div className="services-preview-badge">
-                      <span className="badge-pulse" />
-                      <span className="badge-text">{img.tag}</span>
-                    </div>
                   </div>
                 );
               })}
@@ -224,10 +219,6 @@ export function ServicesAccordion({ initialActiveSlug = null }: ServicesAccordio
                                 sizes="(max-width: 768px) 90vw, 400px"
                                 className="mobile-preview-img"
                               />
-                              <div className="services-preview-badge">
-                                <span className="badge-pulse" />
-                                <span className="badge-text">{mImg.tag}</span>
-                              </div>
                             </div>
                           </div>
                         );

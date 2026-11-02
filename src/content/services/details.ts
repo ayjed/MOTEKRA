@@ -28,7 +28,7 @@ export interface ServiceDetailCopy {
   image: {
     src: string;
     alt: string;
-    tag: string;
+    tag?: string;
   };
   control: string;
   outcome: string;
