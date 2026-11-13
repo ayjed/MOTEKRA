@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import { team } from "@/content/team";
 import { FounderPage } from "@/components/about/founder-page";
 import { JsonLd } from "@/components/seo/json-ld";
-import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 import { founderMetadata, founderStructuredData } from "@/lib/data/founder";
 import { FloatingWhatsApp } from "@/components/team/floating-whatsapp";
 
