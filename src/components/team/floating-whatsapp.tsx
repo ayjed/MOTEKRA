@@ -26,7 +26,6 @@ export function FloatingWhatsApp({
         <WhatsAppIcon className="whatsapp-icon-svg" />
         <span
           className="founder-floating-whatsapp-tooltip"
-          role="tooltip"
           aria-hidden="true"
         >
           Chat with {personName}
