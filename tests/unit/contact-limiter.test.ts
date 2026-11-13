@@ -325,30 +325,34 @@ describe("Rate Limiter - Multiple simultaneous quotas", () => {
     expect(limiter.take([longQuota], now + 8000).allowed).toBe(false);
   });
 
-  it("simulates Motekra contact form multi-tier quota hierarchy", () => {
+  it("simulates multi-quota evaluation across distinct keys with varying limits and durations", () => {
+    // Note: The production contact handler evaluates the global quota in an earlier standalone step
+    // before reading the body and evaluating client IP and email quotas. This test verifies the
+    // limiter's capability to atomically enforce multiple simultaneous quotas of differing limits
+    // and durations in a single take() call.
     const limiter = createContactLimiter();
-    const globalQuota = { key: "global", limit: 30, windowMs: 3_600_000 }; // 30/hr
-    const ipQuota = { key: "ip:203.0.113.1", limit: 5, windowMs: 900_000 }; // 5/15m
-    const emailQuota = { key: "email:lead@client.com", limit: 3, windowMs: 3_600_000 }; // 3/hr
+    const primaryQuota = { key: "tier:primary", limit: 30, windowMs: 3_600_000 };
+    const ipQuota = { key: "tier:ip:203.0.113.1", limit: 5, windowMs: 900_000 };
+    const userQuota = { key: "tier:user:lead@client.com", limit: 3, windowMs: 3_600_000 };
     const now = 10_000;
 
-    // First 3 requests from same email & IP pass all tiers
+    // First 3 requests pass all tiers
     for (let i = 0; i < 3; i++) {
-      expect(limiter.take([globalQuota, ipQuota, emailQuota], now + i * 1000).allowed).toBe(true);
+      expect(limiter.take([primaryQuota, ipQuota, userQuota], now + i * 1000).allowed).toBe(true);
     }
 
-    // 4th request from same email is rejected by emailQuota tier
-    const emailExhausted = limiter.take([globalQuota, ipQuota, emailQuota], now + 4000);
-    expect(emailExhausted.allowed).toBe(false);
+    // 4th request from same user is rejected by userQuota tier
+    const userExhausted = limiter.take([primaryQuota, ipQuota, userQuota], now + 4000);
+    expect(userExhausted.allowed).toBe(false);
 
-    // Different email from same IP still has 2 requests remaining in ipQuota (takes 4 and 5)
-    const email2Quota = { key: "email:partner@client.com", limit: 3, windowMs: 3_600_000 };
-    expect(limiter.take([globalQuota, ipQuota, email2Quota], now + 5000).allowed).toBe(true);
-    expect(limiter.take([globalQuota, ipQuota, email2Quota], now + 6000).allowed).toBe(true);
+    // Different user from same IP still has 2 requests remaining in ipQuota (takes 4 and 5)
+    const user2Quota = { key: "tier:user:partner@client.com", limit: 3, windowMs: 3_600_000 };
+    expect(limiter.take([primaryQuota, ipQuota, user2Quota], now + 5000).allowed).toBe(true);
+    expect(limiter.take([primaryQuota, ipQuota, user2Quota], now + 6000).allowed).toBe(true);
 
     // 6th request from same IP is rejected by ipQuota tier
-    const email3Quota = { key: "email:other@client.com", limit: 3, windowMs: 3_600_000 };
-    const ipExhausted = limiter.take([globalQuota, ipQuota, email3Quota], now + 7000);
+    const user3Quota = { key: "tier:user:other@client.com", limit: 3, windowMs: 3_600_000 };
+    const ipExhausted = limiter.take([primaryQuota, ipQuota, user3Quota], now + 7000);
     expect(ipExhausted.allowed).toBe(false);
   });
 });
@@ -383,14 +387,19 @@ describe("Rate Limiter - Instance isolation", () => {
 
   it("verifies exported contactLimiter has distinct state from newly created instances", () => {
     const customLimiter = createContactLimiter();
-    const uniqueKey = `shared-test-${Date.now()}-${Math.random()}`;
-    const quota = [{ key: uniqueKey, limit: 1, windowMs: 60_000 }];
-    const now = 1_000_000;
+    const fixtureKey = "singleton:isolation:deterministic-fixture";
+    const t0 = 2_000_000;
+    const quota = [{ key: fixtureKey, limit: 1, windowMs: 1000 }];
 
-    expect(contactLimiter.take(quota, now).allowed).toBe(true);
-    expect(contactLimiter.take(quota, now + 100).allowed).toBe(false);
+    // Record request on exported singleton
+    expect(contactLimiter.take(quota, t0).allowed).toBe(true);
+    expect(contactLimiter.take(quota, t0 + 100).allowed).toBe(false);
 
-    expect(customLimiter.take(quota, now + 200).allowed).toBe(true);
+    // Verify freshly created instance has independent state for the same key
+    expect(customLimiter.take(quota, t0 + 100).allowed).toBe(true);
+
+    // Deterministically expire and clear singleton fixture bucket to avoid shared-state pollution
+    contactLimiter.take([], t0 + 2000);
   });
 
   it("confirms multiple instances do not share closures or bucket references", () => {
@@ -405,8 +414,8 @@ describe("Rate Limiter - Instance isolation", () => {
   });
 });
 
-describe("Rate Limiter - Expired bucket cleanup", () => {
-  it("removes expired buckets so they no longer restrict requests", () => {
+describe("Rate Limiter - Expired bucket behavior and sweep invocation", () => {
+  it("observes quota renewal when request timestamp reaches or exceeds expiration", () => {
     const limiter = createContactLimiter();
     const quota = [{ key: "cleanup:1", limit: 1, windowMs: 5000 }];
     const start = 100_000;
@@ -414,11 +423,12 @@ describe("Rate Limiter - Expired bucket cleanup", () => {
     expect(limiter.take(quota, start).allowed).toBe(true);
     expect(limiter.take(quota, start + 1000).allowed).toBe(false);
 
-    const postCleanup = limiter.take(quota, start + 5000);
-    expect(postCleanup).toEqual({ allowed: true, retryAfter: 0 });
+    // At start + 5000 (now >= expires), externally observable behavior confirms quota is renewed
+    const postRenewal = limiter.take(quota, start + 5000);
+    expect(postRenewal).toEqual({ allowed: true, retryAfter: 0 });
   });
 
-  it("triggers sweep of expired buckets during subsequent take() calls with unrelated keys", () => {
+  it("handles calls with unrelated keys after prior buckets reach expiration time", () => {
     const limiter = createContactLimiter();
     const key1 = [{ key: "stale:target", limit: 1, windowMs: 3000 }];
     const key2 = [{ key: "unrelated:trigger", limit: 1, windowMs: 10_000 }];
@@ -426,13 +436,15 @@ describe("Rate Limiter - Expired bucket cleanup", () => {
 
     limiter.take(key1, start);
 
+    // Call with unrelated key at start + 5000 succeeds
     expect(limiter.take(key2, start + 5000).allowed).toBe(true);
 
+    // Subsequent call for key1 observes renewal at start + 5000
     const resKey1 = limiter.take(key1, start + 5000);
     expect(resKey1).toEqual({ allowed: true, retryAfter: 0 });
   });
 
-  it("cleans up multiple independently expired buckets in a single sweep", () => {
+  it("observes quota reset across multiple independently expired staggered quotas", () => {
     const limiter = createContactLimiter();
     const start = 100_000;
 
@@ -440,15 +452,20 @@ describe("Rate Limiter - Expired bucket cleanup", () => {
       limiter.take([{ key: `multi:key:${i}`, limit: 1, windowMs: i * 1000 }], start);
     }
 
+    // Call after all 10 keys reach their respective expiration timestamps
     const trigger = limiter.take([{ key: "sweep:trigger", limit: 1, windowMs: 10_000 }], start + 15_000);
     expect(trigger.allowed).toBe(true);
 
+    // Confirm each key independently observes a reset quota
     for (let i = 1; i <= 10; i++) {
       expect(limiter.take([{ key: `multi:key:${i}`, limit: 1, windowMs: 5000 }], start + 15_000).allowed).toBe(true);
     }
   });
 
-  it("verifies bucket cleanup purely through public interface without unsupported memory assertions", () => {
+  it("verifies expiration behavior purely through public interface without claiming internal memory reclamation is proven", () => {
+    // The rate limiter exposes only take(quotas, now). Internal Map size and JS engine garbage collection
+    // cannot be directly measured via the public interface. This test validates the externally observable
+    // behavior: expired buckets allow exactly their configured limit upon renewal.
     const limiter = createContactLimiter();
     const quota = [{ key: "contract:key", limit: 2, windowMs: 4000 }];
     const start = 50_000;
