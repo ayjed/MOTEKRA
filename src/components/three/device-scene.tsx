@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { AdaptiveDpr, Bounds, RoundedBox } from "@react-three/drei";
+import { AdaptiveDpr, RoundedBox } from "@react-three/drei";
 import { CanvasTexture, Group, InstancedMesh, Object3D, LinearFilter, SRGBColorSpace } from "three";
 import { useEffect, useMemo, useRef } from "react";
 
@@ -395,23 +395,30 @@ function Keyboard() {
 
 function DeterministicCamera() {
   const { camera, size, invalidate } = useThree();
+  const cameraRef = useRef(camera);
   useEffect(() => {
-    camera.position.set(0, 0.45, 9.8);
-    camera.lookAt(0, 0, 0);
-    if ("aspect" in camera && size.width > 0 && size.height > 0) {
-      camera.aspect = size.width / size.height;
-      camera.updateProjectionMatrix();
+    cameraRef.current = camera;
+  }, [camera]);
+
+  useEffect(() => {
+    const cam = cameraRef.current;
+    cam.position.set(0, 0.45, 9.8);
+    cam.lookAt(0, 0, 0);
+    if ("aspect" in cam && size.width > 0 && size.height > 0) {
+      cam.aspect = size.width / size.height;
+      cam.updateProjectionMatrix();
     }
     invalidate();
   }, [camera, size, invalidate]);
 
   useEffect(() => {
     const handleRestore = () => {
-      camera.position.set(0, 0.45, 9.8);
-      camera.lookAt(0, 0, 0);
-      if ("aspect" in camera && size.width > 0 && size.height > 0) {
-        camera.aspect = size.width / size.height;
-        camera.updateProjectionMatrix();
+      const cam = cameraRef.current;
+      cam.position.set(0, 0.45, 9.8);
+      cam.lookAt(0, 0, 0);
+      if ("aspect" in cam && size.width > 0 && size.height > 0) {
+        cam.aspect = size.width / size.height;
+        cam.updateProjectionMatrix();
       }
       invalidate();
     };
@@ -434,7 +441,7 @@ const REST_PHONE_X = 2.25;
 const REST_PHONE_Y = -0.4;
 const REST_PHONE_ROT_Y = -0.06;
 
-function Devices({ active, variant, cinematic, onReady, quality }: { active: boolean; variant: "overview" | "prototype"; cinematic: boolean; onReady: () => void; quality: "balanced"|"high" }) {
+function Devices({ active, variant, onReady, quality }: { active: boolean; variant: "overview" | "prototype"; onReady: () => void; quality: "balanced"|"high" }) {
   const group = useRef<Group>(null);
   const lid = useRef<Group>(null), base = useRef<Group>(null), handset = useRef<Group>(null);
   const screen = useInterfaceTexture(variant,false,quality);
@@ -598,11 +605,11 @@ function ContextMonitor({ onFailure, onReady }: { onFailure: () => void; onReady
   return null;
 }
 
-export default function DeviceScene({ active, quality, variant, cinematic = false, onReady, onFailure }: { active: boolean; quality: "balanced" | "high"; variant: "overview" | "prototype"; cinematic?: boolean; onReady: () => void; onFailure: () => void }) {
+export default function DeviceScene({ active, quality, variant, onReady, onFailure }: { active: boolean; quality: "balanced" | "high"; variant: "overview" | "prototype"; cinematic?: boolean; onReady: () => void; onFailure: () => void }) {
   return <Canvas frameloop={active ? "demand" : "never"} dpr={quality === "high" ? 1.25 : 1} camera={{ position: [0, .45, 9.8], fov: 37 }} gl={{ antialias: quality === "high", alpha: true, powerPreference: "low-power" }} performance={{ min: .65 }} fallback={null}>
     <ambientLight intensity={1.8} /><directionalLight position={[3, 5, 6]} intensity={3} color="#ddf5ff" /><directionalLight position={[-5, 0, 3]} intensity={2} color="#1688f7" />
     <DeterministicCamera />
-    <Devices active={active} variant={variant} cinematic={cinematic} quality={quality} onReady={onReady} />
+    <Devices active={active} variant={variant} quality={quality} onReady={onReady} />
     <AdaptiveDpr />
     <ContextMonitor onFailure={onFailure} onReady={onReady} />
   </Canvas>;

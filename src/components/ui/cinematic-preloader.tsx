@@ -14,16 +14,8 @@ declare global {
 }
 
 export function CinematicPreloader() {
-  // Start with true on initial document load so SSR HTML renders the dark navy stage immediately
-  const [shouldRender, setShouldRender] = useState(() => {
-    if (typeof window !== "undefined") {
-      // If already executed during this document session or reduced motion, skip rendering
-      if (window.__motekra_preloader_done || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        return false;
-      }
-    }
-    return true;
-  });
+  // Start with true so SSR HTML and initial client hydration match perfectly
+  const [shouldRender, setShouldRender] = useState(true);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const lockupRef = useRef<HTMLDivElement>(null);
@@ -53,7 +45,9 @@ export function CinematicPreloader() {
       document.body.classList.remove("preloader-active");
       document.body.classList.add("preloader-finished");
       window.dispatchEvent(new CustomEvent("motekra-preloader-complete"));
-      setShouldRender(false);
+      queueMicrotask(() => {
+        setShouldRender(false);
+      });
       return;
     }
 

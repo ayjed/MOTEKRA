@@ -22,7 +22,6 @@ export function CustomCursor() {
     let isVisible = false;
     let isHovering = false;
     let isProject = false;
-    let isPressed = false;
     let rafId: number;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -78,12 +77,10 @@ export function CustomCursor() {
     };
 
     const onPointerDown = () => {
-      isPressed = true;
       cursor.classList.add("is-active");
     };
 
     const onPointerUp = () => {
-      isPressed = false;
       cursor.classList.remove("is-active");
     };
 

@@ -1,6 +1,6 @@
 "use client";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { AdaptiveDpr, Bounds, RoundedBox } from "@react-three/drei";
+import { AdaptiveDpr, RoundedBox } from "@react-three/drei";
 import { CanvasTexture, Group, LinearFilter, SRGBColorSpace } from "three";
 import { useEffect, useMemo, useRef } from "react";
 
@@ -29,23 +29,30 @@ function useMobileScreen(detail: boolean, quality:"balanced"|"high") {
 
 function DeterministicCamera() {
   const { camera, size, invalidate } = useThree();
+  const cameraRef = useRef(camera);
   useEffect(() => {
-    camera.position.set(0, 0.2, 9);
-    camera.lookAt(0, 0, 0);
-    if ("aspect" in camera && size.width > 0 && size.height > 0) {
-      camera.aspect = size.width / size.height;
-      camera.updateProjectionMatrix();
+    cameraRef.current = camera;
+  }, [camera]);
+
+  useEffect(() => {
+    const cam = cameraRef.current;
+    cam.position.set(0, 0.2, 9);
+    cam.lookAt(0, 0, 0);
+    if ("aspect" in cam && size.width > 0 && size.height > 0) {
+      cam.aspect = size.width / size.height;
+      cam.updateProjectionMatrix();
     }
     invalidate();
   }, [camera, size, invalidate]);
 
   useEffect(() => {
     const handleRestore = () => {
-      camera.position.set(0, 0.2, 9);
-      camera.lookAt(0, 0, 0);
-      if ("aspect" in camera && size.width > 0 && size.height > 0) {
-        camera.aspect = size.width / size.height;
-        camera.updateProjectionMatrix();
+      const cam = cameraRef.current;
+      cam.position.set(0, 0.2, 9);
+      cam.lookAt(0, 0, 0);
+      if ("aspect" in cam && size.width > 0 && size.height > 0) {
+        cam.aspect = size.width / size.height;
+        cam.updateProjectionMatrix();
       }
       invalidate();
     };

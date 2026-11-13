@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useState, useCallback } from "react";
-import Link from "next/link";
 import { useGsapScope } from "@/lib/animations/hooks";
 import type { ScrollTrigger } from "gsap/ScrollTrigger";
 import "@/styles/process.css";
