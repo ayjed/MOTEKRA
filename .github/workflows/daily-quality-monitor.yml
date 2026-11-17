@@ -1,0 +1,162 @@
+name: Daily Quality Monitor
+
+on:
+  schedule:
+    # 19:43 Nigeria time (WAT / UTC+1) = 18:43 UTC daily
+    - cron: "43 18 * * *"
+  workflow_dispatch:
+
+# Enforce least-privilege default permissions across all jobs
+permissions: {}
+
+concurrency:
+  group: daily-quality-monitor
+  cancel-in-progress: false
+
+jobs:
+  quality-check:
+    name: Quality Verification
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run quality verification suite
+        run: pnpm run check
+
+  report:
+    name: Maintain Monitoring Issue
+    runs-on: ubuntu-latest
+    needs: [quality-check]
+    if: always()
+    timeout-minutes: 5
+    permissions:
+      issues: write
+      contents: read
+    steps:
+      - name: Reconcile Quality Monitoring Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const checkStatus = '${{ needs.quality-check.result }}';
+            const labelName = 'quality-monitor';
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const commitSha = context.sha;
+            const shortSha = commitSha.slice(0, 7);
+            const timeUtc = new Date().toUTCString();
+
+            // 1. Ensure the dedicated quality-monitor label exists
+            try {
+              await github.rest.issues.getLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: labelName
+              });
+            } catch (err) {
+              if (err.status === 404) {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: labelName,
+                  color: 'd73a4a',
+                  description: 'Automated daily quality monitoring alert'
+                });
+              }
+            }
+
+            // 2. Query any existing open monitoring issues with the dedicated label
+            const { data: openIssues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: [labelName],
+              per_page: 10
+            });
+
+            // 3. Handle check failure: create single issue or update existing issue
+            if (checkStatus !== 'success') {
+              if (openIssues.length > 0) {
+                const existingIssue = openIssues[0];
+                console.log(`Open monitoring issue #${existingIssue.number} found. Adding failure update comment.`);
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: existingIssue.number,
+                  body: `### ⚠️ Daily Quality Check Still Failing\n\n` +
+                    `- **Workflow Run:** [#${context.runNumber}](${runUrl})\n` +
+                    `- **Status:** \`${checkStatus}\`\n` +
+                    `- **Commit:** [\`${shortSha}\`](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/commit/${commitSha})\n` +
+                    `- **Branch / Ref:** \`${context.ref}\`\n` +
+                    `- **Timestamp:** ${timeUtc}\n\n` +
+                    `The automated daily verification (\`pnpm check\`) is still failing. Please review the run logs linked above.`
+                });
+              } else {
+                console.log('No open monitoring issue found. Creating new issue.');
+                await github.rest.issues.create({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  title: '🚨 Automated Daily Quality Check Failed',
+                  labels: [labelName],
+                  body: `## 🚨 Automated Daily Quality Check Failed\n\n` +
+                    `The scheduled daily maintenance checks failed during execution.\n\n` +
+                    `### Execution Details\n` +
+                    `- **Workflow Run:** [#${context.runNumber}](${runUrl})\n` +
+                    `- **Status:** \`${checkStatus}\`\n` +
+                    `- **Trigger:** \`${context.eventName}\`\n` +
+                    `- **Branch / Ref:** \`${context.ref}\`\n` +
+                    `- **Commit:** [\`${shortSha}\`](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/commit/${commitSha})\n` +
+                    `- **Timestamp:** ${timeUtc}\n\n` +
+                    `### Failing Suite\n` +
+                    `\`pnpm check\` (TypeScript compilation, ESLint linter, Vitest test suite, or Next.js production build) failed.\n\n` +
+                    `### Action Items\n` +
+                    `1. Review the [Workflow Run Logs](${runUrl}) to isolate the error.\n` +
+                    `2. Implement and test a fix on a feature branch.\n` +
+                    `3. Open a pull request targeting \`main\`.\n\n` +
+                    `*This issue was created automatically by \`.github/workflows/daily-quality-monitor.yml\`. It will automatically close once the daily checks recover.*`
+                });
+              }
+            } else {
+              // 4. Handle recovery: if open issues exist, comment and close them
+              if (openIssues.length > 0) {
+                console.log(`Checks succeeded. Closing ${openIssues.length} open monitoring issue(s).`);
+                for (const issue of openIssues) {
+                  await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issue.number,
+                    body: `### ✅ Daily Quality Checks Recovered\n\n` +
+                      `The automated daily quality checks passed successfully on [Workflow Run #${context.runNumber}](${runUrl}).\n\n` +
+                      `- **Commit:** [\`${shortSha}\`](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/commit/${commitSha})\n` +
+                      `- **Timestamp:** ${timeUtc}\n\n` +
+                      `All checks (\`tsc\`, \`eslint\`, \`vitest\`, \`next build\`) completed with exit code 0. Closing this issue automatically.`
+                  });
+
+                  await github.rest.issues.update({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issue.number,
+                    state: 'closed',
+                    state_reason: 'completed'
+                  });
+                }
+              } else {
+                console.log('Daily quality checks passed. No open monitoring issues to close.');
+              }
+            }
