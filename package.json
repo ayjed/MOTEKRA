@@ -44,8 +44,8 @@
     "@axe-core/playwright": "^4.14.0",
     "@fontsource-variable/manrope": "^5.3.0",
     "@opennextjs/cloudflare": "^1.20.14",
-    "@playwright/test": "latest",
-    "@tailwindcss/postcss": "latest",
+    "@playwright/test": "1.64.1",
+    "@tailwindcss/postcss": "4.3.3",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
@@ -53,10 +53,11 @@
     "eslint": "^9.39.5",
     "eslint-config-next": "16.4.6",
     "lighthouse": "^13.5.0",
-    "postcss": "latest",
-    "tailwindcss": "latest",
+    "postcss": "8.5.32",
+    "tailwindcss": "4.3.3",
     "typescript": "~6.0.0",
-    "vitest": "latest",
-    "wrangler": "^4.155.0"
+    "vitest": "5.0.5",
+    "wrangler": "^4.155.0",
+    "playwright-core": "1.64.1"
   }
 }
