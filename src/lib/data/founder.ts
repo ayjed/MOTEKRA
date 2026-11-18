@@ -29,7 +29,7 @@ export function founderStructuredData(person: Founder, details = founderDetails[
       name: person.name,
       jobTitle: person.title,
       description: person.bio,
-      url: `${origin}/about`,
+      url: `${origin}/team/${person.slug}`,
       sameAs: founderProfiles.map(([, url]) => url),
       worksFor: {
         "@type": "Organization",

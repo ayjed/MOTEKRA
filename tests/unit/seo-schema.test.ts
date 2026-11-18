@@ -474,7 +474,7 @@ describe("aboutPersonSchema() - Founder Identity Disambiguation on About Page", 
     expect(schema?.name).toBe("Akinwumi Ayomiposi");
     expect(schema?.jobTitle).toBe("Software Developer & Creative Technologist");
     expect(schema?.description).toBe("Software Developer & Creative Technologist at MOTEKRA.");
-    expect(schema?.url).toBe(`${configuredOrigin}/about`);
+    expect(schema?.url).toBe(`${configuredOrigin}/team/akinwumi-ayomiposi`);
   });
 
   it("links Person to MOTEKRA organization via worksFor with canonical organization @id", () => {
@@ -522,7 +522,7 @@ describe("aboutPersonSchema() - Founder Identity Disambiguation on About Page", 
     expect(markup).toContain('"@type":"Person"');
     expect(markup).toContain('"name":"Akinwumi Ayomiposi"');
     expect(markup).toContain('"jobTitle":"Software Developer & Creative Technologist"');
-    expect(markup).toContain('"url":"https://www.motekra.com/about"');
+    expect(markup).toContain('"url":"https://www.motekra.com/team/akinwumi-ayomiposi"');
     expect(markup).toContain('"https://www.linkedin.com/in/akinwumi-ayomiposi/"');
     expect(markup).toContain('"https://github.com/ayjed"');
     expect(markup).toContain('{"@type":"Organization","@id":"https://www.motekra.com/#organization","name":"MOTEKRA"}');
@@ -585,7 +585,7 @@ describe("founderStructuredData() - Founder ProfilePage & Person Structured Data
     expect(person?.name).toBe("Akinwumi Ayomiposi");
     expect(person?.jobTitle).toBe("Software Developer & Creative Technologist");
     expect(person?.description).toBe("Software Developer & Creative Technologist at MOTEKRA.");
-    expect(person?.url).toBe(`${configuredOrigin}/about`);
+    expect(person?.url).toBe(`${configuredOrigin}/team/akinwumi-ayomiposi`);
     expect(person?.worksFor).toEqual({
       "@type": "Organization",
       "@id": `${configuredOrigin}/#organization`,
@@ -650,6 +650,33 @@ describe("founderStructuredData() - Founder ProfilePage & Person Structured Data
     expect(markup).toContain('"@type":"Person"');
     expect(markup).toContain('"@id":"https://www.motekra.com/about#person"');
     expect(markup).toContain('"https://www.motekra.com/team/akinwumi-ayomiposi#profilepage"');
+  });
+
+  it("verifies that aboutPersonSchema and founderStructuredData describe the same Person entity", () => {
+    enableProductionIndexing();
+
+    const aboutPerson = aboutPersonSchema();
+    const founderProfile = founderStructuredData(team[0]!);
+    const founderPerson = founderProfile?.mainEntity;
+
+    expect(aboutPerson).not.toBeNull();
+    expect(founderPerson).not.toBeNull();
+
+    // Shared identity graph attributes
+    expect(aboutPerson?.["@type"]).toBe("Person");
+    expect(founderPerson?.["@type"]).toBe("Person");
+
+    expect(aboutPerson?.["@id"]).toBe(founderPerson?.["@id"]);
+    expect(aboutPerson?.["@id"]).toBe(`${configuredOrigin}/about#person`);
+
+    expect(aboutPerson?.url).toBe(founderPerson?.url);
+    expect(aboutPerson?.url).toBe(`${configuredOrigin}/team/akinwumi-ayomiposi`);
+
+    expect(aboutPerson?.name).toBe(founderPerson?.name);
+    expect(aboutPerson?.jobTitle).toBe(founderPerson?.jobTitle);
+    expect(aboutPerson?.description).toBe(founderPerson?.description);
+    expect(aboutPerson?.worksFor).toEqual(founderPerson?.worksFor);
+    expect(aboutPerson?.sameAs).toEqual(founderPerson?.sameAs);
   });
 });
 
