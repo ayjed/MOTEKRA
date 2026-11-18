@@ -14,7 +14,7 @@ import { ConceptCreationVisual } from "./concept-creation-visual";
 import "@/styles/home.css";
 import "@/styles/services.css";
 
-export const metadata = pageMetadata("Digital products for what’s next", "We design and build high-performance web and mobile applications that help ambitious businesses grow, scale, and create real impact.", "/");
+export const metadata = pageMetadata("Digital Products for What’s Next", "We design and build high-performance web and mobile applications that help ambitious businesses grow, scale, and create real impact.", "/");
 
 const HERO_LINES = [
   { lineIndex: 0, words: ["Digital", "Products"] },

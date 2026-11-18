@@ -17,7 +17,7 @@ import "@/styles/liquid-glass-header.css";
 const displayFont = localFont({ src: "../styles/fonts/manrope-latin-variable.woff2", variable: "--font-manrope", display: "swap", weight: "200 800" });
 
 export const metadata: Metadata = {
-  title: { default: "MOTEKRA | Digital products for what’s next", template: "%s | MOTEKRA" },
+  title: { default: "Digital Products for What’s Next - MOTEKRA", template: "%s - MOTEKRA" },
   description: "MOTEKRA — digital product design and development. Company and independent work, with clear attribution.",
   icons: { icon: "/assets/brand/motekra-mark.png" },
 };
