@@ -8,6 +8,8 @@ import { MotionProvider } from "@/components/motion/motion-provider";
 import { RouteTransition } from "@/components/motion/route-transition";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { CinematicPreloader } from "@/components/ui/cinematic-preloader";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { ConsentBanner } from "@/components/analytics/consent-banner";
 import "@/styles/globals.css";
 import "@/styles/motion.css";
 import "@/styles/liquid-glass-header.css";
@@ -33,6 +35,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <CustomCursor />
         <JsonLd data={organizationSchema()}/>
         <JsonLd data={websiteSchema()}/>
+        <GoogleAnalytics />
+        <ConsentBanner />
         <MotionProvider>
           <Header />
           <RouteTransition>

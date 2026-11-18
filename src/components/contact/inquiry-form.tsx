@@ -4,12 +4,14 @@ import { useRef, useState, type FormEvent } from "react";
 import { services } from "@/content/services";
 import { validateInquiry, type FieldErrors } from "@/lib/contact/schema";
 import type { ContactResult } from "@/lib/contact/handler";
+import { trackGenerateLead } from "@/lib/analytics/gtag";
 
 export function InquiryForm() {
   const [pending, setPending] = useState(false);
   const [result, setResult] = useState<ContactResult | null>(null);
   const summary = useRef<HTMLDivElement>(null);
   const inFlight = useRef(false);
+  const hasTrackedLead = useRef(false);
 
   const errors: FieldErrors = result?.errors ?? {};
 
@@ -62,7 +64,13 @@ export function InquiryForm() {
         throw new Error("Invalid status");
       }
 
-      show(payload as ContactResult);
+      const contactResult = payload as ContactResult;
+      if (contactResult.ok && response.ok && !hasTrackedLead.current) {
+        hasTrackedLead.current = true;
+        trackGenerateLead();
+      }
+
+      show(contactResult);
     } catch {
       show({
         ok: false,
