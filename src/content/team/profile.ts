@@ -1,5 +1,4 @@
 import type { Publication } from "../models";
-import { team } from ".";
 
 export interface FounderProfileContent {
   detailsPublication: Publication;
@@ -10,11 +9,10 @@ export interface FounderProfileContent {
   experience: readonly { role: string; organization: string; period: string | null; description: string | null }[];
 }
 
-// Identity is approved; biography and skills are owner-supplied website copy.
-// Final profile review, original portrait and dated history remain pending.
+// Identity, portrait, biography and skills are owner-approved.
 export const founderDetails: Readonly<Record<string, FounderProfileContent>> = {
   "akinwumi-ayomiposi": {
-    detailsPublication: "draft",
+    detailsPublication: "approved",
     portrait: {
       src: "/assets/team/ayomiposi.webp",
       width: 834,
@@ -23,12 +21,28 @@ export const founderDetails: Readonly<Record<string, FounderProfileContent>> = {
     },
     plannedPortraitSrc: "/assets/team/ayomiposi.webp",
     biography: [
-      "Akinwumi Ayomiposi is a software developer, UI/UX designer, and creative technologist with experience building digital products, web applications, mobile experiences, and business technology solutions.",
-      "His work combines software engineering, user-centered design, and creative problem-solving to transform complex ideas into functional, intuitive, and scalable digital products.",
-      "At MOTEKRA, he brings together technical development and creative direction to help businesses build meaningful digital experiences.",
+      "Akinwumi Ayomiposi is a Software Developer & Creative Technologist specializing in web and mobile application development, backend engineering, and UI/UX design.",
+      "His work combines software engineering, user-centered design, and creative problem-solving to build functional, intuitive, and reliable digital products.",
+      "Through MOTEKRA, he brings together technical development and creative thinking to create digital experiences that address real-world challenges.",
     ],
-    skills: ["Full-Stack Web Development", "PHP & Laravel", "JavaScript & TypeScript", "React & Next.js", "Node.js", "REST API Development", "Database Design and Integration", "React Native", "Expo", "Cross-Platform Mobile Applications", "UI/UX Design", "Figma", "Adobe Photoshop", "Brand Identity", "Product Strategy", "Creative Direction", "WordPress Development", "Payment Gateway Integration", "Cloud Hosting and Deployment", "AI-Assisted Development"],
-    experience: [{ role: team[0]!.title, organization: "MOTEKRA", period: null, description: null }],
+    skills: [
+      "PHP",
+      "Laravel",
+      "REST API Development",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Next.js",
+      "Flutter",
+      "Dart",
+      "UI/UX Design",
+      "Figma",
+      "Interface Design",
+      "Git",
+      "GitHub",
+      "AI-Assisted Development",
+    ],
+    experience: [],
   },
 };
 
@@ -52,8 +66,24 @@ export const companyDirection = {
 };
 
 export const founderSkillGroups = [
-  { title: "Software Engineering", skills: ["Full-Stack Web Development", "PHP & Laravel", "JavaScript & TypeScript", "React & Next.js", "Node.js", "REST API Development", "Database Design and Integration"] },
-  { title: "Mobile Development", skills: ["React Native", "Expo", "Cross-Platform Mobile Applications"] },
-  { title: "Creative & Product Design", skills: ["UI/UX Design", "Figma", "Adobe Photoshop", "Brand Identity", "Product Strategy", "Creative Direction"] },
-  { title: "Additional Experience", skills: ["WordPress Development", "Payment Gateway Integration", "Cloud Hosting and Deployment", "AI-Assisted Development"] },
+  {
+    title: "Backend Development",
+    skills: ["PHP", "Laravel", "REST API Development"],
+  },
+  {
+    title: "Web Development",
+    skills: ["JavaScript", "TypeScript", "React", "Next.js"],
+  },
+  {
+    title: "Mobile Development",
+    skills: ["Flutter", "Dart"],
+  },
+  {
+    title: "UI/UX Design",
+    skills: ["UI/UX Design", "Figma", "Interface Design"],
+  },
+  {
+    title: "Development Workflow",
+    skills: ["Git", "GitHub", "AI-Assisted Development"],
+  },
 ] as const;

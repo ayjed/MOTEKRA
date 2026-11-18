@@ -18,5 +18,26 @@ export function founderMetadata(person: Founder) {
 export function founderStructuredData(person: Founder, details = founderDetails[person.slug]) {
   const origin = getSiteOrigin();
   if (!origin || !isIndexable() || person.publication !== "approved" || details?.detailsPublication !== "approved") return null;
-  return { "@context": "https://schema.org", "@type": "Person", "@id": `${origin}/team/${person.slug}#person`, name: person.name, jobTitle: person.title, description: person.bio, url: `${origin}/team/${person.slug}`, sameAs: founderProfiles.map(([,url])=>url), worksFor: { "@type": "Organization", "@id": `${origin}/#organization`, name: "MOTEKRA" }, ...(details.portrait ? { image: `${origin}${details.portrait.src}` } : {}), ...(details.skills.length ? { knowsAbout: details.skills } : {}) };
+  return {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    "@id": `${origin}/team/${person.slug}#profilepage`,
+    url: `${origin}/team/${person.slug}`,
+    mainEntity: {
+      "@type": "Person",
+      "@id": `${origin}/about#person`,
+      name: person.name,
+      jobTitle: person.title,
+      description: person.bio,
+      url: `${origin}/team/${person.slug}`,
+      sameAs: founderProfiles.map(([, url]) => url),
+      worksFor: {
+        "@type": "Organization",
+        "@id": `${origin}/#organization`,
+        name: "MOTEKRA",
+      },
+      ...(details.portrait ? { image: `${origin}${details.portrait.src}` } : {}),
+      ...(details.skills.length ? { knowsAbout: details.skills } : {}),
+    },
+  };
 }
