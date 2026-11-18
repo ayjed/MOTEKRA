@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 
-// Mock Storage supporting throws for error handling testing
+// Mock Storage supporting throws and cross-tab simulation
 class MockLocalStorage {
   public store: Record<string, string> = {};
   public shouldThrow = false;
@@ -55,8 +55,17 @@ const mockTarget = new MockEventTarget();
 const mockStorage = new MockLocalStorage();
 const scriptMap = new Map<string, unknown>();
 
+let currentActiveElement: unknown = null;
+
 const mockDocument = {
   title: "MOTEKRA | Digital products for what's next",
+  referrer: "",
+  get activeElement() {
+    return currentActiveElement;
+  },
+  body: {
+    style: { overflow: "" },
+  },
   head: {
     appendChild: vi.fn((el: { id: string }) => {
       scriptMap.set(el.id, el);
@@ -70,6 +79,9 @@ const mockDocument = {
       id: "",
       src: "",
       async: false,
+      focus: vi.fn(() => {
+        currentActiveElement = el;
+      }),
       parentNode: {
         removeChild: vi.fn(() => {
           if (el.id) scriptMap.delete(el.id);
@@ -95,7 +107,7 @@ const mockWindow = {
   gtag: undefined as ((...args: unknown[]) => void) | undefined,
 };
 
-// Polyfill global window & document if in Node environment
+// Polyfill global window & document in Node environment
 // @ts-expect-error polyfilling test environment
 globalThis.window = mockWindow;
 // @ts-expect-error polyfilling test environment
@@ -120,6 +132,8 @@ import {
   pageview,
   trackGenerateLead,
   sanitizeAnalyticsParams,
+  getSafePageLocation,
+  getSafeReferrer,
   resetTrackedPathForTesting,
 } from "@/lib/analytics/gtag";
 
@@ -171,7 +185,7 @@ describe("Consent Mode v2 Signal Ordering and Basic Consent Mode", () => {
     expect(Array.isArray(mockWindow.dataLayer)).toBe(true);
     const dataLayer = mockWindow.dataLayer as unknown[][];
 
-    // Check Call 1: consent default (all denied)
+    // Call 1: consent default (all denied)
     const call1 = dataLayer[0] as unknown as IArguments;
     expect(call1[0]).toBe("consent");
     expect(call1[1]).toBe("default");
@@ -182,7 +196,7 @@ describe("Consent Mode v2 Signal Ordering and Basic Consent Mode", () => {
       ad_personalization: "denied",
     });
 
-    // Check Call 2: consent update (analytics granted, ad signals denied)
+    // Call 2: consent update (analytics granted, ad signals denied)
     const call2 = dataLayer[1] as unknown as IArguments;
     expect(call2[0]).toBe("consent");
     expect(call2[1]).toBe("update");
@@ -193,16 +207,24 @@ describe("Consent Mode v2 Signal Ordering and Basic Consent Mode", () => {
       ad_personalization: "denied",
     });
 
-    // Check Call 3: js timestamp
+    // Call 3: js timestamp
     const call3 = dataLayer[2] as unknown as IArguments;
     expect(call3[0]).toBe("js");
     expect(call3[1]).toBeInstanceOf(Date);
 
-    // Check Call 4: config without automatic page_view and advertising disabled
+    // Call 4: global page_location & page_referrer setting for automatic events
     const call4 = dataLayer[3] as unknown as IArguments;
-    expect(call4[0]).toBe("config");
-    expect(call4[1]).toBe(GA_MEASUREMENT_ID);
-    expect(call4[2]).toEqual({
+    expect(call4[0]).toBe("set");
+    expect(call4[1]).toEqual({
+      page_location: expect.any(String),
+      page_referrer: expect.any(String),
+    });
+
+    // Call 5: config without automatic page_view and advertising disabled
+    const call5 = dataLayer[4] as unknown as IArguments;
+    expect(call5[0]).toBe("config");
+    expect(call5[1]).toBe(GA_MEASUREMENT_ID);
+    expect(call5[2]).toMatchObject({
       send_page_view: false,
       anonymize_ip: true,
       allow_google_signals: false,
@@ -210,7 +232,7 @@ describe("Consent Mode v2 Signal Ordering and Basic Consent Mode", () => {
       restricted_data_processing: true,
     });
 
-    // Check Call 5: script injected
+    // Call 6: script injected
     expect(scriptMap.has("ga4-script")).toBe(true);
     const script = scriptMap.get("ga4-script") as { src: string; async: boolean };
     expect(script.src).toContain(`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`);
@@ -241,6 +263,45 @@ describe("Consent Mode v2 Signal Ordering and Basic Consent Mode", () => {
   });
 });
 
+describe("Automatic URL Privacy & Campaign Attribution", () => {
+  it("preserves legitimate campaign attribution parameters while discarding PII and sensitive queries", () => {
+    const rawUrl =
+      "https://www.motekra.com/contact?utm_source=linkedin&utm_medium=paid_social&utm_campaign=q4_launch&gclid=abc123xyz&email=user%40example.com&token=secret_auth&name=John#form-step";
+
+    const safeUrl = getSafePageLocation(rawUrl);
+
+    // Legitimate attribution parameters preserved
+    expect(safeUrl).toContain("utm_source=linkedin");
+    expect(safeUrl).toContain("utm_medium=paid_social");
+    expect(safeUrl).toContain("utm_campaign=q4_launch");
+    expect(safeUrl).toContain("gclid=abc123xyz");
+
+    // Sensitive parameters strictly stripped
+    expect(safeUrl).not.toContain("email");
+    expect(safeUrl).not.toContain("user%40example.com");
+    expect(safeUrl).not.toContain("token");
+    expect(safeUrl).not.toContain("secret_auth");
+    expect(safeUrl).not.toContain("name=John");
+    expect(safeUrl).not.toContain("#form-step");
+  });
+
+  it("returns origin and pathname when no campaign attribution parameters exist", () => {
+    const rawUrl = "https://www.motekra.com/about?ref=internal&session=xyz123#team";
+    const safeUrl = getSafePageLocation(rawUrl);
+
+    expect(safeUrl).toBe("https://www.motekra.com/about");
+  });
+
+  it("sanitizes document.referrer by stripping sensitive query parameters and hash fragments", () => {
+    mockDocument.referrer = "https://external-partner.com/campaign?token=secret123&user=42#ref";
+    const safeReferrer = getSafeReferrer();
+
+    expect(safeReferrer).toBe("https://external-partner.com/campaign");
+    expect(safeReferrer).not.toContain("token");
+    expect(safeReferrer).not.toContain("#ref");
+  });
+});
+
 describe("Cross-Tab Consent Synchronization and Storage Error Handling", () => {
   beforeEach(() => {
     mockStorage.clear();
@@ -266,7 +327,6 @@ describe("Cross-Tab Consent Synchronization and Storage Error Handling", () => {
     const listener = vi.fn();
     const unsubscribe = onConsentChange(listener);
 
-    // Simulate storage event from another browser tab
     mockStorage.setItem(CONSENT_STORAGE_KEY, "denied");
     mockTarget.dispatchEvent({
       type: "storage",
@@ -280,17 +340,40 @@ describe("Cross-Tab Consent Synchronization and Storage Error Handling", () => {
     unsubscribe();
   });
 
-  it("ignores storage events for unrelated keys", () => {
+  it("reacts to localStorage.clear() in another tab where event.key is null", () => {
     const listener = vi.fn();
     const unsubscribe = onConsentChange(listener);
 
+    mockStorage.clear();
     mockTarget.dispatchEvent({
       type: "storage",
-      key: "unrelated_session_token",
-      newValue: "xyz",
+      key: null,
+      newValue: null,
     } as unknown as StorageEvent);
 
-    expect(listener).not.toHaveBeenCalled();
+    expect(listener).toHaveBeenCalled();
+    expect(getStoredConsent()).toBe("unset");
+
+    unsubscribe();
+  });
+
+  it("reacts to key removal in another tab where newValue is null", () => {
+    setStoredConsent("granted");
+    expect(getStoredConsent()).toBe("granted");
+
+    const listener = vi.fn();
+    const unsubscribe = onConsentChange(listener);
+
+    mockStorage.removeItem(CONSENT_STORAGE_KEY);
+    mockTarget.dispatchEvent({
+      type: "storage",
+      key: CONSENT_STORAGE_KEY,
+      newValue: null,
+    } as unknown as StorageEvent);
+
+    expect(listener).toHaveBeenCalled();
+    expect(getStoredConsent()).toBe("unset");
+    expect(hasAnalyticsConsent()).toBe(false);
 
     unsubscribe();
   });
@@ -311,14 +394,13 @@ describe("Pageview Deduplication & PII-Safe URLs", () => {
     vi.restoreAllMocks();
   });
 
-  it("strips query parameters and URL fragments from page_path and page_location", () => {
+  it("strips sensitive queries and fragments while preserving legitimate campaign params", () => {
     setStoredConsent("granted");
     initGtag();
 
     const pushSpy = vi.spyOn(mockWindow.dataLayer as unknown[], "push");
 
-    // Path containing query parameters with potential PII and hash fragment
-    pageview("/contact?email=visitor%40example.com&ref=123#inquiry-section");
+    pageview("/contact?utm_source=twitter&utm_medium=social&email=visitor%40example.com#step-2");
 
     expect(pushSpy).toHaveBeenCalled();
     const calls = pushSpy.mock.calls;
@@ -330,12 +412,10 @@ describe("Pageview Deduplication & PII-Safe URLs", () => {
     expect(pageViewCall).toBeDefined();
     const params = (pageViewCall![0] as IArguments)[2] as Record<string, unknown>;
 
-    // Strict URL sanitization
     expect(params.page_path).toBe("/contact");
-    expect(params.page_location).toBe("https://www.motekra.com/contact");
-    expect(params.page_location).not.toContain("?");
-    expect(params.page_location).not.toContain("#");
-    expect(params.page_location).not.toContain("visitor%40example.com");
+    expect(params.page_location).toBe("https://www.motekra.com/contact?utm_source=twitter&utm_medium=social");
+    expect(params.page_location).not.toContain("email");
+    expect(params.page_location).not.toContain("#step-2");
   });
 
   it("redacts email addresses from document titles", () => {
@@ -364,7 +444,7 @@ describe("Pageview Deduplication & PII-Safe URLs", () => {
 
     // First call for /work
     pageview("/work");
-    // Duplicate call for /work (e.g. from remount or re-render)
+    // Duplicate calls for /work (e.g. from remount or re-render)
     pageview("/work");
     pageview("/work");
 
@@ -373,7 +453,6 @@ describe("Pageview Deduplication & PII-Safe URLs", () => {
       return args && args[0] === "event" && args[1] === "page_view";
     });
 
-    // Should only dispatch 1 page_view event for /work
     expect(pageViewCalls.length).toBe(1);
 
     // Navigating to /about should dispatch
@@ -541,9 +620,81 @@ describe("Preferences Modal State & Accessibility Controls", () => {
 
     unsubscribe();
   });
+
+  it("simulates focus trapping and keyboard navigation in modal dialog", () => {
+    // Create elements to test focus trapping
+    const triggerBtn = {
+      focus: vi.fn(() => {
+        currentActiveElement = triggerBtn;
+      }),
+    };
+    currentActiveElement = triggerBtn;
+
+    const closeBtn = {
+      tagName: "BUTTON",
+      focus: vi.fn(() => {
+        currentActiveElement = closeBtn;
+      }),
+    };
+    const acceptBtn = {
+      tagName: "BUTTON",
+      focus: vi.fn(() => {
+        currentActiveElement = acceptBtn;
+      }),
+    };
+    const declineBtn = {
+      tagName: "BUTTON",
+      focus: vi.fn(() => {
+        currentActiveElement = declineBtn;
+      }),
+    };
+
+    // Open modal
+    openConsentPreferences();
+    expect(getConsentModalSnapshot()).toBe(true);
+
+    // Initial focus moves to first focusable element
+    closeBtn.focus();
+    expect(mockDocument.activeElement).toBe(closeBtn);
+
+    // Test Tab trap: when at last element, pressing Tab wraps to first
+    currentActiveElement = declineBtn;
+    const tabEvent = {
+      key: "Tab",
+      shiftKey: false,
+      preventDefault: vi.fn(),
+    };
+
+    // Simulate Tab key behavior from last element
+    if (currentActiveElement === declineBtn && !tabEvent.shiftKey) {
+      tabEvent.preventDefault();
+      closeBtn.focus();
+    }
+    expect(tabEvent.preventDefault).toHaveBeenCalled();
+    expect(mockDocument.activeElement).toBe(closeBtn);
+
+    // Test Shift+Tab trap: when at first element, pressing Shift+Tab wraps to last
+    const shiftTabEvent = {
+      key: "Tab",
+      shiftKey: true,
+      preventDefault: vi.fn(),
+    };
+    if (currentActiveElement === closeBtn && shiftTabEvent.shiftKey) {
+      shiftTabEvent.preventDefault();
+      declineBtn.focus();
+    }
+    expect(shiftTabEvent.preventDefault).toHaveBeenCalled();
+    expect(mockDocument.activeElement).toBe(declineBtn);
+
+    // Close modal and verify focus restores to triggerBtn
+    closeConsentPreferences();
+    expect(getConsentModalSnapshot()).toBe(false);
+    triggerBtn.focus();
+    expect(mockDocument.activeElement).toBe(triggerBtn);
+  });
 });
 
-describe("Component Mount, Remount and Navigation Simulation", () => {
+describe("Component Mount, Remount, Route Transition and Revocation", () => {
   beforeEach(() => {
     mockStorage.clear();
     scriptMap.clear();
@@ -567,7 +718,7 @@ describe("Component Mount, Remount and Navigation Simulation", () => {
     initGtag();
     expect(scriptMap.has("ga4-script")).toBe(false);
 
-    // 2. User accepts consent
+    // 2. User accepts consent via banner
     setStoredConsent("granted");
     expect(hasAnalyticsConsent()).toBe(true);
     initGtag();

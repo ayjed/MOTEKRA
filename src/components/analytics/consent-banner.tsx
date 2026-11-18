@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import {
   getStoredConsent,
   setStoredConsent,
@@ -19,16 +19,78 @@ export function ConsentBanner() {
   const isModalOpen = useSyncExternalStore(subscribeConsentModal, getConsentModalSnapshot, () => false);
   const [showDetails, setShowDetails] = useState(false);
 
-  // Close modal on Escape key press
+  const modalRef = useRef<HTMLDivElement>(null);
+  const previousActiveElement = useRef<HTMLElement | null>(null);
+
+  // Focus trap, Escape key handling, and background lock for modal dialog
   useEffect(() => {
     if (!isModalOpen) return;
+
+    // 1. Capture previously focused element to restore upon close
+    if (typeof document !== "undefined") {
+      previousActiveElement.current = document.activeElement as HTMLElement | null;
+      document.body.style.overflow = "hidden";
+    }
+
+    // 2. Move focus into the dialog
+    const focusTimer = setTimeout(() => {
+      if (modalRef.current) {
+        const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length > 0) {
+          focusable[0]?.focus();
+        } else {
+          modalRef.current.focus();
+        }
+      }
+    }, 20);
+
+    // 3. Trap Tab and Shift+Tab navigation, handle Escape
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
+        e.preventDefault();
         closeConsentPreferences();
+        return;
+      }
+
+      if (e.key === "Tab") {
+        if (!modalRef.current) return;
+        const focusable = modalRef.current.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        if (focusable.length === 0) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === first || !modalRef.current.contains(document.activeElement)) {
+            e.preventDefault();
+            last?.focus();
+          }
+        } else {
+          if (document.activeElement === last || !modalRef.current.contains(document.activeElement)) {
+            e.preventDefault();
+            first?.focus();
+          }
+        }
       }
     };
+
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+
+    return () => {
+      clearTimeout(focusTimer);
+      window.removeEventListener("keydown", handleKeyDown);
+      if (typeof document !== "undefined") {
+        document.body.style.overflow = "";
+      }
+      // 4. Restore focus to the trigger element
+      if (previousActiveElement.current && typeof previousActiveElement.current.focus === "function") {
+        previousActiveElement.current.focus();
+      }
+    };
   }, [isModalOpen]);
 
   if (!isHydrated) {
@@ -58,11 +120,13 @@ export function ConsentBanner() {
         }}
       >
         <div
+          ref={modalRef}
           className="consent-modal-card"
           role="dialog"
           aria-modal="true"
           aria-labelledby="consent-modal-title"
           aria-describedby="consent-modal-desc"
+          tabIndex={-1}
         >
           <div className="consent-modal-header">
             <h3 id="consent-modal-title" className="consent-modal-title">
@@ -112,6 +176,10 @@ export function ConsentBanner() {
                   Technical browser, device, and network data processed by Google
                   to derive coarse geographic region (e.g. city level). Google
                   states that Google Analytics 4 does not log or store individual IP addresses.
+                </li>
+                <li>
+                  Legitimate marketing campaign attribution (e.g. UTM parameters),
+                  while completely stripping personal or sensitive URL queries.
                 </li>
                 <li>
                   An anonymous lead event when a contact form is successfully sent,
@@ -199,6 +267,10 @@ export function ConsentBanner() {
                 <li>
                   Technical browser and network metadata to estimate coarse geographic
                   region. Google states it does not log or store individual IP addresses.
+                </li>
+                <li>
+                  Legitimate marketing campaign attribution (e.g. UTM parameters),
+                  while completely stripping personal or sensitive URL queries.
                 </li>
                 <li>
                   An anonymous lead event when an inquiry form is successfully sent.

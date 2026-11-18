@@ -5,6 +5,7 @@
  * - No tracking scripts or requests are permitted before explicit consent.
  * - Choices ('granted' | 'denied') are stored in localStorage.
  * - Cross-tab synchronization via browser 'storage' event.
+ * - Handles key removal and localStorage.clear() across tabs.
  * - Synchronizes state with React components via useSyncExternalStore.
  */
 
@@ -20,8 +21,11 @@ export function getStoredConsent(): ConsentChoice {
   if (typeof window === "undefined") return "unset";
   try {
     const val = window.localStorage.getItem(CONSENT_STORAGE_KEY);
-    if (val === "granted" || val === "denied") {
-      return val;
+    if (val === "granted") {
+      return "granted";
+    }
+    if (val === "denied") {
+      return "denied";
     }
   } catch {
     // localStorage may be restricted in private/incognito contexts or iframes
@@ -54,6 +58,7 @@ export function hasAnalyticsConsent(): boolean {
 /**
  * Subscribes to consent state changes in both the current window
  * and across browser tabs via the 'storage' event.
+ * Handles item updates, key removal, and localStorage.clear() (where event.key === null).
  */
 export function onConsentChange(callback: () => void): () => void {
   if (typeof window === "undefined") return () => {};
@@ -63,7 +68,8 @@ export function onConsentChange(callback: () => void): () => void {
   };
 
   const storageHandler = (event: StorageEvent) => {
-    if (event.key === CONSENT_STORAGE_KEY) {
+    // event.key === null occurs when localStorage.clear() is invoked in another tab
+    if (event.key === CONSENT_STORAGE_KEY || event.key === null) {
       callback();
     }
   };

@@ -33,7 +33,9 @@ export function GoogleAnalytics() {
         if (pathname) {
           pageview(pathname);
         }
-      } else if (choice === "denied") {
+      } else {
+        // Treat EVERY state other than "granted" as non-consent!
+        // This includes "denied" and "unset" (e.g. after localStorage.clear() or key removal).
         const wasGranted = hadConsentRef.current;
         hadConsentRef.current = false;
         disableGtag();

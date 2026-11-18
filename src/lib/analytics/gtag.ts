@@ -8,8 +8,11 @@
  *   are dispatched prior to explicit affirmative consent.
  * - Consent Mode v2 Signals: Defaults are queued as all denied. Upon explicit
  *   consent, analytics_storage is granted while all advertising signals remain denied.
- * - Single-page router navigations: Tracked explicitly via pageview() using trusted
- *   origin and pathname ONLY (query parameters and URL fragments strictly excluded).
+ * - Safe URL & Campaign Attribution: Automatic and manual events sanitize
+ *   page_location and page_referrer:
+ *   - Only approved marketing attribution parameters (UTMs, gclid, etc.) are kept.
+ *   - Non-whitelisted or sensitive query parameters and URL fragments are strictly stripped.
+ * - Single-page router navigations: Tracked explicitly via pageview().
  * - Lead conversion: generate_lead is dispatched strictly on confirmed HTTP 200 { ok: true }
  *   contact submissions, with deduplication.
  * - Approved parameter whitelist: Non-whitelisted keys and PII patterns (emails, names,
@@ -37,6 +40,25 @@ export function resetTrackedPathForTesting(): void {
   lastTrackedPath = null;
   isInitialized = false;
 }
+
+/**
+ * Whitelist of permitted campaign attribution query parameters.
+ * Legitimate marketing attribution is preserved while stripping all user inputs,
+ * tokens, emails, names, or sensitive query parameters.
+ */
+export const ALLOWED_ATTRIBUTION_PARAMS = new Set([
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_term",
+  "utm_content",
+  "utm_id",
+  "gclid",
+  "dclid",
+  "fbclid",
+  "msclkid",
+  "ttclid",
+]);
 
 /**
  * Whitelist of permitted parameter names per GA4 event name.
@@ -72,15 +94,23 @@ export function sanitizeAnalyticsParams(
     }
 
     if (typeof value === "string") {
-      // Scrub query parameters, fragments, emails, and phone numbers from string values
       let cleanVal = value;
       if (key === "page_path" || key === "page_location") {
-        cleanVal = (cleanVal.split("?")[0] ?? "").split("#")[0] ?? cleanVal;
+        cleanVal = getSafePageLocation(cleanVal);
+        if (key === "page_path") {
+          try {
+            const urlObj = new URL(cleanVal, "https://www.motekra.com");
+            cleanVal = urlObj.pathname;
+          } catch {
+            cleanVal = (cleanVal.split("?")[0] ?? "").split("#")[0] ?? cleanVal;
+          }
+        }
+      } else {
+        cleanVal = cleanVal
+          .replace(EMAIL_PATTERN, "[redacted]")
+          .replace(PHONE_PATTERN, "[redacted]")
+          .trim();
       }
-      cleanVal = cleanVal
-        .replace(EMAIL_PATTERN, "[redacted]")
-        .replace(PHONE_PATTERN, "[redacted]")
-        .trim();
 
       sanitized[key] = cleanVal;
     } else if (typeof value === "number" || typeof value === "boolean") {
@@ -92,8 +122,60 @@ export function sanitizeAnalyticsParams(
 }
 
 /**
+ * Returns a sanitized URL location that:
+ * 1. Uses trusted origin and pathname.
+ * 2. Preserves legitimate campaign attribution parameters (UTMs, gclid, etc.).
+ * 3. Discards any sensitive or non-attribution query parameters.
+ * 4. Completely excludes URL hash fragments.
+ */
+export function getSafePageLocation(pathOrUrl?: string): string {
+  if (typeof window === "undefined") return "https://www.motekra.com/";
+
+  const origin = window.location?.origin || "https://www.motekra.com";
+  const rawUrlString = pathOrUrl || window.location?.href || origin;
+
+  try {
+    const parsed = new URL(rawUrlString, origin);
+    const cleanParams = new URLSearchParams();
+
+    parsed.searchParams.forEach((val, key) => {
+      const lowerKey = key.toLowerCase();
+      if (ALLOWED_ATTRIBUTION_PARAMS.has(lowerKey)) {
+        // Redact email patterns from parameter values
+        const sanitizedVal = val.replace(EMAIL_PATTERN, "[redacted]").trim();
+        cleanParams.set(key, sanitizedVal);
+      }
+    });
+
+    const queryString = cleanParams.toString();
+    const cleanPath = parsed.pathname || "/";
+    return queryString ? `${origin}${cleanPath}?${queryString}` : `${origin}${cleanPath}`;
+  } catch {
+    const cleanPath = ((pathOrUrl || "/").split("?")[0] ?? "/").split("#")[0] || "/";
+    return `${origin}${cleanPath.startsWith("/") ? cleanPath : "/" + cleanPath}`;
+  }
+}
+
+/**
+ * Returns a sanitized referrer URL that preserves origin and pathname while stripping
+ * sensitive query parameters or fragments from document.referrer.
+ */
+export function getSafeReferrer(): string {
+  if (typeof document === "undefined" || !document.referrer) return "";
+
+  try {
+    const parsed = new URL(document.referrer);
+    // Discard all query parameters and fragments from referrer
+    return `${parsed.origin}${parsed.pathname}`;
+  } catch {
+    return "";
+  }
+}
+
+/**
  * Initializes GA4 and injects gtag.js strictly after affirmative consent is granted.
  * Queues Consent Mode v2 default and update signals in the proper order.
+ * Applies sanitized page_location and page_referrer globally to prevent automatic event leaks.
  */
 export function initGtag(): void {
   if (typeof window === "undefined") return;
@@ -128,16 +210,27 @@ export function initGtag(): void {
   // 3. Initialize JS timestamp
   window.gtag("js", new Date());
 
-  // 4. Configure GA4 without automatic pageviews and with advertising disabled
+  const safeLocation = getSafePageLocation();
+  const safeReferrer = getSafeReferrer();
+
+  // 4. Global default configuration for automatic events (session_start, etc.)
+  window.gtag("set", {
+    page_location: safeLocation,
+    page_referrer: safeReferrer,
+  });
+
+  // 5. Configure GA4 without automatic pageviews and with advertising disabled
   window.gtag("config", GA_MEASUREMENT_ID, {
     send_page_view: false,
     anonymize_ip: true,
     allow_google_signals: false,
     allow_ad_personalization_signals: false,
     restricted_data_processing: true,
+    page_location: safeLocation,
+    page_referrer: safeReferrer,
   });
 
-  // 5. Inject gtag.js script tag strictly after consent configuration
+  // 6. Inject gtag.js script tag strictly after consent configuration
   const existingScript = document.getElementById("ga4-script");
   if (!existingScript) {
     const script = document.createElement("script");
@@ -200,8 +293,8 @@ export function trackEvent(
 
 /**
  * Tracks a route change / page view.
- * Ensures page_location uses ONLY trusted origin and pathname,
- * strictly excluding query parameters and URL fragments to protect PII.
+ * Ensures page_location uses ONLY trusted origin, pathname, and legitimate campaign attribution,
+ * strictly excluding sensitive query parameters and URL fragments to protect PII.
  */
 export function pageview(path: string, title?: string): void {
   if (typeof window === "undefined") return;
@@ -217,19 +310,14 @@ export function pageview(path: string, title?: string): void {
   }
   lastTrackedPath = cleanPath;
 
-  const origin =
-    typeof window !== "undefined" && window.location?.origin
-      ? window.location.origin
-      : "https://www.motekra.com";
-  const cleanLocation = `${origin}${cleanPath.startsWith("/") ? cleanPath : "/" + cleanPath}`;
-
+  const safeLocation = getSafePageLocation(path);
   const rawTitle = title || (typeof document !== "undefined" ? document.title : "");
   const cleanTitle = rawTitle.replace(EMAIL_PATTERN, "[redacted]").trim();
 
   trackEvent("page_view", {
     page_path: cleanPath,
     page_title: cleanTitle,
-    page_location: cleanLocation,
+    page_location: safeLocation,
   });
 }
 
