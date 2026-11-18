@@ -2,6 +2,8 @@ import { team } from "@/content/team";
 import { companyDirection, founderDetails } from "@/content/team/profile";
 import { ContactCta } from "@/components/sections/shared";
 import { ButtonLink } from "@/components/ui/primitives";
+import { JsonLd } from "@/components/seo/json-ld";
+import { aboutPersonSchema } from "@/lib/seo/schema";
 import { EditorialCinema } from "./editorial-cinema";
 import { FounderPortrait } from "./portrait";
 import { CreditedWork, InterfaceComposition, SocialLinks } from "./profile-sections";
@@ -10,7 +12,9 @@ import "@/styles/about.css";
 export default function AboutPage() {
   const person = team[0]!;
   return (
-    <EditorialCinema>
+    <>
+      <JsonLd data={aboutPersonSchema()} />
+      <EditorialCinema>
       <section className="editorial-hero">
         <div className="container editorial-hero-grid">
           <div>
@@ -109,5 +113,6 @@ export default function AboutPage() {
       <CreditedWork />
       <ContactCta />
     </EditorialCinema>
+  </>
   );
 }
