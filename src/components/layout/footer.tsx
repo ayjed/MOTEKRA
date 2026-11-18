@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Brand } from "./brand";
 import { services } from "@/content/services";
 import { ScrollTop } from "../motion/scroll-top";
+import { CookiePreferencesButton } from "@/components/analytics/cookie-preferences-button";
 
 export function Footer() {
   return (
@@ -65,7 +66,10 @@ export function Footer() {
         </div>
 
         <div className="footer-bottom">
-          <p>© {new Date().getFullYear()} MOTEKRA. All rights reserved.</p>
+          <div className="footer-bottom-info">
+            <p>© {new Date().getFullYear()} MOTEKRA. All rights reserved.</p>
+            <CookiePreferencesButton />
+          </div>
           <ScrollTop />
         </div>
       </div>
