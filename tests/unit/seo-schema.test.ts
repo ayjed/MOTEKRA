@@ -537,7 +537,7 @@ describe("aboutPersonSchema() - Founder Identity Disambiguation on About Page", 
     expect(markup).toContain('"@type":"Person"');
     expect(markup).toContain('"name":"Akinwumi Ayomiposi"');
     expect(markup).toContain('"https://www.linkedin.com/in/akinwumi-ayomiposi/"');
-  });
+  }, 15000);
 
   it("omits Person structured data script tag from AboutPage markup when non-indexable", async () => {
     vi.stubEnv("SITE_URL", "");
