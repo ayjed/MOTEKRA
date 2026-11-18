@@ -8,7 +8,8 @@ export function CookiePreferencesButton() {
       type="button"
       className="footer-cookie-btn"
       onClick={openConsentPreferences}
-      aria-label="Manage cookie preferences"
+      aria-haspopup="dialog"
+      aria-label="Open cookie and analytics preferences"
     >
       Cookie Preferences
     </button>

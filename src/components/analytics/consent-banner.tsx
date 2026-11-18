@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import {
   getStoredConsent,
   setStoredConsent,
@@ -19,12 +19,19 @@ export function ConsentBanner() {
   const isModalOpen = useSyncExternalStore(subscribeConsentModal, getConsentModalSnapshot, () => false);
   const [showDetails, setShowDetails] = useState(false);
 
-  if (!isHydrated) {
-    return null;
-  }
+  // Close modal on Escape key press
+  useEffect(() => {
+    if (!isModalOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeConsentPreferences();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isModalOpen]);
 
-  const isOpen = isModalOpen || consent === "unset";
-  if (!isOpen) {
+  if (!isHydrated) {
     return null;
   }
 
@@ -40,6 +47,130 @@ export function ConsentBanner() {
     setShowDetails(false);
   };
 
+  // Render Preferences Modal Dialog when opened from footer
+  if (isModalOpen) {
+    return (
+      <div
+        className="consent-modal-overlay"
+        role="presentation"
+        onClick={(e) => {
+          if (e.target === e.currentTarget) closeConsentPreferences();
+        }}
+      >
+        <div
+          className="consent-modal-card"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="consent-modal-title"
+          aria-describedby="consent-modal-desc"
+        >
+          <div className="consent-modal-header">
+            <h3 id="consent-modal-title" className="consent-modal-title">
+              Analytics & Cookie Preferences
+            </h3>
+            <button
+              type="button"
+              className="consent-modal-close"
+              onClick={closeConsentPreferences}
+              aria-label="Close preferences dialog"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div id="consent-modal-desc" className="consent-modal-body">
+            <p className="consent-status-badge">
+              Current status:{" "}
+              <strong
+                className={
+                  consent === "granted"
+                    ? "status-granted"
+                    : consent === "denied"
+                    ? "status-denied"
+                    : "status-unset"
+                }
+              >
+                {consent === "granted"
+                  ? "Active (Opted In)"
+                  : consent === "denied"
+                  ? "Disabled (Opted Out)"
+                  : "Not yet chosen"}
+              </strong>
+            </p>
+
+            <p className="consent-text">
+              We use Google Analytics 4 in Basic Consent Mode to gather
+              aggregate insights into visitor traffic and site performance.
+              No tracking code or network requests run without your explicit consent.
+            </p>
+
+            <div className="consent-disclosure-section">
+              <h4>What We Process With Your Consent:</h4>
+              <ul>
+                <li>Aggregate page views, navigational flows, and session durations.</li>
+                <li>
+                  Technical browser, device, and network data processed by Google
+                  to derive coarse geographic region (e.g. city level). Google
+                  states that Google Analytics 4 does not log or store individual IP addresses.
+                </li>
+                <li>
+                  An anonymous lead event when a contact form is successfully sent,
+                  excluding all contact details.
+                </li>
+              </ul>
+
+              <h4>What We Never Collect:</h4>
+              <ul>
+                <li>Your name, email address, phone number, or inquiry message.</li>
+                <li>Contact reference IDs, personal authentication tokens, or form inputs.</li>
+                <li>
+                  Advertising personalization, cross-site remarketing, and Google
+                  signals are explicitly disabled.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="consent-modal-footer">
+            <div className="consent-actions">
+              {consent !== "granted" ? (
+                <button
+                  type="button"
+                  className="button button-primary consent-btn-accept"
+                  onClick={handleAccept}
+                >
+                  <span>Accept Analytics</span>
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  className="button button-secondary consent-btn-decline"
+                  onClick={handleDecline}
+                >
+                  <span>Revoke / Disable Analytics</span>
+                </button>
+              )}
+              {consent === "granted" && (
+                <button
+                  type="button"
+                  className="button button-primary consent-btn-accept"
+                  onClick={closeConsentPreferences}
+                >
+                  <span>Keep Active</span>
+                </button>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Render Initial Floating Banner if choice has not been made yet
+  if (consent !== "unset") {
+    return null;
+  }
+
   return (
     <aside
       className="consent-banner-wrapper"
@@ -50,25 +181,36 @@ export function ConsentBanner() {
         <div className="consent-content">
           <p className="consent-eyebrow">Privacy & Analytics</p>
           <p className="consent-text">
-            We use privacy-conscious Google Analytics cookies to measure
-            aggregate website traffic and evaluate how visitors discover our work.
-            No tracking occurs without your permission.
+            With your permission, we use Google Analytics to measure aggregate
+            traffic and evaluate site performance. Google Analytics processes
+            technical network and browser metadata to derive coarse location;
+            Google states it does not log or store individual IP addresses.
+            No tracking occurs unless you opt in.
           </p>
 
           {showDetails && (
-            <div className="consent-disclosure" id="consent-disclosure-panel">
-              <h4>What We Collect With Your Consent:</h4>
+            <div
+              className="consent-disclosure"
+              id="consent-disclosure-panel"
+            >
+              <h4>What We Process With Your Consent:</h4>
               <ul>
-                <li>Anonymized page views and general interaction statistics.</li>
-                <li>Device, browser, and approximate geographic location (city level).</li>
+                <li>Aggregated page views and navigation metrics.</li>
                 <li>
-                  An anonymous lead event when a contact inquiry is successfully sent.
+                  Technical browser and network metadata to estimate coarse geographic
+                  region. Google states it does not log or store individual IP addresses.
+                </li>
+                <li>
+                  An anonymous lead event when an inquiry form is successfully sent.
                 </li>
               </ul>
               <h4>What We Never Collect:</h4>
               <ul>
-                <li>Your name, email address, phone number, or inquiry message.</li>
-                <li>Contact reference IDs, personal identifiers, or IP addresses.</li>
+                <li>Names, emails, phone numbers, or free-text inquiry messages.</li>
+                <li>
+                  Advertising personalization, cross-site remarketing, and Google signals
+                  are explicitly disabled.
+                </li>
               </ul>
               <p className="consent-subnote">
                 You can change or withdraw your choice at any time using the

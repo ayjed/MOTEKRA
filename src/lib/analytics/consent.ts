@@ -4,6 +4,7 @@
  * Implements Basic Consent Mode with explicit opt-in.
  * - No tracking scripts or requests are permitted before explicit consent.
  * - Choices ('granted' | 'denied') are stored in localStorage.
+ * - Cross-tab synchronization via browser 'storage' event.
  * - Synchronizes state with React components via useSyncExternalStore.
  */
 
@@ -23,7 +24,7 @@ export function getStoredConsent(): ConsentChoice {
       return val;
     }
   } catch {
-    // localStorage may be restricted in private/incognito contexts
+    // localStorage may be restricted in private/incognito contexts or iframes
   }
   return "unset";
 }
@@ -32,9 +33,17 @@ export function setStoredConsent(choice: "granted" | "denied"): void {
   if (typeof window === "undefined") return;
   try {
     window.localStorage.setItem(CONSENT_STORAGE_KEY, choice);
-    window.dispatchEvent(new CustomEvent(CONSENT_EVENT_NAME, { detail: { choice } }));
   } catch {
-    // Ignore storage write errors
+    // Handle QuotaExceededError or SecurityError safely
+  }
+
+  // Dispatch local custom event for current window
+  try {
+    window.dispatchEvent(
+      new CustomEvent(CONSENT_EVENT_NAME, { detail: { choice } })
+    );
+  } catch {
+    // Fallback if CustomEvent is not supported
   }
 }
 
@@ -42,16 +51,29 @@ export function hasAnalyticsConsent(): boolean {
   return getStoredConsent() === "granted";
 }
 
+/**
+ * Subscribes to consent state changes in both the current window
+ * and across browser tabs via the 'storage' event.
+ */
 export function onConsentChange(callback: () => void): () => void {
   if (typeof window === "undefined") return () => {};
 
-  const handler = () => {
+  const localHandler = () => {
     callback();
   };
 
-  window.addEventListener(CONSENT_EVENT_NAME, handler);
+  const storageHandler = (event: StorageEvent) => {
+    if (event.key === CONSENT_STORAGE_KEY) {
+      callback();
+    }
+  };
+
+  window.addEventListener(CONSENT_EVENT_NAME, localHandler);
+  window.addEventListener("storage", storageHandler);
+
   return () => {
-    window.removeEventListener(CONSENT_EVENT_NAME, handler);
+    window.removeEventListener(CONSENT_EVENT_NAME, localHandler);
+    window.removeEventListener("storage", storageHandler);
   };
 }
 

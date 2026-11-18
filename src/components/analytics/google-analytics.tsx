@@ -11,7 +11,6 @@ import { initGtag, disableGtag, pageview } from "@/lib/analytics/gtag";
 
 export function GoogleAnalytics() {
   const pathname = usePathname();
-  const lastPathRef = useRef<string | null>(null);
   const hadConsentRef = useRef<boolean>(false);
 
   useEffect(() => {
@@ -20,13 +19,12 @@ export function GoogleAnalytics() {
     // If visitor previously granted consent, initialize tracking on mount
     if (hadConsentRef.current) {
       initGtag();
-      if (pathname && lastPathRef.current !== pathname) {
+      if (pathname) {
         pageview(pathname);
-        lastPathRef.current = pathname;
       }
     }
 
-    // Subscribe to consent state changes (e.g. user clicks Accept or Revoke)
+    // Subscribe to consent state changes (both local and cross-tab storage events)
     const unsubscribe = onConsentChange(() => {
       const choice = getStoredConsent();
       if (choice === "granted") {
@@ -34,16 +32,14 @@ export function GoogleAnalytics() {
         initGtag();
         if (pathname) {
           pageview(pathname);
-          lastPathRef.current = pathname;
         }
       } else if (choice === "denied") {
         const wasGranted = hadConsentRef.current;
         hadConsentRef.current = false;
         disableGtag();
-        lastPathRef.current = null;
 
         // If tag was already loaded into runtime, perform a controlled refresh
-        // to cleanly purge memory and active Google sockets.
+        // to cleanly purge memory, active Google sockets, and script execution.
         if (wasGranted && typeof window !== "undefined") {
           window.location.reload();
         }
@@ -58,9 +54,8 @@ export function GoogleAnalytics() {
   // Track client-side route transitions when consent is granted
   useEffect(() => {
     if (!pathname) return;
-    if (hasAnalyticsConsent() && lastPathRef.current !== pathname) {
+    if (hasAnalyticsConsent()) {
       pageview(pathname);
-      lastPathRef.current = pathname;
     }
   }, [pathname]);
 

@@ -1,4 +1,4 @@
-/* MOTEKRA Privacy & Cookie Consent Banner */
+/* MOTEKRA Privacy & Cookie Consent Banner and Preferences Modal */
 
 .consent-banner-wrapper {
   position: fixed;
@@ -142,11 +142,144 @@
   text-decoration: underline;
   text-underline-offset: 4px;
   padding: 6px 8px;
+  cursor: pointer;
   transition: opacity 0.2s ease;
 }
 
 .consent-toggle-details:hover {
   opacity: 0.8;
+}
+
+/* Preferences Modal Dialog */
+.consent-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 12, 26, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: consentFadeIn 0.25s ease-out;
+}
+
+.consent-modal-card {
+  background: rgba(8, 21, 43, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 18px;
+  width: min(100%, 620px);
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: clamp(20px, 3vw, 28px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  color: #edf7ff;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.consent-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 12px;
+}
+
+.consent-modal-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.consent-modal-close {
+  background: none;
+  border: none;
+  color: #8da4be;
+  font-size: 18px;
+  line-height: 1;
+  padding: 6px 8px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.consent-modal-close:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.consent-modal-body {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #cbdbe9;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.consent-status-badge {
+  font-size: 12.5px;
+  margin: 0;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: inline-block;
+  align-self: flex-start;
+}
+
+.status-granted {
+  color: #10b981;
+}
+
+.status-denied {
+  color: #f87171;
+}
+
+.status-unset {
+  color: #f59e0b;
+}
+
+.consent-disclosure-section {
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 12.5px;
+  color: #a8c1d8;
+}
+
+.consent-disclosure-section h4 {
+  font-size: 11.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 12px 0 6px 0;
+}
+
+.consent-disclosure-section h4:first-child {
+  margin-top: 0;
+}
+
+.consent-disclosure-section ul {
+  margin: 0 0 10px 18px;
+  padding: 0;
+}
+
+.consent-disclosure-section li {
+  margin-bottom: 4px;
+}
+
+.consent-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 14px;
 }
 
 /* Footer Cookie Preferences Button & Info */
@@ -203,5 +336,9 @@
 
   .consent-toggle-details {
     align-self: center;
+  }
+
+  .consent-modal-footer .consent-actions {
+    grid-template-columns: 1fr;
   }
 }

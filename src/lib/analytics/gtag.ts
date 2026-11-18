@@ -3,14 +3,19 @@
  *
  * Measurement ID: G-D521RGZ87P
  *
- * Architecture:
- * - Basic Consent Mode: The gtag.js script is loaded ONLY after explicit consent ('granted').
- * - Automatic pageviews are disabled (send_page_view: false) to prevent duplicate
- *   events on initial load or conflicting browser history listeners.
- * - Single-page router navigations are explicitly tracked via pageview().
- * - Lead conversion (generate_lead) is emitted ONLY on verified contact form success.
- * - Strict PII filter ensures no names, emails, phone numbers, inquiry text,
- *   or reference IDs are ever transmitted to GA4.
+ * Architecture & Privacy Guarantees:
+ * - Basic Consent Mode (v2): No gtag.js script or network tracking requests
+ *   are dispatched prior to explicit affirmative consent.
+ * - Consent Mode v2 Signals: Defaults are queued as all denied. Upon explicit
+ *   consent, analytics_storage is granted while all advertising signals remain denied.
+ * - Single-page router navigations: Tracked explicitly via pageview() using trusted
+ *   origin and pathname ONLY (query parameters and URL fragments strictly excluded).
+ * - Lead conversion: generate_lead is dispatched strictly on confirmed HTTP 200 { ok: true }
+ *   contact submissions, with deduplication.
+ * - Approved parameter whitelist: Non-whitelisted keys and PII patterns (emails, names,
+ *   phone numbers, messages, inquiry IDs) are completely scrubbed.
+ * - Advertising signals disabled: allow_google_signals: false,
+ *   allow_ad_personalization_signals: false, restricted_data_processing: true.
  */
 
 import { hasAnalyticsConsent } from "./consent";
@@ -26,16 +31,76 @@ declare global {
 }
 
 let isInitialized = false;
+let lastTrackedPath: string | null = null;
+
+export function resetTrackedPathForTesting(): void {
+  lastTrackedPath = null;
+  isInitialized = false;
+}
 
 /**
- * Initializes GA4 and injects the script tag strictly after consent is granted.
+ * Whitelist of permitted parameter names per GA4 event name.
+ * Any key not explicitly defined here is discarded to prevent accidental PII leakage.
+ */
+const APPROVED_EVENT_PARAMS: Record<string, ReadonlySet<string>> = {
+  page_view: new Set(["page_path", "page_title", "page_location"]),
+  generate_lead: new Set(["event_category", "event_label", "value", "currency"]),
+};
+
+/**
+ * Common forbidden PII patterns in string values.
+ */
+const EMAIL_PATTERN = /[\w.+-]+@[\w-]+\.[\w.-]+/g;
+const PHONE_PATTERN = /(\+?\d{1,3}[-.\s]?)?(\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}/g;
+
+/**
+ * Sanitizes event parameters against an approved whitelist and strips PII.
+ */
+export function sanitizeAnalyticsParams(
+  eventName: string,
+  params?: Record<string, unknown>
+): Record<string, unknown> {
+  if (!params) return {};
+
+  const allowedKeys = APPROVED_EVENT_PARAMS[eventName] || new Set<string>();
+  const sanitized: Record<string, unknown> = {};
+
+  for (const [key, value] of Object.entries(params)) {
+    // Only accept explicitly approved keys
+    if (!allowedKeys.has(key)) {
+      continue;
+    }
+
+    if (typeof value === "string") {
+      // Scrub query parameters, fragments, emails, and phone numbers from string values
+      let cleanVal = value;
+      if (key === "page_path" || key === "page_location") {
+        cleanVal = (cleanVal.split("?")[0] ?? "").split("#")[0] ?? cleanVal;
+      }
+      cleanVal = cleanVal
+        .replace(EMAIL_PATTERN, "[redacted]")
+        .replace(PHONE_PATTERN, "[redacted]")
+        .trim();
+
+      sanitized[key] = cleanVal;
+    } else if (typeof value === "number" || typeof value === "boolean") {
+      sanitized[key] = value;
+    }
+  }
+
+  return sanitized;
+}
+
+/**
+ * Initializes GA4 and injects gtag.js strictly after affirmative consent is granted.
+ * Queues Consent Mode v2 default and update signals in the proper order.
  */
 export function initGtag(): void {
   if (typeof window === "undefined") return;
   if (!hasAnalyticsConsent()) return;
   if (isInitialized) return;
 
-  // Un-disable GA if it was previously disabled
+  // Ensure GA disable flag is removed
   window[`ga-disable-${GA_MEASUREMENT_ID}`] = false;
 
   window.dataLayer = window.dataLayer || [];
@@ -44,15 +109,35 @@ export function initGtag(): void {
     window.dataLayer?.push(arguments);
   };
 
+  // 1. Google Consent Mode v2: Queue default signals (all denied)
+  window.gtag("consent", "default", {
+    analytics_storage: "denied",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+
+  // 2. Google Consent Mode v2: Update analytics_storage to granted; keep ads denied
+  window.gtag("consent", "update", {
+    analytics_storage: "granted",
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+
+  // 3. Initialize JS timestamp
   window.gtag("js", new Date());
 
-  // Disable auto page_view to prevent duplicate events with Next.js router
+  // 4. Configure GA4 without automatic pageviews and with advertising disabled
   window.gtag("config", GA_MEASUREMENT_ID, {
     send_page_view: false,
     anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    restricted_data_processing: true,
   });
 
-  // Inject gtag.js script only after consent
+  // 5. Inject gtag.js script tag strictly after consent configuration
   const existingScript = document.getElementById("ga4-script");
   if (!existingScript) {
     const script = document.createElement("script");
@@ -66,48 +151,32 @@ export function initGtag(): void {
 }
 
 /**
- * Disables tracking and sets Google's disable flag.
+ * Disables tracking, revokes consent signals, and removes the script element.
  */
 export function disableGtag(): void {
   if (typeof window === "undefined") return;
-  window[`ga-disable-${GA_MEASUREMENT_ID}`] = true;
-  isInitialized = false;
 
-  // Remove script if present in DOM
+  // Set Google Analytics global disable flag
+  window[`ga-disable-${GA_MEASUREMENT_ID}`] = true;
+
+  // Revoke consent signals in dataLayer if gtag is initialized
+  if (typeof window.gtag === "function") {
+    window.gtag("consent", "update", {
+      analytics_storage: "denied",
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+    });
+  }
+
+  // Remove script from DOM if present
   const script = document.getElementById("ga4-script");
   if (script && script.parentNode) {
     script.parentNode.removeChild(script);
   }
-}
 
-/**
- * Strips any sensitive PII parameters before dispatching to GA4.
- */
-export function sanitizeAnalyticsParams(
-  params?: Record<string, unknown>
-): Record<string, unknown> {
-  if (!params) return {};
-  const sanitized: Record<string, unknown> = {};
-  const forbiddenPatterns = [
-    /email/i,
-    /name/i,
-    /phone/i,
-    /message/i,
-    /contact/i,
-    /reference/i,
-    /token/i,
-    /secret/i,
-    /address/i,
-  ];
-
-  for (const [key, value] of Object.entries(params)) {
-    const isForbidden = forbiddenPatterns.some((pattern) => pattern.test(key));
-    if (!isForbidden && typeof value !== "function") {
-      sanitized[key] = value;
-    }
-  }
-
-  return sanitized;
+  isInitialized = false;
+  lastTrackedPath = null;
 }
 
 /**
@@ -119,25 +188,48 @@ export function trackEvent(
 ): void {
   if (typeof window === "undefined") return;
   if (!hasAnalyticsConsent()) return;
-  if (!window.gtag) {
+  if (window[`ga-disable-${GA_MEASUREMENT_ID}`]) return;
+
+  if (!isInitialized || !window.gtag) {
     initGtag();
   }
 
-  const cleanParams = sanitizeAnalyticsParams(eventParams);
+  const cleanParams = sanitizeAnalyticsParams(eventName, eventParams);
   window.gtag?.("event", eventName, cleanParams);
 }
 
 /**
  * Tracks a route change / page view.
+ * Ensures page_location uses ONLY trusted origin and pathname,
+ * strictly excluding query parameters and URL fragments to protect PII.
  */
 export function pageview(path: string, title?: string): void {
   if (typeof window === "undefined") return;
   if (!hasAnalyticsConsent()) return;
+  if (window[`ga-disable-${GA_MEASUREMENT_ID}`]) return;
+
+  // Clean pathname: strip any query string or hash fragment
+  const cleanPath = ((path || "/").split("?")[0] ?? "/").split("#")[0] || "/";
+
+  // Prevent duplicate pageview events for the exact same active path
+  if (lastTrackedPath === cleanPath) {
+    return;
+  }
+  lastTrackedPath = cleanPath;
+
+  const origin =
+    typeof window !== "undefined" && window.location?.origin
+      ? window.location.origin
+      : "https://www.motekra.com";
+  const cleanLocation = `${origin}${cleanPath.startsWith("/") ? cleanPath : "/" + cleanPath}`;
+
+  const rawTitle = title || (typeof document !== "undefined" ? document.title : "");
+  const cleanTitle = rawTitle.replace(EMAIL_PATTERN, "[redacted]").trim();
 
   trackEvent("page_view", {
-    page_path: path,
-    page_title: title || (typeof document !== "undefined" ? document.title : undefined),
-    page_location: typeof window !== "undefined" ? window.location.href : undefined,
+    page_path: cleanPath,
+    page_title: cleanTitle,
+    page_location: cleanLocation,
   });
 }
 
@@ -148,6 +240,7 @@ export function pageview(path: string, title?: string): void {
 export function trackGenerateLead(): void {
   if (typeof window === "undefined") return;
   if (!hasAnalyticsConsent()) return;
+  if (window[`ga-disable-${GA_MEASUREMENT_ID}`]) return;
 
   trackEvent("generate_lead", {
     event_category: "engagement",
