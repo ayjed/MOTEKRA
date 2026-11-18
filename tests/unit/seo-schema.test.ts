@@ -8,8 +8,12 @@ import {
   websiteSchema,
   aboutPersonSchema,
   aboutSchema,
+  founderProfilePageSchema,
   type Crumb,
 } from "@/lib/seo/schema";
+import { founderStructuredData } from "@/lib/data/founder";
+import { team } from "@/content/team";
+import { founderDetails } from "@/content/team/profile";
 import { JsonLd } from "@/components/seo/json-ld";
 
 afterEach(() => {
@@ -544,5 +548,110 @@ describe("aboutPersonSchema() - Founder Identity Disambiguation on About Page", 
     expect(markup).not.toContain('"@type":"Person"');
   });
 });
+
+describe("founderStructuredData() - Founder ProfilePage & Person Structured Data", () => {
+  const configuredOrigin = "https://www.motekra.com";
+
+  function enableProductionIndexing() {
+    vi.stubEnv("SITE_URL", configuredOrigin);
+    vi.stubEnv("SITE_INDEXABLE", "true");
+  }
+
+  it("withholds founderStructuredData when unconfigured or non-indexable", () => {
+    vi.stubEnv("SITE_URL", "");
+    vi.stubEnv("SITE_INDEXABLE", "false");
+    expect(founderStructuredData(team[0]!)).toBeNull();
+  });
+
+  it("withholds founderStructuredData if detailsPublication is draft", () => {
+    enableProductionIndexing();
+    const draftFixture = { ...founderDetails[team[0]!.slug]!, detailsPublication: "draft" as const };
+    expect(founderStructuredData(team[0]!, draftFixture)).toBeNull();
+  });
+
+  it("generates Schema.org ProfilePage with mainEntity Person linking to /about#person", () => {
+    enableProductionIndexing();
+
+    const schema = founderStructuredData(team[0]!);
+    expect(schema).not.toBeNull();
+    expect(schema?.["@context"]).toBe("https://schema.org");
+    expect(schema?.["@type"]).toBe("ProfilePage");
+    expect(schema?.["@id"]).toBe(`${configuredOrigin}/team/akinwumi-ayomiposi#profilepage`);
+    expect(schema?.url).toBe(`${configuredOrigin}/team/akinwumi-ayomiposi`);
+
+    const person = schema?.mainEntity;
+    expect(person?.["@type"]).toBe("Person");
+    expect(person?.["@id"]).toBe(`${configuredOrigin}/about#person`);
+    expect(person?.name).toBe("Akinwumi Ayomiposi");
+    expect(person?.jobTitle).toBe("Software Developer & Creative Technologist");
+    expect(person?.description).toBe("Software Developer & Creative Technologist at MOTEKRA.");
+    expect(person?.url).toBe(`${configuredOrigin}/about`);
+    expect(person?.worksFor).toEqual({
+      "@type": "Organization",
+      "@id": `${configuredOrigin}/#organization`,
+      name: "MOTEKRA",
+    });
+    expect(person?.image).toBe(`${configuredOrigin}/assets/team/ayomiposi.webp`);
+    expect(person?.sameAs).toContain("https://www.linkedin.com/in/akinwumi-ayomiposi/");
+    expect(person?.sameAs).toContain("https://github.com/ayjed");
+    expect(person?.sameAs).toContain("https://www.behance.net/akinwumayomipo/projects");
+    expect(person?.sameAs).toContain("https://dribbble.com/meekmesh");
+  });
+
+  it("accurately includes approved technical skills in knowsAbout", () => {
+    enableProductionIndexing();
+
+    const schema = founderStructuredData(team[0]!);
+    const skills = schema?.mainEntity?.knowsAbout;
+    expect(Array.isArray(skills)).toBe(true);
+    expect(skills).toHaveLength(15);
+    expect(skills).toContain("PHP");
+    expect(skills).toContain("Laravel");
+    expect(skills).toContain("REST API Development");
+    expect(skills).toContain("JavaScript");
+    expect(skills).toContain("TypeScript");
+    expect(skills).toContain("React");
+    expect(skills).toContain("Next.js");
+    expect(skills).toContain("Flutter");
+    expect(skills).toContain("Dart");
+    expect(skills).toContain("UI/UX Design");
+    expect(skills).toContain("Figma");
+    expect(skills).toContain("Interface Design");
+    expect(skills).toContain("Git");
+    expect(skills).toContain("GitHub");
+    expect(skills).toContain("AI-Assisted Development");
+
+    // Strictly ensure removed skills are NOT present
+    expect(skills).not.toContain("React Native");
+    expect(skills).not.toContain("Expo");
+    expect(skills).not.toContain("Node.js");
+  });
+
+  it("does not expose unverified dates, employment records, or private contact details", () => {
+    enableProductionIndexing();
+
+    const schema = founderStructuredData(team[0]!);
+    expect(schema).not.toHaveProperty("hasOccupation");
+    expect(schema?.mainEntity).not.toHaveProperty("telephone");
+    expect(schema?.mainEntity).not.toHaveProperty("email");
+    expect(schema?.mainEntity).not.toHaveProperty("address");
+  });
+
+  it("ensures founderProfilePageSchema in schema.ts is an alias for founderStructuredData", () => {
+    expect(founderProfilePageSchema).toBe(founderStructuredData);
+  });
+
+  it("renders valid script tag through JsonLd component for founder profile", () => {
+    enableProductionIndexing();
+
+    const markup = renderToStaticMarkup(createElement(JsonLd, { data: founderStructuredData(team[0]!) }));
+    expect(markup).toContain('<script type="application/ld+json">');
+    expect(markup).toContain('"@type":"ProfilePage"');
+    expect(markup).toContain('"@type":"Person"');
+    expect(markup).toContain('"@id":"https://www.motekra.com/about#person"');
+    expect(markup).toContain('"https://www.motekra.com/team/akinwumi-ayomiposi#profilepage"');
+  });
+});
+
 
 

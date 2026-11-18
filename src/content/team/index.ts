@@ -1,6 +1,6 @@
 import type { Founder } from "../models";
 
-// Owner-confirmed in the Phase 03 content decision. Portrait remains pending.
+// Owner-approved founder identity, portrait, and professional profile.
 export const team: readonly Founder[] = [{ slug: "akinwumi-ayomiposi", name: "Akinwumi Ayomiposi", title: "Software Developer & Creative Technologist", bio: "Software Developer & Creative Technologist at MOTEKRA.", publication: "approved" }];
 
 export const founderProfiles = [
