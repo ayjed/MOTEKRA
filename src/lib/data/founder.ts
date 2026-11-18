@@ -13,7 +13,7 @@ export function founderProjects(slug: string, records: readonly Project[] = proj
 }
 export function companyProjects(records: readonly Project[] = projects) { return publishableProjects(records).filter((project) => project.ownership === "motekra"); }
 export function founderMetadata(person: Founder) {
-  return { ...pageMetadata(`${person.name} — ${person.title}`, person.bio, `/team/${person.slug}`), ...(founderDetails[person.slug]?.detailsPublication !== "approved" ? { robots: { index: false, follow: false } } : {}) };
+  return { ...pageMetadata(`${person.name} - ${person.title}`, person.bio, `/team/${person.slug}`), ...(founderDetails[person.slug]?.detailsPublication !== "approved" ? { robots: { index: false, follow: false } } : {}) };
 }
 export function founderStructuredData(person: Founder, details = founderDetails[person.slug]) {
   const origin = getSiteOrigin();

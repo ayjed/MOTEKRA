@@ -66,14 +66,29 @@ export function socialImageFor(path: string): string {
   }.png`;
 }
 
+export function formatBaseTitle(title: string): string {
+  const trimmed = title.trim();
+  const stripped = trimmed.replace(/\s*[-—|]\s*MOTEKRA$/i, "").trim();
+  return stripped || trimmed;
+}
+
+export function formatFullTitle(title: string): string {
+  const base = formatBaseTitle(title);
+  if (!base || base.toUpperCase() === "MOTEKRA") {
+    return "MOTEKRA";
+  }
+  return `${base} - MOTEKRA`;
+}
+
 export function pageMetadata(title: string, description: string, path: string): Metadata {
   const origin = getSiteOrigin();
   const url = absoluteSiteUrl(path);
   const image = absoluteSiteUrl(socialImageFor(path));
-  const fullTitle = `${title} | MOTEKRA`;
+  const baseTitle = formatBaseTitle(title);
+  const fullTitle = formatFullTitle(title);
 
   return {
-    title: path === "/" ? { absolute: fullTitle } : title,
+    title: path === "/" ? { absolute: fullTitle } : baseTitle,
     description,
     ...(origin ? { metadataBase: new URL(origin) } : {}),
     alternates: url ? { canonical: url } : undefined,
@@ -85,13 +100,13 @@ export function pageMetadata(title: string, description: string, path: string): 
       siteName: "MOTEKRA",
       locale: "en",
       ...(url ? { url } : {}),
-      ...(image ? { images: [{ url: image, width: 1200, height: 630, alt: `MOTEKRA — ${title}` }] } : {}),
+      ...(image ? { images: [{ url: image, width: 1200, height: 630, alt: `MOTEKRA - ${baseTitle}` }] } : {}),
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
       description,
-      ...(image ? { images: [{ url: image, alt: `MOTEKRA — ${title}` }] } : {}),
+      ...(image ? { images: [{ url: image, alt: `MOTEKRA - ${baseTitle}` }] } : {}),
     },
   };
 }

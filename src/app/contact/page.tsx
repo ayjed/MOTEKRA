@@ -10,7 +10,7 @@ import "@/styles/contact.css";
 export const runtime = "nodejs";
 
 export const metadata = pageMetadata(
-  "Contact — Start a Digital Product Conversation",
+  "Contact Us",
   "Partner with MOTEKRA on your next web application, mobile product, or design system. Submit your project inquiry and explore our collaborative approach.",
   "/contact"
 );

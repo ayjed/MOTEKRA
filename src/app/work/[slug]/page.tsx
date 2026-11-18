@@ -33,7 +33,7 @@ export async function generateMetadata({
   if (isCandidate(project)) {
     const study = caseStudies[project.slug];
     return {
-      title: `${project.title} — Case Study | MOTEKRA`,
+      title: `${project.title} - Case Study - MOTEKRA`,
       description: study?.lead ?? project.summary ?? "A modern digital product portfolio case study by MOTEKRA.",
       robots: {
         index: false,
