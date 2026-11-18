@@ -6,6 +6,8 @@ import {
   serializeJsonLd,
   organizationSchema,
   websiteSchema,
+  aboutPersonSchema,
+  aboutSchema,
   type Crumb,
 } from "@/lib/seo/schema";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -414,4 +416,133 @@ describe("SEO Publication Safety - Global Structured Data Safeguards", () => {
     expect(websiteSchema()).toBeNull();
   });
 });
+
+describe("aboutPersonSchema() - Founder Identity Disambiguation on About Page", () => {
+  const configuredOrigin = "https://www.motekra.com";
+
+  function enableProductionIndexing() {
+    vi.stubEnv("SITE_URL", configuredOrigin);
+    vi.stubEnv("SITE_INDEXABLE", "true");
+  }
+
+  it("withholds aboutPersonSchema when unconfigured or non-indexable", () => {
+    vi.stubEnv("SITE_URL", "");
+    vi.stubEnv("SITE_INDEXABLE", "false");
+    expect(aboutPersonSchema()).toBeNull();
+  });
+
+  it("withholds aboutPersonSchema when site origin is invalid", () => {
+    const invalidOrigins = [
+      "http://www.motekra.com",
+      "https://user:pass@www.motekra.com",
+      "https://www.motekra.com/subpath",
+      "https://localhost",
+      "not-a-valid-url",
+    ];
+
+    for (const origin of invalidOrigins) {
+      vi.stubEnv("SITE_URL", origin);
+      vi.stubEnv("SITE_INDEXABLE", "true");
+      expect(aboutPersonSchema()).toBeNull();
+    }
+  });
+
+  it("withholds aboutPersonSchema if founder publication is not approved", () => {
+    enableProductionIndexing();
+    const draftPerson = {
+      slug: "test-slug",
+      name: "Test Name",
+      title: "Test Title",
+      bio: "Test Bio",
+      publication: "draft" as const,
+    };
+    expect(aboutPersonSchema(draftPerson)).toBeNull();
+  });
+
+  it("generates complete Schema.org Person with confirmed founder identity in indexable mode", () => {
+    enableProductionIndexing();
+
+    const schema = aboutPersonSchema();
+    expect(schema).not.toBeNull();
+    expect(schema?.["@context"]).toBe("https://schema.org");
+    expect(schema?.["@type"]).toBe("Person");
+    expect(schema?.["@id"]).toBe(`${configuredOrigin}/about#person`);
+    expect(schema?.name).toBe("Akinwumi Ayomiposi");
+    expect(schema?.jobTitle).toBe("Software Developer & Creative Technologist");
+    expect(schema?.description).toBe("Software Developer & Creative Technologist at MOTEKRA.");
+    expect(schema?.url).toBe(`${configuredOrigin}/about`);
+  });
+
+  it("links Person to MOTEKRA organization via worksFor with canonical organization @id", () => {
+    enableProductionIndexing();
+
+    const schema = aboutPersonSchema();
+    expect(schema?.worksFor).toEqual({
+      "@type": "Organization",
+      "@id": `${configuredOrigin}/#organization`,
+      name: "MOTEKRA",
+    });
+  });
+
+  it("includes confirmed external social profiles in sameAs for disambiguation", () => {
+    enableProductionIndexing();
+
+    const schema = aboutPersonSchema();
+    expect(Array.isArray(schema?.sameAs)).toBe(true);
+    expect(schema?.sameAs).toContain("https://www.linkedin.com/in/akinwumi-ayomiposi/");
+    expect(schema?.sameAs).toContain("https://github.com/ayjed");
+    expect(schema?.sameAs).toContain("https://www.behance.net/akinwumayomipo/projects");
+    expect(schema?.sameAs).toContain("https://dribbble.com/meekmesh");
+  });
+
+  it("does not expose unapproved details, skills, or personal contact info in about schema", () => {
+    enableProductionIndexing();
+
+    const schema = aboutPersonSchema();
+    expect(schema).not.toHaveProperty("knowsAbout");
+    expect(schema).not.toHaveProperty("telephone");
+    expect(schema).not.toHaveProperty("email");
+    expect(schema).not.toHaveProperty("address");
+    expect(schema).not.toHaveProperty("image");
+  });
+
+  it("ensures aboutSchema alias references aboutPersonSchema", () => {
+    expect(aboutSchema).toBe(aboutPersonSchema);
+  });
+
+  it("renders valid script tag through JsonLd component", () => {
+    enableProductionIndexing();
+
+    const markup = renderToStaticMarkup(createElement(JsonLd, { data: aboutPersonSchema() }));
+    expect(markup).toContain('<script type="application/ld+json">');
+    expect(markup).toContain('"@type":"Person"');
+    expect(markup).toContain('"name":"Akinwumi Ayomiposi"');
+    expect(markup).toContain('"jobTitle":"Software Developer & Creative Technologist"');
+    expect(markup).toContain('"url":"https://www.motekra.com/about"');
+    expect(markup).toContain('"https://www.linkedin.com/in/akinwumi-ayomiposi/"');
+    expect(markup).toContain('"https://github.com/ayjed"');
+    expect(markup).toContain('{"@type":"Organization","@id":"https://www.motekra.com/#organization","name":"MOTEKRA"}');
+  });
+
+  it("embeds Person structured data in AboutPage markup in indexable mode", async () => {
+    enableProductionIndexing();
+
+    const { default: AboutPage } = await import("@/components/about/about-page");
+    const markup = renderToStaticMarkup(createElement(AboutPage));
+    expect(markup).toContain('<script type="application/ld+json">');
+    expect(markup).toContain('"@type":"Person"');
+    expect(markup).toContain('"name":"Akinwumi Ayomiposi"');
+    expect(markup).toContain('"https://www.linkedin.com/in/akinwumi-ayomiposi/"');
+  });
+
+  it("omits Person structured data script tag from AboutPage markup when non-indexable", async () => {
+    vi.stubEnv("SITE_URL", "");
+    vi.stubEnv("SITE_INDEXABLE", "false");
+
+    const { default: AboutPage } = await import("@/components/about/about-page");
+    const markup = renderToStaticMarkup(createElement(AboutPage));
+    expect(markup).not.toContain('"@type":"Person"');
+  });
+});
+
 
