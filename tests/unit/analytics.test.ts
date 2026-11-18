@@ -134,6 +134,8 @@ import {
   sanitizeAnalyticsParams,
   getSafePageLocation,
   getSafeReferrer,
+  isSuspiciousAttributionValue,
+  sanitizePathname,
   resetTrackedPathForTesting,
 } from "@/lib/analytics/gtag";
 
@@ -292,13 +294,42 @@ describe("Automatic URL Privacy & Campaign Attribution", () => {
     expect(safeUrl).toBe("https://www.motekra.com/about");
   });
 
-  it("sanitizes document.referrer by stripping sensitive query parameters and hash fragments", () => {
-    mockDocument.referrer = "https://external-partner.com/campaign?token=secret123&user=42#ref";
-    const safeReferrer = getSafeReferrer();
+  it("rejects allowlisted UTM parameters when values contain suspicious PII, tokens, or emails", () => {
+    // Here utm_source contains an email, utm_medium contains a phone number, utm_campaign contains an excessive token
+    const taintedUrl =
+      "https://www.motekra.com/contact?utm_source=alice%40example.com&utm_medium=%2B1234567890&utm_campaign=brand_2026";
 
-    expect(safeReferrer).toBe("https://external-partner.com/campaign");
-    expect(safeReferrer).not.toContain("token");
-    expect(safeReferrer).not.toContain("#ref");
+    const safeUrl = getSafePageLocation(taintedUrl);
+
+    // Clean campaign attribution is kept
+    expect(safeUrl).toContain("utm_campaign=brand_2026");
+
+    // Suspicious values are rejected entirely, NOT forwarded
+    expect(safeUrl).not.toContain("utm_source");
+    expect(safeUrl).not.toContain("alice");
+    expect(safeUrl).not.toContain("utm_medium");
+    expect(safeUrl).not.toContain("1234567890");
+  });
+
+  it("sanitizes personal information embedded in URL pathnames", () => {
+    const piiPath = "/user/alice@example.com/status";
+    expect(sanitizePathname(piiPath)).toBe("/user/[redacted]/status");
+
+    const phonePath = "/inquiry/+1234567890";
+    expect(sanitizePathname(phonePath)).toBe("/inquiry/[redacted]");
+
+    const safePath = "/services/web-development";
+    expect(sanitizePathname(safePath)).toBe("/services/web-development");
+  });
+
+  it("prefers origin-only external referrers while keeping pathname for internal referrers", () => {
+    // External referrer: should only keep origin
+    mockDocument.referrer = "https://external-search.com/search?q=motekra+agency&client=desktop#top";
+    expect(getSafeReferrer()).toBe("https://external-search.com");
+
+    // Internal referrer: keeps origin and sanitized pathname
+    mockDocument.referrer = "https://www.motekra.com/services/web-development?foo=bar#faq";
+    expect(getSafeReferrer()).toBe("https://www.motekra.com/services/web-development");
   });
 });
 
@@ -470,6 +501,34 @@ describe("Pageview Deduplication & PII-Safe URLs", () => {
       return args && args[0] === "event" && args[1] === "page_view";
     });
     expect(finalCalls.length).toBe(3);
+  });
+});
+
+describe("Privacy Hardening: isSuspiciousAttributionValue and sanitizePathname", () => {
+  it("rejects suspicious attribution values containing emails, phones, tokens, or JWTs", () => {
+    // Normal legitimate attribution values should be accepted (false)
+    expect(isSuspiciousAttributionValue("google")).toBe(false);
+    expect(isSuspiciousAttributionValue("cpc")).toBe(false);
+    expect(isSuspiciousAttributionValue("summer_campaign_2026")).toBe(false);
+    expect(isSuspiciousAttributionValue("newsletter-v2.1")).toBe(false);
+
+    // Suspicious values should be rejected (true)
+    expect(isSuspiciousAttributionValue("")).toBe(true);
+    expect(isSuspiciousAttributionValue("user@example.com")).toBe(true);
+    expect(isSuspiciousAttributionValue("+12345678901")).toBe(true);
+    expect(isSuspiciousAttributionValue("415-555-2671")).toBe(true);
+    expect(isSuspiciousAttributionValue("a1b2c3d4e5f60718293a4b5c6d7e8f90")).toBe(true);
+    expect(isSuspiciousAttributionValue("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.dozjgNryP4J3jVmNHl0w5N_XgL0n3I9PlFUP0THsR8U")).toBe(true);
+    expect(isSuspiciousAttributionValue("attack<script>alert(1)</script>")).toBe(true);
+    expect(isSuspiciousAttributionValue("x".repeat(121))).toBe(true);
+  });
+
+  it("sanitizes pathnames containing embedded emails, phones, or hex tokens", () => {
+    expect(sanitizePathname("/")).toBe("/");
+    expect(sanitizePathname("/services/web-development")).toBe("/services/web-development");
+    expect(sanitizePathname("/user/john@example.com/profile")).toBe("/user/[redacted]/profile");
+    expect(sanitizePathname("/verify/a1b2c3d4e5f60718293a4b5c6d7e8f90")).toBe("/verify/[redacted]");
+    expect(sanitizePathname("/reset/+12345678901")).toBe("/reset/[redacted]");
   });
 });
 

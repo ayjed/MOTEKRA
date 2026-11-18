@@ -16,12 +16,15 @@ export function GoogleAnalytics() {
   useEffect(() => {
     hadConsentRef.current = hasAnalyticsConsent();
 
-    // If visitor previously granted consent, initialize tracking on mount
+    // If visitor previously granted consent, initialize tracking on mount;
+    // otherwise ensure tracking is explicitly disabled.
     if (hadConsentRef.current) {
       initGtag();
       if (pathname) {
         pageview(pathname);
       }
+    } else {
+      disableGtag();
     }
 
     // Subscribe to consent state changes (both local and cross-tab storage events)

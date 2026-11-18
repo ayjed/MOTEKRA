@@ -72,8 +72,44 @@ const APPROVED_EVENT_PARAMS: Record<string, ReadonlySet<string>> = {
 /**
  * Common forbidden PII patterns in string values.
  */
-const EMAIL_PATTERN = /[\w.+-]+@[\w-]+\.[\w.-]+/g;
-const PHONE_PATTERN = /(\+?\d{1,3}[-.\s]?)?(\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}/g;
+const EMAIL_PATTERN = /[\w.+-]+@[\w-]+\.[\w.-]+/i;
+const PHONE_PATTERN = /(\+?\d{1,3}[-.\s]?)?(\(?\d{3}\)?[-.\s]?)?\d{3}[-.\s]?\d{4}/;
+const TOKEN_HEX_PATTERN = /^[a-f0-9]{32,}$/i;
+const JWT_PATTERN = /^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/;
+
+/**
+ * Validates attribution parameter values.
+ * Rejects values containing emails, telephone numbers, tokens, or suspicious non-slug characters.
+ */
+export function isSuspiciousAttributionValue(val: string): boolean {
+  if (!val || val.length > 120) return true;
+  if (EMAIL_PATTERN.test(val)) return true;
+  if (PHONE_PATTERN.test(val)) return true;
+  if (TOKEN_HEX_PATTERN.test(val)) return true;
+  if (JWT_PATTERN.test(val)) return true;
+  // Allow safe characters standard in attribution tags: alphanumeric, hyphens, underscores, dots, plus
+  if (!/^[a-zA-Z0-9_\-+.]+$/.test(val)) return true;
+  return false;
+}
+
+/**
+ * Sanitizes pathnames by stripping any PII embedded in path segments.
+ */
+export function sanitizePathname(rawPath: string): string {
+  if (!rawPath) return "/";
+  const segments = rawPath.split("/").map((segment) => {
+    if (!segment) return "";
+    if (
+      EMAIL_PATTERN.test(segment) ||
+      PHONE_PATTERN.test(segment) ||
+      TOKEN_HEX_PATTERN.test(segment)
+    ) {
+      return "[redacted]";
+    }
+    return segment;
+  });
+  return segments.join("/") || "/";
+}
 
 /**
  * Sanitizes event parameters against an approved whitelist and strips PII.
@@ -100,9 +136,11 @@ export function sanitizeAnalyticsParams(
         if (key === "page_path") {
           try {
             const urlObj = new URL(cleanVal, "https://www.motekra.com");
-            cleanVal = urlObj.pathname;
+            cleanVal = sanitizePathname(urlObj.pathname);
           } catch {
-            cleanVal = (cleanVal.split("?")[0] ?? "").split("#")[0] ?? cleanVal;
+            cleanVal = sanitizePathname(
+              (cleanVal.split("?")[0] ?? "").split("#")[0] ?? cleanVal
+            );
           }
         }
       } else {
@@ -123,9 +161,9 @@ export function sanitizeAnalyticsParams(
 
 /**
  * Returns a sanitized URL location that:
- * 1. Uses trusted origin and pathname.
+ * 1. Uses trusted origin and sanitized pathname.
  * 2. Preserves legitimate campaign attribution parameters (UTMs, gclid, etc.).
- * 3. Discards any sensitive or non-attribution query parameters.
+ * 3. Rejects suspicious values (emails, phones, tokens) instead of forwarding them.
  * 4. Completely excludes URL hash fragments.
  */
 export function getSafePageLocation(pathOrUrl?: string): string {
@@ -141,32 +179,46 @@ export function getSafePageLocation(pathOrUrl?: string): string {
     parsed.searchParams.forEach((val, key) => {
       const lowerKey = key.toLowerCase();
       if (ALLOWED_ATTRIBUTION_PARAMS.has(lowerKey)) {
-        // Redact email patterns from parameter values
-        const sanitizedVal = val.replace(EMAIL_PATTERN, "[redacted]").trim();
-        cleanParams.set(key, sanitizedVal);
+        // Reject suspicious values rather than forwarding them
+        if (!isSuspiciousAttributionValue(val)) {
+          cleanParams.set(key, val.trim());
+        }
       }
     });
 
     const queryString = cleanParams.toString();
-    const cleanPath = parsed.pathname || "/";
+    const cleanPath = sanitizePathname(parsed.pathname || "/");
     return queryString ? `${origin}${cleanPath}?${queryString}` : `${origin}${cleanPath}`;
   } catch {
-    const cleanPath = ((pathOrUrl || "/").split("?")[0] ?? "/").split("#")[0] || "/";
+    const rawPath = ((pathOrUrl || "/").split("?")[0] ?? "/").split("#")[0] || "/";
+    const cleanPath = sanitizePathname(rawPath);
     return `${origin}${cleanPath.startsWith("/") ? cleanPath : "/" + cleanPath}`;
   }
 }
 
 /**
- * Returns a sanitized referrer URL that preserves origin and pathname while stripping
- * sensitive query parameters or fragments from document.referrer.
+ * Returns a sanitized referrer URL:
+ * - For external referrers: prefers origin only to prevent leaking third-party paths or query data.
+ * - For internal referrers: preserves origin and sanitized pathname without query strings or hashes.
  */
 export function getSafeReferrer(): string {
   if (typeof document === "undefined" || !document.referrer) return "";
 
   try {
-    const parsed = new URL(document.referrer);
-    // Discard all query parameters and fragments from referrer
-    return `${parsed.origin}${parsed.pathname}`;
+    const referrerUrl = new URL(document.referrer);
+    const currentOrigin =
+      typeof window !== "undefined" && window.location?.origin
+        ? window.location.origin
+        : "https://www.motekra.com";
+
+    // For external referrers, prefer origin only
+    if (referrerUrl.origin !== currentOrigin) {
+      return referrerUrl.origin;
+    }
+
+    // For internal referrers within MOTEKRA, include origin and sanitized pathname
+    const cleanPath = sanitizePathname(referrerUrl.pathname || "/");
+    return `${referrerUrl.origin}${cleanPath}`;
   } catch {
     return "";
   }
@@ -301,8 +353,9 @@ export function pageview(path: string, title?: string): void {
   if (!hasAnalyticsConsent()) return;
   if (window[`ga-disable-${GA_MEASUREMENT_ID}`]) return;
 
-  // Clean pathname: strip any query string or hash fragment
-  const cleanPath = ((path || "/").split("?")[0] ?? "/").split("#")[0] || "/";
+  // Clean pathname: strip any query string or hash fragment and sanitize path segments
+  const rawPath = ((path || "/").split("?")[0] ?? "/").split("#")[0] || "/";
+  const cleanPath = sanitizePathname(rawPath);
 
   // Prevent duplicate pageview events for the exact same active path
   if (lastTrackedPath === cleanPath) {

@@ -28,7 +28,8 @@
     "test:contact": "playwright test --config=playwright.contact.config.ts",
     "test:contact-delivery": "vitest run tests/unit/contact.test.ts",
     "test:seo": "playwright test --config=playwright.seo.config.ts",
-    "test:quality": "playwright test --config=playwright.quality.config.ts"
+    "test:quality": "playwright test --config=playwright.quality.config.ts",
+    "test:analytics": "playwright test --config=playwright.analytics.config.ts"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",
