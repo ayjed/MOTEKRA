@@ -1,7 +1,7 @@
 {
   "config": {
     "argv": [
-      "C:\\Users\\DELL\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Program Files\\nodejs\\node.exe",
       "C:\\Users\\DELL\\Desktop\\MESH PROJECT\\MOTEKRA\\node_modules\\@playwright\\test\\cli.js",
       "test",
       "--config=playwright.services.config.ts"
@@ -100,7 +100,12 @@
     "updateSourceMethod": "patch",
     "version": "1.64.1",
     "workers": 1,
-    "webServer": null
+    "webServer": {
+      "command": "pnpm start",
+      "url": "http://127.0.0.1:3000",
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
   },
   "suites": [
     {
@@ -125,12 +130,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 731,
+                  "duration": 534,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T21:32:09.785Z",
+                  "startTime": "2026-11-19T11:45:27.204Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -140,11 +145,11 @@
           ],
           "id": "a6146cef71e816805252-989af9996b22fb1e68b4",
           "file": "services.spec.ts",
-          "line": 13,
+          "line": 23,
           "column": 1
         },
         {
-          "title": "five native prototypes produce distinct keyboard-operated interface transformations",
+          "title": "five services accordion items produce distinct keyboard and click transformations",
           "ok": true,
           "tags": [],
           "tests": [
@@ -159,12 +164,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 21796,
+                  "duration": 61951,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T21:32:10.666Z",
+                  "startTime": "2026-11-19T11:45:27.880Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -172,13 +177,13 @@
               "status": "expected"
             }
           ],
-          "id": "a6146cef71e816805252-4f54ed35c345d8740a86",
+          "id": "a6146cef71e816805252-909a8a2e57df82da8cea",
           "file": "services.spec.ts",
-          "line": 35,
+          "line": 67,
           "column": 1
         },
         {
-          "title": "optional R3F mobile flow supports state changes, visibility pause and context-loss fallback",
+          "title": "service detail subpages render editorial structure, deliverables and interactive FAQ disclosures",
           "ok": true,
           "tags": [],
           "tests": [
@@ -193,12 +198,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 10067,
+                  "duration": 30761,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T21:32:33.434Z",
+                  "startTime": "2026-11-19T11:46:31.279Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -206,13 +211,13 @@
               "status": "expected"
             }
           ],
-          "id": "a6146cef71e816805252-88a8019ba312558d11c5",
+          "id": "a6146cef71e816805252-77e5166f6284bffd7bfe",
           "file": "services.spec.ts",
-          "line": 61,
+          "line": 108,
           "column": 1
         },
         {
-          "title": "live motion preferences remove WebGL and restore the semantic prototype",
+          "title": "live motion preferences and visibility lifecycle preserve readable content and responsive layouts",
           "ok": true,
           "tags": [],
           "tests": [
@@ -227,12 +232,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 7595,
+                  "duration": 13422,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T21:32:43.591Z",
+                  "startTime": "2026-11-19T11:47:02.138Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -240,9 +245,9 @@
               "status": "expected"
             }
           ],
-          "id": "a6146cef71e816805252-e27735ad6ffff3de7f6c",
+          "id": "a6146cef71e816805252-f88d3fedc9650d93cc90",
           "file": "services.spec.ts",
-          "line": 100,
+          "line": 140,
           "column": 1
         },
         {
@@ -261,12 +266,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 41193,
+                  "duration": 96479,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T21:32:51.265Z",
+                  "startTime": "2026-11-19T11:47:15.624Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -276,7 +281,7 @@
           ],
           "id": "a6146cef71e816805252-7409d6dae650d4508426",
           "file": "services.spec.ts",
-          "line": 120,
+          "line": 165,
           "column": 1
         },
         {
@@ -295,12 +300,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 9033,
+                  "duration": 3889,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T21:33:32.532Z",
+                  "startTime": "2026-11-19T11:48:52.253Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -310,7 +315,7 @@
           ],
           "id": "a6146cef71e816805252-dc997884b4e98364151d",
           "file": "services.spec.ts",
-          "line": 142,
+          "line": 201,
           "column": 1
         },
         {
@@ -329,12 +334,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 45613,
+                  "duration": 64267,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T21:33:41.720Z",
+                  "startTime": "2026-11-19T11:48:56.226Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -344,7 +349,7 @@
           ],
           "id": "a6146cef71e816805252-51e2f0b3ea23335fc88a",
           "file": "services.spec.ts",
-          "line": 164,
+          "line": 228,
           "column": 1
         },
         {
@@ -363,12 +368,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 17107,
+                  "duration": 30838,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T21:34:27.504Z",
+                  "startTime": "2026-11-19T11:50:00.589Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -378,11 +383,11 @@
           ],
           "id": "a6146cef71e816805252-afdc28249fe5f59be84f",
           "file": "services.spec.ts",
-          "line": 178,
+          "line": 264,
           "column": 1
         },
         {
-          "title": "record the five service interfaces and optional mobile depth",
+          "title": "record the five service interfaces walkthrough",
           "ok": true,
           "tags": [],
           "tests": [
@@ -397,12 +402,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 31506,
+                  "duration": 55032,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-25T21:34:44.665Z",
+                  "startTime": "2026-11-19T11:50:32.260Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -410,9 +415,9 @@
               "status": "expected"
             }
           ],
-          "id": "a6146cef71e816805252-dbdeb7e7debc4243ac71",
+          "id": "a6146cef71e816805252-074191c52233c1c05b26",
           "file": "services.spec.ts",
-          "line": 187,
+          "line": 279,
           "column": 1
         }
       ]
@@ -420,8 +425,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-25T21:32:07.440Z",
-    "duration": 189593.341,
+    "startTime": "2026-11-19T11:45:21.351Z",
+    "duration": 370284.998,
     "expected": 9,
     "skipped": 0,
     "unexpected": 0,

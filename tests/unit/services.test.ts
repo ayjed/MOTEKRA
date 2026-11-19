@@ -1,7 +1,12 @@
+import { createElement, Fragment } from "react";
+import { renderToStaticMarkup } from "react-dom/server";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { services } from "@/content/services";
 import { serviceDetails } from "@/content/services/details";
 import { relatedServiceProjects, serviceMetadata, serviceStructuredData } from "@/lib/data/services";
+import { JsonLd } from "@/components/seo/json-ld";
+import { ServiceDetail } from "@/components/services/service-detail";
+
 afterEach(() => vi.unstubAllEnvs());
 
 describe("provisional service publication", () => {
@@ -42,6 +47,59 @@ describe("provisional service publication", () => {
     expect(schema?.["@type"]).toBe("Service");
     expect(schema).not.toHaveProperty("offers");
     expect(schema).not.toHaveProperty("aggregateRating");
+  });
+
+  it("renders Service JSON-LD on the server route and keeps the client detail component free of duplicate schema", () => {
+    vi.stubEnv("SITE_URL", "https://example.test");
+    vi.stubEnv("SITE_INDEXABLE", "true");
+    const approvedFixture = { ...services[0]!, publication: "approved" as const };
+
+    // Server route markup with approved fixture in indexable mode:
+    const serverHtml = renderToStaticMarkup(
+      createElement(
+        Fragment,
+        null,
+        createElement(JsonLd, { data: serviceStructuredData(approvedFixture) }),
+        createElement(ServiceDetail, { service: approvedFixture })
+      )
+    );
+    expect(serverHtml).toContain('"@type":"Service"');
+    expect(serverHtml).toContain('"name":"UI/UX Design"');
+    expect(serverHtml).toContain('"serviceType":"UI/UX Design"');
+    expect(serverHtml).toContain("https://example.test/services/ui-ux-design#service");
+    expect(serverHtml).not.toContain('"offers"');
+    expect(serverHtml).not.toContain('"aggregateRating"');
+
+    // For draft services, server route emits NO schema:
+    const draftHtml = renderToStaticMarkup(
+      createElement(
+        Fragment,
+        null,
+        createElement(JsonLd, { data: serviceStructuredData(services[0]!) }),
+        createElement(ServiceDetail, { service: services[0]! })
+      )
+    );
+    expect(draftHtml).not.toContain('"@type":"Service"');
+    expect(draftHtml).not.toContain('<script type="application/ld+json"');
+
+    // In non-indexable mode, even approved fixture emits NO schema:
+    vi.stubEnv("SITE_INDEXABLE", "false");
+    const nonIndexableHtml = renderToStaticMarkup(
+      createElement(
+        Fragment,
+        null,
+        createElement(JsonLd, { data: serviceStructuredData(approvedFixture) }),
+        createElement(ServiceDetail, { service: approvedFixture })
+      )
+    );
+    expect(nonIndexableHtml).not.toContain('"@type":"Service"');
+
+    // Client component in isolation never renders JsonLd (preventing hydration duplication):
+    const clientOnlyHtml = renderToStaticMarkup(
+      createElement(ServiceDetail, { service: approvedFixture })
+    );
+    expect(clientOnlyHtml).not.toContain('<script type="application/ld+json"');
+    expect(clientOnlyHtml).not.toContain('"@type":"Service"');
   });
 
   it("applies Issue 03 standard hyphen formatting to service metadata titles", () => {
