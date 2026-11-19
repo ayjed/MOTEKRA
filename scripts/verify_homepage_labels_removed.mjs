@@ -144,7 +144,7 @@ try {
   console.log(`Founder Byline Role: "${founderBylineRole.replace(/\s+/g, ' ').trim()}"`);
   console.log(`Founder Byline Link: "${founderProfileLink}"`);
 
-  if (!founderBylineName.toLowerCase().includes('akinwumi ayomiposi')) throw new Error('Founder byline name missing!');
+  if (!founderBylineName.toLowerCase().includes('ayomiposi akinwumi')) throw new Error('Founder byline name missing!');
   if (!founderBylineRole.includes('Software Developer') || !founderBylineRole.includes('Creative Technologist')) {
     throw new Error('Founder byline role missing!');
   }

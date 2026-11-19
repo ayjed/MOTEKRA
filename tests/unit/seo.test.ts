@@ -72,10 +72,10 @@ describe("SEO Title Standardization (Issue 03)", () => {
 
     const founder = team.find((p) => p.slug === "akinwumi-ayomiposi")!;
     const founderMeta = founderMetadata(founder);
-    expect(founderMeta.title).toBe("Akinwumi Ayomiposi - Software Developer & Creative Technologist");
-    expect(formatFullTitle(founderMeta.title as string)).toBe("Akinwumi Ayomiposi - Software Developer & Creative Technologist - MOTEKRA");
-    expect(founderMeta.openGraph?.title).toBe("Akinwumi Ayomiposi - Software Developer & Creative Technologist - MOTEKRA");
-    expect(founderMeta.twitter?.title).toBe("Akinwumi Ayomiposi - Software Developer & Creative Technologist - MOTEKRA");
+    expect(founderMeta.title).toBe("Ayomiposi Akinwumi - Software Developer & Creative Technologist");
+    expect(formatFullTitle(founderMeta.title as string)).toBe("Ayomiposi Akinwumi - Software Developer & Creative Technologist - MOTEKRA");
+    expect(founderMeta.openGraph?.title).toBe("Ayomiposi Akinwumi - Software Developer & Creative Technologist - MOTEKRA");
+    expect(founderMeta.twitter?.title).toBe("Ayomiposi Akinwumi - Software Developer & Creative Technologist - MOTEKRA");
   });
 
   it("contains no vertical bars or em dashes in formatted titles", () => {
@@ -84,7 +84,7 @@ describe("SEO Title Standardization (Issue 03)", () => {
       formatFullTitle("About the Studio"),
       formatFullTitle("Our Work & Design Concepts"),
       formatFullTitle("Contact Us"),
-      formatFullTitle("Akinwumi Ayomiposi - Software Developer & Creative Technologist"),
+      formatFullTitle("Ayomiposi Akinwumi - Software Developer & Creative Technologist"),
     ];
 
     for (const title of titles) {

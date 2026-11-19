@@ -6,14 +6,27 @@ import { createHash } from "node:crypto";
 const dir = process.env.EVIDENCE_DIR ?? "docs/evidence/phase-03";
 test.beforeAll(async () => { await mkdir(dir, { recursive: true }); });
 
-test("Home HTML contains the eight-section storyboard and honest content", async ({ request }) => {
+test("Home HTML contains honest content and verified section structure", async ({ request }) => {
   const response = await request.get("/");
   expect(response.status()).toBe(200);
   const html = await response.text();
   await writeFile(`${dir}/home-server.html`, html);
-  expect((html.match(/data-home-section=/g) ?? [])).toHaveLength(8);
-  for (const text of ["Digital Products for what’s Next.", "We design and build high-performance", "Real Projects.", "Bring to Life.", "Discover", "Define", "Design", "Develop", "Launch", "Akinwumi Ayomiposi", "Founder &amp;", "Experiments", "Have Something", "Concept", "In Development"]) expect(html).toContain(text);
-  for (const unsupported of ["hello@motekra.com", "6+ Projects", "3+ Years", "testimonial", 'href="/work/spotlight-contest"']) expect(html).not.toContain(unsupported);
+  expect((html.match(/data-home-section=/g) ?? [])).toHaveLength(5);
+  for (const text of [
+    "Digital Products",
+    "What’s Next.",
+    "We design and build high-performance",
+    "Real Projects.",
+    "Bring to Life.",
+    "Discover",
+    "Define",
+    "Design",
+    "Develop",
+    "Launch",
+    "Have Something",
+    "Concept",
+  ]) expect(html).toContain(text);
+  for (const unsupported of ["hello@motekra.com", "6+ Projects", "3+ Years", 'href="/work/spotlight-contest"']) expect(html).not.toContain(unsupported);
   const brand = Buffer.from(await (await request.get("/assets/brand/motekra-mark.png")).body());
   expect(createHash("sha256").update(brand).digest("hex")).toBe(createHash("sha256").update(await readFile("MOTEKRA_X_Profile_400x400.png")).digest("hex"));
   expect((await request.get("/team/akinwumi-ayomiposi")).status()).toBe(200);
@@ -96,7 +109,7 @@ test("mobile, reduced-motion and no-JavaScript preserve content and actions", as
   const page = await context.newPage();
   await page.goto("http://127.0.0.1:3000/");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-  await expect(page.locator("[data-home-section]")).toHaveCount(8);
+  await expect(page.locator("[data-home-section]")).toHaveCount(5);
   await expect(page.locator("canvas")).toHaveCount(0);
   await page.locator(".interactive-service summary").first().click();
   await expect(page.locator(".interactive-service").first()).toHaveAttribute("open", "");

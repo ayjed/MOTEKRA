@@ -64,7 +64,7 @@ export default function AboutPage() {
             <p className="editorial-role" data-founder-role>{person.title} · MOTEKRA</p>
             <p className="lead" data-founder-bio>{founderDetails[person.slug]!.biography[0]}</p>
             <div data-founder-cta>
-              <ButtonLink href={`/team/${person.slug}`}>Meet Akinwumi</ButtonLink>
+              <ButtonLink href={`/team/${person.slug}`}>Meet Ayomiposi</ButtonLink>
             </div>
             <SocialLinks />
           </div>
