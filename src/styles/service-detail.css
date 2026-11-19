@@ -268,7 +268,7 @@
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: #1688f7;
+  color: #075db6;
 }
 
 .deliverable-spark {
@@ -341,9 +341,9 @@
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #1688f7;
+  color: #075db6;
   background: #edf7ff;
-  border: 1px solid rgba(22, 136, 247, 0.2);
+  border: 1px solid rgba(7, 93, 182, 0.2);
   border-radius: 12px;
   padding: 4px 10px;
 }

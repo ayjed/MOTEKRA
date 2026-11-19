@@ -5,8 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Service } from "@/content/models";
 import { serviceDetails } from "@/content/services/details";
-import { serviceStructuredData } from "@/lib/data/services";
-import { JsonLd } from "@/components/seo/json-ld";
 import { ButtonLink } from "@/components/ui/primitives";
 import { useGsapScope } from "@/lib/animations/hooks";
 import "@/styles/service-detail.css";
@@ -243,11 +241,9 @@ export function ServiceDetail({ service }: { service: Service }) {
   });
 
   if (!copy) return null;
-  const schema = serviceStructuredData(service);
 
   return (
     <div className="service-subpage" ref={containerRef}>
-      <JsonLd data={schema} />
 
       {/* ====================================================================
           Section 1 — Service Hero
