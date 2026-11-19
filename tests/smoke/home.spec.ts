@@ -109,7 +109,7 @@ test("mobile, reduced-motion and no-JavaScript preserve content and actions", as
   const page = await context.newPage();
   await page.goto("http://127.0.0.1:3000/");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-  await expect(page.locator("[data-home-section]")).toHaveCount(8);
+  await expect(page.locator("[data-home-section]")).toHaveCount(5);
   await expect(page.locator("canvas")).toHaveCount(0);
   await page.locator(".interactive-service summary").first().click();
   await expect(page.locator(".interactive-service").first()).toHaveAttribute("open", "");
