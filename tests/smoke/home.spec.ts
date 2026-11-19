@@ -12,7 +12,7 @@ test("Home HTML contains the eight-section storyboard and honest content", async
   const html = await response.text();
   await writeFile(`${dir}/home-server.html`, html);
   expect((html.match(/data-home-section=/g) ?? [])).toHaveLength(8);
-  for (const text of ["Digital Products for what’s Next.", "We design and build high-performance", "Real Projects.", "Bring to Life.", "Discover", "Define", "Design", "Develop", "Launch", "Akinwumi Ayomiposi", "Founder &amp;", "Experiments", "Have Something", "Concept", "In Development"]) expect(html).toContain(text);
+  for (const text of ["Digital Products for what’s Next.", "We design and build high-performance", "Real Projects.", "Bring to Life.", "Discover", "Define", "Design", "Develop", "Launch", "Ayomiposi Akinwumi", "Founder &amp;", "Experiments", "Have Something", "Concept", "In Development"]) expect(html).toContain(text);
   for (const unsupported of ["hello@motekra.com", "6+ Projects", "3+ Years", "testimonial", 'href="/work/spotlight-contest"']) expect(html).not.toContain(unsupported);
   const brand = Buffer.from(await (await request.get("/assets/brand/motekra-mark.png")).body());
   expect(createHash("sha256").update(brand).digest("hex")).toBe(createHash("sha256").update(await readFile("MOTEKRA_X_Profile_400x400.png")).digest("hex"));

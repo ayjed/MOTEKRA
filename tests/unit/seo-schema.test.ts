@@ -471,7 +471,7 @@ describe("aboutPersonSchema() - Founder Identity Disambiguation on About Page", 
     expect(schema?.["@context"]).toBe("https://schema.org");
     expect(schema?.["@type"]).toBe("Person");
     expect(schema?.["@id"]).toBe(`${configuredOrigin}/about#person`);
-    expect(schema?.name).toBe("Akinwumi Ayomiposi");
+    expect(schema?.name).toBe("Ayomiposi Akinwumi");
     expect(schema?.jobTitle).toBe("Software Developer & Creative Technologist");
     expect(schema?.description).toBe("Software Developer & Creative Technologist at MOTEKRA.");
     expect(schema?.url).toBe(`${configuredOrigin}/team/akinwumi-ayomiposi`);
@@ -520,7 +520,7 @@ describe("aboutPersonSchema() - Founder Identity Disambiguation on About Page", 
     const markup = renderToStaticMarkup(createElement(JsonLd, { data: aboutPersonSchema() }));
     expect(markup).toContain('<script type="application/ld+json">');
     expect(markup).toContain('"@type":"Person"');
-    expect(markup).toContain('"name":"Akinwumi Ayomiposi"');
+    expect(markup).toContain('"name":"Ayomiposi Akinwumi"');
     expect(markup).toContain('"jobTitle":"Software Developer & Creative Technologist"');
     expect(markup).toContain('"url":"https://www.motekra.com/team/akinwumi-ayomiposi"');
     expect(markup).toContain('"https://www.linkedin.com/in/akinwumi-ayomiposi/"');
@@ -535,7 +535,7 @@ describe("aboutPersonSchema() - Founder Identity Disambiguation on About Page", 
     const markup = renderToStaticMarkup(createElement(AboutPage));
     expect(markup).toContain('<script type="application/ld+json">');
     expect(markup).toContain('"@type":"Person"');
-    expect(markup).toContain('"name":"Akinwumi Ayomiposi"');
+    expect(markup).toContain('"name":"Ayomiposi Akinwumi"');
     expect(markup).toContain('"https://www.linkedin.com/in/akinwumi-ayomiposi/"');
   }, 15000);
 
@@ -582,7 +582,7 @@ describe("founderStructuredData() - Founder ProfilePage & Person Structured Data
     const person = schema?.mainEntity;
     expect(person?.["@type"]).toBe("Person");
     expect(person?.["@id"]).toBe(`${configuredOrigin}/about#person`);
-    expect(person?.name).toBe("Akinwumi Ayomiposi");
+    expect(person?.name).toBe("Ayomiposi Akinwumi");
     expect(person?.jobTitle).toBe("Software Developer & Creative Technologist");
     expect(person?.description).toBe("Software Developer & Creative Technologist at MOTEKRA.");
     expect(person?.url).toBe(`${configuredOrigin}/team/akinwumi-ayomiposi`);

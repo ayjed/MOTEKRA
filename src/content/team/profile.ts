@@ -17,11 +17,11 @@ export const founderDetails: Readonly<Record<string, FounderProfileContent>> = {
       src: "/assets/team/ayomiposi.webp",
       width: 834,
       height: 1024,
-      alt: "Akinwumi Ayomiposi — Software Developer & Creative Technologist",
+      alt: "Ayomiposi Akinwumi - Software Developer & Creative Technologist",
     },
     plannedPortraitSrc: "/assets/team/ayomiposi.webp",
     biography: [
-      "Akinwumi Ayomiposi is a Software Developer & Creative Technologist specializing in web and mobile application development, backend engineering, and UI/UX design.",
+      "Ayomiposi Akinwumi is a Software Developer & Creative Technologist specializing in web and mobile application development, backend engineering, and UI/UX design.",
       "His work combines software engineering, user-centered design, and creative problem-solving to build functional, intuitive, and reliable digital products.",
       "Through MOTEKRA, he brings together technical development and creative thinking to create digital experiences that address real-world challenges.",
     ],

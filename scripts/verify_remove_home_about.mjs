@@ -140,7 +140,7 @@ try {
   await page.locator('.editorial-hero').waitFor({ state: 'visible', timeout: 10000 });
   await page.waitForTimeout(2500);
   const founderNameOnAbout = await page.locator('.editorial-founder h2').innerText();
-  if (!founderNameOnAbout.includes('Akinwumi Ayomiposi')) {
+  if (!founderNameOnAbout.includes('Ayomiposi Akinwumi')) {
     throw new Error('Founder name missing from dedicated /about page!');
   }
   await page.screenshot({ path: `${outputDir}/phase-41-dedicated-about-page.png` });
@@ -153,7 +153,7 @@ try {
   console.log('Profile page h1 texts:', h1Texts);
   const profileHeroH1 = await page.locator('.founder-hero h1').innerText();
   console.log('Founder hero h1:', profileHeroH1);
-  if (!profileHeroH1.includes('Akinwumi')) {
+  if (!profileHeroH1.includes('Ayomiposi')) {
     throw new Error(`Profile page missing founder name! Found: ${profileHeroH1}`);
   }
   const floatingWhatsApp = await page.locator('#founder-floating-whatsapp').count();
