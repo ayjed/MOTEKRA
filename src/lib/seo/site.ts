@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export function getSiteOrigin(
-  value = process.env.SITE_URL ?? (process.env.NODE_ENV === "production" ? "https://www.motekra.com" : "")
+  value = process.env.SITE_URL
 ): string | null {
   if (!value?.trim()) return null;
   try {
@@ -24,10 +24,7 @@ export function getSiteOrigin(
 }
 
 export function isIndexable(): boolean {
-  if (process.env.SITE_INDEXABLE !== undefined) {
-    return process.env.SITE_INDEXABLE === "true" && getSiteOrigin() !== null;
-  }
-  return process.env.NODE_ENV === "production" && getSiteOrigin() !== null;
+  return process.env.SITE_INDEXABLE === "true" && getSiteOrigin() !== null;
 }
 
 export function robotsMetadata(indexable = isIndexable()): Metadata["robots"] {
@@ -82,7 +79,8 @@ export function formatFullTitle(title: string): string {
 
 export function pageMetadata(title: string, description: string, path: string): Metadata {
   const origin = getSiteOrigin();
-  const url = absoluteSiteUrl(path);
+  const indexable = isIndexable();
+  const url = indexable ? absoluteSiteUrl(path) : null;
   const image = absoluteSiteUrl(socialImageFor(path));
   const baseTitle = formatBaseTitle(title);
   const fullTitle = formatFullTitle(title);
@@ -92,7 +90,7 @@ export function pageMetadata(title: string, description: string, path: string): 
     description,
     ...(origin ? { metadataBase: new URL(origin) } : {}),
     alternates: url ? { canonical: url } : undefined,
-    robots: robotsMetadata(),
+    robots: robotsMetadata(indexable),
     openGraph: {
       title: fullTitle,
       description,

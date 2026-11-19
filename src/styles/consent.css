@@ -110,13 +110,13 @@
   min-height: 40px !important;
   padding: 8px 20px !important;
   font-size: 13px !important;
-  background: #1688f7 !important;
+  background: #0868d2 !important;
   color: #ffffff !important;
   border-color: transparent !important;
 }
 
 .consent-btn-accept:hover {
-  background: #0868d2 !important;
+  background: #0552a8 !important;
 }
 
 .consent-btn-decline {
@@ -294,7 +294,7 @@
   background: none;
   border: none;
   padding: 0;
-  color: #6a829e;
+  color: #47607a;
   font-size: 11px;
   text-decoration: underline;
   text-underline-offset: 3px;
