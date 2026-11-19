@@ -1,8 +1,8 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { formatBaseTitle, formatFullTitle, getSiteOrigin, isIndexable, pageMetadata } from "@/lib/seo/site";
+import { formatBaseTitle, formatFullTitle, getSiteOrigin, isIndexable, pageMetadata, robotsMetadata } from "@/lib/seo/site";
 import { founderMetadata, founderStructuredData } from "@/lib/data/founder";
-import { serviceMetadata } from "@/lib/data/services";
-import { aboutPersonSchema } from "@/lib/seo/schema";
+import { serviceMetadata, serviceStructuredData } from "@/lib/data/services";
+import { aboutPersonSchema, organizationSchema, websiteSchema, breadcrumbSchema } from "@/lib/seo/schema";
 import { team } from "@/content/team";
 import { services } from "@/content/services";
 import sitemap from "@/app/sitemap";
@@ -258,5 +258,148 @@ describe("SEO Baseline Protection & 11-URL Inventory (Issue 07)", () => {
     expect(aboutPerson.name).toBe("Ayomiposi Akinwumi");
     expect(aboutPerson["@type"]).toBe("Person");
     expect(aboutPerson.url).toBe("https://www.motekra.com/team/akinwumi-ayomiposi");
+  });
+});
+
+describe("Fail-Closed Indexability & Preview Canonical Protection (5 Environment Cases)", () => {
+  const sampleCrumbs = [
+    { name: "Home", path: "/" },
+    { name: "Services", path: "/services" },
+  ];
+
+  it("Case 1: Production with valid URL and explicit SITE_INDEXABLE=true", () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("SITE_URL", "https://www.motekra.com");
+    vi.stubEnv("SITE_INDEXABLE", "true");
+
+    expect(isIndexable()).toBe(true);
+    expect(getSiteOrigin()).toBe("https://www.motekra.com");
+
+    const robotsMeta = robotsMetadata();
+    expect(robotsMeta).toEqual({
+      index: true,
+      follow: true,
+      googleBot: { index: true, follow: true },
+    });
+
+    const meta = pageMetadata("Services", "Description", "/services");
+    expect(meta.alternates?.canonical).toBe("https://www.motekra.com/services");
+    expect(meta.robots).toEqual(robotsMeta);
+
+    const sitemapEntries = sitemap();
+    expect(sitemapEntries).toHaveLength(11);
+
+    const robotsRoute = robots();
+    expect(robotsRoute.rules).toEqual({
+      userAgent: "*",
+      allow: "/",
+      disallow: ["/api/", "/motion-lab", "/work/evidence/"],
+    });
+    expect(robotsRoute.sitemap).toBe("https://www.motekra.com/sitemap.xml");
+
+    expect(organizationSchema()).not.toBeNull();
+    expect(websiteSchema()).not.toBeNull();
+    expect(aboutPersonSchema()).not.toBeNull();
+    expect(serviceStructuredData(services[0]!)).not.toBeNull();
+    expect(founderStructuredData(team[0]!)).not.toBeNull();
+    expect(breadcrumbSchema(sampleCrumbs)).not.toBeNull();
+  });
+
+  it("Case 2: Production with SITE_INDEXABLE unset", () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("SITE_URL", "https://www.motekra.com");
+    vi.stubEnv("SITE_INDEXABLE", undefined as unknown as string);
+
+    expect(isIndexable()).toBe(false);
+
+    const meta = pageMetadata("Services", "Description", "/services");
+    expect(meta.alternates).toBeUndefined();
+    expect(meta.robots).toEqual({ index: false, follow: false });
+
+    expect(sitemap()).toEqual([]);
+    expect(robots()).toEqual({ rules: { userAgent: "*", disallow: "/" } });
+
+    expect(organizationSchema()).toBeNull();
+    expect(websiteSchema()).toBeNull();
+    expect(aboutPersonSchema()).toBeNull();
+    expect(serviceStructuredData(services[0]!)).toBeNull();
+    expect(founderStructuredData(team[0]!)).toBeNull();
+    expect(breadcrumbSchema(sampleCrumbs)).toBeNull();
+  });
+
+  it("Case 3: Production with SITE_URL missing", () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("SITE_URL", "");
+    vi.stubEnv("SITE_INDEXABLE", "true");
+
+    expect(getSiteOrigin()).toBeNull();
+    expect(isIndexable()).toBe(false);
+
+    const meta = pageMetadata("Services", "Description", "/services");
+    expect(meta.alternates).toBeUndefined();
+    expect(meta.robots).toEqual({ index: false, follow: false });
+
+    expect(sitemap()).toEqual([]);
+    expect(robots()).toEqual({ rules: { userAgent: "*", disallow: "/" } });
+
+    expect(organizationSchema()).toBeNull();
+    expect(websiteSchema()).toBeNull();
+    expect(aboutPersonSchema()).toBeNull();
+    expect(serviceStructuredData(services[0]!)).toBeNull();
+    expect(founderStructuredData(team[0]!)).toBeNull();
+    expect(breadcrumbSchema(sampleCrumbs)).toBeNull();
+  });
+
+  it("Case 4: Staging with SITE_INDEXABLE=false and a configured staging URL (Prevents Canonical Contamination)", () => {
+    vi.stubEnv("NODE_ENV", "production");
+    vi.stubEnv("SITE_URL", "https://staging.motekra.com");
+    vi.stubEnv("SITE_INDEXABLE", "false");
+
+    expect(getSiteOrigin()).toBe("https://staging.motekra.com");
+    expect(isIndexable()).toBe(false);
+
+    // CRITICAL: Must NOT emit canonical tags identifying staging/preview URLs as official canonical pages
+    const meta = pageMetadata("Services", "Description", "/services");
+    expect(meta.alternates).toBeUndefined();
+    expect(meta.robots).toEqual({ index: false, follow: false });
+
+    // Titles, descriptions, and social card branding are preserved
+    expect(meta.title).toBe("Services");
+    expect(meta.openGraph?.title).toBe("Services - MOTEKRA");
+    expect(meta.description).toBe("Description");
+    expect(meta.openGraph?.url).toBeUndefined();
+
+    expect(sitemap()).toEqual([]);
+    expect(robots()).toEqual({ rules: { userAgent: "*", disallow: "/" } });
+
+    expect(organizationSchema()).toBeNull();
+    expect(websiteSchema()).toBeNull();
+    expect(aboutPersonSchema()).toBeNull();
+    expect(serviceStructuredData(services[0]!)).toBeNull();
+    expect(founderStructuredData(team[0]!)).toBeNull();
+    expect(breadcrumbSchema(sampleCrumbs)).toBeNull();
+  });
+
+  it("Case 5: Development without production settings", () => {
+    vi.stubEnv("NODE_ENV", "development");
+    vi.stubEnv("SITE_URL", "");
+    vi.stubEnv("SITE_INDEXABLE", "");
+
+    expect(getSiteOrigin()).toBeNull();
+    expect(isIndexable()).toBe(false);
+
+    const meta = pageMetadata("Services", "Description", "/services");
+    expect(meta.alternates).toBeUndefined();
+    expect(meta.robots).toEqual({ index: false, follow: false });
+
+    expect(sitemap()).toEqual([]);
+    expect(robots()).toEqual({ rules: { userAgent: "*", disallow: "/" } });
+
+    expect(organizationSchema()).toBeNull();
+    expect(websiteSchema()).toBeNull();
+    expect(aboutPersonSchema()).toBeNull();
+    expect(serviceStructuredData(services[0]!)).toBeNull();
+    expect(founderStructuredData(team[0]!)).toBeNull();
+    expect(breadcrumbSchema(sampleCrumbs)).toBeNull();
   });
 });

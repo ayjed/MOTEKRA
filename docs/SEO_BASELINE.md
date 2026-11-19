@@ -93,13 +93,15 @@ All titles must adhere to the **Issue 03 Title Standardization Standard**:
   <meta name="googlebot" content="index, follow" />
   ```
 
-### Fail-Closed Preview Safeguards (`SITE_INDEXABLE="false"` or unconfigured `SITE_URL`)
-When deploying to staging, feature branches, or local development:
+### Fail-Closed Preview Safeguards & Canonical Contamination Prevention
+Indexing is enabled **only** when the environment configuration explicitly authorizes it (`SITE_INDEXABLE === "true"` and a valid, explicitly configured HTTPS site origin). In all other environments (previews, staging, feature branch builds, local development, or misconfigured production):
 - `isIndexable()` evaluates to `false`.
+- **No Preview Canonical Contamination:** When indexability is disabled, `pageMetadata()` does not emit canonical tags (`alternates: undefined`). Preview and staging URLs are never identified as canonical pages to search engines.
 - `sitemap()` returns an empty array `[]`.
 - `robots()` emits `Disallow: /` for all user agents.
 - All page metadata emits `robots: { index: false, follow: false }`.
 - All Schema.org JSON-LD structured data generators return `null`.
+- Titles, descriptions, and Open Graph/Twitter visual assets remain intact for manual inspection.
 
 ---
 
@@ -152,7 +154,10 @@ All structured data is generated server-side using type-safe schemas from `src/l
 ## 7. Accessibility, Semantic HTML & Performance Standards
 
 1. **Semantic Hierarchy:** Exactly one `<h1>` per page. Sub-sections use structured `<h2>` and `<h3>` tags with logical reading order.
-2. **Touch Targets:** All interactive links and controls have a minimum touch target height of `44px` (WCAG 2.5.5 / 2.5.8).
+2. **Touch Targets & Target Size:**
+   - **WCAG 2.2 Level AA Minimum (Success Criterion 2.5.8 - Target Size Minimum):** Interactive controls must meet the minimum size of 24 × 24 CSS pixels, or provide sufficient spacing, subject to the criterion's recognized exceptions (inline targets within text, user-agent controls, or essential presentations).
+   - **WCAG Enhanced Level AAA Target (Success Criterion 2.5.5 - Target Size):** Enhanced design target of 44 × 44 CSS pixels for interactive controls, subject to its standard exceptions. A 44px height alone does not guarantee AAA compliance; full width and height dimensions or target spacing must be considered.
+   - **MOTEKRA Preferred Design Standard:** MOTEKRA aims for 44 × 44 CSS-pixel interactive touch targets across primary navigation links, footer channels, and call-to-action buttons where practical to provide superior usability on mobile touchscreens.
 3. **Color Contrast:**
    - All text and interactive controls must meet mandatory WCAG 2.1 / 2.2 Level AA contrast requirements (≥ 4.5:1 for normal text, ≥ 3.0:1 for large text and UI components).
    - Enhanced Level AAA targets (≥ 7.0:1 for normal text) are pursued across high-emphasis design elements where practical, but Level AA represents the required pass/fail compliance baseline.

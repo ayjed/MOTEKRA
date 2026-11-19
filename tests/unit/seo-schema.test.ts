@@ -407,13 +407,13 @@ describe("SEO Publication Safety - Global Structured Data Safeguards", () => {
     });
   });
 
-  it("falls back to NODE_ENV production check when SITE_INDEXABLE is undefined", () => {
+  it("strictly fails closed when SITE_INDEXABLE is undefined even in production mode", () => {
     vi.stubEnv("SITE_URL", configuredOrigin);
     vi.stubEnv("SITE_INDEXABLE", undefined as unknown as string);
     vi.stubEnv("NODE_ENV", "production");
 
-    expect(organizationSchema()).not.toBeNull();
-    expect(websiteSchema()).not.toBeNull();
+    expect(organizationSchema()).toBeNull();
+    expect(websiteSchema()).toBeNull();
 
     vi.stubEnv("NODE_ENV", "development");
     expect(organizationSchema()).toBeNull();
