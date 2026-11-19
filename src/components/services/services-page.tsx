@@ -26,7 +26,7 @@ export function ServicesPage() {
               </h1>
 
               <p className="lead" data-services-hero-lead>
-                From early product strategy to high-performance web and mobile engineering, we partner with visionary teams to turn complex ideas into digital realities.
+                From early product strategy to web and mobile engineering, we design and build purposeful digital products with careful craft and reliable technology.
               </p>
 
               <div data-services-hero-meta className="services-intro-meta">
@@ -38,7 +38,7 @@ export function ServicesPage() {
               <div className="services-intro-callout">
                 <span className="callout-tag">END-TO-END METHODOLOGY</span>
                 <p>
-                  Every engagement blends human-centered interface design, production-grade cloud architecture, and strategic rigor. No generic templates, no fragmented handoffs.
+                  Every engagement combines thoughtful interface design, reliable engineering, and clear scope definition. We focus on maintainable solutions built around verified requirements.
                 </p>
                 <Link prefetch={false} href="/contact" className="services-intro-cta">
                   <span>Discuss your product</span>
