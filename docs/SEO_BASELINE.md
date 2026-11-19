@@ -17,7 +17,7 @@ Any visual redesign is permitted under the **MOTEKRA — SEO Preservation Rule**
 
 ## 2. Approved Sitemap URL Inventory (11 Core URLs)
 
-Production `https://www.motekra.com/sitemap.xml` must strictly contain the following **11 approved canonical URLs**, and no others:
+Production `https://www.motekra.com/sitemap.xml` strictly contains the following **11 approved canonical URLs**, representing the current approved commercial baseline:
 
 | # | Route | Purpose & Canonical URL | Publication Status |
 |---|---|---|---|
@@ -32,6 +32,8 @@ Production `https://www.motekra.com/sitemap.xml` must strictly contain the follo
 | 9 | `/services/product-strategy` | `https://www.motekra.com/services/product-strategy` | Approved (Commercial Service) |
 | 10 | `/services/brand-visual-design` | `https://www.motekra.com/services/brand-visual-design` | Approved (Commercial Service) |
 | 11 | `/team/akinwumi-ayomiposi` | `https://www.motekra.com/team/akinwumi-ayomiposi` | Approved (Founder Profile) |
+
+These 11 URLs represent the currently approved production inventory. While unapproved candidate projects and draft articles remain strictly excluded, authorized future content publications (e.g., reviewed case studies or approved editorial articles) may be incorporated into the sitemap following the formal Change Management & Governance process (Section 8).
 
 ### Publication Restrictions & Negative Assertions
 - **Candidate Projects (`/work/[slug]`):** Portfolio concept items (`spotlight-contest`, `lad-global-travels`, `tog-africa`, `connectapi`) remain unapproved concept previews with `robots: { index: false, follow: false }`. They MUST NOT be emitted in `/sitemap.xml` or promoted into commercial `CreativeWork` schemas until explicitly authorized.
@@ -152,18 +154,21 @@ All structured data is generated server-side using type-safe schemas from `src/l
 1. **Semantic Hierarchy:** Exactly one `<h1>` per page. Sub-sections use structured `<h2>` and `<h3>` tags with logical reading order.
 2. **Touch Targets:** All interactive links and controls have a minimum touch target height of `44px` (WCAG 2.5.5 / 2.5.8).
 3. **Color Contrast:**
-   - Dark surfaces (`#08152b`): Text and links must meet WCAG AAA (>= 7:1) or WCAG AA (>= 4.5:1).
-   - Light surfaces (`#ffffff`, `#edf7ff`): Text and links must meet WCAG AA (>= 4.5:1).
+   - All text and interactive controls must meet mandatory WCAG 2.1 / 2.2 Level AA contrast requirements (≥ 4.5:1 for normal text, ≥ 3.0:1 for large text and UI components).
+   - Enhanced Level AAA targets (≥ 7.0:1 for normal text) are pursued across high-emphasis design elements where practical, but Level AA represents the required pass/fail compliance baseline.
 4. **Reduced Motion:** All GSAP and CSS animations must be wrapped in `prefers-reduced-motion` checks, falling back to static visibility with transitions disabled.
 5. **No-JS Compatibility:** Core text, headings, breadcrumbs, navigation, and structured data must render completely in initial static HTML when JavaScript is disabled.
-6. **Core Web Vitals:** Images must use Next.js `<Image>` with explicit dimensions, responsive `sizes`, and WebP/AVIF compression. Cumulative Layout Shift (CLS) must remain 0.
+6. **Core Web Vitals & Performance Targets:**
+   - Images must use Next.js `<Image>` with explicit dimensions, responsive `sizes`, and WebP/AVIF compression.
+   - Layout stability must adhere to Google's good target of Cumulative Layout Shift (CLS) ≤ 0.1 at the 75th percentile, alongside an architectural preference for minimizing layout shifts through fixed-ratio media wrappers and preallocated space for asynchronous UI elements.
+   - Performance targets represent architectural benchmarks; field and lab metrics must only be cited when verified by empirical measurement tools.
 
 ---
 
 ## 8. Change Management & Governance
 
 ### Category A: Safe Changes (No SEO Review Required)
-- Adjusting CSS styling, spacing, typography weights, or button colors, provided WCAG AA/AAA contrast and 44px touch targets are preserved.
+- Adjusting non-semantic copy within approved pages where titles, headings, and canonical paths are unaffected.
 - Updating decorative micro-interactions or illustration SVG visuals.
 - Adding non-structural responsive breakpoint tweaks.
 
@@ -176,5 +181,35 @@ All structured data is generated server-side using type-safe schemas from `src/l
 - Changing the 5-service complementary relationship mesh.
 - Promoting candidate portfolio projects or blog articles from `draft` to `approved`.
 
+### Note on CSS & Styling Changes
+Even styling-only or visual modifications (such as color palette adjustments, spacing, typography scales, or layout refactors) can directly affect color contrast compliance, touch target clearance, mobile viewport boundaries, or paint performance. Therefore, CSS modifications require running the automated accessibility, responsive, and unit regression test suites prior to merge approval.
+
 ### Updating the Baseline
 When a business decision to add a new service, publish a case study, or update corporate branding is approved, this baseline document must be updated in the same pull request alongside the implementation and test adjustments.
+
+---
+
+## 9. Google Search Console Indexing Monitoring Note
+
+- **Observation Date:** November 19, 2026.
+- **Search Console Status:** Google Search Console recorded four core URLs (`/`, `/work`, `/about`, `/contact`) under the "Crawled – currently not indexed" status, with recorded crawl timestamps of November 17, 2026.
+- **Context & Progression:** This state reflects the site prior to the Issue 05 services commercial expansion. The updated 11-URL sitemap has been submitted and requires subsequent Googlebot re-crawling, canonical reconciliation, and processing.
+- **Diagnostic Clarification:** The "Crawled – currently not indexed" classification alone does not establish a technical SEO error or delivery fault. Google evaluates newly discovered URLs asynchronously, and final indexing and serving decisions remain entirely under search engine algorithmic discretion.
+- **Ongoing Monitoring Protocol:**
+  - Inspect individual service URLs (e.g., `/services/web-development`) periodically using GSC's URL Inspection tool.
+  - Avoid repeatedly requesting indexing across multiple URLs to prevent search console quota exhaustion.
+  - Track progression across the standard pipeline (*Submitted → Discovered → Crawled → Indexed → Serving*).
+
+---
+
+## 10. Cloudflare Reliability & HTTP 503 Diagnostic Observations
+
+- **Observation:** Intermittent HTTP 503 responses were observed during rapid synthetic crawling. Normal paced requests succeeded, but the precise cause has not been established.
+- **Supporting Observations & Environment State:**
+  - Standard, paced HTTPS requests to all 11 approved endpoints consistently return HTTP 200 OK with normal response times (~170–200ms).
+  - The OpenNext Cloudflare Worker bundle operates without runtime startup failure or memory exhaustion under paced requests.
+  - Authoritative edge log streams and granular security event records for the specific burst moments were not retained in available telemetry. Without direct log evidence, specific edge proxy mechanisms (such as rate-limiting tiers, WAF triggers, or connection pooling) cannot be conclusively identified and remain unverified hypotheses.
+- **Reliability & Safeguard Recommendations:**
+  - Retain existing Cloudflare edge security settings and WAF policies without weakening protections.
+  - Ensure synthetic verification tools and automated monitors use request pacing (delays between requests) and standard descriptive user agents to prevent synthetic test bursts from triggering transient edge errors.
+  - Configure external uptime monitoring at paced intervals (e.g., 60 seconds) to record authoritative availability data over time.

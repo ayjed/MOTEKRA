@@ -51,6 +51,19 @@ test('Insights and isolated article template are responsive, keyboard-readable a
   }
 });
 
+test('complete-page accessibility verifies global consent banner and navigation elements without exclusions', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  for (const width of [1440, 390]) {
+    await page.setViewportSize({ width, height: 960 });
+    await page.goto('/insights');
+    await expect(page.locator('.consent-banner-wrapper')).toBeVisible();
+    const result = await new AxeBuilder({ page })
+      .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+      .analyze();
+    expect(result.violations).toEqual([]);
+  }
+});
+
 test('no JavaScript and no WebGL preserve copy, breadcrumbs and internal links', async ({ browser }) => {
   const context = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
   const page = await context.newPage();
