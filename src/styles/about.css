@@ -8,3 +8,19 @@
 
 .founder-hero .seo-breadcrumbs { margin-bottom: clamp(16px, 2vw, 24px); }
 .founder-hero .seo-breadcrumbs a, .founder-hero .seo-breadcrumbs span { display: inline-flex; align-items: center; min-height: 44px; padding-block: 8px; margin-block: -8px; }
+
+.editorial-service-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0562cb;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.editorial-service-link:hover {
+  color: #074f9f;
+  transform: translateX(3px);
+}

@@ -53,6 +53,7 @@ test("six production HTML routes contain genuine approved copy, links and metada
       "What We Deliver",
       "How We Approach It",
       "Frequently Asked Questions",
+      "Complementary services",
     ]) {
       expect(detail).toContain(text.replaceAll("&", "&amp;"));
     }
@@ -61,11 +62,15 @@ test("six production HTML routes contain genuine approved copy, links and metada
     expect(detail).not.toContain("provisional offering");
     expect(detail).not.toContain("awaiting confirmation");
 
-    // In production indexable mode, verified Service schema is server-rendered:
+    // In production indexable mode, verified Service and Breadcrumb schema is server-rendered:
     if (process.env.SITE_INDEXABLE === "true") {
       expect(detail).toContain(`content="https://www.motekra.com/assets/social/services-${service.slug}.png"`);
       expect(detail).toContain('"@type":"Service"');
       expect(detail).toContain(`https://www.motekra.com/services/${service.slug}#service`);
+      expect(detail).toContain('"@type":"BreadcrumbList"');
+      expect(detail).toContain('"position":1,"name":"Home"');
+      expect(detail).toContain('"position":2,"name":"Services"');
+      expect(detail).toContain(`"position":3,"name":"${service.title}"`);
       expect(detail).not.toContain("noindex");
       expect(detail).not.toContain('"offers"');
       expect(detail).not.toContain('"aggregateRating"');
