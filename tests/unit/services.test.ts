@@ -4,6 +4,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { services } from "@/content/services";
 import { serviceDetails } from "@/content/services/details";
 import { relatedServiceProjects, serviceMetadata, serviceStructuredData } from "@/lib/data/services";
+import { pageMetadata } from "@/lib/seo/site";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ServiceDetail } from "@/components/services/service-detail";
 
@@ -21,6 +22,21 @@ describe("approved service publication", () => {
         follow: true,
         googleBot: { index: true, follow: true },
       });
+      const meta = serviceMetadata(service);
+      expect(meta.openGraph?.images).toEqual([
+        {
+          url: `https://example.test/assets/social/services-${service.slug}.png`,
+          width: 1200,
+          height: 630,
+          alt: `MOTEKRA - ${service.title} - Digital Product Services`,
+        },
+      ]);
+      expect(meta.twitter?.images).toEqual([
+        {
+          url: `https://example.test/assets/social/services-${service.slug}.png`,
+          alt: `MOTEKRA - ${service.title} - Digital Product Services`,
+        },
+      ]);
       const schema = serviceStructuredData(service);
       expect(schema).not.toBeNull();
       expect(schema!["@type"]).toBe("Service");
@@ -37,6 +53,26 @@ describe("approved service publication", () => {
       expect(schema).not.toHaveProperty("aggregateRating");
       expect(relatedServiceProjects(service.slug)).toEqual([]);
     }
+
+    const directoryMeta = pageMetadata(
+      "Services - Digital Product Design & Engineering",
+      "Description",
+      "/services"
+    );
+    expect(directoryMeta.openGraph?.images).toEqual([
+      {
+        url: "https://example.test/assets/social/services.png",
+        width: 1200,
+        height: 630,
+        alt: "MOTEKRA - Services - Digital Product Design & Engineering",
+      },
+    ]);
+    expect(directoryMeta.twitter?.images).toEqual([
+      {
+        url: "https://example.test/assets/social/services.png",
+        alt: "MOTEKRA - Services - Digital Product Design & Engineering",
+      },
+    ]);
 
     // Safeguard: when SITE_INDEXABLE is false, all services fail closed to non-indexable
     vi.stubEnv("SITE_INDEXABLE", "false");

@@ -37,6 +37,10 @@ test("six production HTML routes contain genuine approved copy, links and metada
   }
   expect(html).not.toContain("<canvas");
 
+  if (process.env.SITE_INDEXABLE === "true") {
+    expect(html).toContain('content="https://www.motekra.com/assets/social/services.png"');
+  }
+
   const titles: (string | undefined)[] = [];
   for (const service of services) {
     const response = await request.get(`/services/${service.slug}`);
@@ -59,6 +63,7 @@ test("six production HTML routes contain genuine approved copy, links and metada
 
     // In production indexable mode, verified Service schema is server-rendered:
     if (process.env.SITE_INDEXABLE === "true") {
+      expect(detail).toContain(`content="https://www.motekra.com/assets/social/services-${service.slug}.png"`);
       expect(detail).toContain('"@type":"Service"');
       expect(detail).toContain(`https://www.motekra.com/services/${service.slug}#service`);
       expect(detail).not.toContain("noindex");
