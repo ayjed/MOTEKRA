@@ -103,6 +103,16 @@ Indexing is enabled **only** when the environment configuration explicitly autho
 - All Schema.org JSON-LD structured data generators return `null`.
 - Titles, descriptions, and Open Graph/Twitter visual assets remain intact for manual inspection.
 
+### Explicit Production Build Workflow vs. Arbitrary Builds
+To guarantee that preview builds and arbitrary local builds cannot accidentally inherit production indexability:
+1. **Arbitrary Builds Fail Closed (`pnpm build` / `next build`):** Arbitrary and local builds execute without automatic production fallbacks. `next.config.ts` does not read `wrangler.jsonc` or embed server-only environment variables into client runtime `env`. In the absence of explicit environment variables, Next.js prerenders all routes in fail-closed preview mode.
+2. **Dedicated Production Workflow (`pnpm build:worker` / `pnpm deploy:worker` / `pnpm build:production`):** Production worker builds explicitly supply the approved production variables (`SITE_URL=https://www.motekra.com`, `SITE_INDEXABLE=true`) via `scripts/production-build.mjs` before Next.js prerendering begins.
+3. **Four Real-Build Validation Scenarios (`scripts/verify-build-scenarios.mjs`):**
+   - **Scenario A (Authorized Production):** Explicit production variables → 11 sitemap URLs, active canonical links, `index, follow`, active Schema.org structured data.
+   - **Scenario B (Unconfigured Preview Build):** Variables unset → 0 sitemap URLs, no canonical tags, `noindex, nofollow`, no search-oriented JSON-LD.
+   - **Scenario C (Explicit Non-Indexable Staging):** `SITE_INDEXABLE=false` with staging origin → 0 sitemap URLs, zero canonical contamination (no staging or prod canonicals), `noindex, nofollow`.
+   - **Scenario D (Incorrect Production Configuration):** Missing or invalid origin → fail-closed to `noindex`, empty sitemap, no canonical tags.
+
 ---
 
 ## 5. Structured Data Architecture (Schema.org JSON-LD)
