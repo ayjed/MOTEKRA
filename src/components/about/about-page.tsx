@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { team } from "@/content/team";
 import { companyDirection, founderDetails } from "@/content/team/profile";
 import { ContactCta } from "@/components/sections/shared";
@@ -50,6 +51,12 @@ export default function AboutPage() {
               <p className="lead" data-editorial-item key={text}>{text}</p>
             ))}
             <p data-editorial-item>{companyDirection.mission}</p>
+            <p data-editorial-item>
+              <Link prefetch={false} href="/services" className="editorial-service-link">
+                <span>Explore our digital services</span>
+                <span aria-hidden="true">→</span>
+              </Link>
+            </p>
           </div>
         </div>
       </section>

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { services } from "@/content/services";
 import { ServiceDetail } from "@/components/services/service-detail";
-import { serviceMetadata, serviceStructuredData } from "@/lib/data/services";
+import { serviceBreadcrumbs, serviceMetadata, serviceStructuredData } from "@/lib/data/services";
 import { JsonLd } from "@/components/seo/json-ld";
 
 export const dynamicParams = false;
@@ -21,10 +21,12 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   const service = services.find((item) => item.slug === slug);
   if (!service) notFound();
   const schema = serviceStructuredData(service);
+  const breadcrumbData = serviceBreadcrumbs(service);
 
   return (
     <>
       <JsonLd data={schema} />
+      <JsonLd data={breadcrumbData} />
       <ServiceDetail service={service} />
     </>
   );

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Service } from "@/content/models";
 import { serviceDetails } from "@/content/services/details";
+import { complementaryServicesFor } from "@/lib/data/services";
 import { ButtonLink } from "@/components/ui/primitives";
 import { useGsapScope } from "@/lib/animations/hooks";
 import "@/styles/service-detail.css";
@@ -12,6 +13,7 @@ import "@/styles/service-detail.css";
 export function ServiceDetail({ service }: { service: Service }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const copy = serviceDetails[service.slug];
+  const complementary = complementaryServicesFor(service.slug);
 
   useGsapScope(containerRef, (gsap, ScrollTrigger, root) => {
     const mm = gsap.matchMedia();
@@ -425,6 +427,22 @@ export function ServiceDetail({ service }: { service: Service }) {
                   <span>← Explore all services</span>
                 </Link>
               </div>
+
+              {complementary.length > 0 && (
+                <div className="service-related-block" aria-label="Complementary services">
+                  <h4 className="service-related-label">Complementary services</h4>
+                  <ul className="service-related-links">
+                    {complementary.map((rel) => (
+                      <li key={rel.slug}>
+                        <Link href={`/services/${rel.slug}`} className="service-related-link">
+                          <span>{rel.title}</span>
+                          <span aria-hidden="true">→</span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         </div>

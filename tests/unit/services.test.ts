@@ -3,7 +3,13 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { services } from "@/content/services";
 import { serviceDetails } from "@/content/services/details";
-import { relatedServiceProjects, serviceMetadata, serviceStructuredData } from "@/lib/data/services";
+import {
+  complementaryServicesFor,
+  relatedServiceProjects,
+  serviceBreadcrumbs,
+  serviceMetadata,
+  serviceStructuredData,
+} from "@/lib/data/services";
 import { pageMetadata } from "@/lib/seo/site";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ServiceDetail } from "@/components/services/service-detail";
@@ -110,7 +116,7 @@ describe("approved service publication", () => {
     expect(schema).not.toHaveProperty("aggregateRating");
   });
 
-  it("renders Service JSON-LD on the server route and keeps the client detail component free of duplicate schema", () => {
+  it("renders Service and Breadcrumb JSON-LD on the server route and keeps the client detail component free of duplicate schema", () => {
     vi.stubEnv("SITE_URL", "https://example.test");
     vi.stubEnv("SITE_INDEXABLE", "true");
     const approvedFixture = { ...services[0]!, publication: "approved" as const };
@@ -121,6 +127,7 @@ describe("approved service publication", () => {
         Fragment,
         null,
         createElement(JsonLd, { data: serviceStructuredData(approvedFixture) }),
+        createElement(JsonLd, { data: serviceBreadcrumbs(approvedFixture) }),
         createElement(ServiceDetail, { service: approvedFixture })
       )
     );
@@ -131,6 +138,17 @@ describe("approved service publication", () => {
     expect(serverHtml).not.toContain('"offers"');
     expect(serverHtml).not.toContain('"aggregateRating"');
 
+    // Breadcrumb schema is present in server markup
+    expect(serverHtml).toContain('"@type":"BreadcrumbList"');
+    expect(serverHtml).toContain('"position":1,"name":"Home"');
+    expect(serverHtml).toContain('"position":2,"name":"Services"');
+    expect(serverHtml).toContain('"position":3,"name":"UI/UX Design"');
+
+    // Complementary services links are present in static markup
+    expect(serverHtml).toContain("Complementary services");
+    expect(serverHtml).toContain('href="/services/web-development"');
+    expect(serverHtml).toContain('href="/services/mobile-app-development"');
+
     // For draft services fixture, server route emits NO schema:
     const draftFixture = { ...services[0]!, publication: "draft" as const };
     const draftHtml = renderToStaticMarkup(
@@ -138,10 +156,12 @@ describe("approved service publication", () => {
         Fragment,
         null,
         createElement(JsonLd, { data: serviceStructuredData(draftFixture) }),
+        createElement(JsonLd, { data: serviceBreadcrumbs(draftFixture) }),
         createElement(ServiceDetail, { service: draftFixture })
       )
     );
     expect(draftHtml).not.toContain('"@type":"Service"');
+    expect(draftHtml).not.toContain('"@type":"BreadcrumbList"');
     expect(draftHtml).not.toContain('<script type="application/ld+json"');
 
     // In non-indexable mode, even approved fixture emits NO schema:
@@ -151,10 +171,13 @@ describe("approved service publication", () => {
         Fragment,
         null,
         createElement(JsonLd, { data: serviceStructuredData(approvedFixture) }),
+        createElement(JsonLd, { data: serviceBreadcrumbs(approvedFixture) }),
         createElement(ServiceDetail, { service: approvedFixture })
       )
     );
     expect(nonIndexableHtml).not.toContain('"@type":"Service"');
+    expect(nonIndexableHtml).not.toContain('"@type":"BreadcrumbList"');
+    expect(nonIndexableHtml).not.toContain('<script type="application/ld+json"');
 
     // Client component in isolation never renders JsonLd (preventing hydration duplication):
     const clientOnlyHtml = renderToStaticMarkup(
@@ -162,6 +185,67 @@ describe("approved service publication", () => {
     );
     expect(clientOnlyHtml).not.toContain('<script type="application/ld+json"');
     expect(clientOnlyHtml).not.toContain('"@type":"Service"');
+  });
+
+  it("determines correct complementary approved services and excludes current service and drafts", () => {
+    const expectedPairs: Record<string, [string, string]> = {
+      "ui-ux-design": ["web-development", "mobile-app-development"],
+      "web-development": ["ui-ux-design", "product-strategy"],
+      "mobile-app-development": ["ui-ux-design", "web-development"],
+      "product-strategy": ["ui-ux-design", "web-development"],
+      "brand-visual-design": ["ui-ux-design", "product-strategy"],
+    };
+
+    for (const [slug, expected] of Object.entries(expectedPairs)) {
+      const rel = complementaryServicesFor(slug);
+      expect(rel.map((s) => s.slug)).toEqual(expected);
+      expect(rel.map((s) => s.slug)).not.toContain(slug);
+      for (const s of rel) {
+        expect(s.publication).toBe("approved");
+      }
+    }
+
+    // Unknown or draft service returns empty array:
+    expect(complementaryServicesFor("non-existent-service")).toEqual([]);
+  });
+
+  it("generates matching BreadcrumbList structured data for approved service pages", () => {
+    vi.stubEnv("SITE_URL", "https://example.test");
+    vi.stubEnv("SITE_INDEXABLE", "true");
+
+    for (const service of services) {
+      const breadcrumbs = serviceBreadcrumbs(service);
+      expect(breadcrumbs).not.toBeNull();
+      expect(breadcrumbs!["@type"]).toBe("BreadcrumbList");
+      expect(breadcrumbs!.itemListElement).toEqual([
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: "https://example.test/",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Services",
+          item: "https://example.test/services",
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: service.title,
+          item: `https://example.test/services/${service.slug}`,
+        },
+      ]);
+    }
+
+    // Draft service fixture returns null:
+    const draftFixture = { ...services[0]!, publication: "draft" as const };
+    expect(serviceBreadcrumbs(draftFixture)).toBeNull();
+
+    // Non-indexable mode returns null:
+    vi.stubEnv("SITE_INDEXABLE", "false");
+    expect(serviceBreadcrumbs(services[0]!)).toBeNull();
   });
 
   it("applies Issue 03 standard hyphen formatting to approved service metadata titles", () => {

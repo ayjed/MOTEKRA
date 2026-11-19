@@ -30,6 +30,8 @@ test("server HTML preserves content, approved portrait, shared schema and public
     if (route === "/about") {
       expect(html).toContain("<title>About the Studio - MOTEKRA</title>");
       expect(html).toContain('<link rel="canonical" href="https://www.motekra.com/about"');
+      expect(html).toContain('href="/services"');
+      expect(html).toContain("Explore our digital services");
     } else {
       expect(html).toContain("<title>Ayomiposi Akinwumi - Software Developer &amp; Creative Technologist - MOTEKRA</title>");
       expect(html).toContain('<link rel="canonical" href="https://www.motekra.com/team/akinwumi-ayomiposi"');
