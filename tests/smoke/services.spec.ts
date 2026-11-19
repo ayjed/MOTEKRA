@@ -210,16 +210,25 @@ test("no JavaScript, reduced motion and low capability preserve copy, prototypes
   // Verified heading and content present without JS
   await expect(page.locator("#services-main-heading")).toBeVisible();
   await expect(page.locator(".service-accordion-item")).toHaveCount(5);
+  // Service detail subpage links are present in DOM without JS:
+  for (const service of services) {
+    expect(await page.locator(`a[href="/services/${service.slug}"]`).count()).toBeGreaterThanOrEqual(1);
+  }
   await page.screenshot({ path: `${dir}/services-no-js-390.png` });
 
   // Subpage without JS
   await page.goto("http://127.0.0.1:3000/services/ui-ux-design");
   await expect(page.getByRole("heading", { level: 1, name: "UI/UX Design" })).toBeVisible();
 
-  // Native HTML <details> disclosure toggle without JS
-  const firstFaqSummary = page.locator(".service-faq-details summary").first();
-  await firstFaqSummary.click();
-  await expect(page.locator(".service-faq-details").first()).toBeVisible();
+  // Native HTML <details> disclosure toggle functions natively without JS:
+  // First item defaults to open per editorial design
+  const firstFaqDetails = page.locator(".service-faq-details").first();
+  await expect(firstFaqDetails).toHaveAttribute("open", "");
+  // Second item is collapsed and expands natively on click without JavaScript
+  const secondFaqDetails = page.locator(".service-faq-details").nth(1);
+  await expect(secondFaqDetails).not.toHaveAttribute("open", "");
+  await secondFaqDetails.locator("summary").click();
+  await expect(secondFaqDetails).toHaveAttribute("open", "");
   await page.screenshot({ path: `${dir}/faq-no-js-390.png` });
 
   await context.close();
@@ -240,9 +249,9 @@ test("all six service pages pass desktop and mobile automated accessibility chec
         .analyze();
       await writeFile(`${dir}/axe-${service.slug}-${width}.json`, JSON.stringify(result, null, 2));
 
-      // Separate structural WCAG compliance from secondary brand accent badge color-contrast
-      const structuralViolations = result.violations.filter((v) => v.id !== "color-contrast");
-      expect(structuralViolations).toEqual([]);
+      // With color contrast fixed in CSS (.deliverable-num & .approach-step-badge >= 4.5:1),
+      // full WCAG AA audit passes with zero violations:
+      expect(result.violations).toEqual([]);
     }
 
     // 2. Audit the services landing page capabilities directory and scope agreement sections:
@@ -254,8 +263,7 @@ test("all six service pages pass desktop and mobile automated accessibility chec
       .analyze();
     await writeFile(`${dir}/axe-landing-${width}.json`, JSON.stringify(landingServicesResult, null, 2));
 
-    const landingStructural = landingServicesResult.violations.filter((v) => v.id !== "color-contrast");
-    expect(landingStructural).toEqual([]);
+    expect(landingServicesResult.violations).toEqual([]);
 
     await context.close();
   }
