@@ -9,15 +9,40 @@ import { ServiceDetail } from "@/components/services/service-detail";
 
 afterEach(() => vi.unstubAllEnvs());
 
-describe("provisional service publication", () => {
-  it("keeps every proposed capability provisional without active-offering schema", () => {
-    vi.stubEnv("SITE_URL", "https://example.test"); vi.stubEnv("SITE_INDEXABLE", "true");
+describe("approved service publication", () => {
+  it("publishes all five core capabilities as approved offerings with indexable schema", () => {
+    vi.stubEnv("SITE_URL", "https://example.test");
+    vi.stubEnv("SITE_INDEXABLE", "true");
     expect(services).toHaveLength(5);
     for (const service of services) {
-      expect(service.publication).toBe("draft");
-      expect(serviceStructuredData(service)).toBeNull();
-      expect(serviceMetadata(service).robots).toEqual({ index: false, follow: false });
+      expect(service.publication).toBe("approved");
+      expect(serviceMetadata(service).robots).toEqual({
+        index: true,
+        follow: true,
+        googleBot: { index: true, follow: true },
+      });
+      const schema = serviceStructuredData(service);
+      expect(schema).not.toBeNull();
+      expect(schema!["@type"]).toBe("Service");
+      expect(schema!.name).toBe(service.title);
+      expect(schema!.serviceType).toBe(service.title);
+      expect(schema!.url).toBe(`https://example.test/services/${service.slug}`);
+      expect(schema!["@id"]).toBe(`https://example.test/services/${service.slug}#service`);
+      expect(schema!.provider).toEqual({
+        "@type": "Organization",
+        "@id": "https://example.test/#organization",
+        name: "MOTEKRA",
+      });
+      expect(schema).not.toHaveProperty("offers");
+      expect(schema).not.toHaveProperty("aggregateRating");
       expect(relatedServiceProjects(service.slug)).toEqual([]);
+    }
+
+    // Safeguard: when SITE_INDEXABLE is false, all services fail closed to non-indexable
+    vi.stubEnv("SITE_INDEXABLE", "false");
+    for (const service of services) {
+      expect(serviceMetadata(service).robots).toEqual({ index: false, follow: false });
+      expect(serviceStructuredData(service)).toBeNull();
     }
   });
 
@@ -70,13 +95,14 @@ describe("provisional service publication", () => {
     expect(serverHtml).not.toContain('"offers"');
     expect(serverHtml).not.toContain('"aggregateRating"');
 
-    // For draft services, server route emits NO schema:
+    // For draft services fixture, server route emits NO schema:
+    const draftFixture = { ...services[0]!, publication: "draft" as const };
     const draftHtml = renderToStaticMarkup(
       createElement(
         Fragment,
         null,
-        createElement(JsonLd, { data: serviceStructuredData(services[0]!) }),
-        createElement(ServiceDetail, { service: services[0]! })
+        createElement(JsonLd, { data: serviceStructuredData(draftFixture) }),
+        createElement(ServiceDetail, { service: draftFixture })
       )
     );
     expect(draftHtml).not.toContain('"@type":"Service"');
@@ -102,17 +128,23 @@ describe("provisional service publication", () => {
     expect(clientOnlyHtml).not.toContain('"@type":"Service"');
   });
 
-  it("applies Issue 03 standard hyphen formatting to service metadata titles", () => {
+  it("applies Issue 03 standard hyphen formatting to approved service metadata titles", () => {
     vi.stubEnv("SITE_URL", "https://example.test");
     vi.stubEnv("SITE_INDEXABLE", "true");
     for (const service of services) {
       const meta = serviceMetadata(service);
-      expect(meta.title).toBe(`${service.title} - Proposed scope`);
+      expect(meta.title).toBe(`${service.title} - Digital Product Services`);
       expect(meta.title).not.toContain("—");
       expect(meta.title).not.toContain("|");
-      expect(meta.openGraph?.title).toBe(`${service.title} - Proposed scope - MOTEKRA`);
-      expect(meta.twitter?.title).toBe(`${service.title} - Proposed scope - MOTEKRA`);
+      expect(meta.openGraph?.title).toBe(`${service.title} - Digital Product Services - MOTEKRA`);
+      expect(meta.twitter?.title).toBe(`${service.title} - Digital Product Services - MOTEKRA`);
     }
+
+    // A draft fixture retains the provisional title safeguard:
+    const draftFixture = { ...services[0]!, publication: "draft" as const };
+    const draftMeta = serviceMetadata(draftFixture);
+    expect(draftMeta.title).toBe(`${draftFixture.title} - Proposed scope`);
+    expect(draftMeta.openGraph?.title).toBe(`${draftFixture.title} - Proposed scope - MOTEKRA`);
   });
 
   it("enforces verified tech capabilities and removes unsupported claims", () => {

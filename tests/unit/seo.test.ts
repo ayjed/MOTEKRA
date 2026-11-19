@@ -25,9 +25,14 @@ describe("canonical and preview safety", () => {
   it("emits approved primary URLs only when explicitly enabled", () => {
     vi.stubEnv("SITE_URL", "https://example.test"); vi.stubEnv("SITE_INDEXABLE", "true");
     const urls = sitemap().map((entry) => entry.url);
-    expect(urls).toHaveLength(5);
+    expect(urls).toHaveLength(11);
     expect(urls).toContain("https://example.test/team/akinwumi-ayomiposi");
-    expect(urls.some((url) => url.includes("/services"))).toBe(false);
+    expect(urls).toContain("https://example.test/services");
+    expect(urls).toContain("https://example.test/services/ui-ux-design");
+    expect(urls).toContain("https://example.test/services/web-development");
+    expect(urls).toContain("https://example.test/services/mobile-app-development");
+    expect(urls).toContain("https://example.test/services/product-strategy");
+    expect(urls).toContain("https://example.test/services/brand-visual-design");
     expect(urls.some((url) => url.includes("insights"))).toBe(false);
     expect(pageMetadata("Test", "Description", "/work").alternates?.canonical).toBe("https://example.test/work");
   });

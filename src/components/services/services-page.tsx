@@ -76,7 +76,7 @@ export function ServicesPage() {
               These capabilities are tailored to each engagement. Deliverables, platforms, timelines, responsibilities and milestones are rigorously aligned before implementation begins.
             </p>
             <Link prefetch={false} href="/contact" className="services-scope-btn" data-scope-cta>
-              Discuss the proposed scope
+              Discuss Your Project
             </Link>
           </div>
           <ol>

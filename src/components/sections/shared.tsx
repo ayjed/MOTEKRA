@@ -33,7 +33,7 @@ export function PageHero({
 export function ServiceList({ full = false }: { full?: boolean }) {
   return (
     <>
-      <DraftNote>Proposed service scope · awaiting confirmation</DraftNote>
+      <DraftNote>Core service offerings · bespoke product delivery</DraftNote>
       <div className={`service-list ${full ? "service-list-full" : ""}`}>
         {services.map((service) => (
           <article className="service-row" key={service.slug}>
@@ -55,7 +55,7 @@ export function ServiceList({ full = false }: { full?: boolean }) {
               prefetch={false}
               href={`/services/${service.slug}`}
               className="circle-link"
-              aria-label={`Explore ${service.title} proposed scope`}
+              aria-label={`Explore ${service.title}`}
             >
               <Arrow diagonal />
             </Link>
