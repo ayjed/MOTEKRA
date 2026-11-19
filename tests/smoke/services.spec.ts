@@ -20,7 +20,7 @@ async function settleTitle(page: Page) {
   }
 }
 
-test("six production HTML routes contain genuine provisional copy, links and metadata", async ({ request }) => {
+test("six production HTML routes contain genuine approved copy, links and metadata", async ({ request }) => {
   const landing = await request.get("/services");
   expect(landing.status()).toBe(200);
   const html = await landing.text();
@@ -29,10 +29,17 @@ test("six production HTML routes contain genuine provisional copy, links and met
   expect(html).toContain("What We Bring to Life.");
   expect((html.match(/data-accordion-item=/g) ?? [])).toHaveLength(5);
   expect(html).toContain("Five core capabilities · bespoke product delivery");
+  expect(html).toContain("Discuss Your Project");
+  expect(html).not.toContain("Discuss the proposed scope");
+  expect(html).not.toContain("awaiting confirmation");
   for (const step of ["Discover", "Define", "Design", "Develop", "Launch"]) {
     expect(html).toContain(step);
   }
   expect(html).not.toContain("<canvas");
+
+  if (process.env.SITE_INDEXABLE === "true") {
+    expect(html).toContain('content="https://www.motekra.com/assets/social/services.png"');
+  }
 
   const titles: (string | undefined)[] = [];
   for (const service of services) {
@@ -46,21 +53,44 @@ test("six production HTML routes contain genuine provisional copy, links and met
       "What We Deliver",
       "How We Approach It",
       "Frequently Asked Questions",
-      "noindex",
     ]) {
       expect(detail).toContain(text.replaceAll("&", "&amp;"));
     }
 
-    // Safeguard: Draft services must not emit Service structured data
-    expect(detail).not.toContain('"@type":"Service"');
     expect(detail).not.toContain('href="/work/spotlight-contest"');
+    expect(detail).not.toContain("provisional offering");
+    expect(detail).not.toContain("awaiting confirmation");
+
+    // In production indexable mode, verified Service schema is server-rendered:
+    if (process.env.SITE_INDEXABLE === "true") {
+      expect(detail).toContain(`content="https://www.motekra.com/assets/social/services-${service.slug}.png"`);
+      expect(detail).toContain('"@type":"Service"');
+      expect(detail).toContain(`https://www.motekra.com/services/${service.slug}#service`);
+      expect(detail).not.toContain("noindex");
+      expect(detail).not.toContain('"offers"');
+      expect(detail).not.toContain('"aggregateRating"');
+    }
 
     const match = detail.match(/<title>(.*?)<\/title>/);
     titles.push(match?.[1]);
+    expect(match?.[1]).toBe(`${service.title.replaceAll("&", "&amp;")} - Digital Product Services - MOTEKRA`);
   }
 
   expect(new Set(titles).size).toBe(5);
   expect((await request.get("/services/not-a-service")).status()).toBe(404);
+
+  // Verify production sitemap includes services directory and all 5 approved subpages:
+  const sitemapResponse = await request.get("/sitemap.xml");
+  if (sitemapResponse.status() === 200) {
+    const sitemapText = await sitemapResponse.text();
+    if (process.env.SITE_INDEXABLE === "true") {
+      expect(sitemapText).toContain("/services");
+      for (const service of services) {
+        expect(sitemapText).toContain(`/services/${service.slug}`);
+      }
+    }
+  }
+
   await writeFile(`${dir}/metadata-audit.json`, JSON.stringify(titles, null, 2));
 });
 

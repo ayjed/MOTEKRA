@@ -19,8 +19,8 @@
       "path": "public/assets/social/services.png",
       "width": 1200,
       "height": 630,
-      "bytes": 156687,
-      "sha256": "f35169aa5b8555ff05d81ab49b73bf378d9466476f6f0fc8dc6b20e16e3aef33"
+      "bytes": 155831,
+      "sha256": "9ed3506861147e3bd96e10357f94fa9fb0cf03801096c92b373887c85e9bcf79"
     },
     {
       "path": "public/assets/social/about.png",
@@ -54,36 +54,36 @@
       "path": "public/assets/social/services-ui-ux-design.png",
       "width": 1200,
       "height": 630,
-      "bytes": 161703,
-      "sha256": "6a18d1ea6752f22412829395f8ba58c77f9a12040eea6194d4c6d354d7927127"
+      "bytes": 161682,
+      "sha256": "b73f67c27181f87c6cdfa4b0f1b6b5c2ac58106a6944d79ec93ecf718f6fcc30"
     },
     {
       "path": "public/assets/social/services-web-development.png",
       "width": 1200,
       "height": 630,
-      "bytes": 165783,
-      "sha256": "f199ba1547c0f6f91c58355fb29c948dca2d6e8bb742acd614e1abb976a7c702"
+      "bytes": 165769,
+      "sha256": "338f2088ccd4c748bf20179d6168ca826ce3624a13b0fe7afcba2b7c94fc0987"
     },
     {
       "path": "public/assets/social/services-mobile-app-development.png",
       "width": 1200,
       "height": 630,
-      "bytes": 163320,
-      "sha256": "8ff348f44960fe7e4cfa891771fcabd4e855503e8ea91b7db47ededb235aa346"
+      "bytes": 163314,
+      "sha256": "6baf335a5b11ca42faf5a55473ae7414c3a7cafbf2aac8c0cc1a94dcb0848a71"
     },
     {
       "path": "public/assets/social/services-product-strategy.png",
       "width": 1200,
       "height": 630,
-      "bytes": 165617,
-      "sha256": "37f10e1e13ffedc5ff7dc0645ff8aafc91aca7131df23f9f062016ccbae5568c"
+      "bytes": 165599,
+      "sha256": "1e64a0727bf989e998270cb455e4625bb716c36232229661bad5332fad9b0bd6"
     },
     {
       "path": "public/assets/social/services-brand-visual-design.png",
       "width": 1200,
       "height": 630,
-      "bytes": 162556,
-      "sha256": "1c0896172991c7f87cacc1ca8be69d9fb94b2b67ce6c20547fa09c4c4f5647e0"
+      "bytes": 162540,
+      "sha256": "8dd42aa669000b204426f916109d11b3c3e69c1d3b229a06648321708b69eb75"
     }
   ]
 }
