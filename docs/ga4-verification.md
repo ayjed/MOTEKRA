@@ -19,11 +19,47 @@ These results confirm that pageview data was received after consent. They do not
 ### Remaining checks
 
 - [ ] Verify analytics behavior before consent is granted.
-- [ ] Verify analytics behavior after consent is rejected.
+- [x] Check GA4 collect requests after consent rejection in Chrome (November 22; no matching requests observed).
 - [ ] Check for duplicate pageviews during client-side navigation.
 - [ ] Verify successful contact-form conversion tracking.
 - [ ] Check for analytics-related browser console errors.
 - [ ] Repeat verification on mobile.
+
+## Verification — November 22, 2026
+
+### Consent rejection test
+
+**Environment**
+- Website: MOTEKRA production
+- Browser: Google Chrome (Incognito)
+- Page: `/contact`
+- Tool: Chrome DevTools → Network
+- Request filter: `collect`
+- Preserve log: Enabled
+
+**Actions performed**
+1. Opened the website in an incognito session.
+2. Selected **Decline** on the analytics consent banner.
+3. Navigated through the website to the Contact page.
+4. Filtered network requests using `collect`.
+5. Refreshed the Contact page and inspected the filtered requests.
+
+**Observed results**
+- [x] Analytics consent was declined.
+- [x] No requests matching `collect` were observed during the recorded navigation.
+- [x] No requests matching `collect` were observed after refreshing the Contact page.
+
+**Assessment**
+
+The test found no GA4 collection requests matching the selected filter after analytics consent was declined.
+
+This supports the expected consent-rejection behavior in the tested Chrome session. It does not establish that all analytics requests are blocked across every endpoint, browser, or device.
+
+**Further verification**
+- [ ] Inspect additional GA4 and Google Tag request endpoints.
+- [ ] Confirm analytics storage behavior after consent rejection.
+- [ ] Repeat the test on mobile.
+- [ ] Verify that accepting consent enables the expected tracking behavior.
 
 ## Testing procedure
 
